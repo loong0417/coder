@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生命周期分析</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>{{message}}</h1>
+    <h2>{{name}}</h2>
+    <button @click="changeName()">我想更新名字触发update生命周期函数</button>
+    <br/>
+    <!-- 
+      注意：
+        1. 销毁实例后所有的事件就不存在了，实例里的属性name和方法是存在的。
+        2. 先销毁实例，再app.name发现属性存在，app.show函数存在，@click="changeName" 事件是真的不存在的，无法触发。
+    -->
+    <button @click="destroys()">销毁实例</button>
+  </div>
+  <script>
+    const app = new Vue({
+      data(){
+        return{
+          message:"生命周期深入分析",
+          name:'杨小样'
+        }
+      },
+      methods:{
+        show(){
+          console.log("我就是个show函数而已！！！");
+        },
+        changeName(){
+          this.name = "皮皮洋";
+        },
+        destroys(){
+          this.$destroy();
+        }
+      },
+      /**
+       * 生命周期函数深入分析：
+       *  1. beforeCreate
+       *  2. created
+       *  3. beforeMount
+       *  4. mounted
+       *  5. beforeUpdate
+       *  6. updated
+       *  7. beforeDestroy
+       *  8. destroyed
+       * 
+       * 第一步：实例化 vue，然后初始化 event 和 lifecycle
+       */
+      beforeCreate(){
+        console.log("beforeCreate：这个时候实例还没有被创建！！！")
+        console.log(this.name)  // undefined
+        console.log(this.show)  // undefined
+
+        console.log("1");
+      },
+      /**
+       * created() 发送数据请求，数据存储在 data 里面。 
+       */
+      created(){
+        console.log("created：这个时候实例已经创建了，属性也有了，但是并没有渲染到页面中。");
+        console.log(this.name)  // 杨小样
+        console.log(this.show)  // show(){ console.log("我就是个show函数而已！！！") }
+
+        console.log("2");
+      },
+      beforeMount(){
+        console.log("beforeMount：这个时候模板，已经编译完成，准备往页面里面挂载！！");
+        console.log("3");
+      },
+      /**
+       * mounted() 发送数据请求，当数据不存要存储的时候，就在这里发送数据请求。 
+       */
+      mounted(){
+        console.log("mounted：此时真正的DOM已经挂载到页面上了，页面已经有内容了，数据，事件都有了！！");
+        console.log("4");
+      },
+      beforeUpdate(){
+        console.log("5");
+        console.log("beforeUpdate：数据马上要更新了！！！");
+      },
+      updated(){
+        console.log("6");
+        console.log("updated：数据已经更新了！！！！");
+      },
+      beforeDestroy(){
+        console.log("7");
+        console.log("beforeDestory：实例马上要销毁了！！！");
+      },
+      destroyed(){
+        console.log("8");
+        console.log("destoryed：实例已经被销毁！！！");
+      }
+    }).$mount("#app");
+  </script>
+</body>
+</html>

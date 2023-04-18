@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    1. 我们已经不需要自定义模块化了。
+    2. 常见的模块化规范：
+      1). common.js
+        exports 导出
+        require 导入
+
+      2). AMD
+      3). CMD
+
+      4). ES6的Modules规范，然后需要在script标签中添加一个type属性。 <script src="./main.js" type="module"></script>
+        export  导出
+        import  导入
+
+        注意：在 vue.js 中就可以省略script标签中的属性type。
+    
+    3. common.js，AMD，CMD需要node环境。
+   -->
+  <script src="./main.js"></script>
+  <script src="./a.js"></script>
+  <script src="./b.js"></script>
+  <script src="./c.js"></script>
+</body>
+</html>

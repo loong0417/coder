@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    1. 模块化需要在script标签中添加一个 type="module" 属性，添加完type属性后，就是将引入的文件作为一个模块化使用。
+    <script src="./main.js" type="module"></script>
+
+   -->
+  <!-- <script src="./main.js" type="module"></script> -->
+  <script src="./a.js" type="module"></script>
+  <script src="./b.js" type="module"></script>
+
+  <!-- 
+    2. 全部使用模块化方式引入，这个时候引入的文件就是一模块形式引入的，不会是全局的文件。
+    c.js文件中就没有办法使用 flag 变量。模块都有自己的作用域。
+  -->
+  <script src="./c.js" type="module"></script>
+</body>
+</html>

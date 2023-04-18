@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./main.js" type="module"></script>
+  <script src="./a.js" type="module"></script>
+  <script src="./b.js" type="module"></script>
+  <!-- 
+    1. c.js文件中也是没有办法拿到 ModuleA 的，Uncaught ReferenceError: ModuleA is not defined at c.js:2:1
+   -->
+  <script src="./c.js" type="module"></script>
+</body>
+</html>
