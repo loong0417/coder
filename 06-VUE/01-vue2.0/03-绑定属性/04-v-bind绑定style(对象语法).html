@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind绑定style(对象语法)</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 
+            语法：:style="{css属性1：属性值,css属性2:属性值}" 
+                
+            :style="{key1：value1,key2:value2}" 
+            key：指的是CSS属性，value：指的是CSS属性值。
+        -->
+
+        <!-- 1. 如果是这样的书写方式，相当于行内样式，所以不推荐使用。
+            属性值在这个地方需要用引号括起来，如果不括起来它会当作变量去解析的。
+        -->
+        <!-- <h2 :style="{color:'red',fontSize:'100px'}">{{message}}</h2> -->
+
+        <!-- 2. 一般情况下属性值，我们会将它定义成一个变量 -->
+        <!-- <h2 :style="{color:color,fontSize:fontSize+'px'}">{{message}}</h2> -->
+
+        <!-- 3. 如果属性添加太长，就可以直接写成一个方法 -->
+        <h2 :style="getStyle()">{{message}}</h2>
+    </div>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:"hello vue",
+                color:'red',
+                fontSize:'50',
+            },
+            methods:{
+                getStyle(){
+                    return {color:this.color,fontSize:this.fontSize+'px'}
+                }
+            }
+        });
+    </script>
+</body>
+</html>

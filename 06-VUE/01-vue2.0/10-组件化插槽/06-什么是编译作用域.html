@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>什么是编译作用域</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    官方说明：父组件模板的所有东西都会在父级作用域内编译，子组件模板的所有东西都会在子级作用域内编译。
+   -->
+  <div id="app">
+    <!-- 1. app 里面的 isShow 是访问的 vue 实例中的data，在谁的作用域里面就会优先去找哪个里面的data。-->
+    <cpn v-show="isShow"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>vue实例下的组件 cpn</h2>
+      <span>描述：我是vue实例下面的组件。</span>
+      <!-- 
+        2. cpn 里面的 isShow 是访问的 cpn 组件里面定义的 data，因为目前是在组件的作用域中。
+            组件都有自己的作用域。
+        -->
+      <button v-show="isShow">按钮</button>
+    </div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data(){
+        return{
+          isShow:true
+        }
+      },
+      components:{
+        cpn:{
+          template:"#cpn",
+          data(){
+            return {
+              isShow:false
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

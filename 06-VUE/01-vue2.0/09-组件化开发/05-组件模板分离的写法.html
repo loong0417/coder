@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件模板分离的写法</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    组件模板分离2种写法（主要类型和id）：
+      1. 使用 <script type="text/x-template" id="cpn"></script>
+      2. 使用 <template id="cpn"></template>
+   -->
+  <div id="app">
+    <h1>{{message}}</h1>
+    <cpn1></cpn1>
+  </div>
+
+  <script type="text/x-template" id="cpn">
+    <div>
+      <h2>分离模板1</h2>
+      <p>分离模板的方式一，使用script标签，注意type类型，还需要添加一个关联id</p>
+      <p>外层还需要加一层包含块 div 否则会报错</p>
+    </div>
+  </script>
+
+  <!-- <template id="cpn">
+    <div>
+      <h2>分离模板2</h2>
+      <p>分离模板的方式二，template标签方式</p>
+      <p>外层还需要加一层包含块 div 否则会报错</p>
+    </div>
+  </template> -->
+
+
+  <script>
+  
+    Vue.component('cpn1',{
+      template:'#cpn',
+    });
+
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message:"组件模板分离的写法"
+      },
+      
+    });
+  </script>
+</body>
+</html>

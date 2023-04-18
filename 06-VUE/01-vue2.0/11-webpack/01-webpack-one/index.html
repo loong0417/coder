@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 
+    1. 这里在引入js文件的时候不能直接引入 src/main.js 里面的文件，因为 src 里面 的文件是使用 commonjs 模块化方式书写的，
+       浏览器根本就识别不了 commonjs 文件。所以需要使用 webpack 将文件打包，打包之后的文件存放在 dist 里面，在 html文件中进行引用就行。
+    2. 打包命令： webpack ./src/main.js -o ./dist/bundle.js --mode development 。 dist 文件夹是自己新建的。 
+    3. 打包命令 -o 是输出的意思。
+  -->
+  <script src="./dist/main.js"></script>
+</head>
+<body>
+  
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件访问-子访问父-$parent-$root</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    1. 在子组件中访问父组件：使用$parent，访问跟组件 $root。
+    -->
+  <div id="app">
+    <cpn></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>我是第一个子组件</h2>
+      <button @click="btnclick">点一下</button>
+      <cpn1></cpn1>
+
+    </div>
+  </template>
+
+  <template id="cpn1">
+    <div>
+      <h2>我是cpn的子组件</h2>
+      <button @click="btn">按钮</button>
+    </div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data(){
+        return{
+          message:"vue实例的data数据",
+        }
+      },
+      methods:{
+        messageShow(){
+          return console.log("vue实例的函数messageShow!!!");
+        }
+      },
+      components:{
+        cpn:{
+          template:"#cpn",
+          data(){
+            return {
+              message:"我是vue实例下面的components"
+            }
+          },
+          methods:{
+            btnclick(){
+              // 返回：Vue {_uid: 0, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: Vue, …}
+              console.log(this.$parent);
+              console.log(this.$parent.message);
+              console.log(this.$parent.messageShow());
+            }
+          },
+          components:{
+            cpn1:{
+              template:"#cpn1",
+              methods:{
+                btn(){
+                  // 1. this.$parent
+                  // 返回一个对象：VueComponent {_uid: 1, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: VueComponent, …}
+                  console.log(this.$parent);
+                  console.log(this.$parent.message);
+
+                  // 2. this.$root
+                  // 返回一个vue对象：Vue {_uid: 0, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: Vue, …}
+                  console.log(this.$root);
+                  console.log(this.$root.message);
+                  console.log(this.$root.messageShow());
+                }
+              }
+            }
+          },
+        },
+      }
+    });
+  </script>
+</body>
+</html>

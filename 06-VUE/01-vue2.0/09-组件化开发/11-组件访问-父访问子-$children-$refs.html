@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件访问-父访问子-$children-$refs</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    父子组件的访问方式：
+      有时候我们需要父组件直接访问子组件，或者子组件直接访问父组件，或者子组件访问跟组件。
+      
+      1. 在父组件中访问子组件：使用$children或$refs（reference 引用）。
+      2. 在子组件中访问父组件：使用$parent，访问跟组件 $root。
+   -->
+  <div id="app">
+    <cpn ref="cpn"></cpn>
+    <button @click="btn">按钮</button>
+
+    <cpn1 ref="cpn1"></cpn1>
+  </div>
+
+  <template id="cpn">
+    <div>我是子组件</div>
+  </template>
+
+  <template id="cpn1">
+    <div>我是第二个子组件</div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data(){
+        return {  
+        }
+      },
+      methods:{
+        btn(){
+          //[VueComponent] 返回一个数组，说明vue实例里面有一个组件，数组类型 [VueComponent]。
+          // 如果在下面新添加一个 cpn1 组件，里面里面就会变成两个组件 (2) [VueComponent, VueComponent]
+          // console.log(this.$children);   
+
+          // 1. 使用 this.$children[index] 方式进行访问。
+          // 这种方式的弊端是，在实际开发的时候，数组的下标是会发生改变的，那怎么才能访问到需要的函数或值呢？
+          this.$children[0].showMessage();    // 访问 methods
+          console.log(this.$children[0].name); // 访问 data
+
+          // 2. this.$refs 方式比上面的 $children 方式使用得多。
+          // 注意：这样使用，一定要在组件使用的地方给组件添加一个 ref 属性(例：ref="cpn1") ，如果不添加属性就会返回一个空对象。可以将这个属性值作为对象的名字去.属性和方法。
+          // 返回值：是一个对象类型 {cpn: VueComponent, cpn1: VueComponent}。
+          // console.log(this.$refs);
+
+          this.$refs.cpn1.show();
+          console.log(this.$refs.cpn1.name);
+        }
+      },
+      components:{
+        cpn:{
+          template:"#cpn",
+          data(){
+            return{
+              name:"我是子组件，我的名字是 cpn."
+            }
+          },
+          methods:{
+            showMessage(){
+              console.log("showMessage");
+              console.log("我是 vue 实例下面的 cpn 组件！！！");
+            }
+          }
+        },
+
+        cpn1:{
+          template:"#cpn1",
+          data(){
+            return{
+              name:"子组件cpn1",
+            }
+          },
+          methods:{
+            show(){
+              console.log("我是子组件 cpn1 ");
+            },
+          }
+        },
+      }
+    });
+  </script>  
+</body>
+</html>

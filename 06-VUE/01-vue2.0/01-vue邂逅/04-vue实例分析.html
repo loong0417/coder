@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue实例分析</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+  </div>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data(){
+        return{
+          message:'杨小样的测试'
+        }
+      }
+    });
+    console.log(app === Vue)        // false
+    console.log(app instanceof Vue) // true
+
+    console.log(app.message)        // 杨小样的测试
+    console.log(app.$el)            // <div id="app"><h2>杨小样的测试</h2></div>
+    console.log(app.$data);         // Object/{__ob__: Observer}
+    console.log(app)                // Vue {_uid: 0, _isVue: true, $options: {…}, _renderProxy: Proxy, _self: Vue, …}
+
+    console.log(Vue) 
+  // ƒ Vue (options) {
+  //   if (!(this instanceof Vue)
+  //   ) {
+  //     warn('Vue is a constructor and should be called with the `new` keyword');
+  //   }
+  //   this._init(options);
+  // }
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性基本使用</title>
+    <script src="../vue/vue.js"></script>
+    <style>
+        .active{
+            color: red;
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>{{message}}</h1>
+        <h2>{{joinName}}</h2>
+        
+        <div>
+            <h2 :class="{active:isActive}">{{count}}</h2>
+            <!-- 事件监听不能写在computed中 -->
+            <button @click="decrement">减小</button>
+            <button @click="increment">增加</button>
+        </div>
+    </div>  
+    
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'hello vue!!!!',
+                firstName:'yang',
+                lastName:'xiaoyang',
+                count:1,
+                isActive:true
+            },
+            computed:{
+                joinName(){
+                    return this.firstName + '_'+ this.lastName;
+                },
+            },
+            // methods:{
+            //     decrement(){
+            //         this.count--;
+            //     },
+
+            //     increment(){
+            //         this.count++;
+            //     }
+            // }
+        });
+    </script>
+</body>
+</html>

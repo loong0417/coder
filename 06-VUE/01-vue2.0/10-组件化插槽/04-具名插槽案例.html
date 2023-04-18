@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>具名插槽案例</title>
+  <script src="../vue/vue.js"></script>  
+</head>
+<body>
+  <div id="app">
+    
+    <navs>
+      <span slot="left">返回</span>
+      <span slot="center">搜索</span>
+      <span slot="right">功能</span>
+    </navs>
+
+    
+    <navs>
+      <span slot="left">1</span>
+      <span slot="center">2</span>
+      <span slot="right">3</span>
+    </navs>
+  </div>
+
+  <template id="nav">
+    <div>
+      <slot><button>按钮</button></slot>
+      <slot name="left"><span>左边</span></slot>
+      <slot name="center"><span>中间</span></slot>
+      <slot name="right"><span>右边</span></slot>
+    </div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data(){
+        return{
+
+        }
+      },
+      components:{
+        navs:{
+          template:"#nav",
+        }
+      }
+    });
+  </script>
+</body>
+</html>

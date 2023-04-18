@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小案例</title>
+</head>
+<body>
+    <div id="app">
+        <h2>当前计数：{{counter}}</h2>
+        <!-- 方式一： -->
+        <!-- <button v-on:click="counter++">+</button>
+        <button v-on:click="counter--">-</button> -->
+        
+        <!-- 方式二： -->
+        <button v-on:click="add">+</button>
+        <button v-on:click="sub">-</button>
+    </div>
+    <script src="../vue/vue.js"></script>
+    
+    <script>
+        const app = new Vue({
+            el : '#app',
+            data : {
+                counter : 0,
+            },
+            methods : {
+                add:function(){
+                    console.log("add方法被执行！");
+                    this.counter++;
+                    console.log(this);   // this 指的是 app 
+                },
+                sub:function(){
+                    console.log("sub方法被执行！");
+                    this.counter--;
+                    console.log(this==app);   // true
+                }
+            }
+        });
+    </script>
+</body>
+</html>

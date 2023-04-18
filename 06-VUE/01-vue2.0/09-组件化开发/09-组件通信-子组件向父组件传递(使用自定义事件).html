@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件通信-子组件向父组件传递(使用自定义事件)</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 5. 使用子组件传过来的数据 proname -->
+    <h2>{{proname}}</h2>
+    <!-- 
+      这个位置自定义事件，后面函数括号不写，会默认将$emit发射的item数据传给监听的cpnclick函数
+      cpnclick函数需要接收 item 数据。
+      -->
+      <!-- 3. 在父组件中接收事件（父组件中使用子组件的位置接收），这是一个自定义事件，并且在父组件(如：vue实例中)methods中实现接收的事件。 -->
+    <cpn @itemclick="cpnclick"></cpn>
+  </div>
+
+  <template id="cpn">
+    <div>
+      <h2>{{message}}</h2>
+      <!-- 1. 监听子组件事件，传入一个值，值是区别触发的事件的。 -->
+      <button v-for="item,index in categories" @click="btnclick(item)">{{item.proname}}</button>
+    </div>
+  </template>
+  <script>
+
+    const cpn = {
+      template:'#cpn',
+      data(){
+        return{
+          message:"我是子组件",
+          categories:[
+            {id:'0001',proname:"手机数码",price:'5000'},
+            {id:'0002',proname:"电脑办公",price:'6000'},
+            {id:'0003',proname:"家用电器",price:'7000'},
+            {id:'0004',proname:"厨用电器",price:'8000'},
+            {id:'0005',proname:"汽车用品",price:'9000'},
+          ]
+        }
+      },
+      // 2. 在子组件methods中监听子组件事件，并发射自定义事件，并且携带参数。
+      methods:{
+        btnclick(item){
+          // 发射一个自定义事件，将item发送给父组件
+          this.$emit('itemclick',item)
+          // console.log(item);
+        }
+      }
+    }
+
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:"hello vue",
+        proname:''
+      },
+      components:{
+        cpn:cpn
+      },
+      methods:{
+        //  4. cpnclick(item) 上面组件传的时候默认省略括号，但下面还是需要接收item。
+        cpnclick(item){
+          this.proname = item.proname
+          // console.log(item.proname);
+          // console.log("cpnclick");
+        }
+      }
+    })
+  </script>
+</body>
+</html>

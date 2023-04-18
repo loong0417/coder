@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day1-vue.js初体验</title>
+</head>
+<body>
+    
+    <div id="杨小样">
+        <h2>{{message}}</h2>
+        <p>{{name}}</p>
+        <p>{{job}}</p>
+
+        <p v-for="n in 10">{{n}}</p>
+    </div>
+    <script src="../vue/vue.js"></script>
+
+    <script>
+        // ES6 定义变量方式 
+        // let 定义变量关键字，const 定义常量方式
+
+        /*
+            编程范式：声明式编程
+            1. 数据界面完全分离
+
+            响应式：数据发生变化的时候界面会跟着改变，这种方式称为：响应式
+
+            原生 js 方式采用的是：编程范式（命令式编程方式）
+        */
+
+        /*
+            1. 创建 Vue 实例
+            2. 创建 Vue 实例的时候传入一个参数，这里的参数不是一个普通参数而是一个对象 options {}
+               - {} 中包含一个 el属性(elements)：该对象决定 Vue 对象挂载哪一个元素上；
+               - {} 中包含 data 属性，该属性中通常会存储一些数据：
+               （ 1. 这些数据是我们直接定义出来的；2. 也可以来自网络通过服务器加载；）
+            3. 浏览器执行代码流程；
+            4. 并且，目前代码可以做响应式；
+
+        */
+        const app = new Vue({
+            el: "#杨小样",    // 用于挂载要管理的元素
+            data:{         // 定义数据
+               message: '你好啊，杨小样',
+               name: '杨小样',
+               job: '软件攻城狮',
+            }
+        });
+
+		</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>为什么组件中的data必须是一个函数</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    1. 组件内部是不能访问 vue 实例里面的数据 data，组件有自己的data。
+    2. 为什么组件中的data必须是一个函数，返回一个对象？
+   -->
+  <div id="app">
+    {{message}}
+    <hr>
+    <!-- 
+      2. 如果将组件在这里运用了3次，它们不是同一个组件实例，每一次操作的data不是同一个data。
+         这就是为什么data必须是一个函数，返回一个对象的原因。（组件的复用不希望引起连锁反应）
+      
+      3. 每一个组件实例都需有自己的状态。
+     -->
+    <counter></counter>
+    <counter></counter>
+    <counter></counter>
+  </div>
+
+  <template id="counter">
+    <div>
+      <span>{{number}}</span>
+      <button @click="sub">-</button>
+      <button @click="add">+</button>
+    </div>
+  </template>
+   
+  <script>
+    // const obj={
+    //   number:0
+    // }
+    Vue.component('counter',{
+      template:"#counter",
+      data(){
+        return{
+          number:0,
+        }
+
+        // return obj
+      },
+
+      methods:{
+        add(){
+          this.number++;
+        },
+        sub(){
+          this.number--;
+        }
+      },
+      
+      
+    });
+
+    const app = new Vue({
+      el:"#app",
+      data(){
+        return{
+          message:"hello vue!",
+        }
+      }
+    });
+
+
+    /**
+     * 返回为什么函数中的 data 必须是一个对象
+     */
+    function info(){
+      // 每次调用会创建一个新的对象返回
+      return {
+        name:'杨小样',
+        age: 18
+      }
+    }
+
+    var info1 = info();
+    var info2 = info();
+    var info3 = info();
+    
+    info1.name="张三";   // 只有 info1 的值会受影响。其它值不会受影响，减少关联。
+    console.log(info1,info2,info3);
+
+
+
+
+    var obj={
+      name:'皮皮羊',
+      age:18
+    }
+
+    function test(){
+      return obj;
+    }
+
+    var obj1 = test();
+    var obj2 = test();
+    var obj3 = test();
+
+    obj1.name="张三";
+
+    console.log(obj1,obj2,obj3);   // 所有的name都会受影响，改成了张三。
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-if和else-if使用</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <!-- 1.在实际开发中，这样的结构太复杂，这种情况需要给方法处理 -->
+    <!-- <h2 v-if="score>90">优秀</h2>
+    <h2 v-else-if="score>80">中等</h2>
+    <h2 v-else-if="score>60">及格</h2>
+    <h2 v-else>你还需要努力！！！！</h2> -->
+    
+    <!-- 2.返回的是一个处理后的结果 -->
+    <h2>{{result()}}</h2>
+    
+  </div>
+
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:"成绩信息",
+        score:59,
+      },
+      methods:{
+        result(){
+          let resultMessage = "";
+        
+          if(this.score>90){
+             resultMessage="优秀！";
+          }else if(this.score>70){
+             resultMessage="良好！";
+          }else if(this.score>60){
+             resultMessage="及格";
+          }else{
+             resultMessage="你还需要努力！！!";
+          }
+
+          return resultMessage;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

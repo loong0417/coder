@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-on参数问题</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+
+  <!-- 
+     1. 当通过methods中定义方法，以供@click调用时，需要注意参数：
+        （1）. 如果该方法不需要额外参数，那么方法后的()可以不添加。 mustache语法里面使用方法也可以省略。
+            但是要注意：如果方法本身中有一个参数，那么会默认将原生事件event参数传进去。 
+       
+        （2）. 如果需要同时传入某个参数，同时需要event时，可以通过$event传入事件。
+   -->  
+    <button @click="btnClick()">按钮</button>
+    <button @click="btnClick">按钮</button>
+
+
+    <!-- 
+      在事件定义时，写函数时省略了小括号，但方法本身需要一个参数，
+      这个时候，vue会默认将浏览器生产的 event 事件对象作为参数传入到方法中。
+     -->
+    <button @click="btn1Click">按钮1</button>
+
+    <!-- 
+      如果需要同时传入某个参数，同时需要event时，可以通过$event传入事件。 
+      传入参数event不加$符号，系统会默认为它是一个变量，会去data里面找这个变量，不会解析 event 事件。
+
+      注意：数字10是一个基本数据类型，当这里是一个字母字符串之类的时候这里需要加引号，否则也会解析成变量，在data中查找变量。
+    -->
+    <button @click="btn2Click(10,$event)">按钮2</button>
+
+
+    <!-- 
+      btn3Click 一个参数，一个event事件，如果没有传入实参，这个时候会有一个默认的事件，
+      会将事件赋值给 number ，event 值为undefined。
+     -->
+    <button @click="btn3Click">按钮3</button>
+  </div>
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'hello vue',
+      },
+      methods:{
+        btnClick(){
+          console.log("btnClick");
+        },
+        btn1Click(name){
+          console.log("btn1Click");
+          // name 没有传实参，因为调用方法时省略了括号，那么会默认将原生事件event参数传进去。
+          console.log(name);  
+        },
+        btn2Click(number,event){
+          console.log('btn2Click');
+          console.log(number,event);
+        },
+        btn3Click(number,event){
+          console.log(number);  // pointerEvent
+          console.log(event);   // undefined
+        },
+      },
+
+    });
+  </script>
+</body>
+</html>

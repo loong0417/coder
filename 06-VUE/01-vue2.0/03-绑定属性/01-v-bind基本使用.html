@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind基本使用</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        {{}} 语法只能用于渲染内容，那么属性就需要使用 v-bind 去绑定。
+
+        1. v-bind:scr 属性
+        2. v-bind:href 属性
+     -->
+    <div id="app">
+        <h2>{{message}}</h2>
+
+        <img v-bind:src="img">
+        <a v-bind:href="link">百度</a>
+    </div>
+
+    <script>
+        let  app = new Vue({
+            el:'#app',
+            data:{
+              message:'hello vue',
+              img: './img/1.jpg',
+              link:'https://baidu.com',
+            }
+        });
+    </script>
+</body>
+</html>

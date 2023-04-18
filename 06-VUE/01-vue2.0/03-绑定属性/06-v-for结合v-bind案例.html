@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-for结合v-bind案例</title>
+
+  <style>
+    .active{
+      color: red;
+      font-size: 20px;
+      font-weight: 900;
+    }
+  </style>
+</head>
+<body>
+  <script src="../vue/vue.js"></script>
+  <!-- 
+    需求：1. 遍历列表。2. 鼠标点击列表中的哪一项，哪一项就变成红色。
+   -->
+   <div id="app">
+     <h2>{{message}}</h2>
+
+     <ul>
+       <li v-for="(item,index) in books" @click="chooseBook(index)" :class="{'active':i===index}">{{item}}</li>
+     </ul>
+   </div>
+
+   <script>
+     const app = new Vue({
+       el:'#app',
+       data(){
+        return{
+          message:'我的书单',
+          books:['html','css','javascript','计算机网络','数据库'],
+          i:0
+        }
+       },
+       methods:{
+        chooseBook(index){
+          this.i = index
+        }
+       }
+     });
+   </script>
+  
+</body>
+</html>

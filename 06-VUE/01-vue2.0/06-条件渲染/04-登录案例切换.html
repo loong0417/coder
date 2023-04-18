@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录案例切换</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+      1. 点击切换，可以切换登录方式。
+        注意：出现了一个问题，当在输入框中输入内容，在点击切换，内容是不会自动清空的。
+        造成问题的原因是因为虚拟DOM在渲染的时候，它是只会保留不同的内容。
+        解决问题：给 input 框加一个 key 值就可以解决这个问题。
+     -->
+    <div>
+      <label for="unse" v-if="isTrue">
+        户名登录:<input type="text" id="user" key="user">
+      </label>
+
+      <label for="email" v-else>
+        邮箱登录:<input type="text" id="email" key="email">
+      </label>
+
+      <button @click="btnClick">切换</button>
+    </div>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        isTrue: true
+      },
+      methods:{
+        btnClick(){
+          this.isTrue = !this.isTrue
+        }
+      }
+    });
+  </script>
+</body>
+</html>

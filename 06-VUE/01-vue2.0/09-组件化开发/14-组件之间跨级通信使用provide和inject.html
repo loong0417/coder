@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件之间块级通信使用provide和Inject</title>
+  <script src="../vue/vue.js"></script>
+  <style>
+  </style>
+</head>
+<body>
+  <!-- 
+    组件之间块级通信使用provide和Inject：无论是跨多少层，都可以传递数据。
+      在父组件中使用 probide 传递数据
+      子组件中使用 inject 进行接收
+   -->
+
+  <!-- 子组件 -->
+  <template id="child">
+    <div>
+      <h1>子组件</h1>
+      <slot></slot>
+      
+      <!-- 使用跨组件传过来的数据 -->
+      <p>child---{{mesg}}</p>
+    </div>
+  </template>
+
+  <!-- 父组件 -->
+  <template id="parent">
+    <div>
+      <h2>父组件</h2>
+      <cchild>
+        <!-- cchild是子组件，子组件渲染的message数据是父组件的。
+          渲染作用域：父级模板里的所有内容都是在父级作用域中编译的，
+                     子级模板里的所有内容都是在子级作用域中编译的。
+        
+          如果想要在父组件中引用子组件数据，就需要使用作用域插槽。
+          
+          作用域插槽：父组件替换插槽的标签，但内容由子组件提供。
+        -->
+        <p>{{message}}</p>
+      </cchild>
+    </div>
+  </template>
+
+  <!-- root 根组件 -->
+  <div id="app">
+    <template>
+      <cparent></cparent>
+      <!-- 
+        4. 在这个改变 message 数据，但是在child中还是没有响应式数据。
+           注意：是因为 provoid 和 inject 本身并不是响应式的（在默认情况下）。
+        
+        5. 响应式操作：
+           方式1：定义一个响应式对象，在 data 中
+           方式2：函数返回响应式数据。文件15中。
+       -->
+      <button @click="message='你好'">改变message数据</button>
+      <span>root---{{message}}</span>
+    </template>
+  </div>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data(){
+        return{
+          message:'给孙子的数据！！！！！！！'
+        }
+      },
+      // provide:{
+      //   // 1. 这里不能使用 this.message去data中的数据（不能使用vue（property）实例对象中的数据）
+      //   // mesg:this.message 这样在子组件中是拿不到数据的，this在子组件中无法识别。
+
+      //   // 2. 直接将数据在 provide中写成固定的是可以拿到的。
+      //   // mesg:'给孙子的数据'
+      // },
+      provide(){
+        // 3. 在实际开发中我们肯定是希望拿到vue实例中的数据，因为data中的数据是响应式的。
+        // 那么我们就需要将 provide 定义成一个函数，返回来一个对象，这样的方式就可以使用 vue（property）实例中的data数据了。 
+        return{
+          mesg:this.message
+        }
+      },
+      components:{
+        // 在根组件中，注册父组件
+        cparent:{
+          template:"#parent",
+          data(){
+            return{
+              message:'父组件的数据'
+            }
+          },
+          components:{
+            // 在父组件中，注册子组件
+            cchild:{
+              template:'#child',
+              data(){
+                return{
+                  message:'子组件的数据'
+                }
+              },
+              inject:['mesg']
+            }
+          }
+        },
+      }
+    });
+  </script>
+</body>
+</html>

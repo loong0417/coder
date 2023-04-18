@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>插槽案例</title>
+  <script src="../vue/vue.js"></script>
+
+  <style>
+    h2,span{
+      display: inline-block;
+    }
+
+    h2{
+      margin-right: 20px;
+    }
+    
+    #app{
+      width: 500px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <title-show>
+      <template slot="title">
+        <h2>办公用品</h2>
+      </template>
+
+      <template slot="titleDis">
+        <span>办公必备品</span>
+      </template>
+    </title-show>
+
+    <title-show>
+      <template slot="title">
+        <h2>家用电器</h2>
+      </template>
+
+      <template slot="titleDis">
+        <span>家居生活必需品。</span>
+      </template>
+
+      <template slot="more">
+        <a href="#">更多家居品&gt;&gt;</a>
+      </template>
+    </title-show>
+  </div>
+
+  <template id="title">
+    <div>
+      <slot name="title"></slot>
+      <slot name="titleDis"></slot>
+      <slot name="more"></slot>
+    </div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data(){
+        return {}
+      },
+      components:{
+        titleShow:{
+          data(){
+            return{}
+          },
+          template:'#title'
+        }
+      }
+    });
+  </script>
+</body>
+</html>

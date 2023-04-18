@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model结合checkbox类型</title>
+  <script src="../vue/vue.js"></script>
+  <style>
+    /* label{
+      margin-right: 20px;
+    } */
+  </style>
+</head>
+<body>
+  <div id="app">
+
+    <h2>{{message}}</h2>
+
+    <label for="">html+css
+      <input type="checkbox" value="html+css" v-model="books">
+    </label>
+
+    <label for="">计算机网络
+      <input type="checkbox" value="计算机网络" v-model="books">
+    </label>
+
+    <label for="">javascript
+      <input type="checkbox" value="javascript" v-model="books">
+    </label>
+
+    <label for="">vue.js
+      <input type="checkbox" value="vue.js" v-model="books">
+    </label>
+
+    <h2>{{books}}</h2>
+  </div>
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:"我的书单：",
+        books:[],
+      }
+    });
+  </script>
+</body>
+</html>

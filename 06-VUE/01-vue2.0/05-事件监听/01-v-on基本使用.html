@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-on基本使用</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <!-- <button v-on:click="btnClick()">按钮1</button> -->
+    <!-- 
+      1. 使用 @click="btnClick" 语法糖方式监听事件。（简写的方式）
+      2. 监听的函数方法可以不加括号2种情况：
+        （1）. 没有参数的情况下，可以不加括号。
+     -->
+    <button @click="btnClick">按钮1</button>
+
+    <h2>{{number}}</h2>
+    <button @click="add">+</button>
+    <button @click="dec">-</button>
+  </div>
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'hello vue',
+        number:0
+      },
+      methods:{
+        btnClick(){
+          console.log("btnClick");
+        },
+        add(){
+          return this.number++;
+        },
+        dec(){
+          return this.number--;
+        }
+      },
+
+    });
+  </script>
+</body>
+</html>

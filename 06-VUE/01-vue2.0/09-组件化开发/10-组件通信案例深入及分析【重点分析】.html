@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件通信案例深入分析</title>
+  <script src="../vue/vue.js"></script>
+</head>
+
+<body>
+  <!-- 
+    案例需求分析：
+      1. 在 vue 实例的data中，有两个数据，num1和num2，将数据 num1和num2传递给子组件#cpn上面去。
+      2. 在 #cpn 子组件中，添加一个 input 输入框，然后用 v-model 绑定 number1和number2，【这样绑定是会报错的】。v-model一般的只会绑定data。
+         number1和number2是 props 的拿的。
+      3. 如果使用 v-model 绑定 data 数据 dnumber1 和 dnumber2，data 拿到 props 中的数据进行初始化。
+      4. 需要改变 dnumber1和dnumber2 的时候，vue 实例中的data数据的 num1和num2 也需要发生改变，这个时候需要使用事件监听 value 输入的值。
+      5. 上面的数字是下面数字的 100 倍，下面的数字是上面的 100 分之一。关联两个数字，这里也是需要发送一个事件。 
+      6.【需要深入理解】。
+      
+   -->
+  <div id="app">
+    <h1>vue实例渲染：{{num1}}</h1>
+    <h1>vue实例渲染：{{num2}}</h1>
+    <br>
+    <cpn :number1="num1" :number2="num2" @num1change="num1change" @num2change="num2change"></cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <h1>子组件渲染 props:{{number1}}</h1>
+      <h1>子组件渲染 data:{{dnumber1}}</h1>
+      <!-- <input type="text" v-model="dnumber1"> -->
+      <input type="text" :value="dnumber1" @input="num1Input">
+      <h1>子组件渲染 props:{{number2}}</h1>
+      <h1>子组件渲染 data:{{dnumber2}}</h1>
+      <!-- <input type="text" v-model="dnumber2"> -->
+      <input type="text" :value="dnumber2" @input="num2Input">
+    </div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data(){
+        return{
+          num1:1,
+          num2:0
+        }
+      },
+      methods:{
+        num1change(value){
+          // 输入框里面输入的全部是 string 类型，在这里需要做转换 value * 1 也可以将值转换成数字类型
+          this.num1 = parseInt(value);
+        },
+        num2change(value){
+          this.num2 = parseInt(value);
+        }
+      },
+      components:{
+        cpn:{
+          template:'#cpn',
+          props:{
+            number1:Number,
+            number2:Number
+          },
+          data(){
+            return{
+              // 根据 props 中的数据初始化 data 中的 dnumber 数据。
+              dnumber1:this.number1,
+              dnumber2:this.number2
+            }
+          },
+          methods:{
+            num1Input(event){
+              this.dnumber1 = event.target.value;
+              this.$emit('num1change',this.dnumber1);
+
+              this.dnumber2 = this.dnumber1 * 100;
+              this.$emit('num2change',this.dnumber2);
+            },
+            num2Input(event){
+              this.dnumber2 = event.target.value;
+              this.$emit('num2change',this.dnumber2);
+
+              this.dnumber1 = this.dnumber2 / 100;
+              this.$emit('num1change',this.dnumber1);
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

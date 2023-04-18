@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件案例</title>
+  <script src="../vue/vue.js"></script>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    body{
+      background: #b5b5b5;
+      padding: 20px;
+    }
+
+    .box{
+      width: 500px;
+      padding: 10px 10px 20px 10px;
+      background: #fff;
+
+      margin-bottom: 20px;
+    }
+
+    .box .title{
+      font-size: 16px;
+      color: rgb(76, 206, 206);
+      border-bottom: 1px solid rgb(245, 242, 242);
+      padding-bottom: 5px;
+
+      margin-bottom: 10px;
+    }
+
+    .box .box-item{
+      display: flex;
+    }
+
+    .box .box-item img{
+      width: 150px;
+      margin-right: 10px;
+      background: #b5b5b5;
+    }
+
+    .box .box-item h3{
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .box .box-item p{
+      font-size: 14px;
+      color: #999;
+      line-height: 1.5;
+    }
+  
+  </style>
+</head>
+<body>
+
+  <template id="articleList">
+    <div class="box">
+      <h2 class="title">{{title}}</h2>
+      <div class="box-item">
+        <img :src="titleImg" alt="">
+        <div class="discript">
+          <h3>{{articleTitle}}</h3>
+          <p>{{articleContent}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="box">
+      <h2 class="title">子女教育</h2>
+      <div class="box-item">
+        <img src="./img/2.jpg" alt="">
+        <div class="discript">
+          <h3>表扬孩子聪明，是害他吗？</h3>
+          <p>你的暴饮暴食，是因为饿了吗？你的暴饮暴食，是因为饿了吗？你的暴饮暴食，是因为饿了吗？你的暴饮暴食，是因为饿了吗？你的暴饮暴食，是因为饿了吗？</p>
+        </div>
+      </div>
+    </div> -->
+  </template>
+
+  <div id="app">
+    <article-list></article-list>
+    <article-list></article-list>
+  </div>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+      },
+      components:{
+        articleList:{
+          data(){
+            return{
+              title:'饮食健康',
+              titleImg:'./img/1.jpg',
+              articleTitle:'你的暴饮暴食，是因为饿了吗？',
+              articleContent:'你的暴饮暴食，是因为饿了吗？你的暴饮暴食，是因为饿了吗？你的暴饮暴食，是因为饿了吗？你的暴饮暴食，是因为饿了吗？你的暴饮暴食，是因为饿了吗？'
+            }
+          },
+          template:'#articleList'
+       }
+      }
+    });
+  </script>
+</body>
+</html>

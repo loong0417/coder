@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性getter和setter</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <h2>{{fullName}}</h2>
+    </div>
+
+    <script>
+        const app  = new Vue({
+            el:'#app',
+            data:{
+                message:'hello vue',
+                firstName:'yang',
+                lastName:'xiaoyang',
+            },
+            // 注意 computed 一定实在 data 外面的，今天在测试的时候写在了里面导致结果计算不出来。
+            computed: {
+                fullName: {
+                    // getter
+                    get: function () {
+                        return this.firstName + '_' + this.lastName
+                    },
+                    // setter
+                    set: function (newValue) {
+                        console.log("修改触发-------------");
+                        var names = newValue.split(' ')
+                        this.firstName = names[0]
+                        this.lastName = names[names.length - 1]
+                    }
+
+                    // app.fullName = "哈哈哈哈   哈哈哈哈";   在控制台中进行修改的方法
+                    // 修改触发-------------
+                    // '哈哈哈哈   哈哈哈哈'
+                }
+            }
+        });
+    </script>
+</body>
+</html>

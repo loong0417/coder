@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model修饰符</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+       1.lazy 当文本框失去焦点的时候完成数据双向绑定，不再像之前动一下就变
+     -->
+    <!-- <input type="text" v-model.lazy="message">
+    <h2>{{message}}</h2> -->
+
+      <!-- 
+        2.trim 去除文本框内容两边空格，空格在浏览器中虽然不会渲染出来，但在console控制台，可以清除看到数据里面的空格
+       -->
+      <!-- <input type="text" v-model.trim="message">
+      <h2>{{message}}</h2> -->
+
+      <!-- 
+        3. number 当你输入的是一个年龄，其实是一个字符串类型的，这里就可以用number修饰
+        typeof app.age
+        'string' 在控制台进行检测
+       -->
+       <input type="text" v-model.number="age">
+       <h2>{{age}}</h2>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'hello vue',
+        age:10
+      }
+    });
+  </script>
+</body>
+</html>

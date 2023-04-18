@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作业回顾</title>
+  <script src="../vue/vue.js"></script>
+
+  <style>
+    .active{
+      color: red;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item,index in books" :class="{active:currentIndex===index}" @click="liClick(index)">{{item}}</li>
+    </ul>
+  </div>
+  <!-- 
+    需求：有一个列表，点击列表项，给列表项变一个红色，默认第一个为红色。
+   -->
+   <script>
+     const app = new Vue({
+       el:'#app',
+       data:{
+         books:["html","css","javascript","计算机网络"],
+         currentIndex:0,  // 默认第一个元素为红色
+       },
+       methods:{
+         liClick(index){
+           this.currentIndex = index;
+         }
+       }
+     });
+   </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-for遍历数组</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    v-for：遍历数字语法：v-for="n in 10"。
+    v-for：遍历数组语法：v-for="(item,index) in 数组。
+    v-for：遍历对象语法：v-for="(值,键,下标)in object。
+  -->
+  <div id="app">
+
+    <!-- 遍历数字，n是从1开始的，而不是0 -->
+    <span v-for="n in 10">{{n}}</span>
+
+    <ul>
+      <li v-for="(item,index) in names">{{index}}-----{{item}}</li>
+    </ul>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        names:['熊大','熊二','光头强','吉吉国王'],
+      }
+    });
+  </script>
+</body>
+</html>

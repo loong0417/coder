@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>按键修饰符</title>
+  <script src="../vue/vue.js"></script>
+  <style>
+    
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div>{{message}}</div>
+    <!-- keyCode：键盘编码，keyAlias：键盘的简写，两种方式，监听键盘的键帽。 -->
+    <input type="text" name="text" id="" @keyup="keyUp()">
+    <!-- 这样的方式是采用键别名的方式触发的键盘事件 -->
+    <input type="text" name="enter" id="" @keyup.enter="keyEnter()">
+    <!-- 采用KeyCode码方式触发事件 13是enter键-->
+    <input type="text" name="code" id="" @keyup.13="keyCode()">
+  </div>
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'hello',
+      },
+      methods:{
+        keyUp:function(){
+          console.log('任意键帽触发事件！！！');
+        },
+        keyEnter:function(){
+          console.log('enter键触发事件！！！！');
+        },
+        keyCode:function(){
+          console.log('采用KeyCode码方式触发事件!!!');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

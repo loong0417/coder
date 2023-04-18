@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind绑定class</title>
+    <script src="../vue/vue.js"></script>
+
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- 1. 在dom中可以清晰的看到 class 结构，这种写法和固定写法没有什么区别-->
+        <!-- <h2 class="title" :class="['active','line']">{{message}}</h2> -->
+
+        <!-- 
+            2. 如果:class 绑定属性是从服务器请求来的，就是如下的写法。
+            （1）注意：数组里面的内容没有加引号就会解析成变量。如果加上引号就会直接解析成字符串。
+         -->
+        <h2 :class="[active,line]">{{message}}</h2>
+
+        <!-- 3. 绑定一个方法或计算属性，使用methods和computed方式 -->
+        <h2 :class="getClass()">{{message}}</h2>
+        <h2 :class="classAll">{{message}}</h2>
+    </div>
+
+    <script>
+        let  app = new Vue({
+            el:'#app',
+            data:{
+              message:'hello vue',
+              active:'aaaa',
+              line:'bbbb'
+            },
+            methods:{
+                getClass:function(){
+                    return [this.active,this.line];
+                }
+            },
+            computed:{
+                classAll:function(){
+                    return [this.active,this.line];
+                }
+            }
+        });
+    </script>
+</body>
+</html>

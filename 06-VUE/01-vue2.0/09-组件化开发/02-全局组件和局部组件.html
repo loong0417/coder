@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全局组件和局部组件</title>
+  <script src="../vue/vue.js"></script>
+
+  <style>
+    #app{
+      color: red;
+    }
+
+    #app1{
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+
+    <my-cpn></my-cpn>
+    <my-cpn></my-cpn>
+  </div>
+
+  <div id="app1">
+    <h2>{{message}}</h2>
+    <!-- <my-cpn></my-cpn> -->
+    <!-- <my-cpn></my-cpn> -->
+  </div>
+  <script>
+    // 1. 创建组件构造器
+    const cpn = Vue.extend({
+      template:`
+        <div>
+          <h2>我是标题</h2>
+          <p>我是内容，呵呵呵呵呵</p>  
+        </div>
+      `,
+    })
+
+    // 2. 注册组件（这里注册的就是一个全局组件）
+
+    //（1）全局组件可以在多个vue实例下面使用。
+    // (2) 在实际开发中，一个页面只会有一个 vue 实例，但是注册的全局组件可以在多个 vue 实例中使用。 
+    // Vue.component("my-cpn",cpn);
+
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message:"hello vue"
+      },
+      // 3. 局部注册组件（局部注册的组件只能在当前挂在的 vue 实例下面进行使用，不能在其它的 vue 实例下面进行使用。）
+      components:{
+        "my-cpn":cpn
+      }
+    });
+
+
+    const app1 = new Vue({
+      el:"#app1",
+      data:{
+        message:"vue实例1",
+      }
+    });
+  </script>
+</body>
+</html>

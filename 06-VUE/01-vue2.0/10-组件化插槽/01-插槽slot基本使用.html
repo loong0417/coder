@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>插槽基本使用</title>
+  <script src="../vue/vue.js"></script>
+  <style>
+    body{
+      width: 100px;
+      height: 100vh;
+      margin: 0 auto;
+    }
+    h2{
+      color: green;
+    }
+
+    span{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+
+    <info>
+      <h2>光头强</h2>
+      <span>砍树专业户</span>
+    </info>
+
+
+    <info>
+      <h2>熊大</h2>
+      <span>爱干啥干啥</span>
+    </info>
+
+    <info>
+      <h2>熊二</h2>
+      <span>爱吃蜂蜜</span>
+    </info>
+  </div>
+
+  <template id="info">
+    <div>
+      <!-- 
+        1. 插槽的基本使用，在这里使用的 slot 标签相当于是占位符。后续在组件复用的时候我们可以根据实际
+            需求对组件里面的内容使用数据进行渲染。
+        2. 如果我们在组件中结构及内容都是固定的，组件复用的时候内容都是一样的。
+      -->
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data(){
+        return{
+          message:"hello vue",
+        }
+      },
+      components:{
+        info:{
+          template:"#info"
+        }
+      }
+    });
+  </script>
+</body>
+</html>

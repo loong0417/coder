@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深度侦听</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+      <input type="text" name="message" v-model="message">
+
+      <p v-for="(value,key) in user">{{value}}</p>
+  </div>
+
+<script>
+  const app = new Vue({
+    el:'#app',
+    data(){
+      return{
+        message:'hello vue',
+        user:{
+          name:'杨小样',
+          sex:'frmale',
+          age:18
+        }
+      }
+    },
+    watch:{
+      // 1. 监听的另一种方式
+      message:{
+        immediate:true,   // 初始化的时候调用函数
+        handler:function(newValue){
+          console.log(newValue)
+          if(newValue.length<5 || newValue.length>10){
+            console.log('输入框里面的内容长度小于5或者大于10');
+          }
+        }
+      },
+      // 2. 如果监听的值是一个对象，监听不到对象属性的变化，需要使用深度监听
+      // 深入监听需要使用属性 deep 属性，是一个布尔值，会遍历监听对象中的每一个属性
+      // 侦听器会一层一层的向下遍历，给对象的每一个属性都加上侦听器
+      // 这样的监听方式开销比较大，因为需要给每一个属性都添加侦听器
+      // user:{
+      //   handler:function(newValue){
+      //     console.log(newValue);
+      //   },
+      //   deep:true   // 表示是否深入监听
+      // },
+      
+      // 3. 使用字符串形式优化，针对性的监听对象中的属性，还是需要开启深度侦听。
+      'user.name':{
+        handler:function(newValue){
+          console.log(newValue);
+        },
+        deep:true   // 表示是否深入监听
+      },
+    }
+  });
+</script>
+</body>
+</html>

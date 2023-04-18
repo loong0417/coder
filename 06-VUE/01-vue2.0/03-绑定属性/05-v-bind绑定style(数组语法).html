@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind绑定style(数组语法)</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 
+            v-bind:style 数组语法：
+                1. 将属性写成对象的形式，在将对象组成数组元素。
+         -->
+        <h2 :style="[font,style]">{{message}}</h2>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                message:'hello vue',
+                font:{fontSize:'100px',color:'red'},
+                style:{backgroundColor:'black'}
+            }
+        });
+    </script>
+</body>
+</html>

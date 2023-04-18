@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mustache语法</title>
+    <script src="../vue/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- mustache语法方式，可以直接写 mustache 语法，还可以写成表达式方式 -->
+        <h2>{{message}}</h2>
+        <!-- mustache 表达式 -->
+        <h2>{{firstName + lastName}}</h2>
+        <h3>{{firstName}}{{lastName}}</h3>
+        <h3>{{number * 2}}</h3>
+        <!-- 中间有一个空格 -->
+        <h3>{{firstName+" "+lastName}}</h3>
+    </div>
+    <script>
+        let app = new Vue({
+            el:'#app',
+            data:{
+                message: "hello vue",
+                firstName: "杨",
+                lastName: "小样",
+                number : 100
+            }
+        });
+    </script>
+</body>
+</html>

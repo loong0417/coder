@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>就地更新策略</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item,index) in persons" :key="item.name">
+        <button @click="prev(index)">上移</button>
+        姓名：{{item.name}}<input type="text">
+        <button @click="next(index)">下移</button>
+      </li>
+    </ul>
+  </div>
+  <script>
+    new Vue({
+      el:'#app',
+      data(){
+        return{
+          persons:[
+            {name:'张三',age:18},
+            {name:'李四',age:20},
+            {name:'王五',age:30},
+            {name:'赵六',age:25}
+          ]
+        }
+      },
+      methods:{
+        next(index){
+          const deleteData = this.persons.splice(index,1);
+          this.persons.splice(index+1,0,...deleteData);
+        },
+        prev(index){
+          const deleteData = this.persons.splice(index,1);
+          this.persons.splice(index-1,0,...deleteData);
+        }
+      }
+
+    });
+  </script>
+</body>
+</html>

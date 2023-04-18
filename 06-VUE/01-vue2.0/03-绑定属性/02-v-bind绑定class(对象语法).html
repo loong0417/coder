@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind绑定class</title>
+    <script src="../vue/vue.js"></script>
+
+    <style>
+        .active{
+            color: red;
+        }
+        .line{
+            font-size: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- 1. 这是传统的写法，没啥用 -->
+        <!-- <h2 class="active">{{message}}</h2>
+        <h2 :class="active">{{message}}</h2> -->
+        
+        <!-- 2. v-bind:class="{}" 后面跟一个对象，语法如下 -->
+        <!-- 
+            语法：<h2 v-bind:class="{属性1:boolean,属性2:boolean}">{{message}}</h2> 
+            注意：当属性后面的 boolean 值为 true 时候，属性就会添加到 dom 结构中，为 false 则属性不会添加到 dom 结构中。
+        -->
+        
+        <!-- 
+            (1). 根据上面语法，:class 后面绑定一个对象。
+            (2). 在 dom 中可以看见class类属性结构。为 true 显示，为 false 在结构中不存在。
+            (3). 普通的 class 属性和动态绑定的 :class 属性可以共存，在dom元素中会发现它们整合在一起了。
+         -->
+        <h2 class="title" :class="{active:isActive,line:isLine}">{{message}}</h2>
+
+        <!-- 
+            需求：点击按钮，改变字体颜色，点一下红色，再点一下黑色。
+        -->
+        <button @click="clickBtn()">按钮</button>
+
+        <!-- 3. 如果你觉得这个动态绑定:class内容过多，可以将它们写成 methods 和 computed 方式 -->
+        <h2 class="title" :class="getAllClass()">{{message}}</h2>
+
+        <h2 class="title" :class="allclass">{{message}}</h2>
+    </div>
+
+    <script>
+        let  app = new Vue({
+            el:'#app',
+            data:{
+              message:'hello vue',
+              isActive:true,
+              isLine:false
+            },
+            methods:{
+                clickBtn:function(){
+                    this.isActive = !this.isActive
+                },
+
+                getAllClass:function(){
+                    return {active:this.isActive,line:this.isLine}
+                }
+            },
+            computed:{
+                allclass:function(){
+                    return {active:this.isActive,line:this.isLine}
+                }
+            }
+        });
+    </script>
+</body>
+</html>

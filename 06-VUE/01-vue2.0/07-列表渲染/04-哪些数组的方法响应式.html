@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哪些数组的方法响应式</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item in letters">{{item}}</li>
+      <!-- 通过下标的方式修改元素是无法做到数据响应式的 -->
+      <button @click="index()">通过下标修改元素</button>
+      <button @click="push">push()函数</button>
+      <button @click="pop">pop()函数</button>
+      <button @click="shift">shift()函数</button>
+      <button>unshift()函数</button>
+      <button>splice()函数</button>
+      <button>sort()函数</button>
+      <button>reverse()函数</button>
+    </ul>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        letters:['A','B','C','D','E'],
+      },
+      methods:{
+        /**
+         * 通过数组的下标修改元素无法做到数据响应式。
+         * 在控制台中 ： app.letters  ['121212121212', 'B', 'C', 'D', 'E', __ob__: Observer]。
+         * 可以看到控制台中的数据是发生了变化，但在页面中还是无法响应。
+         * 
+         * 在vue3中可以通过下标实现数据响应式。
+         */
+        index(){
+          this.letters[0] = "121212121212"
+        },
+        // 1. push()在数组后面新增一个元素（数据响应式）
+        push(){
+          this.letters.push("aaa");
+        },
+        // 2. pop()删除数组最后一个元素（数据响应式）
+        pop(){
+          this.letters.pop();
+        },
+        // 3. shift() 删除数组第一个元素（数据响应式）
+        shift(){
+          this.letters.shift();
+        },
+        
+      }
+    });
+  </script>
+</body>
+</html>

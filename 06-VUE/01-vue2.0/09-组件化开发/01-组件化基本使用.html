@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件化基本使用</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    组件使用分成三个步骤：
+      1. 创建组件构造器
+      2. 注册组件
+      3. 使用组件
+   -->
+  <div id="app">
+    <h2>{{message}}</h2>
+
+    <!-- 3. 使用组件：你自己愿意使用几次就使用几次，组件也可以嵌套在元素中使用 -->
+    <my-cpn></my-cpn>
+
+    <my-cpn></my-cpn>
+
+    <my-cpn></my-cpn>
+  </div>
+
+  <script>
+    // 1. 创建组件构造器
+    const cpn = Vue.extend({
+      template:`
+        <div>
+          <h2>我是标题</h2>
+          <p>我是内容，呵呵呵呵呵</p>  
+        </div>
+      `,
+    })
+
+    // 2. 注册组件 语法：Vue.component("组件的名称",注册的组件);
+    Vue.component('my-cpn',cpn);
+
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:"hello vue"
+      }
+    });
+  </script>
+</body>
+</html>

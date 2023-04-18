@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>父组件和子组件</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    父子组件：
+      1. 子组件只能在当前注册的父组件中进行使用，或当前注册的vue实例中进行使用。
+      2. 全局组件可以在所有的地方使用。
+   -->
+  <div id="app">
+    <h2>{{message}}</h2>
+    <!-- 使用组件 -->
+    <cpn2></cpn2>
+
+    <!-- 
+      1. 使用组件要么在当前组件作用域下注册，要么在当前 vue 实例下注册，否则是不能使用的。
+     -->
+    <!-- <cpn1></cpn1> -->
+  </div>
+
+  <script>
+    // 1. 创建组件构造器一
+    const cpn1 = Vue.extend({
+      template:`
+        <div>
+          <h2>组件1</h2>
+          <p>我是组件1，呵呵呵呵呵呵</p>
+        </div>
+      `,
+    });
+
+    // 2. 创建组件构造器二（组件二是组件一的父组件）它们互为父子关系。
+    const cpn2 = Vue.extend({
+      template:`
+        <div>
+          <h2>组件2</h2>
+          <p>我是组件2，哈哈哈哈哈</p>
+          <cpn1></cpn1>
+        </div>
+      `,
+      components:{
+        cpn1:cpn1
+      }
+    });
+
+    // root component
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:"父组件和子组件",
+      },
+      components:{
+        // vue 实例相当于是组件二的父组件
+        cpn2:cpn2
+      }
+    });
+  </script>
+</body>
+</html>

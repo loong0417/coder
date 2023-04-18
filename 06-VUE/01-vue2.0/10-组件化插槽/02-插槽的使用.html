@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>插槽的使用</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    1. 插槽的基本使用就是定义 <slot></slot>
+    2. 插槽的默认使用 <slot><button>按钮</button></slot> 例如里面默认一个 button ，当使用的时候不传入内容就显示默认的按钮。
+    3. 当多个元素同时替换插槽里面的内容，多个内容同时保留存在。
+
+      例如： <slot><button>按钮</button></slot> 默认方式。
+             <slot><button>按钮1</button><span>你点一下啊</span><div>你再看一点啊</div></slot> 替换成这样，多个元素内容同时存在。
+   -->
+  <div id="app">
+    <cpns :cinfo="info"></cpns>
+  </div>
+
+  <template id="cpn">
+    <!-- 
+      注意：不能使用 v-for指令去遍历组件根目录。
+      我自己的思考：如果在组件上面去渲染数据其实还是在组件复用之前就完成了组件内容的定义，还是在复用性上有所限制啊？？？！！！！。
+    -->
+    <div>
+      <div v-for="item in cinfo">
+        <slot>{{item.name}}---------</slot>
+        <slot>{{item.job}}-------------</slot>
+        <!-- 默认插槽 -->
+        <slot><span>我们都是森林主人。</span></slot>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data(){
+        return {
+          info:[
+            {name:"熊大",job:"爱干啥干啥"},
+            {name:"光头强",job:"就只会砍树"},
+            {name:"熊二",job:"吃蜂蜜"},
+            {name:"吉吉国王",job:"吃香蕉的"}
+          ]
+        }
+      },
+      components:{
+        cpns:{
+          template:"#cpn",
+          props:['cinfo'],
+          data(){
+            return{
+            }
+          },
+        }
+      }
+    });
+  </script>
+</body>
+</html>

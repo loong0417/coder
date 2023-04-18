@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-cloak</title>
+    <script src="../vue/vue.js"></script>
+
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<!--
+    当data数据加载延迟的时候，mustache语法中的 {{message}} 就会原样显示，数据加载完之后就会出现闪现的现象。
+    如果使用 v-cloak 指令，就不会出现 mustache语法中的 {{message}} 就会原样显示。会等到数据加载完后直接显示。
+    
+    闪现会造成用户体验不太好。
+-->
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <h2 v-cloak>{{message}}</h2>
+    </div>
+    <script>
+       setInterval(() => {
+        let app = new Vue({
+            el:'#app',
+            data:{
+                message:"hello vue",
+            }
+        });  
+       }, 1000);
+    </script>
+</body>
+</html>

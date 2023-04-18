@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-for使用过程建议绑定key</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+        1. 使用 v-for 的时候需要绑定一个:key值。但是一定得保证:key值是唯一的，不能绑定 index ，因为绑定 index 和默认方式没有什么区别。
+           index 会根据元素的变化而变化，尤其是在数组中间穿插元素的时候。
+        
+        2. 绑定:key的目的是不会复用。就像输入框里面的内容，从登录切换到注册，登录里面写了用户名切换到注册页面的时候，用户书写的用户名不会清空的。
+     -->
+    <ul>
+      <li v-for="item in letters" :key="item">{{item}}</li>
+    </ul>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        letters:['A','B','C','D','E','F'],
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表渲染</title>
+</head>
+<body>
+    <div id="app">
+       <p>{{message}}</p>
+       
+       <!-- 循环遍历 movies 数据 -->
+       <ul>
+           <li v-for="item in movies">{{item}}</li>
+       </ul>
+    </div>
+    <script src="../vue/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el : '#app',
+            data : {
+                message : '杨小样的朋友圈',
+                movies : ['送你一朵小红花','大红包','熊出没','哪吒'],
+            }
+        });
+
+
+        console.log(app === Vue)         // false
+        console.log(app instanceof Vue)  // true
+
+
+
+        console.log(app)        
+        console.log(app.$el)
+        console.log(app.$data)   
+    </script>
+</body>
+</html>

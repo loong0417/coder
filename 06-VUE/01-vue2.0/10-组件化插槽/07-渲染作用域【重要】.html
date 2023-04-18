@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>渲染作用域</title>
+  <script src="../vue/vue.js"></script>
+  <style>
+  </style>
+</head>
+<body>
+  <!-- 子组件 -->
+  <template id="child">
+    <div>
+      <h1>子组件</h1>
+      <slot></slot>
+    </div>
+  </template>
+
+  <!-- 父组件 -->
+  <template id="parent">
+    <div>
+      <h2>父组件</h2>
+      <cchild>
+        <!-- cchild是子组件，子组件渲染的message数据是父组件的。
+          渲染作用域：父级模板里的所有内容都是在父级作用域中编译的，
+                     子级模板里的所有内容都是在子级作用域中编译的。
+        
+          如果想要在父组件中引用子组件数据，就需要使用作用域插槽。
+          
+          作用域插槽：父组件替换插槽的标签，但内容由子组件提供。
+        -->
+        <p>{{message}}</p>
+      </cchild>
+    </div>
+  </template>
+
+  <!-- root 根组件 -->
+  <div id="app">
+    <template>
+      <cparent></cparent>
+    </template>
+  </div>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+      },
+      components:{
+        // 在根组件中，注册父组件
+        cparent:{
+          template:"#parent",
+          data(){
+            return{
+              message:'父组件的数据'
+            }
+          },
+          components:{
+            // 在父组件中，注册子组件
+            cchild:{
+              template:'#child',
+              data(){
+                return{
+                  message:'子组件的数据'
+                }
+              }
+            }
+          }
+        },
+      }
+    });
+  </script>
+</body>
+</html>

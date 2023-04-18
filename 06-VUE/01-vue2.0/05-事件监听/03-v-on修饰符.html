@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-on修饰符</title>
+  <script src="../vue/vue.js"></script>
+  <style>
+    .info{
+      width: 100px;
+      height: 100px;
+      background: skyblue;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+
+    <!-- 
+      1. stop 修饰符
+
+      div里面包裹这 button，当触发按钮点击事件后，div点击事件也会同时触发，这就是事件冒泡。
+      使用 .stop修饰符可以阻止事件冒泡。
+     -->
+    <!-- <div class="info" @click="divClick()">
+      按钮外层
+      <button @click="btnClick()">按钮</button>
+    </div> -->
+
+     <div class="info" @click="divClick()">
+      按钮外层
+      <!-- .stop 修饰符阻止事件冒泡，使用修饰符后点击哪一个事件就会触发哪一个，不会出现冒泡事件 -->
+      <!-- <button @click.stop="btnClick()">按钮</button> -->
+
+      <!-- 修饰符也可以组合使用，按钮点击一次后，多次点击会触发 div 点击事件 -->
+      <button @click.stop.once="btnClick()">按钮</button>
+    </div>
+    <br>
+
+    <!-- 
+      2. .once 修饰符
+     -->
+     <!-- <button @click.once="onceClick()">事件只会触发一次</button> -->
+
+  </div>
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'hello',
+      },
+      methods:{
+        btnClick(){
+          console.log("按钮在点击！！！");
+        },
+        divClick(){
+          console.log("div框框点击了！！！");
+        },
+        onceClick(){
+          console.log("once修饰的事件只会触发一次！！！");
+        }
+      }
+    });
+  </script>
+</body>
+</html>

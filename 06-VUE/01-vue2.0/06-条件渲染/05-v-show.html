@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-show</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+      使用 v-show 当 isTrue=false 时候，其实它是给DOM结构上添加了一个 display:none 属性。
+      1. 为 false 结构是会保留的。
+      2. 在DOM结构渲染效率上比较有优势。v-if 当条件为 false 的时候，它是直接移除DOM结构。
+      3. 如果需要频繁切换，使用 v-show。
+     -->
+    <h2 v-show="isTrue">{{message}}</h2>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'hello vue！！！',
+        isTrue: true
+      }
+    });
+  </script>
+</body>
+</html>

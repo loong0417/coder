@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model基本使用</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+      v-model通常用于表单绑定。
+
+      注意：v-model 前面是没有冒号的，要和动态绑定区分开，不能混淆。
+
+      1. 在input框中改变内容，h2渲染的内容也会同时发生变化。在console控制台里面修改数据input框也会发生改变。
+     -->
+    <input type="text" v-model="message">
+    <h2>{{message}}</h2>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:'hello vue'
+      }
+    });
+  </script>
+</body>
+</html>

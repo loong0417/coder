@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作用域插槽</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <!-- 
+     作用域插槽：父组件替换插槽的标签，但内容由子组件提供。
+   -->
+  <template id="cpn">
+    <div>
+      <!-- 
+        步骤一：
+          :data="language" 中 data 可以自定义名字。
+          相当于是使用v-bind方式将数据绑定在插槽上面。
+          在父组件中进行接收。
+       -->
+      <slot :data="language">
+        <ul>
+          <li v-for="item in language">{{item}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+
+  <template id="cpn1">
+    <div>
+      <span>我就看看插槽里面可以放组件不？</span>
+      <span>插槽里面是可以放组件的呢。真的不错。</span>
+    </div>
+  </template>
+
+  <div id="app">
+    <!-- 1. 组件使用一次，用列表的形式 -->
+    <cpn></cpn>
+
+    <!-- 
+      2. 再次使用组件，对上次使用的列表展示不满意，需要换成以横杠隔开的形式 
+      这个时候就需要拿到子组件里面的数据，重新以需要的格式进行展示。
+
+      
+      步骤二：目的获取子组件中的 language 数据。
+        1. 在在子组件插槽中绑定一个:data="language" 数据。
+        2. 在使用组件的时候需要用 <template slot-scope="slot"></template> 方式去拿数据，
+        使用 template 原因就是为了考虑兼容性，在高的版本中其实是不需要指定 template 模板的。
+    -->
+    <cpn>
+      <template slot-scope="slot">
+        <span>{{slot.data.join('-')}}</span>
+      </template>
+    </cpn>
+
+
+    <cpn>
+      <template slot-scope="slot">
+        <span>{{slot.data.join('*')}}</span>
+      </template>
+    </cpn>
+
+    <!-- 注意：插槽里面是可以放组件的。 -->
+    <cpn><cpn1></cpn1></cpn>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data(){
+        return{
+
+        }
+      },
+      components:{
+        cpn:{
+          template:"#cpn",
+          data(){
+            return{
+              language:['html','css','javascript','vue.js','计算机网络']
+            }
+          }
+        },
+        cpn1:{
+          template:"#cpn1"
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+

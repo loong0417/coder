@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>具名插槽</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <section-head>
+        <h3 slot="title">标题</h3>
+        <template #info>
+          <h2>杨小样</h2>
+          <h2>年龄：18</h2>
+          <h2>job：攻城狮</h2>
+        </template>
+      </section-head>
+    </div>
+  </div>
+
+  <template id="head">
+    <div>
+      <!-- 普通插槽在使用的时候一定需要注意组件的名字，组件的名字尽量不要与预留标签同名。 -->
+      <slot><h3>我是普通插槽</h3></slot>
+      <slot name="title"></slot>
+      <slot name="info"></slot>
+    </div>
+  </template>
+
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data(){
+        return{
+          message:"hello vue",
+        }
+      },
+      components:{
+        sectionHead:{
+          template:"#head"
+        }
+      }
+    });
+  </script>
+</body>
+</html>

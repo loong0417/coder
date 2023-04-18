@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件数据存放问题</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    问题：组件里面能否访问 vue 实例里面的数据呢？
+      1. 组件内部是不能访问 vue 实例内部的数据的(data里面的数据)。
+      2. 组件是一个单独功能模块封装，这个模块有属于自己的HTML模板，也有属于自己的数据 data。
+   -->
+
+  <div id="app">
+    <h1>{{message}}</h1>
+    <h2>{{result}}</h2>
+    <hr>
+    <cpn></cpn>
+    <hr>
+    <cpn1></cpn1>
+    <hr>
+  </div>
+
+  <template id="cpn">
+    <h2>组件里面使用vue实例里面的数据：</h2>
+    <!-- <h2>message:{{message}}</h2> -->
+  </template>
+
+  <template id="cpn1">
+    <h2>子组件使用vue实例里面的数据：</h2>
+    <!-- <h2>message:{{message}}</h2> -->
+  </template>
+
+  <script>
+
+    Vue.component('cpn',{
+      data(){
+        return{}
+      },
+      template:"#cpn",
+    });
+
+
+    const app = new Vue({
+      el:'#app',
+      data:{
+        message:"组件里面能否访问VUE实例里面的数据呢？",
+        result:"不能。组件有自己的 data，data必须返回一个对象。"
+      },
+      components:{
+        cpn1:{
+          template:"#cpn1"
+        }
+      }
+    });
+  </script>
+</body>
+</html>

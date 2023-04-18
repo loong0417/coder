@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model结合select类型</title>
+  <script src="../vue/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 1. 选择一个 -->
+    <select name="" id="" v-model="fruit">
+      <option value="香蕉">香蕉</option>
+      <option value="苹果">苹果</option>
+      <option value="葡萄">葡萄</option>
+      <option value="西瓜">西瓜</option>
+    </select>
+
+    <h2>你选择的水果是：{{fruit}}</h2>
+
+    <!-- 2. 选择多个，需要添加一个属性 multiple ，在选择的时候需要按住 ctrl 键 -->
+    <select name="" v-model="fruits" multiple>
+      <option value="香蕉">香蕉</option>
+      <option value="苹果">苹果</option>
+      <option value="葡萄">葡萄</option>
+      <option value="西瓜">西瓜</option>
+    </select>
+
+    <h2>你选择的水果是：{{fruits}}</h2>
+  </div>
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data(){
+        return{
+          message:"你好啊",
+          fruit:"香蕉",
+          fruits:[]
+        }
+      }
+    })
+  </script>
+</body>
+</html>
