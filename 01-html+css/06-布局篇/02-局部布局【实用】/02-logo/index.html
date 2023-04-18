@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #eee;
+    }
+
+    ul{
+      list-style: none;
+    }
+
+    .nav{
+      width: 980px;
+      height: 60px;
+      margin: 20px auto;
+      border: 1px solid red;
+    }
+
+    .nav h1{
+      float: left;
+      width: 161px;
+      height: 58px;
+
+      margin-right: 50px;
+    }
+
+    .nav h1 a{
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: url(img/logo.png) no-repeat;
+
+      text-indent: -9999px;
+      overflow: hidden;
+    }
+
+    .nav ul li{
+      float: left;
+      padding: 25px 15px 0 15px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    1. logo首先放在h1标签里面，目的是为了提升权重，告诉搜索引擎这个很重要。
+    2. h1里面再放一个链接，可以返回首页，把logo的背景图片给链接即可。
+    3. 为了搜索引擎收录我们，我们链接里面存放文字（也就是网站的名字），但是文字不要显示出来。
+    -  方法1：text-indent移动盒子外面（text-indent:-9999px），然后overflow:hidden，淘宝的方式。
+    -  方法2：直接给font-size:0。就看不到文字了，京东就是这样写的。
+    4. 最后给链接一个 title 属性，这样鼠标放在 logo 上面就可以看到提示文字了。
+   -->
+   <nav class="nav">
+      <h1>
+        <a href="https://www.baidu.com" title="百度首页">百度首页</a>
+      </h1>
+      <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+        <li>555</li>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+        <li>555</li>
+      </ul>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日期案例</title>
+</head>
+<body>
+  <script>
+    /**
+     *  这个月有多少天？
+     */
+
+    var date = new Date();
+    // 1. 将月份设置为下个月，下个月等于当前月份+1
+    date.setMonth(date.getMonth()+1);
+
+    // 2. 将日期设置为0，这个时候是设置的下个月日期为0号，如果没有0号系统会自动回滚到上个月的最后一天
+    date.setDate(0);
+
+    // 3. 获取一天月的天数(最后一天等于这个月的总天数)
+    console.log(date.getDate());
+
+    // console.log(date);
+  </script>
+</body>
+</html>

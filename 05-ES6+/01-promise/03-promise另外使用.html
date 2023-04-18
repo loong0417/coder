@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise另外的使用方式</title>
+</head>
+<body>
+  <script>
+    /**
+     * then()函数里面可以同时传连个函数
+     */
+    new Promise((resolve,reject)=>{
+      setTimeout(() => {
+        resolve("hello world!");
+        // reject("error message list");
+      }, 1000);
+    }).then(data=>{
+        console.log(data);
+    },err=>{
+      console.log(err);
+    })
+  </script>
+</body>
+</html>

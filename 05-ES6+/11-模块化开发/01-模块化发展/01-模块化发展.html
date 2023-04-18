@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1.最原始的模块化
+    // - 就是容易出现变量污染的情况。 
+    function fn1(){}
+    function fn2(){}
+
+    // 2.模块化对象的写法
+    // - 不会有全局变量污染，但存在安全性问题。
+    // - 因为对象的属性不仅可以调用，还可以修改了，造成了安全隐患。
+    var module1 = {
+      name:'yang',
+      m1:function(){
+        console.log('m1');
+      },
+      m2:function(){
+        console.log('m2');
+      }
+    }
+
+    // 3.立即执行函数
+    var module2 = (function(){
+      var name = 'yang';
+      var m1 = function(){
+        // 方法体
+        console.log('m1')
+      }
+      var m2 = function(){
+        console.log('m2')
+      }
+      return {
+        m1:m1,
+        m2:m2
+      }
+    })();
+    console.log(module2.name)   // undefined
+    console.log(module2.m1())   // 可以访问
+
+    // 4.放大模式（可以继承）mod传进来的是一个模块
+    var module3 = (function(mod){
+      // 怎么就不能在module2中添加属性呢？
+      // mod.m3 = function(){
+      //   // console.log('m3');
+      // }
+      // mod.age = 18
+      return mod;
+    })();
+    // var newModule = module3(module2)
+    // console.log(newModule)
+
+    // 5.宽放大（允许传入一个空对象）
+    var module4 = (function(mod){
+      // mod.m3 = function(){
+      //   // console.log('m3');
+      // }
+      // return mod;
+    })(window.module2 || {});
+
+    // 6.传入其它的变量
+    // 当然这里Jquery是要引入进来的哈。
+    var module5 = (function(window,undefined,$){
+      // 怎么就不能在module2中添加属性呢？
+      // mod.m3 = function(){
+      //   // console.log('m3');
+      // }
+      // mod.age = 18
+      return mod;
+    })(window,undefined,jQuery);
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      // 题目1：
+      if(typeof(a)&&(-true)+(undefined)+''){
+            console.log("通过了");    // 通过了
+        }else{
+            console.log("没通过")
+        }
+        // 分析：
+        console.log(typeof(a));  // 'undefined'
+        console.log(-true);     // -1
+        console.log(+undefined);  // NaN
+        console.log(+undefined + -1); // NaN
+        console.log(+undefined + -1+''); // 'NaN' 因为加了一个空字符串把NaN隐式转换成了string类型的 'NaN'
+
+
+        // 题目2：
+        if(1+5*'3' === 16){
+            console.log("通过了")   // 通过了
+        }else{
+            console.log("没有通过")
+        }
+
+        // 题目3：
+        console.log(!!' ' + !!'' - !!false || "未通过")   // 1
+
+
+        // 题目4：
+        // 直接console.log(a) 这个肯定是会报错的。
+        // console.log(window.a);  // undefined
+
+        console.log(window.a)  // undefined
+        console.log(typeof(window.a))  // 'undefined'
+        console.log(a)  // Uncaught ReferenceError: a is not defined
+
+
+        // 题目分析：（window.a='1'）在小括号里面，优先级高于 || 运算符。
+        // 第一次运算就将 （window.a='1'） 字符串1赋值给了 window.a
+        // windows.a 值在打印的时候自然就是真值了。'1'
+        window.a ||(window.a='1');
+        console.log(window.a)  // '1'
+  </script>
+</body>
+</html>

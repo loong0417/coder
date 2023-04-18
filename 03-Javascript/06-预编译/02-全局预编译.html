@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    全局预编译：针对的是全局的。
+      全局预编译是我自己理解及定义的一个词语，也称为全局执行期上下文，函数定义产生GO的。
+
+      全局预编译流程：
+        1. 查找变量声明（全局区别于局部的是没有形参，不用看形参），赋值undefined。
+        2. 找函数声明，将函数体赋值给该函数。
+        3. 执行。
+   -->
+  <script>
+    // 案例1：
+    // console.log(a,b);   // a:ƒ a(){} b:undefined
+    // function a(){}
+    // var b = function(){}
+
+    // console.log(a,b);   // a:ƒ a(){}  b:ƒ (){}
+
+
+    // 案例2：
+    /**
+     * GO = {
+     *  b:undefined
+     *    3;
+     *  a:function(){.........}
+     * } 
+     * 
+     * AO = {
+     *  a:undefined
+     *    1
+     *    function(){.........}
+     *  b:undefined
+     *    5
+     * }
+     */
+    // var b = 3;
+    // console.log(a);    // function(){}
+    // // 函数a是全局的
+    // function a(a){
+    //   console.log(a);  // function(){}
+    //   var a = 2;
+    //   console.log(a);  // 2
+    //   function a(){}
+    //   var b = 5;
+    //   console.log(b);  // 5
+    // }
+    // a(1)
+
+
+    // 案例3：
+    /**
+     * GO = {
+     *  a:undefined
+     *    1
+     *    
+     *  test:function(){.......}
+     * } 
+     * 
+     * AO = {
+     *  a:undefined
+     *    2
+     *    3
+     * }
+     */
+    // a = 1;
+    // function test(){
+    //   console.log(a);     // undefined
+    //   a = 2;
+    //   console.log(a);     // 2
+    //   var a = 3;
+    //   console.log(a);     // 3
+    // }
+
+    // test();
+    // var a;
+
+    // 案例4：
+    // function test(){
+    //   return a;
+    //   a = 1;
+    //   function a(){
+    //     var a = 2;
+    //   }
+    // }
+
+    // console.log(test())   // function a(){ var a = 2 }
+    
+
+    // 案例5：
+    // function test(){
+    //   a = 1;
+    //   function a(){}
+    //   var a = 2;
+    //   return a; 
+    // }
+    // console.log(test());  // 2
+
+    // 案例6：
+    function test(){
+      a = 1;
+      function a(){
+          var a = 2;
+          return a;    // 这里return出去的是一个 2，这个2只会返回到 function a(){}函数上，下面拿个变量接收就可以看出来
+      }
+    }
+    console.log(test());  // undefined，这里打印的时候还是undefined。打印的是 function test(){}，没有返回值的时候函数默认返回 undefined。
+
+    // 案例7：
+    function test(){
+      a = 1;
+      var b = function a(){
+        var a = 2;
+        return a; 
+      }
+      console.log(b())  // 2
+    }
+    console.log(test());  // undefined
+
+
+
+    // 案例8：
+    a = 1;
+    function test(e){
+      function e(){}
+      arguments[0] = 2;
+      console.log(e);   // 2
+      if(a){
+        var b = 3;
+      }
+      var c;
+      a = 4;
+      var a;
+      console.log(b);  // undefined
+      f = 5;
+      console.log(c);  // undefined
+      console.log(a);  // 4
+    }
+
+    var a;
+    test(1);
+    console.log(a);   // 1
+    console.log(f);   // 5
+  </script>
+</body>
+</html>

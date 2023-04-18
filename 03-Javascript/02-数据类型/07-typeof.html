@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>typeof数据类型检测</title>
+</head>
+<body>
+<!-- 
+    typeof：用于检测数据类型，返回这个类型对应的字符串（全小写）。
+        1. 返回的类型与系统定义的是有区别的。
+        
+    系统定义的数据类型              typeof返回的数据类型
+        String                          string
+        Number                          number
+        Boolean                         boolean
+        Undefined                       undefined
+        Null                            object
+        Object                          object
+
+    null 的 typeof 的结果是 object，函数的 typeof 结果为 function，但是 js 当中没有给函数定义一个类型； 
+-->
+
+     <script type="text/javascript">
+        console.log(typeof(a));  //string undefined
+        console.log(typeof(undefined));  //string undefined
+        console.log(typeof(NaN)); // number
+        console.log(typeof(null));  // object
+
+        var a = "123abc";
+        console.log(typeof(+a));  // number
+        console.log(typeof(!!a)); // boolean
+        console.log(typeof(a+"")); // string
+        console.log(1=="1"); //true
+        console.log(NaN==NaN); //false
+        console.log(NaN==undefined); //false
+        console.log("11"+11);  //1111
+        console.log(1==="1"); //false
+        console.log(parseInt("123abc"));  // 123
+        var num = 123123.345789;
+        console.log(num.toFixed(3));  //123123.346
+
+        // 使用 typeof 检测一个未声明的变量不会报错，这是唯一一种未声明变量不报错的方式
+        console.log(typeof(typeof(a))); //string
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    WeakMap数据结构的使用：
+      1. WeakMap是和Map相似的另一种数据结构，也是以键值对形式存在的。
+      2. weak reference 弱引用
+    
+    WeakMap和Map的区别：
+      1. WeakMap的key只能使用对象类型，不接受其它类型的值做为key。
+      2. WeakMap的key对对象的引用是弱类型引用，如果没有其它引用引用这个对象，那么GC可以回收该对象。
+      3. 注意：GC是会忽略弱类型引用的，但是弱类型的引用里面还是包含着销毁的对象。
+
+    WeakMap常见的四个方法：
+      1. set(key,value)：在Map中添加key，value，并且返回整个Map对象。
+      2. get(key)：根据key值获取Map中的对象。
+      3. has(key)：判断是否包括某一个key值，返回值一个Boolean类型。
+      4. delete(key)：根据key值删除一个键值对，返回值一个Boolean类型。
+
+    WeakMap的遍历：
+      1. WeakMap也是不能遍历的。
+      2. 因为没有forEach方法，也不支持通过for of方式进行遍历。
+    
+   -->
+   <script>
+      // 1. 不是使用基本数据类型
+      const obj = {name:'why'}
+
+      var weakMap = new WeakMap();
+      // Invalid value used as weak map key
+      // weakMap.set(1,'aaaa');
+
+      var map = new Map();
+      map.set(obj,'aaaa');
+      map.set(1,'bbbb')
+      console.log(map)     // Map(2) {{…} => 'aaaa', 1 => 'bbbb'}
+
+      // 2. WeakMap是弱引用，Map是强引用。
+      console.log(weakMap)
+
+      // 3. 【没看懂】WeakMap有什么用呢？
+      const targetMap = new WeakMap();
+      function getDep(target,key){
+        // (1).根据对象target取出对应的Map对象
+        let depsMap = targetMap.get(target);
+        if(!depsMap){
+          depsMap = new Map();
+          targetMap.set(target,depsMap);
+        }
+
+         //（2）.取出具体的dep对象
+        let dep = depsMap.get(key);
+          if(!dep){
+            dep = new Dep()
+            depsMap.set(key,dep);
+          }
+        return dep;
+      }
+
+    
+
+   </script>
+</body>
+</html>

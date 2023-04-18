@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    获取元素属性值的方式：
+      1. 元素.属性
+      2. 元素.getAttribute('属性')
+    
+    那么两种方式有什么区别呢？
+      1. 元素.属性 只能获取元素自身属性。
+      2. 元素.getAttribute('属性') 获取元素自定义属性（符合标准的）我们自己定义的，也可以获取元素自带的属性。
+
+    设置属性值（有获取属性值就有设置属性值）：
+      1. 元素.属性 =  '值'
+      2. 元素.setAttribute('属性',值);
+
+     H5新增获取属性的方式（只能获取data-开头的属性，IE11以上才兼容）：
+      元素.dataset.属性
+   -->
+    <input type="text" name="box1" id="" value="请输入....">
+    <input type="text" name="box2" id="" value="" data-id="1111">
+  <script>    
+    var input1 = document.getElementsByTagName('input')[0];
+    console.log(input1.type)    // text
+
+    // 元素.getAttribute('属性') 可以获取到元素自身的属性
+    console.log(input1.getAttribute('name'));             // box1
+    
+    
+    var input2 = document.getElementsByTagName('input')[1];
+    console.log(input2.getAttribute('data-id'));           // 1111
+    // 元素.属性是没办法获取到自定义属性的。
+    console.log(input2.data-id); // Uncaught ReferenceError: id is not defined at
+
+  </script>
+</body>
+</html>

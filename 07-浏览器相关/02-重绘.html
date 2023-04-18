@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>重绘</title>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    /**
+     * 概念：
+     * 1. 重绘：repaint计算所有元素在窗口具体呈现内容。（改变样式就会触发重绘）
+     * 2. 在浏览器页面渲染流程中，paint 就是重绘。
+     * 3. 重绘：元素样式的改变（不包含宽高，大小，位置）
+     * 
+     * 使用定时器1秒之后改变背景就会重绘。
+     * 1. 在浏览器渲染页面流程里面可以看到。
+     * 2. 1秒后改变背景色会再次重绘。从时间线上看，第一次重绘是30ms的时候，第二次重绘是1028.5ms（第二次重绘没有重排），发生在1s之后。
+     * 
+     * 注意：重绘不一定会重排，重排一定会重绘。
+     * 
+     * 触发重绘的样式属性：
+     *  1. color
+     *  2. border-color
+     *  3. border-style
+     *  4. vsibility
+     *  5. background
+     *  6. background-image
+     *  7. background-position
+     *  8. background-repeat
+     *  9. outline
+     */
+    var box = document.querySelector('.box');
+    setTimeout(()=>{
+      box.style.background = 'green';
+    },1000)
+  </script>
+</body>
+</html>

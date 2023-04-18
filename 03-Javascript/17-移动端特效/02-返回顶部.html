@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      padding: 0 0 200px 0;
+    }
+    a{
+      display: none;
+      position: fixed;
+      top: 350px;
+      right: 0;
+      width: 60px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 14px;
+      text-align: center;
+      text-decoration: none; 
+      background-color: orangered;
+      color: #fff;
+      transition: all .3s;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem animi sed, omnis est id nostrum vero natus officiis sit corrupti soluta, et, beatae quae provident qui dolore? Quod, nisi expedita.
+    Ullam, repellendus ipsum eligendi dolorem veritatis voluptatem voluptatibus nostrum architecto facere dolor obcaecati illo aliquam, neque a quos mollitia in totam! Fugit, magnam! Dicta placeat harum beatae, qui eum vel?
+    Assumenda, enim eius quae laudantium nisi laboriosam, distinctio magnam facere saepe eos sapiente! Pariatur qui placeat, aliquam aut quo sunt repellendus impedit non rem accusantium illum! Commodi blanditiis voluptates reiciendis?
+    Ratione, illo veniam. Alias quis recusandae earum cumque quisquam blanditiis quia ullam corrupti! Incidunt vel, nostrum facere deserunt necessitatibus laudantium totam earum placeat aperiam! Incidunt voluptates et modi est tenetur.
+    Error aliquam necessitatibus veniam consectetur sequi minus illum harum laborum recusandae ipsam expedita commodi in ratione nesciunt facilis laudantium incidunt enim quis obcaecati repellat, quae quam. Itaque, veritatis cumque. Possimus.
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis quibusdam asperiores mollitia ad laborum, ex optio modi aspernatur cumque id amet illum tempora labore enim quis, vero suscipit quidem assumenda!
+    Dolores deserunt possimus atque dolore. Natus suscipit assumenda unde deserunt accusamus saepe, aspernatur quia dignissimos ullam voluptatum doloribus recusandae id nesciunt autem quisquam, dolores ipsa impedit, accusantium fugiat. At, et!
+    Recusandae cumque explicabo tempora placeat quae veniam sapiente repellat quibusdam rerum minima odio, porro officia provident amet nostrum ad. Est temporibus minus laudantium harum totam fugiat dignissimos quibusdam fugit repellendus.
+    Adipisci aliquam dignissimos soluta deserunt harum magni fuga dicta. Nisi, aperiam voluptatum fugit enim officiis commodi ullam aliquid minus nesciunt itaque distinctio doloremque dicta nemo necessitatibus autem ex ducimus earum.
+    Illo eius, harum aperiam distinctio quidem repellat. Voluptatem beatae inventore quis expedita quaerat maiores porro quos. In, eum! Illum esse eius dolores quod eligendi at possimus non voluptatum repellendus asperiores.
+    <div class="product">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+      </ul>
+      <ol>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+        <li>11</li>
+        <li>12</li>
+        <li>13</li>
+        <li>14</li>
+        <li>15</li>
+      </ol>
+    </div>
+    <a href="javascript:;">回到顶部</a>
+  </div>
+  <script>
+    var product = document.querySelector('.product');
+    var a = document.querySelector('a');
+    window.addEventListener('scroll',function(){
+      // 如果被卷去的头部大于某一个位置的距离，就让回到顶部按钮显示，否则隐藏
+      if(window.pageYOffset > product.offsetTop){
+        a.style.display = 'block';
+      }else{
+        a.style.display = 'none';
+      }
+    });
+
+    a.addEventListener('click',function(){
+      window.scroll(0,0);
+    });
+  </script>
+</body>
+</html>

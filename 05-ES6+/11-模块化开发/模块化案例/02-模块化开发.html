@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模块化开发</title>
+</head>
+<body>
+  <!-- 
+    模块化开发：
+      1. 函数写成类似闭包形式。
+      2. 结果用变量进行接收保存，什么时候执行什么时候调用，不会像立即执行函数一样加载就执行完了。
+   -->
+  <script>
+    // 斐波拉列数字
+    var initFb = (function(){
+      function fb(n){
+        if(n<=0){
+          return 0;
+        }
+        if(n<=2){
+          return 1;
+        }
+        return fb(n-1) + fb(n-2)
+      }
+      return fb;
+    })();
+
+    // 能被3，5，7整除的数字
+    var initDiv = (function(){
+      function div(n){
+        var arr = [];
+        for(var i=0; i<=n;i++){
+          if(i%3===0 || i%5===0 || i%7===0){
+            arr.push(i)
+          }
+        }
+        return arr;
+      }
+      return div;
+    })();
+  
+    function init(){
+      console.log(initFb(10));
+      console.log(initDiv(100))
+    }
+
+    init();
+  </script>
+</body>
+</html>

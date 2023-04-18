@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>构造函数</title>
+</head>
+<body>
+  <script>
+      /**
+       * 构造函数分析:
+       *    1. 构造函数定义生成GO。
+       *    2. 构造函数实例化的时候就相当于是函数执行生成AO，里面是一个 this 对象，存放属性。
+       *    3. 实例化的时候，在GO中会生成实例化对象。
+       * 
+       * GO:{
+       *    Car:(function)
+       *    car1:{
+       *        color:color
+       *        brand:brand
+       *    }
+       * }
+       * 
+       * AO:{
+       *    this:{
+       *        color:color,
+       *        brand:brand
+       *    }
+       * }
+       *   
+       */
+      // function Car(color,brand){
+      //   // this:{
+      //   //    color:color,
+      //   //    brand:brand 
+      //   // }  
+      //   this.color = color;
+      //   this.brand = brand;
+
+      //   // return this 隐式添加的，返回出来存储到 GO 里面的car1，可以这样理解。
+      //   // return 返回的是创建后的那个对象。
+      //   // 如果你非要显示return，有两种情况， ruturn 一个对象（数组，函数，object）它会返回你显示返回的对象。
+      //   // 如果你非要 return 一个值类型的数据，那是无效的。 
+      //   // return 数组，字符换，boolean 都是无效的。
+      // }
+
+      // var car1 = new Car('red','BMW');
+      // console.log(car1.color)
+
+
+      
+      // 题目2：
+      function Car(color,brand){
+        this.color = 'red';     // 2. 因为这个位置没有赋值。
+        this.brand = 'BMW';
+      }
+      var car = new Car('blank','上海大众');  
+      console.log(car);  // Car {color: 'red', brand: 'BMW'}  1. 这里是构造函数里面的默认值。
+
+  </script> 
+</body>
+</html>

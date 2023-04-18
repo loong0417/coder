@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    Symbol 是ES6中新增数据类型。
+
+   -->
+   <script>
+    // 1. ES6之前，对象的属性名（key）
+    var obj = {
+      name:'why',
+      friend:{name:'kobe'},
+      age:18
+    }
+    // 注意：在ES6中，对象属性是以键值对方式出现的，key值看似没有加引号，实际上在底层会加上引号的。
+    obj['newName'] = 'james'
+    // 这样就会造成后面的属性覆盖前面的属性，如果是我们自己定义的对象和属性还好因为比较熟悉，如果是引用的呢？就和容易造成覆盖。
+    obj['name'] = 'yang'    
+    console.log(obj);
+
+    // 2. ES6中Symbol的基本使用(Symbol是一个函数)
+    const s1 = Symbol();
+    const s2 = Symbol();
+    console.log(s1===s2);         // false
+
+    // ES2019(ES10)中，Symbol还有一个描述（description）
+    const s3 = Symbol('aaaa');
+    console.log(s3.description);   // aaa
+
+    // 3. Symbol值作为key
+    // 3.1.在定义对象字面量时候使用
+    const obj = {
+      [s1]:'abc',                  // 这里s1，s2是上面定义的
+      [s2]:'bca'
+    }
+    // 3.2.新增属性
+    obj[s3] = 'nba'
+    console.log(obj);
+
+    // 3.3.Object.defineProperty方式
+    const s4 = Symbol();
+    Object.defineProperty(obj,s4,{
+      enumerable:true,
+      configurable:true,
+      writable:true,
+      value:'mba'
+    })
+    console.log(obj[s1],obj[s2],obj[s3],obj[s4]);
+
+    // 注意：不能通过.（点语法）语法获取
+    // 这样写它会找obj中作为s1的字符串属性，没有找到就返回undefined
+    // console.log(obj.s1);     // undefined
+
+    // 4. 使用Symbol作为key的属性名，在遍历/Object.keys等中是获取不到Symbol值的
+    console.log(Object.keys(obj));   // []
+
+    console.log(Object.getOwnPropertyNames(obj));  // []
+
+    console.log(Object.getOwnPropertySymbols(obj)); // [Symbol(), Symbol(), Symbol(aaaa), Symbol()]
+
+    // 4.1.遍历
+    const symbol_key = Object.getOwnPropertySymbols(obj);
+    for(const key of symbol_key){
+      // 注意这个位置是从obj中拿去key，而不是symbol_key，今天在测试的时候写错了
+      console.log(obj[key])
+    }
+
+
+    // 5. 有些时候希望创建出来的Symbol值是相同的，那么我们应该怎么办呢？
+    const sa = Symbol.for('aaa');
+    const sb = Symbol.for('aaa');
+    console.log(sa===sb)         // true
+
+    const key = Symbol.keyFor(sa);
+    console.log(key)             // aaa
+
+    const sc = Symbol.for(key);
+    console.log(sa===sc)         // true
+
+   </script>
+</body>
+</html>

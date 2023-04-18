@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>progress</title>
+</head>
+<body>
+  <progress id="pro" min="0" max="100" value="0"></progress>
+  <script>
+    var obj = document.getElementById("pro");
+    setTimeout
+    setInterval(function(){
+      if(obj.value < 100){
+        obj.value = obj.value+1;
+        console.log(obj.value);
+      }else{
+        obj.value = 0;
+      }
+    },100)
+  </script>
+</body>
+</html>

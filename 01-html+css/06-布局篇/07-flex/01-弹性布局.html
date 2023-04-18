@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹性布局</title>
+    <!-- 
+        1. display:flex 设置盒子为弹性盒子
+
+        2. 设置主轴方向
+            flex-direction:row 
+                row设置主轴方向从左到右，也是默认设置
+                column 设置主轴方向从上到下
+
+                row-reverse 从右到左，就是颠倒顺序
+                column-reverse 从下到上，就是颠倒顺序
+        
+        3. 设置主轴内容分布：
+            justify-content: flex-start 像主轴的开始位置靠拢（类似 text-align:left）
+            justify-content: cennet 像主轴的中心位置靠拢（类似 text-align:center)
+            justify-content: flex-end 像主轴的结束位置靠拢（类似 text-align:right）
+
+            justify-content: space-around  平均分布，两边是有距离的，两边距离是中间元素之间距离的一半
+            justify-content: space-between 平局分布，两边没有距离，中间元素之间的距离平均分配
+            justify-content: space-evenly（新添加的属性值） 平均分布，两边间距，元素之间间距都是一样的
+
+        
+        4. 设置侧轴内容分布：
+            当主轴是水平方向的时候，侧轴就是垂直方向的。那么侧轴的开始位置就是最顶端，上面。
+
+            align-items: flex-start 像侧轴开始位置靠拢
+            align-items: flex-end 像侧轴结束位置靠拢
+            align-items: center 像侧轴中间靠拢
+            align-items: stretch 拉伸（默认值），当子元素没有设置高度的时候，会将子元素默认拉伸到和父元素一样的高度
+        
+        5. 弹性换行：
+            flex-wrap:nowrap 不换行，默认值
+            flex-wrap:wrap 换行
+
+        
+        6. 设置侧轴多行分布：
+            align-content:flex-start 多行内容往侧轴的开端靠拢
+            align-content:flex-end 多行内容往侧轴的结束位置靠拢
+            align-content:center 多行内容居中
+            align-content:space-between 平均分布，两边没有间距
+            align-content:space-around 平均分布，两边间距是中间间距的一半
+
+            align-content:space-evenly（新添加的属性值） 平均分布，两边间距，元素之间间距都是一样的
+
+
+     -->
+    <style>
+        .parent{
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            border: 1px solid black;
+            color: #fff;
+            font-weight: bold;
+
+            display: flex;
+            justify-content: space-evenly;
+
+            align-items: center;
+        }
+
+        .child{
+            width: 100px;
+            height: 100px;
+
+            display: inline-block;
+        }
+
+        .box1{
+            background: orange;
+        }
+
+        .box2{
+            background: green;
+        }
+
+        .box3{
+            background: skyblue;
+        }
+
+        .box4{
+            background:palevioletred;
+        }
+
+    </style>
+</head> 
+<body>
+    <div class="parent">
+        <div class="child box1">1</div>
+        <div class="child box2">2</div>
+        <div class="child box3">3</div>
+        <div class="child box4">4</div>
+    </div>
+</body>
+</html>

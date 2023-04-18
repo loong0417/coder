@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number[]}
+     */      
+    // let array = [2, 7, 11, 15]
+    // let target = 9;
+    // var twoSum = function (nums, target) {
+    //     let valueArr = [];
+    //     let indexArr = [];
+    //     for (let i = 0; i < nums.length; i++) {
+    //         for (let j = i + 1; j < nums.length; j++) {
+    //             if (valueArr.length > 0 && valueArr.includes(nums[i])) {
+    //                 break;
+    //             }
+    //             if (nums[i] + nums[j] === target) {
+    //                 valueArr.push(nums[i], nums[j])
+    //                 indexArr.push(i, j)
+    //             }
+    //         }
+    //     }
+    //     return indexArr
+    // };
+    // twoSum(array, target)
+     
+    // 题目1：输入IP地址，转换格式
+    // var defangIPaddr = function(address) {
+    // return address.replaceAll(".","[.]"); 
+    // };
+    // var address = "1.1.1.1";
+    // console.log(defangIPaddr(address))
+
+
+   var addTwoNumbers = function(l1, l2) {
+    function ListNode(val) {
+      this.val = val;
+      this.next = null;
+    }
+    let result, temp;
+    let add = 0;
+    const getVal = (l) => l ? l.val : 0;
+    const getNext = (l) => l ? l.next : l;
+    while (l1 || l2) {
+        let now = getVal(l1) + getVal(l2) + add;
+        add = now >= 10 ? 1 : 0;
+        now = now >= 10 ? now - 10 : now;
+        if (!result) {
+            result = new ListNode(now);
+            temp = result;
+        } else {
+            temp.next = new ListNode(now);
+            temp = temp.next;
+        }
+        l1 = getNext(l1);
+        l2 = getNext(l2);
+    }
+    if (add) temp.next = new ListNode(add);
+    return result;
+};
+
+  </script>
+</body>
+</html>

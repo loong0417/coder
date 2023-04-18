@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    Babel 编译工具（也就是转码器）
+
+    1. 官网：http://babeljs.io/
+            https://babeljs.cn/   中文网站
+
+    2. 安装步骤：
+      - npm install babel-cli --save-dev
+      - npm install babel-preset-env  --save-dev
+      - 在根目录下创建一个.babelrc配置文件
+        文件中写入：
+          {
+            "presets":["evn"]
+          }
+    
+    3. 编译的方式：
+      - 直接编译文件（编译后的结果会在终端里显示出来） 
+        babel js/src/index.js
+      
+      - 编译并输出结果到单个文件 (-o为out-file的简写)
+        babel js/src/index.js -o js/src/newIndex.js
+
+      - 文件修改后自动编译（-w是watch的简写）
+        babel js/src/index.js -w -o js/src/newIndex.js
+
+      - 编写整个目录的文件 （-d为out-dir的简写）
+        babel js/src -d js/dist
+     
+    4. 命令编译：
+      - 在package.json的scripts里面添加一条属性，如下：
+      'scripts':{
+        'build':'babel js/src -d js/dist'
+      }
+
+      - 在用到编译命令的时候执行：npm run build
+
+    5. babel-polyfill 垫片，用来转出了语法外的API
+      - 安装：npm install --save babel-polyfill
+        注意：这个模块需要在代码运行时就要工作，所以需要放到运行环境。需要放到 --save
+      - 在用到的代码里面最上面引入：import 'babel-polyfill'
+
+      
+      
+   -->
+</body>
+</html>

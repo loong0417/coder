@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拖拽限制范围</title>
+  <style>
+    #box{
+      width: 300px;
+      height: 300px;
+      background: green;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #img{
+      display: block;
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="box"></div>
+  <img id="img" src="./images/big.jpg" alt="">
+  <script>
+   window.onload = function(){
+      var box = document.querySelector('#box');
+      var img = document.querySelector('#img');
+
+
+      drag(box);
+      drag(img);  
+
+      function drag(obj){
+        obj.onmousedown = function(ev){
+        isDown = true;
+        var disX = ev.clientX - obj.offsetLeft;
+        var disY = ev.clientY - obj.offsetTop;
+
+        
+        document.onmousemove = function(ev){
+          var l = ev.clientX - disX;
+          var t =  ev.clientY - disY;
+          
+          /**
+           * 1. document.documentElement.clientWidth 取得是整个页面可视区得宽度
+           * 2. 元素移动的最大距离 = 可视区的宽度 - 元素本身的宽度
+           * 3. 高度也是使用同样的方式进行判断 
+           */
+          if(l<0){
+            l = 0;
+          }else if(l>document.documentElement.clientWidth - obj.offsetWidth){
+            l = document.documentElement.clientWidth - obj.offsetWidth;
+          }
+
+          if(t<0){
+            t=0;
+          }else if(t>document.documentElement.clientHeight - obj.offsetHeight){
+            t=document.documentElement.clientHeight - obj.offsetHeight;
+          }
+
+          obj.style.left = l +'px';
+          obj.style.top = t +'px';
+        }
+
+        
+        obj.onmouseup = function(){
+          document.onmousemove = null;
+        } 
+        return false;
+      }
+    }
+   
+   };
+  </script>
+</body>
+</html>

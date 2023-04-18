@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实参列表</title>
+</head>
+<body>
+  <!-- 
+    arguments:
+      1. 适用场景：当我们不确定有多少个参数传递的时候，可以用arguments来获取。（此时函数形参处不需要传入argument，直接在函数体内使用即可）
+
+      2. 概念：arguments实际上他是当前函数的一个内置对象。所有函数都内置了一个arguments对象，
+         且只有函数有arguments，arguments对象中存储了传递的所有实参列表，并且无需将arguments写在形参处。
+
+      3. 特点：arguments是伪数组，伪数组有以下特点
+              具有length长度
+              按照索引方式存储数据
+              不具有数组的pop、push等方法
+
+   -->
+  <script>
+    // 1. 题目1：需要深入理解
+    // 理解：在实参里面传值给函数种对应的形参了，在函数种事可以更改形参的值的。
+    // function test(a,b){
+    //   a=3;
+    //   console.log(arguments[0]);  // 3
+    // }
+
+    // test(1,2);
+
+    // 2. 题目2：也需要深入理解
+    // 理解：在实参里面没有传值给对应的形参，在函数里面给形参直接赋值这样事无效的。
+    // function test(a,b){
+    //   b=1;
+    //   console.log(arguments[1]);  // undefined
+    // }
+    // test(2)
+
+    // 3. 题目3：
+    // 这个位置吧我还是有点不太理解的，如果给形参列表赋值之后吧，在函数里面事可以更改形参的值的，
+    // 其实在函数里面更改直接对变量重新赋值，在内存种它们两个的存储的位置都是不一样的，
+    // 实参列表是数组（存在堆里面的heap），函数里面的变量是存储在栈stack里面的啊，这里的映射关系是个啥玩意啊（它俩是咋映射上的呢）？
+    // 再说明白点就是形参里面的那个a 和 demo函数里面 a=100 那个a压根就不是一个玩意，那它是怎么改的呢？
+    // 目前这个位置想得不太明白。啥玩意啊！！！！！！
+    function demo(a,b,c){
+      console.log(arguments[0]);  //1
+      // 这里存在着映射关系，当修改 arguments[0] 的时候 a 的值会跟着变化，修改 a 时 arguments[0] 也会发生变化
+          a = 100;
+          console.log(arguments[0]);   // 100
+
+          arguments[0] = 10;
+          console.log(a);    // 10
+
+          
+      // arguments 实参列表出生的时候值是什么样的参数列表就是什么样的，后面添加的都是 undefined，这个时候的 c 就当变量使用了
+          
+      // arguments[2] = 30;
+      // console.log(c);   //undefined
+
+      c = 250;
+      console.log(arguments[2]);  //undefined
+    }
+    demo(1,2);
+
+  </script>
+</body>
+</html>

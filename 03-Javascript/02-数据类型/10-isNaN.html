@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+      isNaN() 
+        判断一个值是不是 NaN，它会先把参数用 Number() 方法转换一下
+        它具有一个功能是用来检测数字的，但它的本意并不是用来检测数字的
+
+        如果参数的结果为 NaN ，那它就返回一个 true
+        如果参数的结果不为 NaN ，那它就返回一个 false
+
+        isNaN() 传进来的值如果是一个数字话，那就返回一个 false
+    */
+
+    var n = NaN;
+    var s = "杨小样";
+    var n1 = 12;
+    console.log(isNaN(n));   // true
+    console.log(isNaN(s));   // true
+    console.log(isNaN(n1));  // false
+
+  </script>
+</body>
+</html>

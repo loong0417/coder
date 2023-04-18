@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    Object.entries()
+    ES8新增：Object.entries可以获取到一个数组，数组中存放着枚举属性键值对形式。
+   -->
+  <script>
+    var obj = {
+      name:'yang',
+      age:18,
+      like:'发呆'
+    }
+    // 1. 对象转换成entries格式
+    // {['name', 'yang'],['age', 18],['like', '发呆']}
+    // console.log(Object.entries(obj))
+
+    const enItems = Object.entries(obj);
+    enItems.forEach(item=>{
+      // 取到对应的键值对
+      console.log(item[0],item[1])
+    });
+
+    // 2. 数组转换成entries格式（会将index索引值作为key的值）
+    // {['0', 'aaa'],['1', 'bbb'],['2', 'ccc'],['3', 'ddd']}
+    console.log(Object.entries(['aaa','bbb','ccc','ddd']));
+
+    // 3. 字符串也可以使用entries转换成数组
+    // {['0', 'y'],['1', 'a'],['2', 'n'],['3', 'g']}
+    console.log(Object.entries('yang'))
+</script>
+</body>
+</html>

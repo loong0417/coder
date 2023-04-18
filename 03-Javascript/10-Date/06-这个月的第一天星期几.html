@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>这个月的第一天星期几</title>
+</head>
+<body>
+  <script>
+   /**
+     *  这个月的第一天是星期几？
+     */
+    
+    // 1. 创建一个时间对象
+     var date = new Date();
+
+    // 2. 将日期设置为当前月的第一天
+    date.setDate(1);
+
+    // 3. 获取这个月第一天是星期几
+    console.log(date.getDay());
+
+  </script>
+</body>
+</html>

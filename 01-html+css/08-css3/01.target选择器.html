@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E:target选择器</title>
+    <style>
+        a{
+          font: bold 16px/20px "微软雅黑";  
+          color: green;
+        }
+
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin: 20px 0;
+
+            display: none;
+        }
+
+        div:target{
+            display: block;
+        }
+
+       
+    </style>
+</head>
+<body>
+
+    <!-- E:target 选择器 -->
+    <a href="#div1">div1</a>
+    <a href="#div2">div2</a>
+    <a href="#div3">div3</a>
+
+    <div id="div1">div1</div>
+    <div id="div2">div2</div>
+    <div id="div3">div3</div>
+</body>
+</html>

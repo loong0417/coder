@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数字类型分析</title>
+</head>
+<body>
+    <!-- 
+        基本数据类型（简单数据类型）：
+            1. String
+            2. 数字类型
+            （1）. Number
+            （2）. NaN
+            
+            3. Boolean
+            4. Undefined
+            5. Null
+
+        复合数据类型（复杂数据类型）：
+            1. 对象 Object
+            2. 数组 Array
+            3. 函数 Function
+            4. 日期 Date
+     -->
+    <!-- 
+        基本数据类型：
+            数字（数字分为2种）：
+                1. Number：由0~9之间的任意数字组合而成，可以是整数也可以是小数。
+                           数字范围是正无穷（+Infinity）到负无穷（-Infinity）之间。
+                    
+                    1). Number.MIN_VALUE 最小数
+                    2). Number.MAX_VALUE 最大数
+
+                2. NaN：not a Number.
+                    1). 当运算失败的时候会出现。
+                    2). NaN自己都不等于自己。
+     -->
+
+     <script>
+         window.onload = function(){
+            var n1 = 10;
+            var n2 = 20.5;
+            var n3 = Number.MIN_VALUE;
+            var n4 = Number.MAX_VALUE;
+
+            console.log(n1);    // 10
+            console.log(n2);    // 20.5
+            console.log(n3);    // 5e-324（5乘以10的负324次方）
+            console.log(n4);    // 1.7976931348623157e+308 (e代表10 1.79......乘以10的308次方)
+            console.log(n4*2);  //Infinity
+
+            console.log('a'-1);  // NaN
+            console.log(NaN == NaN);   // false
+         }
+     </script>
+</body>
+</html>

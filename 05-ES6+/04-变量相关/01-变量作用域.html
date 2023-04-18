@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量作用域</title>
+</head>
+<body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+    <!-- 
+        声名变量：
+            var  定义变量，在ES6之前使用
+            let  在ES6之后声明变量使用
+            const   定义常量
+     -->
+     <script>
+        // 1. var 没有块级作用域：在大括号里面
+        //  {
+        //     var name = "why";
+        //     console.log(name);  // why
+        //  }
+        //  console.log(name);  // why
+
+
+        // 2. var 没有块级作用域：在 if 里面
+        var fun;
+        if(true){
+            var name = "光头强";
+            fun = function(){
+                var num = 1111;      // 这里定义的变量 num 就不会被外面更改
+                console.log(name);   // 光头强
+                console.log(num);
+            }
+           fun();
+           name = "熊二";    // 这里很容易改变 name 变量的值。
+
+           num = 10;
+           console.log(num);
+        }
+        console.log(name);  // 熊二
+
+
+
+        // 3. var 没有块级作用域：在 for 里面
+        var btns = document.getElementsByTagName("button");
+        // for(var i=0;i<btns.length;i++){
+        //     btns[i].addEventListener('click',function(){
+        //         // 点击第5个按钮（每一个都是第5个）
+        //         console.log("点击第"+i+"个按钮");   
+        //     }); 
+        // }
+
+        // 将声明变量的关键字改变成 let 即可完成
+        // for(let i=0;i<btns.length;i++){
+        //     btns[i].addEventListener('click',function(){
+        //         // 点击第5个按钮（每一个都是第5个）
+        //         console.log("点击第"+i+"个按钮");   
+        //     }); 
+        // }
+
+        
+        // 在 ES5之前我们需要使用闭包（立即执行函数）完成
+        // for(var i=0; i<btns.length;i++){
+        //     (function(num){
+        //         btns[i].addEventListener('click',function(){
+        //             console.log("点击第"+num+"个按钮");   
+        //         })
+        //     })(i);
+        // }
+
+
+        // 0,1,2,3,4,5
+        for(var i=0;i<=5;i++){
+            console.log(i)
+        }
+
+        
+        
+     </script>
+</body>
+</html>

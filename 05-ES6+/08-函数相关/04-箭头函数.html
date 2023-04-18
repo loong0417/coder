@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    箭头函数：
+      语法：function使用var，let，const表示
+
+      参数：参数需要写在第一个等号的后面。
+        1.如果没有参数，需要写一对小括号。
+        2.只有一个参数，那就可以直接写一个参数，小括号可以省略。 
+        3.参数有多个，需要加小括号，小括号不能省略，参数之间用逗号隔开。
+      
+      函数主体：
+        函数主体内容是放在箭头后面，如果语句只有一条，那就直接写，如果语句有多条，需要将函数主体 放在大括号里面。
+
+      注意事项：
+        1.函数体内的this对象就是定义函数时所在的对象，不是调用时候的对象。
+        2.箭头函数不能当作构造函数来使用，不能实例化。
+        3.函数内不能使用arguments对象，如果要用的话，就是用reset参数来代替。
+   -->
+  <script>
+    // 案例1：
+    var foo=()=>{
+      console.log('foo');
+    }
+    console.log(foo.prototype)  // undefined
+
+    // 案例2：
+    var fun = ()=>console.log('fun函数');
+    fun()
+
+    // 案例3：
+    var sum = (a,b) =>{
+      var result = a+b;
+      console.log(result)
+    }
+    sum(1,2)                      // 3
+
+    
+
+  </script>
+</body>
+</html>

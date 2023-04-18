@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dom结构树分析</title>
+</head>
+<body>
+  <div>
+    <ul>
+      <li id="aaa">1元素</li>
+      <li>2元素</li>
+      <li>3元素</li>
+      <li>4元素</li>
+      <li>5元素</li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+    // 只有 Document.prototype下面有getElementById，Element.prototype下面是没有getElementById()的。
+    var div = document.querySelector('div');
+    var lis = div.getElementsByTagName('li');
+    var idAttr = div.getElementById('aaa');
+    console.log(idAttr)   // Uncaught TypeError: div.getElementById is not a function
+    console.log(lis)
+    console.log(div)
+  </script>
+</body>
+</html>

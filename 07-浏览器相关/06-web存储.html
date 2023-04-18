@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    需求：在一个页面存储值，另一个页面接收。
+      1. 涉及文件 06-web存储和07-web存储。
+      2. 在07-web存储中接收06-web存储中localStorage存储的值。
+
+    缓存发生改变时候会触发，但是要在同一域名，不同页面才是有效的。
+    
+    使用：window.addEventListener('storage',function(event) 方式监听缓存发生改变触发改事件。
+
+  -->
+  <input type="text" id="user">
+
+  <script>
+    var input = document.querySelector('#user');
+    input.onblur = function(){
+      localStorage.setItem('user',input.value);
+    }
+  </script>
+</body>
+</html>

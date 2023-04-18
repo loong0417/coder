@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    可选链运算符的使用：Optional chaining
+
+    ES11新增特性：主要作用是让我们的代码在进行null和undefined判断时更加清晰和简介。
+   
+    语法：?. 
+  -->
+   <script>
+      var info = {
+        name:'yang',
+        friendOne:{
+          name:'li'
+        },
+        // friendTwo:{
+        //   name:'wang'
+        // }
+      }
+      // 1. 获取info对象下面的对象属性
+      console.log(info.friendOne)       // {name: 'li'}
+
+      // 2. 获取info对象中不存在的属性
+      console.log(info.friendTwo)       // undefined
+
+      // 3. 获取不存在的对象属性，获取不存在的对昂返回undefined，然后undefined.name就直接报错了。
+      // 这样一来就阻塞下面代码的执行了。
+      //  error：Cannot read properties of undefined (reading 'name')
+      // console.log(info.friendTwo.name)  
+
+      // 4.使用可选链操作符 (?.)操作符
+      // 使用可选链操作符后，获取对象下面不存在的属性返回undefined，如果获取的对象存在就返回，不会阻塞下面的代码执行。
+      console.log(info?.friendTwo?.name)
+
+      console.log('我是其它代码块......')
+   </script>
+</body>
+</html>

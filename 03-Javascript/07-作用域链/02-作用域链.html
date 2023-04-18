@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域链分析</title>
+</head>
+<body>
+
+    <!-- 
+        作用域和作用域链分析：
+            函数的定义就会产生作用域，作用域里面存储作用域链，作用域链里面存储执行器上下文。
+            
+
+        作用域链分析：
+            1. 变量与函数的查找规则，因为有嵌套，所以需要变量与函数的查找规则。
+            2. 就近原则。
+     -->
+     <script>
+         window.onload = function(){
+            var a = 10;
+
+            function fn(){
+                console.log(a);  // 10
+            }
+            fn();
+
+            function fn1(){
+                var a = 20;
+                // 会优先使用自己作用域的变量，即便是变量没有赋值，结果为 undefined。
+                console.log(a);  // 20
+            }
+            fn1();
+         }  
+     </script>
+    <!-- 
+        作用域链案例：
+            1. 每一个标签域都有属于自己的颜色。
+            2. 如股去掉自己的颜色属性它就会去父级上面找，使用父级的颜色。父级没有颜色就是默认颜色。
+     -->
+    <div id="box" style="color: red;">
+        这是一个 div 层
+        <p style="color: green;">
+            这是一个 p 层
+            <span style="color: blue;">这是一个 span 标签</span>
+        </p>
+    </div>
+</body>
+</html>

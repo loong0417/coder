@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>鼠标画框</title>
+  <style>
+    div{
+      border: 1px solid #f00;
+      position: absolute;
+      cursor: default;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    window.onload = function(){
+      // div = document.createElement('div'); 
+      document.onmousedown = function(ev){
+        // 存储鼠标的起点位置及在鼠标点下的时候需要创建div
+        var disX = ev.clientX,
+            disY = ev.clientY,
+            div = document.createElement('div');  // 如果在onload加载的时候画方框，就只会画一个
+            // 需要将div的起点和鼠标点击的起点设置成一致的
+            div.style.left = disX+'px';
+            div.style.top = disY+'px';
+        document.body.appendChild(div);    
+
+        document.onmousemove = function(ev){
+          // 左上
+          // if(ev.clientX < disX && ev.clientY < disY){
+          //   div.style.width = disX - ev.clientX + 'px';
+          //   div.style.height = disY - ev.clientY + 'px';
+          //   div.style.left = ev.clientX + 'px';
+          //   div.style.top = ev.clientY + 'px'
+          // }
+          // 左下
+          // if(ev.clientX < disX && ev.clientY > disY){
+          //   div.style.width = disX - ev.clientX + 'px';
+          //   div.style.height = ev.clientY - disY + 'px';
+          //   div.style.left = ev.clientX + 'px';
+          // }
+          // 右上
+          // if(ev.clientX > disX && ev.clientY < disY){
+          //   div.style.width = ev.clientX - disX + 'px';
+          //   div.style.height = disY - ev.clientY + 'px';
+          //   div.style.top = ev.clientY + 'px';
+          // }
+          // 右下
+          // if(ev.clientX > disX && ev.clientY > disY){
+          //   div.style.width = ev.clientX - disX + 'px';
+          //   div.style.height = ev.clientY - disY + 'px';
+          // }
+          
+          // 分析：四句就可以完成上面判断。
+          // 1. 宽高，无论是大数减小数还是小数减大数，宽高都是一个正值，那就直接取绝对值。
+          // 2. left和top值，从改变left和top值看，每次改变的top值和left值都是最小的那个值，所以就直接取最小值。
+          div.style.width = Math.abs(ev.clientX-disX)+'px';
+          div.style.height = Math.abs(ev.clientY-disY)+'px';
+          div.style.left = Math.min(ev.clientX,disX)+'px';
+          div.style.top = Math.min(ev.clientY,disY)+'px';
+        };
+
+        document.onmouseup = function(){
+          document.onmousemove = null;
+        }
+      };
+    }
+  </script>
+</body>
+</html>

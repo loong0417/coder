@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <!-- 
+    Array.from()
+      - 作用：把类数组转换成真正的数组。任何有length属性的对象都可以用这个方法转真正数组。
+
+    [...类数组] 它是一个扩展方法，在这里可以把一个类数组转成一个真正的数组。
+   -->
+  <script>
+    // 1. Array.from() 将类数组转换成真正的数组
+    var lis = document.getElementsByTagName('li');
+    // console.log(lis);  // HTMLCollection(5) [li, li, li, li, li]
+    
+    var newList = Array.from(lis);
+    console.log(newList); // [li, li, li, li, li]
+
+    // 2. Array.from() 将字符串转换成数组
+    var name = 'yang';
+    var newStr = Array.from(name);
+    console.log(newStr)   //  ['y', 'a', 'n', 'g']
+
+    // 3. 使用[...类数组]方式
+    var newList2 = [...lis];
+    console.log(newList2) //  [li, li, li, li, li]
+
+    // 4. 对象身上只要有length属性就可以调用Array.from()把对象转换成数组，对象中的key必须是从0开始的数字才能转换
+    var obj1={
+      0:'yang',
+      1:18,
+      job:'攻城狮',
+      like:'发呆',
+      length:4
+    }
+
+    var obj2={
+      1:'red',
+      2:'green',
+      3:'yellow',
+      4:'pink',
+      5:'blue',
+      length:5
+    }
+    // 注意：1.key值必须是数字，obj1中有3个key不是数字，就被识别为undefined。
+    console.log(Array.from(obj1))  // (4) ['yang', 18, undefined, undefined]
+    // 注意：2.key值必须从0开始，如果不是从0开始会直接补到0，为undefined。
+    console.log(Array.from(obj2))  // (5) [undefined, 'red', 'green', 'yellow', 'pink']
+
+  </script>
+</body>
+</html>

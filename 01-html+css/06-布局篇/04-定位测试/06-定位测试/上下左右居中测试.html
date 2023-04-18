@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>上下左右居中测试</title>
+  <style>
+     body{
+       margin: 0;
+     }
+    .box{
+      width: 300px;
+      height: 300px;
+      background: red;
+      color: #fff;
+      position: absolute;
+
+
+      /* 方式一 */
+      /* left: 50%;
+      top: 50%;
+      margin-top: -150px;
+      margin-left: -150px; */
+
+      /* 方式二 */
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">上下左右都居中</div>
+</body>
+</html>

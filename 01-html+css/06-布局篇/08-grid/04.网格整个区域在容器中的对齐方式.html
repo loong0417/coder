@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>整个区域在容器中的对齐方式</title>
+
+    <style>
+        .box{
+            width: 600px;
+            height: 600px;
+            border: 1px solid red;
+            display: grid;
+            grid-template-columns: repeat(3,100px);
+            grid-template-rows: repeat(3,100px);
+
+            /* 整个区域在容器中的对齐方式 */
+            /* 水平方向对齐方式 */
+            justify-content: center;
+            justify-content: space-between;
+            /* 垂直方向对齐方式 */
+            align-content: space-between;
+        }
+
+        .item{
+            line-height: 100px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .i1{
+            background: red;
+        }
+
+        .i2{
+            background: green;
+        }
+
+        .i3{
+            background: blue;
+        }
+
+        .i4{
+            background: blueviolet;
+        }
+
+        .i5{
+            background: cadetblue;
+        }
+
+        .i6{
+            background: cyan;
+        }
+
+        .i7{
+            background: darkkhaki;
+        }
+
+        .i8{
+            background: dimgrey;
+        }
+
+        .i9{
+            background: gold;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="item i1">1</div>
+        <div class="item i2">2</div>
+        <div class="item i3">3</div>
+        <div class="item i4">4</div>
+        <div class="item i5">5</div>
+        <div class="item i6">6</div>
+        <div class="item i7">7</div>
+        <div class="item i8">8</div>
+        <div class="item i9">9</div>
+    </div>
+</body>
+</html>

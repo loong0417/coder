@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    函数的剩余参数：
+      一.rest参数：
+        1. 语法：...参数
+        2. ES6中引用了rest parameter，可以将不定数量的参数放入到一个数组中。
+        3. 如果最后一个参数是...为前缀的，那么它会将剩余的参数放到该数组中，并作为一个数组。
+        4. ...参数的后面不能再有参数，否则会报错。
+
+      二.扩展方法：
+        1. 语法：... （使用的是三个点语法）
+        2. 三个点后面是一个类数组，它的作用是把这个类数组转成真正的数组，但是它需要放到一对中括号里面。
+        3. 三个点后面是一个真正的数组，它的作用是把数组转成一个普通集合数据，不需要加中括号。
+   -->
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+   <div></div>
+  <script>
+    // 1.1.rest参数
+    function sum(num1,num2,...numbers){
+      console.log(num1,num2,numbers);
+    }
+    sum(10,20,3,4,5,6);   // 10 20 (4) [3, 4, 5, 6]
+
+    // 1.2.案例(...numbers后面有一个参数，就报错)
+    function total(...numbers/*,a*/){
+      var sum = 0;
+      for(let num of numbers){  
+        sum+=num;
+      }
+      return sum;
+    }
+    console.log(total(1,2,3,4,5,6,7,8,9));
+
+    // 2.1.三点用法（扩展运算符）
+    var arr = [12,34,56,78,13,90];
+    var wraps = document.querySelectorAll('div');
+    // 注意：类数组及三个点需要放在一对中括号里面
+    console.log([...wraps])  // [div, div, div, div, div]
+    // 注意：把数组转成集合数据，不用加中括号
+    console.log(...arr)      // 12 34 56 78 13 90
+
+    // 2.2.作用1：替代数组的apply方法（扩展运算符）
+    console.log(Math.max(12,34,56,78,13,90))    // 90
+
+    var arr = [12,34,56,78,13,90];
+    console.log(Math.max.apply(null,arr))       // 90
+
+    console.log(Math.max(...arr))               // 90
+
+
+    // 2.2.作用2：替代concat（扩展运算符）
+    var arr2 = [1,2,3];
+    var arr3 = ['a','b','c'];
+    // console.log(arr2.concat(arr3))           // (6) [1, 2, 3, 'a', 'b', 'c']
+
+    arr2.push(...arr3)
+    // console.log(arr2)                        // (6) [1, 2, 3, 'a', 'b', 'c']
+
+    // 2.3.作用3：将字符串转换成数组（扩展运算符）
+    var names = 'hello world';
+    console.log([...names])                     // (11) ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
+    
+    for(let n of [...names]){
+      console.log(n)
+    }
+</script>
+</body>
+</html>

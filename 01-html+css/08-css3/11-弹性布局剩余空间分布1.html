@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹性布局剩余空间分布</title>
+    <!-- 
+        需求：
+            1. 将页面分成三个块。
+            2. left（左边）侧边栏是中间的一半。
+            3. right（右边）广告栏是 200 px。 
+        
+        使用弹性盒子布局分配剩余空间。 flex:1 占剩余空间的一份，flex:2占剩余空间的2份。
+     -->
+    <style>
+        .box{
+            display: flex;
+            color: #fff;
+        }
+
+        .left{
+            background: #008c8c;
+            /* 剩余空间分布设置 flex:1 占剩余空间的1份*/
+            flex: 1;
+        }
+
+        .main{
+            background: orange;
+            /*剩余空间分布设置 flex:2 占剩余空间的2份*/
+            flex: 2;
+        }
+
+        .right{
+            background: skyblue;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+
+     <div class="box">
+         <div class="left">
+            左边侧边栏
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, asperiores?
+        </div>
+
+         <div class="main">
+            主区域
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate consectetur voluptas nihil cupiditate voluptatibus ipsum, hic laudantium ipsa ut maxime officiis in enim eos incidunt reiciendis nesciunt omnis quae expedita fugiat veniam voluptatum, earum iste. Veritatis soluta harum suscipit accusamus quod dignissimos quam aspernatur omnis. Hic, tenetur placeat? Architecto, unde cum! Dignissimos quaerat, quidem officia incidunt aspernatur voluptatem vitae eos repellendus rerum! Earum officia asperiores, fugiat, ex veritatis maiores laudantium rerum sapiente libero quos quis deserunt iste. Saepe adipisci nostrum iusto consequuntur reprehenderit molestiae impedit in rem culpa sapiente, vitae minus facilis nulla earum accusantium iure accusamus voluptatibus dignissimos! Neque.
+         </div>
+
+         <div class="right">
+            右边广告栏
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa, quibusdam!
+         </div>
+     </div>
+</body>
+</html>

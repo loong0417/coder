@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>网格两栏布局</title>
+
+    <style>
+        .box{
+            height: 500px;
+            display: grid;
+            grid-template-columns: 200px auto;
+        }
+
+        .left{
+            background: #008c8c;
+        }
+
+        .main{
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="left"></div>
+        <div class="main"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    a{
+      text-decoration: none;
+      color: #333;
+      font-size: 28px;
+    }
+    .box{
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+    .bgLogin{
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .2);
+    }
+    .form{
+      display: none;
+      width: 512px;
+      height: 280px;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      background-color: #fff;
+      z-index: 5;
+      box-sizing: border-box;
+    }
+    .form h2{
+      padding:20px;
+      border: 1px solid red;
+      cursor: move;
+      user-select: none;
+    }
+    .form div{
+      width: 300px;
+      margin: 20px auto;
+      text-align: right;
+    }
+    .close{
+      position: absolute;
+      right: -20px;
+      top: -10px;
+      width: 50px;
+      height: 50px;      
+      line-height: 50px;
+      border: 1px solid #333;
+      background-color: #eee;
+      font-size: 16px;
+      font-weight: 400;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <a href="javascript:;" class="an">点击,弹出登录框</a>
+    <form action="#" class="form">
+      <h2>登录会员
+        <span class="close">关闭</span>
+      </h2>
+      <div>
+        <label for="user">用户名:</label>
+        <input type="text" name="user">
+      </div>
+      <div>
+        <label for="pwd">登录密码:</label>
+        <input type="password" name="pwd">
+      </div>
+      <button>登录会员</button>
+      
+    </form>
+    <!-- 这里是一个背景图片,铺满整个屏幕,使用定位fixed实现 -->
+    <div class="bgLogin"></div>
+  </div>
+
+  <script>
+    /**
+     * 模态框拖拽需求:
+     *  1. 点击<点击,弹出登录框>弹出登录会员模态框并且显示背颜色(半透明的背景色).
+     *  2. 点击关闭按钮的时候关闭模态框,并且同时关闭背景颜色(半透明的).
+     *  3. 鼠标放到模态框最上面一行，可以按住鼠标拖拽模态框在页面中移动。
+     *  4. 鼠标松开可以停止拖动模态框。
+     */ 
+    var an = document.querySelector('.an');
+    var form = document.querySelector('.form');
+    var bgLogin = document.querySelector('.bgLogin');
+    var close = document.querySelector('.close');
+    var h2 = document.querySelector('h2');
+    // 1. 点击<点击,弹出登录框>弹出登录会员模态框并且显示背颜色(半透明的背景色).
+    an.addEventListener('click',function(){
+      form.style.display = 'block';
+      bgLogin.style.display = 'block';
+    });
+    // 2. 点击关闭按钮的时候关闭模态框,并且同时关闭背景颜色(半透明的).
+    close.addEventListener('click',function(){
+      form.style.display = 'none';
+      bgLogin.style.display = 'none';
+    });
+    // 3. 鼠标放到模态框最上面一行，可以按住鼠标拖拽模态框在页面中移动。
+    h2.addEventListener('mousedown',function(ev){
+      console.log(ev)
+      // 3.1.鼠标按下时候，就获得鼠标在盒子内的坐标
+      var x = ev.pageX - form.offsetLeft;
+      var y = ev.pageY - form.offsetTop;
+      document.addEventListener('mousemove',move);
+      // 3.2.鼠标移动的时候，把鼠标在页面中的坐标，减去 鼠标在盒子内的坐标就是模态框的left和top值
+      function move(ev){
+        form.style.left = ev.pageX - x + 'px';
+        form.style.top = ev.pageY - y + 'px';
+      }
+     // 4. 鼠标松开可以停止拖动模态框。
+     document.addEventListener('mouseup',function(){
+      document.removeEventListener('mousemove',move);
+     });
+    });
+  </script>
+</body>
+</html>

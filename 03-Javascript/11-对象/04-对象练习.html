@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 题目1：
+    function Compute(){
+      var ars = arguments,
+          sum;
+      this.plus = function(){
+        sum = 0;
+        // for(var i=0;i<ars.length;i++){
+        //   var item = ars[i];
+        //   sum +=item;
+        // }
+        // console.log(sum);
+
+        loop('add',sum)
+      },
+      this.mul = function(){
+        sum = 1;
+        // for(var i=0;i<ars.length;i++){
+        //   var item = ars[i];
+        //   sum *=item;
+        // }
+        // console.log(sum);
+
+        loop('mul',sum);
+      }
+
+      // 在这里我们将循环抽出来写
+      function loop(method,sum){
+        for(var i=0;i<ars.length;i++){
+          var item = ars[i];
+          if(method === 'add'){
+            sum+=item;
+          }else if(method === 'mul'){
+            sum*=item;
+          }
+        }
+        console.log(sum)
+      }
+    }
+
+    // var cmp = new Compute(1,2,3,4,5);
+    // cmp.plus();  // 15
+    // cmp.mul();  // 120
+
+    
+    // 题目2：
+    // 定义两个构造函数，一个人挑选一辆车，然后再结合构造函数信息输出。
+    // function Car(opt){
+    //   this.brand = opt.brand;
+    //   this.color = opt.color;
+    //   this.displacement = opt.displacement;
+    // }
+
+    // function Person(opt){
+    //   this.name = opt.name;
+    //   this.age = opt.age;
+    //   this.salary = opt.salary;
+
+    //   this.selectCar = function(){
+    //     var myCar = new Car(opt.CarOpt);
+    //     console.log(this.name+"挑选了一辆排量为"+myCar.displacement+',颜色为'+myCar.color+",品牌"+myCar.brand)
+    //   }
+    // }
+
+    // var yang = new Person({
+    //   name:'yang',
+    //   age:'18',
+    //   salary:'10k',
+    //   CarOpt:{
+    //     brand:'马自达',
+    //     color:'red',
+    //     displacement:'2.0',
+    //   }
+    // });
+
+    // yang.selectCar();
+
+
+
+    // 题目3：需要深入分析的
+    var name = "222";
+    var a = {
+      name:'111',
+      say:function(){
+        console.log(this.name)
+      }
+    }
+    // a.say是没有执行的。
+    // 将里面的匿名函数拿出来了，赋值给了 fun，fun是在全局作用域下的，全局作用域下指向的是 window，所以打印 var name="222"
+    var fun = a.say;
+    fun();   // 222
+
+    // a.say() 执行是直接指向的 a 这个对象。
+    a.say(); //111
+
+    var b = {
+      name:'333',
+      // 这里形参没有起到实际的作用
+      say:function(fun){
+        fun();
+        // console.log(this.name) // 333
+      }
+    }
+    b.say(a.say);    // 222
+    // 这个位置实际上是将 a.say()的函数赋值给 b.say 了，里面的 this 也过来了，b.say()执行 this 指向的是对象 b。
+    b.say = a.say;
+    b.say();     // 333
+
+
+
+    // 题目4：
+    // function test(){
+    //   var marty = {
+    //     name:'marty',
+    //     printName:function(){
+    //       console.log(this.name)
+    //     }
+    //   }
+    //   var test1 = {
+    //     name:'test1'
+    //   }
+    //   var test2 = {
+    //     name:'test2'
+    //   }
+    //   var test3 = {
+    //     name:'test3'
+    //   }
+
+    //   test3.printName = marty.printName;
+    //   marty.printName.call(test1);   // test1
+    //   marty.printName.apply(test2);  // test2
+    //   marty.printName();   // marty
+    //   test3.printName();   // test3    这里是谁执行 this 就指向谁，前面只是将函数体赋值给了 test3.printName ，并没有执行。
+    // }
+    // test();
+
+
+    // 题目5：需要深入分析
+    // var bar = {
+    //   a:'1'
+    // }
+
+    // function test(){
+    //   bar.a = 'a';
+    //   Object.prototype.b = 'b';
+    //   return function inner(){
+    //     console.log(bar.a);    // a
+    //     console.log(bar.b);    // b
+    //   }
+    // }
+    // test()();   // 后面不多这个小括号还没办法执行
+
+    // 题目6：深入分析题目
+    function Foo(){
+      getName = function(){
+        console.log(1)
+      }
+      return this;
+    }
+
+    Foo.getName = function(){
+      console.log(2)
+    }
+
+    Foo.prototype.getName = function(){
+      console.log(3)
+    }
+
+    var getName = function(){
+      console.log(4)
+    }
+
+    function getName(){
+      console.log(5)
+    }
+
+    Foo.getName();
+    getName();
+    Foo().getName();
+    new Foo.getName();
+    new Foo().getName();
+    new new Foo().getName();
+
+  </script>
+</body>
+</html>

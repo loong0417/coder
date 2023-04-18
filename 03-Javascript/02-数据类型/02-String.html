@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>string字符串类型分析</title>
+</head>
+<body>
+<!-- 
+基本数据类型：
+    string字符串类型分析：
+        1. 放在单引号或双引号里面，由0个或多个字符组成。
+        2. 注意：
+            1). 引号一定要成对出现。
+            2). 如果字符串引号里面有引号，外面的引号一定要与里面的引号相反（如果外面是单引号，里面就需要使用双引号）
+            3). 如果字符串里面的引号和外面的引号相同，就需要使用转义字符
+    -->
+     <script>
+         window.onload = function(){
+             var s1 = 'a';
+             var s2 = "hello";
+             var s3 = '';
+             var s4 = ' ';
+             var s5 = "It 's me";
+             var s6 = 'It \'s me';   // 需要使用转义符
+             
+             console.log(s1);
+             console.log(s2);
+             console.log(s3);
+             console.log(s4);
+             console.log(s5);
+             console.log(s6);
+         }
+     </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>setTimeout</title>
+</head>
+<body>
+  <!-- <button>获取更多数据</button> -->
+
+  <p>5秒跳转百度......</p>
+  <button>取消跳转</button>
+  <script>
+    // 1. setTimeout()测试
+    // var oBtn = document.getElementsByTagName('button')[0];
+    // oBtn.onclick = function(){
+    //   this.innerHTML = '加载中......';
+
+    //   var _self = this;    // 需要将定时器中的this指向oBtn，所以在外面进行存储，到里面再使用。
+    //   setTimeout(function(){
+    //     //console.log(this)   // this是指向window的
+    //     _self.innerHTML = '获取更多数据';
+    //   },1000);
+    // }
+
+    // 2. setTimeout()测试
+    var Opara = document.getElementsByTagName('p')[0],
+        oBtn = document.getElementsByTagName('button')[0];
+    var t=setTimeout(function(){
+      location.href = 'http://www.baidu.com';
+    },5000);
+
+    oBtn.onclick = function(){
+      clearTimeout(t);
+      Opara.innerHTML = '已取消跳转';
+    }
+  </script>
+</body>
+</html>

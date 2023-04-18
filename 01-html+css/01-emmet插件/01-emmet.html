@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+    <title>emmet 插件测试</title>
+</head>
+<body>
+    <!-- emmet 插件使用 -->
+    <!-- 1.！或 html:5 可以生成 html5文档结构 -->
+
+    <!-- 2. link:css , script:src   -->
+
+    <!-- 3.meta: + * 生成 meat 相关的 -->
+        <!-- meta:compat -->
+        <!-- meta:edge -->
+        <!-- meta:utf -->
+        <!-- meta:redirect -->
+        <!-- meta:vp -->
+
+    <!-- 4. p.header 或 p#header 生成一个类名或ID名为 header 标签  -->
+        <!-- 根据 4. 语法进行扩展 -->
+
+    <!-- 5.h2.title+p.info 生成平级标签用 + （生成一个 h2标签class=title,p标签id=info）-->
+
+    <!-- 6.生成后代标签 ul>li+li -->
+        <!-- ul>li*30 优化6.语法 -->
+
+    <!-- 7.h2>span^p.info     ^代表上级，与h2标同级-->
+
+    <!-- 8.a{自学小白}  生成带文字连接的 a 标签 -->
+
+    <!-- <p title="自学小白"></p> -->
+    
+    <!-- 9.p[title="自学小白"] 生成一个带 title 属性的 p 标签-->
+
+    <!-- 10.ul.list>li.item*8>a{导航$$} $$代表序号，两个 $ 符号前面加 0，1个则不加 -->
+
+    <ul class="list">
+        <li class="item"><a href="">导航01</a></li>
+        <li class="item"><a href="">导航02</a></li>
+        <li class="item"><a href="">导航03</a></li>
+        <li class="item"><a href="">导航04</a></li>
+        <li class="item"><a href="">导航05</a></li>
+        <li class="item"><a href="">导航06</a></li>
+        <li class="item"><a href="">导航07</a></li>
+        <li class="item"><a href="">导航08</a></li>
+    </ul>
+
+    <!-- <input type="text" placeholder=""> -->
+
+    <!-- 11. ul.list>li.item*8>a{导航$$@-} 生成序号倒叙，不知道为什么无法生成 -->
+    
+    <!-- 12. ul.list>li.item*8>a{导航$@100} 指定编号开始 100 开始编号 -->
+    <ul class="list">
+        <li class="item"><a href="">导航100</a></li>
+        <li class="item"><a href="">导航101</a></li>
+        <li class="item"><a href="">导航102</a></li>
+        <li class="item"><a href="">导航103</a></li>
+        <li class="item"><a href="">导航104</a></li>
+        <li class="item"><a href="">导航105</a></li>
+        <li class="item"><a href="">导航106</a></li>
+        <li class="item"><a href="">导航107</a></li>
+    </ul>
+    
+</body>
+</html>

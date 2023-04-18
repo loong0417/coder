@@ -1,0 +1,13 @@
+.box{
+  width: 100px;
+  height: 100px;
+  will-change: transform;
+}
+
+.one{
+  background-color: red;
+}
+
+.two{
+  background-color: green;
+}

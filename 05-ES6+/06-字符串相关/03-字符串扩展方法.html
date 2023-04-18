@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    字符串扩展方法：
+      1. includes(s)			字符串里面是否包含某个字符，参数是一个字符
+      2. startsWith(s)		字符串的开始位置的字符是否是参数的，参数是一个字符
+			3. endsWith(s)			字符串的结束位置的字符是否是参数的，参数是一个字符
+
+      4. repeat(num)      复制字符串，参数是一个number类型，表示复制字符串的次数，必须是一个正数，如果是负数就会报错的。
+   -->
+  <script>
+    var str = 'yang';
+    // 1. 查看str字符串中是否包含'n'这个字符。
+    // 2. 返回一个boolean值，如果存在则返回 true，否则返回 false。
+    console.log(str.includes('n'));   // true
+    
+    // 1. 查看str字符串开始（首位）字符是否为 a。
+    // 2. 返回一个boolean值，如果首位字符为a则返回true，否则返回false。
+    console.log(str.startsWith('a')); // false
+
+    // 1. 查看str字符串结尾（末尾）字符是否为 g。
+    // 2. 返回一个boolean值，如果末尾字符为g则返回true，否则返回false。
+    console.log(str.endsWith('g'));  // true
+
+    // 使用repeat()函数操作字符串
+    console.log(str.repeat(3));      // yangyangyang
+  </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1. 死循环
+    // var i = 1;
+    // for(;1;){
+    //   console.log(i)
+    //   i++;
+    // }
+
+    // var i = 1;
+    // while(1){
+    //   console.log(i);
+    //   i++;
+    // }
+
+    /**
+     * 2. 面试题:打印0-100的数
+     *   1. () 只能写一句，只能有一句，不能写比较
+     *   2. {} 不能出现 i++ 或 i--
+     * */  
+    // var i = 100;
+    // for(;i--;){
+    //   console.log(i)
+    // }
+
+    // 案例3：
+    // for(var i=0;i<10;i++){
+    //   console.log(i)  // 0-9
+    // }
+    // console.log(i) // 10
+
+    // 案例4：小于10的数字补0
+    // for(var j=0;j<=20;j++){
+    //   if(j<10){
+    //     j = '0'+j;
+    //   }else{
+    //     j = '' +j;
+    //   }
+    //   console.log(j)
+    // }
+
+    // 案例5：遍历对象，使用for in
+    // var obj = {
+    //   name:'杨小样',
+    //   age:18,
+    //   job:'搬砖，捡饮料瓶子'
+    // }
+    // for(var item in  obj){
+    //   // item 属性
+    //   // obj[item] 属性值
+    //   console.log(`${item}:${obj[item]}`);
+    // }
+
+  </script>
+</body>
+</html>

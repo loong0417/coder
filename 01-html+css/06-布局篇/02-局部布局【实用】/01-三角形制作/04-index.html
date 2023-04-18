@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>直角三角形案例</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .price{
+      width: 160px;
+      height: 24px;
+      border: 1px solid red;
+      margin: 100px auto;
+      line-height: 24px;
+    }
+
+    .price .discount{
+      float: left;
+      width: 90px;
+      height: 100%;
+      position: relative;
+      background-color: red;
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+      margin-right: 8px;
+    }
+
+    .price .discount i{
+      display: inline-block;
+      position: absolute;
+      right: 0px;
+      width: 0;
+      height: 0;
+      border-color: transparent white transparent transparent;
+      border-style: solid;
+      border-width: 24px 14px 0 0;
+    }
+
+    .price .origin{
+      font-size: 12px;
+      color: #999;
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    价格标签
+   -->
+   <div class="price">
+      <span class="discount">￥1000
+        <i></i>
+      </span>
+      <span class="origin">￥5000</span>
+   </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    Object.keys和Object.values：
+      1.Object.keys：通过Object.keys方法获取对象中的所有key值。
+      2.Object.values：通过Object.value方法来获取对象中的所有value值。
+   -->
+  <script>
+    var info = {
+      name:'yang',
+      age:18,
+      job:'攻城狮',
+      like:'发呆'
+    }
+    console.log(Object.keys(info))   // (4) ['name', 'age', 'job', 'like']
+    console.log(Object.values(info)) // (4) ['yang', 18, '攻城狮', '发呆']
+
+    // 如果传进来的是一个数组，则返回该数组 (4) ['aaa', 'bbb', 'ccc', 'ddd']
+    console.log(Object.values(['aaa','bbb','ccc','ddd']));
+
+    // 如果传进来的是字符串，字符串会拆分成数组 (4) ['a', 'b', 'c', 'd']
+    console.log(Object.values('abcd'))
+  </script>
+</body>
+</html>

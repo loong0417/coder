@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组去重</title>
+</head>
+<body>
+  <script>
+    // 数组去重方式1：indexOf
+    var str = ['a','b','c','d','a','o','d','e','f'];
+    var newStr = [];
+    for(var i=0;i<str.length;i++){
+      if(newStr.indexOf(str[i]) == -1){
+        newStr.push(str[i]);
+      }
+    }
+    console.log(str);
+    console.log(newStr);
+
+    // var num = [1,2,3,5,2,3,4,7,8,10];
+    // var newNum = [];
+    // for(var i=0;i<num.length;i++){
+    //   if(newNum.indexOf(num[i]) == -1){
+    //     newNum.push(num[i]);
+    //   }
+    // }
+    // console.log(num);
+    // console.log(newNum);
+  </script>
+</body>
+</html>

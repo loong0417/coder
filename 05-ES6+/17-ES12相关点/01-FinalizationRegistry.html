@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    ES12:如果出现不兼容环境，需要升级浏览器版本或者node.js环境的版本。
+      FinalizationRegistry：监听对象销毁的。
+        1. FinalizationRegistry对象可以让你在对象被垃圾回收时请求一个回调。
+        2. FinalizationRegistry提供了这样的一个方法：当一个在注册表中注册的对象被回收时，请求在某个时间点上调用一个清理回调。
+        清理回调时被称为 finalizer。
+        3.你可用通过调用register方法，注册任何你想要清理回调的对象，传入该对象和所含的值。
+   -->
+  <script>
+    // 1. FinalizationRegistry是一个类，需要实例化
+    // let fr = new FinalizationRegistry(callback)
+
+
+    var info = {
+      name:'yang',
+      age:18
+    }
+
+    var obj = {
+      name:'杨小样',
+      age:17
+    }
+
+    // 1.实例化类
+    let fr = new FinalizationRegistry((value)=>{
+      console.log('对象销毁了！',value);
+    })
+
+    // 2. 将对象注册到实例对象的方法中register()方法中
+    // 参数1：注册对象
+    // 参数2：注册对象标识（在上面类实例化中的回调函数中接收标识，就可以知道哪一个对象被回收了）
+    fr.register(info,'info');
+    fr.register(obj,'obj');
+
+    // 3. 销毁info对象
+    info = null;
+    obj = null;
+  </script>
+</body>
+</html>

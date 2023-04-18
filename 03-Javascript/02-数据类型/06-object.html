@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>object类型分析</title>
+</head>
+<body>
+<!-- 
+复合数据类型：
+    object：对象
+        1. 对象由简单数据类型和复合数据类型任意组合而成的。它的数据存放在一对大括号之中，每个数据由一个键值对组合而成。
+            数据可以是0个也可以是多个，每个数据之间用逗号隔开，最后一个数据不需要加逗号（加逗号会报错，数组加逗号不会报错）。
+        
+        2. 键值对：
+            1). key:value
+            2). key 数据名称，它可以加引号，也可以不加引号。当数据名称不符合变量命名规则的时候需要加引号（数字除外），引号成对出现。
+            3). value 数据对应的值，这个值可以是简单数据类型也可以是复杂数据类型。
+            4). 操作对象的方法就是属性的方法。
+-->
+
+     <script>
+         var person = {
+             name:'杨小样',
+             sex: '女',
+             age: 100,
+             job: 'WEB攻城狮',
+             height: '165cm',
+             weight: '50kg',
+             language:['html+css','javascript','php','mysql']
+         }
+
+         console.log(person);
+         console.log(person['name']);
+         console.log(person.age);
+
+         person.age = 1;
+         console.log(person);
+     </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+      数据类型转分成两种方式：
+        1. 显示数据类型转换
+              Number()、parsetInt()、parsetFloat()
+              String()
+              Boolean()
+
+        2. 隐式数据类型转换场景：
+           在进行一些操作的时候，根本的目的不是做类型转换。但是如果要进行操作的话，那数据必须符合某种类型。
+           js会在内部对数据进行一些转换。
+
+            1. 不同类型数据间的运算和对比；
+            2. 对非布尔值类型的数据求布尔值；
+            3. 条件语句的括号里；
+
+==========================================================================================================  
+     
+      隐式转换 ——— 转字符串出现的场景：
+        1. 有字符串加法运算
+        2. 有对象加法运算
+        3. 某些比较运算符
+        4. 调用 alert()、document.write()方法、valueOf()、toString()
+  
+
+=========================================================================================================
+
+      隐式类型转数字：
+        1. 数学运算符（+，-，*，/，%），但是加号运算符里不能出现字符串与对象；
+        2. 一元运算符（+，-）后的数据；console.log('b' + 'a' + +'a' + 'a');   // baNaNa
+        3. 某些运算符比较；
+        调用 Number() 方法，valueOf()
+   
+    */
+
+
+    console.log(2 + [2,3]);   // 22,3
+
+    console.log(2 + {a:12});  // 2[Object Object]
+
+    console.log('1' + undefined);  // 1undefined
+
+    console.log('b' + 'a' + +'a' + 'a');   // baNaNa
+
+    console.log(++[[]][+[]]+[+[]]);     // 10
+
+    console.log('1' + true);   // 1true
+
+    console.log('1' + null);   // 1null
+
+
+    var a = 1;
+    console.log(Boolean(a))
+
+  </script>
+</body>
+</html>

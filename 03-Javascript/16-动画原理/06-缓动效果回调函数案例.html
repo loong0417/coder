@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      position: fixed;
+      right: 0;
+      bottom: 200px;
+      width: 50px;
+      height: 50px;
+      background-color: purple;
+      line-height: 50px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .con{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 200px;
+      height: 50px;
+      background-color: purple;
+      z-index: -1;
+    }
+  </style>
+  <script src="./js/animate.js"></script>
+</head>
+<body>
+  <div class="box">
+    <span>←</span>
+    <div class="con">问题反馈</div>
+  </div>
+  <script>
+    var box = document.querySelector('.box');
+    var con = document.querySelector('.con');
+    box.addEventListener('mouseover',function(){
+      var offsetNum = con.offsetWidth - box.offsetWidth;
+      animate(con,-offsetNum,function(){
+        // con.style.zIndex = '1'   要不要都行
+        box.children[0].innerHTML = '→';
+      });
+    });
+
+    box.addEventListener('mouseout',function(){
+      animate(con,0,function(){
+        // con.style.zIndex = '-1'  
+        box.children[0].innerHTML = '←';
+      });
+      
+    });
+  </script>
+</body>
+</html>

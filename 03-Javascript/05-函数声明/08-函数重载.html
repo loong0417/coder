@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 案例1：
+    // function add(a,b){
+    //   console.log(a+b);
+    // }
+
+    // function add(a){
+    //   console.log(a);
+
+    //   console.log(arguments.length);        // 2 实参列表
+    //   console.log(arguments.callee.length); // 1 这里拿到的是形参列表
+    // }
+    // // 调用的时候，后面覆盖前面，js里面没有方法重载
+    // add(1,2);
+
+
+    // 案例2：使用arguments判断参数个数，实现重载（仅仅只是模拟重载而已，js没有重载，同名函数后面覆盖前面）
+    // 重载条件：1.方法名相同，2.参数个数或类型不同，3.返回值可以相同也可以不相同
+    // 优点：减少开发时候函数的定义，重命名。
+    function add(a,b,c){
+      if(arguments.length == 1){
+        console.log(a);
+      }else if(arguments.length == 2){
+        console.log(a+b);
+      }else if(arguments.length == 3){
+        console.log(a+b+c);
+      }
+    }
+    add(1);
+    add(2,3);
+    add(3,4,5);
+  </script>
+</body>
+</html>

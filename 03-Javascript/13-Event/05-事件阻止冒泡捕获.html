@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="demo" style="width: 200px; height: 200px; background-color: red;"></div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+
+    <script type="text/javascript">
+        // document 对象是所有对象的父级，点击 div 后也会冒泡到 document 
+        // document.onclick = function(){
+        //     console.log("你闲的啊！！！");
+        // }
+
+        var div = document.getElementsByTagName('div')[0];
+        // e 代表的是一个系统事件，系统自带的，可以打印出来看
+        div.onclick = function(e){
+            // 取消冒泡事件
+            // e.stopPropagation();  // 符合W3C标准，不支持IE9以下版本
+
+            // e.cancelBubble = true; // IE 独有的方式
+
+            stopBubble(e);
+
+            this.style.backgroundColor = "green";
+        }
+
+
+        function stopBubble(event){
+            if(event.stopPropagation){
+                event.stopPropagation();
+            }else{
+                event.cancelBubble = true;
+            }
+        }
+
+
+        // 取消 a 标签的默认跳转事件
+        // var a = document.getElementsByTagName('a')[0];
+        // a.onclick = function(){
+        //     return false;
+        // }
+
+
+
+        // var div = document.getElementsByTagName('div')[0];
+        // div.onclick = function(e){
+        //     // e 是除 IE 以外的浏览器可以使用，window.event 兼容 IE
+        //     var event = e || window.event;
+
+        //     var target = event.target || event.srcElement;
+
+        //     console.log(event);
+        // }
+
+
+        var ul = document.getElementsByTagName('ul')[0];
+        ul.onclick = function(e){
+            var event = e || window.event;
+            var target = event.target || event.srcElement;
+            console.log(target.innerText);
+        }
+        
+    </script>
+</body>
+</html>

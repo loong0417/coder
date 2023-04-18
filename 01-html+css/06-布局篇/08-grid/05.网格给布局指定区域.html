@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网格给布局指定区域</title>
+
+    <style>
+        .box{
+            width: 600px;
+            height: 600px;
+            border: 1px solid red;
+            display: grid;
+            grid-template-columns: repeat(3,100px);
+            grid-template-rows: repeat(3,100px);
+
+            place-content: center center;
+
+            grid-template-areas: 'a b c'
+                                 'd e f'
+                                 'g h .';
+        }
+
+        .item{
+            line-height: 100px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .i1{
+            background: red;
+        }
+
+        .i2{
+            background: green;
+        }
+
+        .i3{
+            background: blue;
+        }
+
+        .i4{
+            background: blueviolet;
+        }
+
+        .i5{
+            background: cadetblue;
+        }
+
+        .i6{
+            background: cyan;
+        }
+
+        .i7{
+            background: darkkhaki;
+        }
+
+        .i8{
+            background: dimgrey;
+        }
+
+        .i9{
+            background: gold;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="item i1">1</div>
+        <div class="item i2">2</div>
+        <div class="item i3">3</div>
+        <div class="item i4">4</div>
+        <div class="item i5">5</div>
+        <div class="item i6">6</div>
+        <div class="item i7">7</div>
+        <div class="item i8">8</div>
+        <div class="item i9">9</div>
+    </div>
+</body>
+</html>

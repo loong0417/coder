@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>new运算符</title>
+</head>
+<body>
+    <!-- 
+        new 一元运算符，后面只能跟函数，用来调用函数。
+        
+        调用函数的方式：
+            1. new 函数名; (没有参数的情况下使用这种方式)
+            2. new 函数();
+
+        用new调用函数执行的过程：
+            1. 自动创建一个空对象。
+            2. 把函数内部的 this 指向创建的这个函数。
+            3. 在函数执行完成后自动返回创建函数的那个对象，即使函数里面没有 return。
+                1）. 函数里面有 return,return 是一个对象，返回这个对象。
+                2）. 函数里面有 return,return 的是非对象，返回自动创建的那个对象。
+        
+        注意：
+            1. 用 new 调用的函数，得到的永远是一个对象。不管函数有没有返回值。
+            2. 使用 new 调用的函数，这个函数就是一个用来创建对象的函数（构造函数）。        
+    -->
+     <script>
+         function fun(a){
+             if(a){
+                 console.log(1,a);
+             }else{
+                 console.log(1);
+             }
+         }
+
+         fun();  // 1
+         new fun; // 1
+         new fun(2);  // 1 2
+
+
+         /**
+          * this指向及返回值 
+          */
+         function fun1(){
+             console.log(this);
+         }
+         // this 的指向  
+         fun1();  // window
+         new fun1; // fun1{}
+
+         // 返回值  
+         var re1 = fun1();
+         var re2 = new fun1();
+         console.log(re1);   // undefined
+         console.log(re2);   // fun1 {}
+
+
+         function fun2(){
+            //  return 1;       // 如果返回值是一个非对象
+            return [1,2,3];     // 如果返回的是一个对象类型
+         }
+
+         var re3 = fun2();
+         var re4 = new fun2();
+         console.log(re3);   // 1        Array (3) [1, 2, 3]
+         console.log(re4);   // fun2{}   Array (3) [1, 2, 3]
+         
+
+     </script>
+</body>
+</html>

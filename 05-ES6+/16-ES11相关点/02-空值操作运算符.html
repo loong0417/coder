@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    Nullish coalescing Operator 空值操作运算符
+
+   -->
+  <script>
+    // 案例1：
+    var a = 0;
+
+    // 1. 使用或运算符（||），只要前面为假，它就会返回后面的
+    // undefined，null，0，'',false 都是假。
+    var num1 = a||'default value';
+    console.log(num1)  // default value
+
+
+    var b = '';        
+    // 2. 使用空值运算符是只有在null和undefined的时候是false，其余的时候都是true，包括（''，' '，0）三种情况都是真。
+    var num2 = b ?? 'default value';
+    console.log(num2)  // 0
+
+  </script>
+</body>
+</html>

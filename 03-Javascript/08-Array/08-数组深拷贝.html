@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组深拷贝</title>
+</head>
+<body>
+  <script>
+
+    // 1. 浅拷贝
+    // 无论改变新数组还是旧数组，它们的影响是相互的，改变一个另外一个就会跟着变的。
+    // var Oold = [1,2,3,4,5,6];
+    // var Onew = Oold;
+
+    // console.log(Oold);
+    // console.log(Onew);
+
+    // Oold[0] = 40;
+    // Onew.push(500);
+
+    // console.log(Oold)
+    // console.log(Onew)
+
+    // 2. 深拷贝
+    // 新旧数组之间没有相互影响。
+
+    // 方式一：循环赋值
+    var arr = [20,43,12,56,78,21];
+    // var newArr = [];
+    // function arrCopy(arr,newArr){
+    //   for(var i=0;i<arr.length;i++){
+    //     newArr.push(arr[i]);
+    //   }
+    // }
+    // arrCopy(arr,newArr);
+    // console.log(arr);
+    // console.log(newArr);
+
+    // arr.push(99);
+    // newArr.push(100);
+    // console.log(arr);
+    // console.log(newArr);
+
+    // 方式二：slice
+    // slice 截断数组，从0开始截取，后面参数不写，就是截取到最后
+    // var newArr = arr.slice(0);
+    // console.log(newArr)
+    // newArr.push(10000);
+    // console.log(newArr)
+    // arr[3] = 9999;
+    // console.log(arr)
+
+    // 方式三：concat 直接将新数组和旧数组拼接
+    var newArr = arr.concat();
+    console.log(newArr)
+
+  </script>
+</body>
+</html>

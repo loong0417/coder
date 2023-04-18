@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    globalThis：获取某一个环境下的全局变量（对象）
+
+      1. 浏览器中：
+        - 使用 window 获取全局变量。
+        - 也可以使用 this 获取全局变量，this是指向 window 的。
+      
+      2. node.js环境：
+        - window在node环境下会报错。
+        - node中全局变量是global。
+      
+      3. 这样每一个环境下，的全局都不一样，不兼容就会造成很多的不便。
+      4. globalThis：关键字是获取全局变量，而且还兼容所有的环境
+   -->
+  <script>
+    console.log(globalThis)          // 咦，真香，这新增的特性果然好用。
+    console.log(globalThis===window) // true
+  </script>
+</body>
+</html>

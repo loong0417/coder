@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    window的一些对象：
+      1. window对象
+        - window有一个特殊属性，name。这就是为什么不能写一个和name同名的属性的原因。
+        - 即便是你在这里将自定义的name注释掉，后面还是会打印window.a，因为它已经存储在全局对象的name里面了。除非将当前页面关掉。
+      2. window.location对象
+      3. window.navigator对象
+      4. window.history
+    -->
+  <script>
+    // 1. window
+    console.log(window);
+    console.log(window.name); // 是一个空值
+
+    // var name = 'window.a'; // 即便是你在这里将自定义的name注释掉，后面还是会打印window.a，因为它已经存储在全局对象的name里面了。除非将当前页面关掉。
+    console.log(window.name); // window.a 这个时候定义的name变量就会覆盖window.name下面的属性。
+
+
+    // 2. location
+    console.log(window.location)
+
+    // 3. navigator
+    if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|iOS|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Window Phone)/i))){
+      window.location.href = "";   // 手机
+    }else{
+      window.location.href = "";   // 电脑
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--  
+    return作用：
+      1. 终止函数执行
+      2. 返回值
+     
+    return:
+      1. 函数只是实现某种功能，返回值需要return给函数调用者
+      2. return之后的代码不再执行
+      3. return只能返回一个值，多个返回值以最后一个为准，如果需要返回多个值，可以以数组的形式，即return [ ]
+      4. 函数没有return返回undefined
+   -->
+  <script>
+  
+    function demo(){
+      console.log("我是return上面的内容");
+      return;
+      console.log("------------------")   // return 后面的语句不会再执行
+    }
+    demo()
+
+    function test(name){
+      return name || "没有填写姓名";
+    }
+    console.log(test("杨小样"))
+  </script>
+</body>
+</html>

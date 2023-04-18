@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>获取日期对象的方法</title>
+</head>
+
+<body>
+  <script>
+   /**
+     * 获取日期对象的一些方法：
+     *  日期对象.getFullYear()      获取年份
+     *  日期对象.getMonth()         获取月份，月份是从 0 开始的
+     *  日期对象.getDate()          获取日
+     *  日期对象.getDay()           获取星期，从 0 开始，0 代表周日
+     *  日期对象.getHours()         获取小时
+     *  日期对象.getMinutes()       获取分钟
+     *  日期对象.getSeconds()       获取秒钟
+     *  日期对象.getMilliseconds()  获取毫秒
+     *  日期对象.getTime()          获取时间戳，单位是毫秒 1s = 1000ms
+     */
+
+    window.onload = function(){
+      var dateBox = document.getElementById('dateBox');
+      var d = new Date();
+
+      var year = d.getFullYear();
+      var month = (d.getMonth())+1;
+      var date = d.getDate();
+      var week = d.getDay();
+      var hours = d.getHours();
+      var minutes = d.getMinutes();
+      var seconds = d.getSeconds(); 
+
+      var weeks = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+      dateBox.innerHTML = year+'年'+format(month)+'月'+date+'日 '+weeks[week]+' '+hours+'点'+minutes+'分'+seconds+'秒';
+    
+      
+      function format(value){
+        return value>10 ? value : '0'+value;
+      }
+    
+    }
+
+    /**
+     * 获取毫秒数：毫秒数是从1970年1月1日到当前的时间（总毫秒）
+     *  方式1：getTime
+     *  方式2：valueOf
+     *  方式3：var date = +new Date(); 常用的方式。
+     *  方式4：H5新增的 Date.now()，这个都不需要 new，由于是h5新增的还是需要考虑兼容性的。
+     */
+    var date = new Date();
+    console.log(date.getTime());
+    console.log(date.valueOf());
+    var date1 = +new Date();
+    console.log(date1);
+    console.log(Date.now());
+  </script>
+
+  <div id="dateBox"></div>
+</body>
+
+</html>

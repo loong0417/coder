@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+</head>
+<body>
+    <div style="width: 200px; height: 200px; background-color: red;"></div>
+
+    <script type="text/javascript">
+
+    // elem.onclick = function(){} this 指向的是 div 元素本身
+        // var div = document.getElementsByTagName('div')[0];
+        // div.onclick = function(){
+        //     console.log(this);
+        // }
+
+    
+    // addEventListener(type,function,false); this 指向的是 div 元素本身
+    // var div = document.getElementsByTagName('div')[0];
+    // div.addEventListener('click',function(){
+    //     console.log(this);
+    // },false);
+
+
+    // window {window: Window, self: Window, document: document, name: "", location: Location, …}
+    // event1.html:30 Uncaught TypeError: div.attachEvent is not a function at event1.html:30
+    var div = document.getElementsByTagName('div')[0];
+    // div.attachEvent('onclick',test());
+
+    // function test(){
+    //     console.log(this);
+    // }
+
+
+
+    // 想要改变  attachEvent('on'+type,function) 的指向
+    // div.attachEvent('onclick',function(){
+    //     Test.call(this);
+    // });
+
+    // function Test(){
+    //     console.log(this);
+    // }
+
+    
+    // 封装兼容性的 addEvent(elem,type,handle);方法
+    // elem 元素，type 事件类型，handle 函数
+    // function addEvent(elem,type,handle){
+    //     if(elem.addEventListener){
+    //         elem.addEventListener(type,handle,false);
+    //     }else if(elem.attachEvent){
+    //         elem.attachEvent('on' + type,function(){
+    //             handle.call(elem);
+    //         })
+    //     }else{
+    //         elem['on' + type] = handle;
+    //     }
+    // }
+
+    </script>
+</body>
+</html>

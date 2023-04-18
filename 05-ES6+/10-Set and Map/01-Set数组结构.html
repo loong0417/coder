@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    Set数据结构：
+      1. 在ES6前，我们存储数据的结构主要有两种：数组，对象。
+      2. 在ES6中新增了两种数据结构：Set，Map，以及它们的另外形式。WeakSet，WeakMap。
+      3. Set是一个数据新增数据结构，可以用来保存数据，类似数组，但和数组的区别是Set元素不能重复。
+
+    Set使用：
+      1. 创建Set我们需要使用Set构造函数，暂时没有字面量的创建方式。
+  
+    
+    Set属性：
+      size：返回数组中元素个数（类似length属性）
+
+    Set方法：
+      add(value)：    添加某个元素，返回Set对象本身。   
+      has(value)：    判断Set中是否存在某个元素，返回一个boolean值。
+      delete(value)： 从Set中删除某个元素value表示需要删除的参数，返货一个boolean值
+      clear()：       清空Set中所有的元素，没有返回值。
+    
+    Set集合遍历：
+      forEach()
+      for of 也支持遍历集合
+   -->
+
+   <script>
+      // 10，20，40，333
+
+      // 1.创建Set结构
+      const set = new Set();
+
+      // 2.add()方法
+      set.add(10)
+      set.add(20)
+      set.add(10)                 // 添加两个相同元素虽然不会报错，但是只会显示一个
+      set.add([30,40,59])
+      console.log(set)            // Set(3) {10, 20, Array(3)}
+
+      // 3.size属性
+      console.log(set.size)       // 3
+
+      // 4.使用delete删除集合中的某个元素
+      console.log(set.delete(10)) // true
+
+      // 5.has查看集合中某个元素是否存在
+      console.log(set.has(20))    // true
+
+      // 6.clear清空集合中的元素
+      console.log(set.clear())    // undefined
+      console.log(set.size)       // 0 
+
+
+      // 7.数组去重
+      // 7.1.普通方式
+      var arr = [10,34,23,56,26,23,78,21,65,67,78];
+      var newArr=[];
+      for(let i=0;i<arr.length;i++){
+        if(newArr.indexOf(arr[i])!==-1){
+          continue;
+        }
+        newArr.push(arr[i]);
+      }
+      console.log(newArr)
+
+      // 7.2.Set方式数组去重
+      var setArr = new Set(arr);
+      // 方式1：
+      const newArray = Array.from(setArr);
+      // 方式2：
+      // const newArray = [...setArr]
+      console.log(newArray)
+
+      // 8.Set存储对象
+      const setObj = new Set();
+      setObj.add({name:'yang',age:18});
+      // 对象是不会去重的，因为对象分配的是内存地址，内存地址标识是不会重复的
+      setObj.add({});
+      setObj.add({});
+      console.log(setObj)    // Set(3) {{…}, {…}, {…}}
+
+
+      const set1 = new Set();
+      set1.add(10)
+      set1.add(46)
+      set1.add(20)
+      set1.add(30)
+      set1.add(45)
+      // 9.使用forEach遍历set集合
+      set1.forEach(item => {
+        console.log(item)
+      });
+
+      // 10.使用for of遍历set集合
+      for(const item of set1){
+        console.log(item)
+      }
+
+  </script>
+</body>
+</html>

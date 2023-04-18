@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    var box = document.querySelector('.box');
+    // 手指触摸DOM元素事件（相当于是手机点击了屏幕）
+    box.addEventListener('touchstart',function(e){
+      // 1. 正在触摸屏幕的所有手指列表（就是说，用户触摸屏幕的时候可能使用多个手指，同时触发多个点，然后我们一般都是取第一个触摸点）
+      console.log(e.touches)
+      // 2. e.targetTouches 正在触摸当前的DOM元素上的手指的一个列表
+      // 2.1.一般取第一个触摸点e.targetTouches[0]，然后里面包含 clientX和clientY，pageX和pageY。
+      console.log(e.targetTouches[0])
+    });
+  </script>
+</body>
+</html>

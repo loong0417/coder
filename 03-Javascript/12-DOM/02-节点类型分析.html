@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="wrap" id="box" style="background: green;">
+    <ul>2322
+      <li>
+        <!-- comment注释 -->
+        <h2>标题</h2>
+        <a href="#">超链接</a>
+        <p>段落</p>
+      </li>
+    </ul>
+  </div>
+  <script>
+     var div = document.getElementsByTagName('div')[0];
+    window.onload = function(){
+      var div = document.getElementsByTagName('div')[0];
+      console.log(div.childNodes[1].nodeType);   // 3个节点 [text, ul, text]
+
+      var li = document.getElementsByTagName('li')[0];
+      // text文本节点是包含空白的段落和2322这样的数字的（注意上面节点中的数字）
+      console.log(li.childNodes);  // 9个节点 [text, comment, text, h2, text, a, text, p, text]
+
+      var html = document.getElementsByTagName('html')[0];
+      // 面试题：html的父节点是#document，父元素节点是 null
+      console.log(html.parentNode);   // #document
+      console.log(html.parentElement);  // null
+    }
+    // 1. attributes 属性集合
+    // NamedNodeMap {0: class, 1: id, 2: style, class: class, id: id, style: style, length: 3}
+    console.log(div.attributes);
+    
+    // 2. getAttribute 获取属性
+    console.log(div.getAttribute);  //ƒ getAttribute() { [native code] }
+    console.log(div.getAttribute('id'))   // 指定属性Id
+    console.log(div.getAttribute('class'));
+  </script>
+</body>
+</html>

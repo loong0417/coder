@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        枚举：一组有共同特性数据的集合，叫做枚举。
+        提到枚举，就要想到遍历。javascript 中数组是特殊的对象。
+     -->
+    <script type="text/javascript">
+    // 1. 数组遍历
+        var array = [1,2,5,6,3,12,34,23,11,45];
+        // for(var i=0;i<=array.length; i++){
+        //     console.log(array[i]);
+        // }
+
+
+        // var x;
+        // for(x in array){
+        //     console.log(x);   //同上
+        // }
+    
+    
+    // 2. 对象遍历
+        // var person = {
+        //     name:"yang",
+        //     age:123,
+        //     sex:'male',
+        //     job:"攻城狮"
+        // }
+        // for(var key in person){
+        //     console.log(key);   // 属性
+        // 这个中写法是错误的 js 引擎会内部转化成 person.key => person['key'] 这时候将key当成了一个字符串，没找到就是 undefined。
+        //     console.log(person.key)  
+        //     console.log(person[key]);   //属性值，这种操作 key 是一个变量
+        // }
+
+
+    // hasOwnProperty找对象自身的属性，排除原型上的属性。
+          
+            // var obj = {
+            //     name : "yang",
+            //     sex : "male",
+            //     age : 18,
+            //     job : "攻城狮",
+
+            //     __proto__ : {
+            //         lastName : "pipiyang"
+            //     }
+            // }
+            
+            // // Object.prototype.abc = "hhhhhh";   //也可以遍历到
+            // for(var key in obj){
+            //     // hasOwnProperty
+            //     if(!obj.hasOwnProperty(key)){
+            //         console.log(obj[key]);
+            //     }
+            //     // 这样遍历输出的方式会将 __proto__ 输出，如果不输出 __proto__ 需要判断
+            //     // 遍历只会将自己的原型遍历出来，不会遍历 Object.prototype 系统原型
+            //     // console.log(obj[key]);   
+            // }
+
+    
+    // in 检测 'displacement' 属性（这里属性一定得用引号括起来）在对象 car 中是否存在，这个是不回避原型上的属性的。
+                function Car(){
+                    this.brand = 'Benz';
+                    this.color = 'red';
+                }
+
+                Car.prototype = {
+                    displacement:'3.0'
+                }
+
+                var car = new Car();
+                console.log('displacement' in car)  //true
+
+            // Object.prototype.lili = "lili";
+            // var obj = {
+            //     name : "yang",
+            //     sex : "male",
+            //     age : 18,
+            //     job : "攻城狮",
+
+            //     __proto__ : {
+            //         lastName : "pipiyang"
+            //     }
+            // }
+
+            // for(var key in obj){
+            //     if(key in obj){
+            //         console.log(key);
+            //     }
+            // }
+
+
+    // instanceof 判断对象是否为构造函数实例出来的。
+
+            function Person(){
+            }
+
+            var person = new Person();
+
+            if(person instanceof Person){
+                console.log("true");   // true
+            }
+
+            if(person instanceof Object){
+                console.log("true");   // true
+            }
+    // 区别对象和数组的三种方法：
+        // 1. constructor
+        // 2. instanceof
+        
+        // 3.
+        Object.prototype.toString.call([]);
+        "[object Array]"
+
+        Object.prototype.toString.call(123)
+        "[object Number]"
+
+        Object.prototype.toString({});
+        "[object Object]"        
+            
+    </script>
+</body>
+</html>

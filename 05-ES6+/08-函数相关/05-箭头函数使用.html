@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>箭头函数基本使用</title>
+</head>
+<body>
+  <!-- 
+    箭头函数：
+      arrow function 箭头函数
+      1. 箭头函数是ES6之后新增都得一种编写函数的方法，并且它比函数表达式更加简洁。
+      2. 箭头函数不会绑定this，arguments属性。
+      3. 箭头函数不能作为构造函数来使用（不能和new一起使用，会抛出错误）
+    
+    编写箭头函数：
+      1. ()：参数
+      2. =>: 箭头
+      3. {}：函数的执行体
+   -->
+  <script>
+   var foo = (num1,num2,num3) =>{
+    return num1 + num2 + num3;
+   }
+  //  在高阶函数中使用箭头函数
+  //  var arr = [10,20,30];
+  //  arr.forEach((item,index)=>{
+  //   console.log(item,index);
+  //  });
+
+  // 箭头函数的一些常见简写：
+
+  // 简写1：如果参数只有一个，小括号可以省略
+  // var arr = [10,20,30];
+  // arr.forEach(item=>{
+  //   console.log(item)
+  // });
+
+  // 简写2：如果函数执行体只有一行代码，大括号也是可以省略的。
+  // 强调：并且它会默认将这行代码的执行结果作为返回值
+  // var arr = [10,20,30];
+  // arr.forEach(item=>console.log(item));
+  
+  // filter，map，reduce 函数使用
+  // var arrs = [10,20,45,78];
+  // var result=arrs.filter(item=>item%2===0)
+  //                .map(item=>item*100)
+  //                .reduce((preValue,item)=>preValue+item)
+  // console.log(result)
+
+  // 简写3：如果一个箭头函数，只有一行代码，并且返回一个对象，这个时候如何编写简写。
+  var bar = ()=>{
+    return {name:'yang',age:20}
+  }
+
+  var bar = () => ({name:'yang',age:20})
+  console.log(bar)
+  </script>
+</body>
+</html>

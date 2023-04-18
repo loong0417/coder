@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>获取数组中的元素并改变</title>
+</head>
+<body>
+  <script>
+    var arr = [1,23,34,5,65,78,45];
+    console.log(arr[2]);  // 通过数组下标获取元素
+    console.log(arr[7]);  // undefined 获取数组中不存在的下标元素，返回undefined，不会报错
+    
+    // 数组赋值：数组[下标] = 值；
+    // 1. 如果下标有值，那就会将原来的覆盖。
+    // 2. 如果下标没有对应的值，就会新增一个下标和元素。
+    // 3. 如果新增的下标不是连续的，中间就用 empty 占位置。empty也是要占数组长度的。
+    arr[0]  = 99;
+    console.log(arr);
+
+    arr[7] = 100;
+    console.log(arr);
+
+    arr[10] = 1111;
+    console.log(arr);
+
+
+    // 数组元素可以是数字、字符串、对象、函数、数组（变成二维数组）
+  </script>
+</body>
+</html>

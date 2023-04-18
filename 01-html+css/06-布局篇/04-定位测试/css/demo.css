@@ -1,0 +1,78 @@
+.clearfixa::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.top-nav{
+    background-color: #e3e4e5;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.nav{
+    width: 990px;
+    margin: 0 auto;
+}
+
+.nav .top-nav-left>li {
+    float: left;
+    line-height: 30px;
+    padding: 0 7px;
+    margin-right: 246px;
+    color: #999999;
+}
+
+.nav .top-nav-right>li{
+    float: left;
+    line-height: 30px;
+    padding: 0 7px;
+}
+
+.nav .top-nav-right li a{
+    color: #999999;
+}
+
+.nav .top-nav-right a:hover{
+    color: #F10215;
+}
+
+.nav li.cut-of-line{
+    color: #cccccc;
+}
+
+
+.nav .child-item{
+    position: relative;
+}
+
+.nav .top-nav-right li.child-item:hover>.child{
+    display: block;
+    border-top:none;
+}
+
+.nav .top-nav-right li.child-item:hover{
+    background: #fff;
+    color: #999;
+}
+
+.nav .child-item .child{
+    position: absolute;
+    width: 200px;
+    border: 1px solid #ccc;
+    /* left: -139px; */
+    right: 0;
+    display: none;
+    background: #fff;
+} 
+
+.nav .child-item .child>h3{
+    padding: 0 10px;
+}
+
+.nav .child-item .child>div{
+    float: left;
+    padding: 5px 10px;
+}
+

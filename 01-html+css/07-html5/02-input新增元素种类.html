@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>input 新增元素种类</title>
+</head>
+<body>
+    <form action="" method="">
+      <!-- 1. seacher 区别不明显，就是后面后一个叉 x 《使用不多，不用纠结》-->
+      <p>seacher:<input type="seacher" name=""></p>
+      
+
+      <!-- 
+        2. tel没有强制限制数字，需要通过 pattern 方式进行校验（正则表达式方式），title 提示
+       -->
+      <p>tel:<input type="tel" pattern="" title="请输入11位电话号码"></p>
+
+      <!-- 3. url 类型-->
+      <p>url:<input type="url" name="ulr"></p> 
+      
+
+      <!-- 4. email-->
+      <p>email:<input type="email"></p>
+
+      <!-- 5. 日期类型 -->
+      <p>datetime:<input type="datetime" name="datetime"></p>
+      <p>date:<input type="date" name="date"></p>
+      <p>month:<input type="month" name="month"></p>
+      <p>week:<input type="week" name="week"></p>
+      <p>time:<input type="time" name="time"></p>
+      <p>datetime-local:<input type="datetime-local" name="datetime-loac"></p>
+
+      <!-- 6.数字类型 
+        min 最小值
+        max 最大值
+        step 跳步
+      -->
+      <p>number:<input type="number" name="number" min="0" max="50" step="3"></p>
+
+      <!-- 7.range 滑块 -->
+      <p>range:<input type="range" onchange="num.value=value" value="50" name="number">
+        <output name="num">50</output>
+      </p>
+      <input type="submit" value="提交">
+
+      <!-- 8.color 颜色 -->
+      <p><input type="color" name="color"></p>
+
+      <!-- 9.file -->
+      <p><input type="file" multiple accept="image/*"></p>
+    </form>
+
+    <script>
+      // var num = document.getElementById("number");
+      // console.log(num.value);
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    .box{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    var box = document.querySelector('.box');
+    box.addEventListener('touchstart',function(ev){
+      // 1. 获取手指触摸屏幕的初始位置
+      var x = ev.targetTouches[0].pageX;
+      var y = ev.targetTouches[0].pageY;
+      // 2. 获取盒子离上面和左边的距离
+      var boxW = box.offsetLeft;
+      var boxH = box.offsetHeight;
+      
+      box.addEventListener('touchmove',function(ev){
+        // 3. 获取鼠标移动到的位置，用移动到的位置减去初始位置加上盒子之前离左边上边的距离
+        var x1 = ev.targetTouches[0].pageX - x;
+        var y1 = ev.targetTouches[0].pageY - y;
+        
+        box.style.left = x1 + boxW + 'px';
+        box.style.top = y1 + boxH + 'px';
+        // 4. 手指移动也会触发屏幕的滚动，所以这里要阻止默认的屏幕滚动e.preventDefault()
+        ev.preventDefault();
+      });
+    });
+  </script>
+</body>
+</html>

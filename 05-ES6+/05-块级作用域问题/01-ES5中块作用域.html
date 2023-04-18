@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    ES5中只有两种情况会产生作用域：
+      1. 全局作用域，在window下。
+      2. 函数作用域，在函数里面。
+   -->
+  <script>
+    // 代码块
+    {
+      // var声明变量
+      var foo = 'foo';
+      
+      // 代码块中函数
+      function demo(){
+        console.log('demo')
+      }
+
+    }
+    // 1. var关键字声明的变量，代码块作用域形同虚设，可以访问
+    console.log(foo);  // foo  
+    // 2. 函数调用
+    demo();            // demo
+
+
+    // ES5函数作用域
+    function test(){
+      var num = 100;
+    }
+    // console.log(num);  // Uncaught ReferenceError: num is not defined
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1.javascript中的普通函数
+    function test(...args){
+      console.log(args)
+    }
+    test('hello world!!!!')  // ['hello world!!!!']
+
+    // 2.标签模板字符串中，函数调用
+    // - 模板字符串被拆分了。
+    // - 第一个元素是数组，是被模板块字符串拆分的字符串组合。
+    // - 后面的元素是一个个模板字符串传入的内容。
+
+
+    const name = 'yang'
+    const age = 18
+    function demo(...args){
+      console.log(args)
+    }
+    demo `hello ${name} world ${age}`;
+
+    /**
+     * 
+     * (3) [Array(3), 'yang', 18]
+     *   0: (3) ['hello ', ' world ', '', raw: Array(3)]
+     *   1: "yang"
+     *   2: 18
+     *   length: 3
+     *   [[Prototype]]: Array(0) 
+     */
+  
+  </script>
+</body>
+</html>

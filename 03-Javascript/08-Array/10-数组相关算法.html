@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 案例1：给数组中添加（1~10）的整数
+    // var num = [];
+    // for(var i=0;i<10;i++){
+    //   // 注意：这个位置是核心
+    //   num[i] = i+1;
+    // }
+    // console.log(num);
+
+    // 案例2：输出数组里最大值
+    // var num = [2,0,6,1,77,0,52,0,25];
+    // var max = num[0];
+    // for(let i=0;i<=num.length;i++){
+    //   if(max<num[i]){
+    //     max = num[i];
+    //   }
+    // }
+    // console.log(max)
+
+    // 案例3：筛选数组里大于10的元素
+    // var num = [2,0,6,1,77,0,52,0,25];
+    // var newNum = [];
+    // var j = 0;
+    // for(var i=0;i<num.length;i++){
+    //   if(num[i]>10){
+    //     /**
+    //      * 注意：这里不能直接使用 i ，使用i num数组前面的四个值，都是小于10的，但是num数组下标在往后走
+    //      * 走到第四个的时候才是满足条件的，那么newNum[i]的话，下标就会从4开始，导致前面有4个空。
+    //      * result: (9) [empty × 4, NaN, empty, NaN, empty, NaN]
+    //      */
+    //     // 方式1：可以定义一个变量j
+    //     // newNum[j] = num[i];
+    //     // j++;
+
+    //     // 方式2：可以使用newNum.length
+    //     newNum[newNum.length] = num[i];
+    //   }
+    // }
+    // console.log(newNum);
+    
+    // 案例4：数组翻转
+    // var str = ['red','green','blue','pink','purple'];
+    // var newStr = [];
+    // for(var i=str.length-1;i>=0;i--){
+    //   newStr[newStr.length] = str[i];
+    // }
+    // console.log(str);
+    // console.log(newStr);
+
+    // 翻转数组，方法2：交换发
+    // var str = ['red','green','blue','pink','purple'];
+    // console.log(str);
+    // for(var i=0;i<=str.length-i;i++){
+    //   var temp;
+    //   temp = str[i];
+    //   str[i] = str[str.length-1-i];
+    //   str[str.length-1-i] = temp;
+    // }
+    // console.log(str);
+
+  </script>
+</body>
+</html>

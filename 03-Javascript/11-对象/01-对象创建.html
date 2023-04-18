@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>面向对象</title>
+</head>
+
+<body>
+    <!-- 
+        面向对象：面向对象是一种编程思想。
+        
+        对象：可以添加属性（变量）和方法（函数）。
+            1. 属性：描述对象特征。属性的值为非函数的任意数据类型。
+            2. 方法：实现对象的一些功能，方法值为函数。 
+        
+        面向对象的写法和特点：
+            1. 把功能写成一个函数。
+            2. 函数必须在对象身上，调用的时候拿对象.方法名()。
+            3. 对象身上的功能可以继承。
+
+        对象的创建方式：
+            1. 字面量方式 var person = {}
+            2. 构造函数 var p1 = new Person();
+
+     -->
+    <script>
+        // 1. 字面量方式创建对象，constructor 指向 Object
+        // Object.prototype
+        var person = {
+            name: "zhangsan",
+            age: 18,
+            sex: "male",
+            like: function () {
+                console.log("I like book");
+            },
+            action: function () {
+                console.log("活动！");
+            }
+        }
+        // console.log(person);
+
+        // 2. 构造函数方式创建对象(自定义构造函数) constructor 指向 Person(){} 指向自定义构造函数
+        // Person.prototype  原型
+        function Person(){
+           console.log("222");
+           console.log(this);   // Person{}
+        }
+        
+        var p1 = new Person();
+        console.log(p1);
+
+        // 3. 构造函数方式创建对象（系统构造函数），在公司司机开发中使用较少
+        // constructor 指向 Object 。 Object.prototype 原型
+        var p2 = new Object();
+        console.log(p2);
+    </script>
+</body>
+
+</html>

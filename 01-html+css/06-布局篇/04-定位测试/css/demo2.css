@@ -1,0 +1,22 @@
+.content{
+    width: 500px;
+    height: 300px;
+    border: 1px solid red;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.content .pic{
+    width: 1600px;
+}
+
+.content .pic img{
+    width: 500px;
+    height: 300px;
+}
+
+.content .pic a{
+    float: left;
+}
+
+

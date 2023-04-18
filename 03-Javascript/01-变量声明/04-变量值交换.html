@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 方式一：使用临时变量
+    // var a = 1;
+    // var b = 2;
+    // console.log("交换前a:",a)
+    // console.log("交换前b:",b)
+    // var temp = a;
+    //     a = b;
+    //     b = temp;
+    // console.log("交换后a:",a)
+    // console.log("交换后b:",b)
+
+    // 方式二：使用运算方式
+    var a = 1;
+    var b = 2;
+    console.log("交换前a:",a)
+    console.log("交换前b:",b)
+    b = a + b;
+    a = b - a;
+    b = b - a;
+    console.log("交换后a:",a)
+    console.log("交换后b:",b)
+  </script>
+</body>
+</html>

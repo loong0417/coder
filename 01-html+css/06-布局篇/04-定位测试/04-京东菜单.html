@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东二级菜单测试</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/demo.css">
+</head>
+<body>
+    <!-- 
+        总结：
+        1.二级当行伸出来后不影响下面的内容 
+        2.使用定位元素
+    -->
+    <div class="top-nav">
+        <div class="nav clearfixa">
+            <ul class="top-nav-left">
+                <li class="top-left-city">北京</li>
+            </ul> 
+
+            <ul class="top-nav-right">
+                <li>
+                    <a href="#">你好，请登录</a>
+                    <a href="#">免费注册</a>
+                </li>
+
+                <li class="cut-of-line">|</li>
+                <li><a href="#">我的订单</a></li>
+                <li class="cut-of-line">|</li>
+                <li><a href="#">我的京东</a></li>
+                <li class="cut-of-line">|</li>
+                <li><a href="#">京东会员</a></li>
+                <li class="cut-of-line">|</li>
+                <li><a href="#">企业采购</a></li>
+                <li class="cut-of-line">|</li>
+                <li class="child-item">
+                    <a href="#">客户服务</a>
+                    
+                    <div class="child clearfixa">
+                        <h3>客户</h3>
+                        <div><a href="#">帮助中心</a></div>
+                        <div><a href="#">在线服务</a></div>
+                        <div><a href="#">客户服务</a></div>
+
+                        <div><a href="#">售后服务</a></div>
+                        <div><a href="#">意见建议</a></div>
+                        <div><a href="#">客服邮箱</a></div>
+                    </div>
+                </li>
+                <li class="cut-of-line">|</li>
+                <li><a href="#">网站导肮</a></li>
+                <li class="cut-of-line">|</li>
+                <li><a href="#">手机京东</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

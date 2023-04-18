@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ul{
+      list-style: none;
+    }
+    
+    a{
+      text-decoration: none;
+      color: #333;
+    }
+
+    .box{
+      width: 300px;
+      margin: 20px auto;
+    }
+
+    .box>ul{
+      display: flex;
+      border: 1px solid red;
+    }
+
+    .box>ul>li{
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-right: 1px solid red;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .box>ul>li:last-child{
+      border-right: none;
+    }
+
+    .box>ul>li a{
+      width: 100%;
+      display: block;
+      /* background-color: red; */
+    }
+
+    li>ul{
+      position: absolute;
+      top: 30px;
+      border: 1px solid red;
+      width: 100px;
+    }
+
+    li>ul.item{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <ul class="nav">
+      <li>
+        <a href="#">元素1</a>
+        <ul class="item">
+          <li>元素1.1</li>
+          <li>元素1.2</li>
+          <li>元素1.3</li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">元素2</a>
+        <ul class="item">
+          <li>元素2.1</li>
+          <li>元素2.1</li>
+          <li>元素2.3</li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">元素3</a>
+        <ul class="item">
+          <li>元素3.1</li>
+          <li>元素3.2</li>
+          <li>元素3.3</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <script>
+    // 1. 先获取到nav，nav里面的li是下拉列表的项
+    var nav = document.querySelector('.nav');
+    // 1.1. lis是所有的项
+    var lis = nav.children;
+    
+    for(var i=0;i<lis.length;i++){
+      lis[i].onmousemove = function(){
+        // 2. 注意：li里面的第一个元素就是ul，第0个元素是a
+        this.children[1].style.display = 'block';
+      }
+
+      lis[i].onmouseout = function(){
+        this.children[1].style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

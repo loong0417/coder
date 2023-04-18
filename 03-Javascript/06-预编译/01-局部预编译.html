@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    局部预编译是：针对函数内部的，也就是针对局部变量和局部函数的。
+    1. 创建 AO 对象（Activation Object）活跃期函数对象，也称为执行期上下文。
+
+    2. 找到形参和变量声明（var），将变量和形参声明作为 AO 属性名，值为 undefined。
+
+    > 找到形参和变量声明，赋值为 undefined 原因是因为 javascript 是弱类型语言，变量赋值决定变量类型，变量提升的时候预编译不知道变量是一个什么类型，所以统一设置为 undefined。
+
+    3. 将实参和形参统一。
+
+    4. 在函数体里面找函数声明，值赋予函数体。
+   -->
+  <script>
+    
+    // 题目1：
+    function test(a){
+      console.log(a);    // function a(){}
+      var a = 1;
+      console.log(a);  // 1
+      function a(){}
+      console.log(a);  // 1
+
+      var b = function(){}
+      console.log(b);  // function(){} 匿名函数
+
+      function d(){}
+    }
+    test(2); 
+
+    // 题目2：
+    function test1(){
+      return a;
+      a = 1;
+      function a(){}
+      var a = 2;
+    }
+    console.log(test1())  // function a(){}
+  </script>
+</body>
+</html>

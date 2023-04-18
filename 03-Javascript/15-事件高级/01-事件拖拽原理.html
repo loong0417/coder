@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件拖拽原理</title>
+  <style>
+    #box{
+      width: 200px;
+      height: 200px;
+      background: green;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    事件拖拽原理分析：
+      拖拽事件是鼠标与元素交互的一个过程。事件拖拽分为三个步骤。
+
+      1. 鼠标按下(鼠标在元素上按下)
+        - 需求：需要算出鼠标点的地方离元素边界的距离。
+        -   鼠标起始X轴的位置 = 鼠标的clientX - 元素的offsetLeft
+        -   鼠标起始Y轴的位置 = 鼠标的clientY - 元素的offsetTop
+
+      2. 鼠标移动
+        - 需求：这里需要算出来元素真正的 left 和 top 值。
+        -   元素的left = 鼠标的clientX - 鼠标起始X轴的位置
+        -   元素的top = 鼠标的clientY - 鼠标起始Y轴的位置
+
+      3. 鼠标抬起
+        - 需求：清除鼠标身上的事件。
+
+      拖拽存在的问题：
+        1. 这样写只能拖拽一次。
+        2. 鼠标拖动速度非常快，会脱离方块。
+   -->
+  <div id="box"></div>
+  <script>
+    window.onload = function(){
+      alert(2121)
+      var box = document.querySelector('#box'),
+          disX = 0,     // 鼠标按下起始点离元素边X轴的距离
+          disY = 0;     // 鼠标按下起始点离元素边Y轴的距离
+
+      // 鼠标按下（鼠标在元素上按下）
+      box.onmousedown = function(ev){
+        disX = ev.clientX - box.offsetLeft;
+        disY = ev.clientY - box.offsetTop;
+      }
+
+      // 鼠标移动
+      box.onmousemove = function(ev){
+        box.style.left = ev.clientX - disX+'px';
+        box.style.top = ev.clientY - disY+'px';
+      }
+
+      // 鼠标抬起
+      box.onmouseup = () =>{
+        box.onmousemove = null;
+      }
+    };
+  </script>
+</body>
+</html>

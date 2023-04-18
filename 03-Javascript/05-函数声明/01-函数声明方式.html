@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数声明</title>
+</head>
+<body>
+  <!-- 
+    函数声明方式：
+      1. 命名函数，函数声明
+      2. 匿名函数，函数表达式
+      3. 立即执行函数
+      4. 箭头函数
+   -->
+  <script>
+    // 1. 函数声明
+    //  解释：使用 function 关键字声明一个 test 函数。
+    function test1(){
+      console.log("声明一个函数")
+    }
+
+    // 2. 匿名函数，常用的方式（这种方式也称为匿名函数）
+    var test2 = function(){
+      console.log("函数表达式方式定义函数另一种方式！！！");
+    }
+    // 函数的调用
+    test1();
+    test2();
+
+    // 3. 立即执行函数
+    (function(){
+      console.log('立即执行函数');
+    })();
+
+    // 4. 箭头函数
+    test3=()=>{
+      console.log('箭头函数');
+    }
+    test3();
+  </script>
+</body>
+</html>

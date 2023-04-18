@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      left: 0;
+    }
+    .box{
+      background-color: pink;
+    }
+    .wrap{
+      background-color: purple;
+      margin-top: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <div class="wrap"></div>
+  <script>
+    /**
+     * 动画函数封装
+     *  1. obj 运动的对象
+     *  2. target 运动的目标   
+     */
+    function animate(obj,target){
+      var timer = setInterval(function(){
+        if(obj.offsetLeft >=target){
+          clearInterval(timer);
+        }
+        // 注意：赋值是需要给left赋值，获取值可以使用offsetLeft获取，offsetLeft不能赋值
+        obj.style.left = obj.offsetLeft + 5 + 'px';
+      },30);
+    }
+    var box = document.querySelector('.box');
+    var wrap = document.querySelector('.wrap');
+    animate(box,300);
+    animate(wrap,400);
+  </script>
+</body>
+</html>

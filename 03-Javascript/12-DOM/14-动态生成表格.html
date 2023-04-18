@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    table{
+      width: 500px;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+      border-collapse: 0;
+      border-spacing: 0;
+    }
+    
+    thead{
+      background-color: #ddd;
+    }
+
+    td,th{
+      border: 1px solid #999;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>姓名</th>
+        <th>科目</th>
+        <th>成绩</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+  <script>
+    var list = [
+      {
+        name:'张三',
+        subject:'javascript',
+        score:90
+      },
+      {
+        name:'李四',
+        subject:'javascript',
+        score:80
+      },
+      {
+        name:'王五',
+        subject:'javascript',
+        score:85
+      },
+      {
+        name:'赵六',
+        subject:'javascript',
+        score:100
+      },
+    ];
+    
+    var tbody = document.querySelector('tbody');
+    // 1. 遍历数据，数据的length等于行数
+    for(var i=0;i<list.length;i++){
+      var tr = document.createElement('tr');
+      // 2. 遍历数据列
+      for(var k in list[i]){
+        var td = document.createElement('td');
+        td.innerHTML = list[i][k];
+        tr.appendChild(td);
+      }
+      // 3. 添加删除操作
+      var td = document.createElement('td');
+      td.innerHTML = '<a href="javascript:;">删除</a>';
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    }
+    // 4. 删除操作
+    var as = document.querySelectorAll('a');
+    for(var i=0;i<as.length;i++){
+      as[i].onclick = function(){
+        tbody.removeChild(this.parentNode.parentNode);
+      }
+    }
+   
+  </script>
+</body>
+</html>

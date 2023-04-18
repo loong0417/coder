@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    Object.getOwnPropertyDescriptor(obj,prop)
+      1. 参数1：obj  需要查找的目标对象。
+      2. 参数2：prop 目标对象内属性名称。
+      3. 返回值：如果指定的属性存在于对象上，则返回其属性描述符对象（property descriptor），否则返回 undefined。
+
+      writable：当且仅当属性的值可以被改变时为 true。(仅针对数据属性描述有效)
+      enumerable：当且仅当指定对象的属性可以被枚举出时，为 true。
+      configurable：当且仅当指定对象的属性描述可以被改变或者属性可被删除时，为 true。
+   -->
+  <script>
+    var info = {
+      name:'yang',
+      age:18
+    }
+    // {value: 'yang', writable: true, enumerable: true, configurable: true}
+    // console.log(Object.getOwnPropertyDescriptor(info,'name'))
+
+    const descriptor1 = Object.getOwnPropertyDescriptor(info, 'name');
+    console.log(descriptor1.configurable);     // true
+    console.log(descriptor1.value);            // yang
+
+
+
+  </script>
+</body>
+</html>

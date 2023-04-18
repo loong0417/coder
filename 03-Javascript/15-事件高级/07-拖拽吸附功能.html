@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拖拽吸附功能</title>
+  <style>
+    #box{
+      width: 200px;
+      height: 200px;
+      background: green;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+
+  <script>
+    window.onload = function(){
+      var box = document.querySelector('#box');
+      drag(box);
+      function drag(obj){ 
+        /**
+         * 鼠标按下元素 
+         */
+        obj.onmousedown = function(ev){
+          var disX = ev.clientX - obj.offsetLeft;
+          var disY = ev.clientY - obj.offsetTop;
+
+          /**
+           * 移动元素 
+           */
+          document.onmousemove = function(ev){
+            var l = ev.clientX - disX;
+            var t = ev.clientY - disY;
+
+            if(l<50){
+              l = 0;
+            }else if(l>document.documentElement.clientWidth - obj.offsetWidth-50){
+              l=document.documentElement.clientWidth - obj.offsetWidth;
+            }
+
+            if(t<50){
+              t = 0;
+            }else if(t>document.documentElement.clientHeight - obj.offsetHeight-50){
+              t=document.documentElement.clientHeight - obj.offsetHeight;
+            }
+
+            obj.style.left = l + 'px';
+            obj.style.top = t + 'px';
+          }
+
+          /**
+           * 鼠标抬起，清除元素移动事件 
+           */
+          obj.onmouseup = function(){
+            document.onmousemove = null;
+          }
+        }
+      }
+
+    }
+  </script>
+</body>
+</html>

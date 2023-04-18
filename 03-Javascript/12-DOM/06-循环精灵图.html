@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    ul{
+      list-style: none;
+    }
+    div{
+      width: 200px;
+      margin: 100px auto;
+    }
+    div ul{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    div ul li{
+      width: 24px;
+      height: 24px;
+      flex: 25%;
+      padding: 10px 0;
+      background-image: url(./images/sprite.png);
+      background-repeat: no-repeat;
+      background-position: 0 -44px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <script>
+      /**
+       * 1. 在精灵图设计的时候，位置是有一定的规律的。
+       * 2. 核心原理：位置x坐标是不变的，y左边之间距离是-44px。
+       * 3. 那就可以使用i*44因为i是在变化的，再取负数。 
+       */
+      var lis = document.querySelectorAll('li');
+      for(var i=0;i<lis.length;i++){
+        var index = i * 43;        // 因为有一张图片切到边了，所以特意减了1像素
+        lis[i].style.backgroundPosition = '0 -'+index+'px';
+      }
+    </script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日期对象</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 日期对象
+     *  js 中的一个内置方法，用于处理日期与时间的相关操作
+     *
+     * 创建日期对象
+     *  new Date() 创建一个与日期相关的对象
+     *
+     *  new Data() 里面可以接收参数
+     *    1. 没有参数，它是以本机的时间作为参考的，创建一个日期对象
+     *       注意：参数可以省略，省略部分为 0，除了日期（默认为1）
+     *    2. new Date(年，月，日，时，分，秒)
+     *       2.1.参数是数字，每个参数用逗号隔开（这种方式是数字型参数，月份是从0开始的）
+     *           new Date(2021, 11, 11, 12, 13, 14);
+     *       2.2.new Date('2021-10-1 10:1:1') 这种是字符串型的，月份也是正常计算的，常用方式。
+     * 
+     *    3. new Date('June 10,2013 12:12:12');
+     *        参数是字符串，外国人常用的日期表现方式
+     * 
+     *    4. new Date(时间戳);
+     *        参数为时间戳形式的
+     *        时间戳：从1970年1月1日0时0分0秒到指定一个时间点之间的毫秒数
+     *        new Date().getTime();
+     * 
+     * 注意：你拿到的date对象是只是本机的时间，修改的时候，修改的是date对象的日期，而不是本机的日期，
+     *    本机的日期只能获取不能修改； 
+     */
+
+
+    var date1 = new Date();
+    console.log(date1);
+    // Thu Apr 15 2021 14:20:03 GMT+0800 (中国标准时间)
+    // 星期  月份  日期  年  时分秒  格林尼治时间 0800代表东八区 CST 代表中国标准时间
+
+    var date2 = new Date(2022, 11, 11, 12, 13, 14);
+    console.log(date2);
+    // Sun Dec 11 2022 12:13:14 GMT+0800 (中国标准时间)
+    // 月份是从 0 开始的
+
+    var date3 = new Date('June 10,2013 12:12:12');
+    console.log(date3);
+    // Mon Jun 10 2013 12:12:12 GMT+0800 (中国标准时间)
+
+    var date4 = new Date(new Date().getTime());
+    console.log(date4);
+    // Thu Apr 15 2021 14:43:50 GMT+0800 (中国标准时间)
+  </script>
+</body>
+
+</html>

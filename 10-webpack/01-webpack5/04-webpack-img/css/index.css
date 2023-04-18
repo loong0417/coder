@@ -1,0 +1,14 @@
+.box{
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  span{
+    color: #fff;
+    font-size:20px;
+  }
+}
+
+img{
+  width: 200px;
+  height: 100px;
+}

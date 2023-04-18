@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./js/animate.js"></script>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body{
+      background-color: #000;
+    }
+
+    ul{
+      list-style: none;
+    }
+
+    .nav{
+      position: relative;
+      background-color: #fff;
+      background-image: url(./img/rss.png);
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-size: 30px 30px;
+      width: 900px;
+      height: 42px;
+      margin: 100px auto;
+      border-radius: 10px;
+    }
+   
+    .nav ul{
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 42px;
+      line-height: 42px;
+      z-index: 2;
+      cursor: pointer;
+    }
+  
+    .nav ul li{
+      float: left;
+      color: green;
+      width: 83px;
+      text-align: center;
+      margin: 0 5px;
+    }
+
+    .nav ul li:hover{
+      color: orangered;
+    }
+
+    .nav span{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 83px;
+      height: 42px;
+      background-image: url(./img/cloud.gif);
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body>
+  <div class="nav" id="nav">
+    <span class="cloud"></span>
+    <ul>
+      <li>文学知识</li>
+      <li>后端学习</li>
+      <li>前端进阶</li>
+      <li>数据库</li>
+      <li>底层原理</li>
+      <li>临时文件</li>
+    </ul>
+  </div>
+  <script>
+    /**
+     * 筋斗云导航栏需求：
+     *  1. 当鼠标经过某个li，筋斗云跟到当前位置。
+     *  2. 鼠标离开这个li，筋斗云复原到原来位置。
+     *  3. 鼠标点击某个li，筋斗云就会留在点击这个小li的位置。
+     * 
+     * 实现方式：
+     *  1. 利用动画函数做动画效果（移动效果）。
+     *  2. 原先筋斗云的起始位置是0。
+     *  3. 鼠标经过某个小li，把当前的小li的offsetLeft位置，作为目标值即可。
+     *  4. 鼠标离开某个小li，就把目标值设置为0。
+     */
+    var nav = document.querySelector('.nav');
+    var cloud = nav.querySelector('.cloud');
+    var lis = nav.querySelectorAll('li');
+    var current = 0;    // 筋斗云当前的起始位置
+    for(var i=0;i<lis.length;i++){
+      lis[i].addEventListener('mouseover',function(){
+        animate(cloud,this.offsetLeft);
+      })
+
+      lis[i].addEventListener('mouseout',function(){
+        animate(cloud,current);
+      })
+
+      lis[i].addEventListener('click',function(){
+        current = this.offsetLeft;
+      });
+    }
+  </script>
+</body>
+</html>

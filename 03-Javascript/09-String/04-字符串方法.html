@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串方法</title>
+</head>
+<body>
+  <!-- 
+    根据字符返回位置：
+      1. indexOf('要查找的字符串',开始的位置)：返回指定内容在元字符串中的位置，如果找不到就返回-1，开始的位置是index索引号。
+      2. lastIndexOf()：从后往前找，只找第一个匹配的。 
+
+    根据位置返回字符：
+      1. charAt(index) 返回指定位置的字符（index字符串的索引号）  
+      2. charCodeAt(index) 获取指定位置处字符的ASCII码（index索引号） 
+      3. str[index]  获取指定位置处字符  HTML5,IE8+支持和charAt()等效 
+   -->
+  <script>
+    /**
+     * color = ['red','blue','red','green','pink','red']，求red出现的位置和次数
+     */
+    // var color = ['red','blue','red','green','pink','red'];
+    // var index = color.indexOf('red');
+    // var num = 0;
+    // while(index !==-1){
+    //   console.log(index);
+    //   num++;
+    //   index = color.indexOf('red',index+1);
+    // }
+    // console.log('red出现了：'+num);
+
+
+    /**
+     * 判断一个字符串，'abcoefoxyozzopp'中出现次数最多的字符，并统计其次数。 
+     * o.a = 1
+     * o.b = 1
+     * o.c = 1
+     * o.o = 4
+     * 1. 核心算法：利用charAt() 遍历这个字符串
+     * 2. 把每个字符都存储给对象，如果对象没有该属性，就为1，如果存在了就+1
+     * 3. 遍历对象，得到最大值和该字符串
+     */
+    var str = 'abcoefoxyozzopp';
+    // 定义一个空对象
+    var o = {};   
+    for(var i=0;i<str.length;i++){
+      // chars 是字符串的每一个字符
+      var chars = str.charAt(i);
+      if(o[chars]){      // 得到的是属性值
+        o[chars]++;
+      }else{
+        o[chars] = 1;
+      }
+    }
+    console.log(o)
+  </script>
+</body>
+</html>

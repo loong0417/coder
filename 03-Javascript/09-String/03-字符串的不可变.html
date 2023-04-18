@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 字符串的不可变： 
+     *    字符串的不可变：指的是字符串里面的值是不可变的，虽然看上去可以改变内容，但其实是地址变了，内存中开辟了一个新内存空间。
+     *  1. 当重新给str赋值的时候，常量'abc'不会被修改，依然在内存中。
+     *  2. 重新给字符串赋值，会重新在内存中开辟空间，这个特点就是字符串的不可变。
+     *  3. 由于字符串的不可变，在大量拼接字符串的时候会有效率问题。
+     */
+    // var str = 'abc';
+    // str = 'hello';
+
+    var str = '';
+    for(var i=0;i<1000000;i++){
+      str+=i;
+    }
+    // 这个结果需要花费大量时间来显示，因为需要不断开辟新空间。
+    console.log(str);
+
+  </script>
+</body>
+</html>

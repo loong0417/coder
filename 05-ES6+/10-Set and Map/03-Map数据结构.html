@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    Map数据结构：
+      1. Map数据结构，用于存放映射关系的。
+      2. Map数据结构类似于对象，存放映射关系，所谓的映射关系就是键值对的集合。
+      3. 所有的数据都是唯一的，不会重复，每条数据都需要放在一个数组中，它本身就是一个构造函数。
+
+    Map和对象的区别：
+      1. 对象数据类型也是存放映射关系的，那它们之间有什么区别呢？
+      2. 对象的映射关系只能使用字符串和ES6中新增了Symbol类型作为属性名key，
+      3. 某些情况下我们希望可以通过其它数据类型作为key值，比如对象，
+
+    Map的属性： 
+      1.map.size        数据长度
+
+    Map的方法：
+      1. map.set()：    添加一天数据
+      2. map.get()：    获取一个数据
+      3. map.has()：    查找某一个数据是否存在，返回一个boolean值
+      4. map.delete()： 删除一条数据
+      5. map.clear()：  清空map结合数据
+    
+    Map的遍历：
+      1.forEach()
+      2.for of
+   -->
+   <script>
+      const obj1 = {name:'yang'}
+      const obj2 = {name:'why'}
+
+      var info = {
+        obj1:'aaaa',
+        obj2:'bbbb'
+      }
+      // 相当于将obj1这个对象转换成了string类型
+      console.log(typeof (info.obj1))  // string
+
+      // 在node.js环境中对象转换成字符串会编程 [object object] 
+      // 结果会是：[object object]:'bbbb'  因为key的是一样的，所以会出现后面覆盖前面的情况
+
+
+      // 1.Map是允许对象作为key的
+      const map = new Map();
+      map.set(obj1,'aaaa')
+      map.set(obj2,'bbbb')
+      map.set(200,'cccc')
+      console.log(map)      // Map(3) {{…} => 'aaaa', {…} => 'bbbb', 200 => 'cccc'}
+
+      // 2. Map里面也是可以传入一个数组的，只不过数组是一个entries格式
+      // 2.1.数组里面的每一个元素都是一个数组，存着键值对形式，就是entries格式
+      const map2 = new Map([[obj1,'aaaa'],[obj2,'bbbb'],[200,'cccc']])
+      console.log(map2)     // Map(3) {{…} => 'aaaa', {…} => 'bbbb', 200 => 'cccc'}
+
+      // 3. 遍历Map集合
+      map.forEach(item=>{
+        console.log(item)      // 输出的是值
+      });
+
+      /**
+       * item：对应value键值
+       * key：对应的key键名
+       * map：对应的是遍历的这个集合
+       */
+      map.forEach((item,key,map)=>{
+        console.log(item,key,map)
+      });
+
+      /**
+       * 使用 for of 遍历出来的item是一个数组
+       * 数组中又存放着key,value值 
+       */
+      for(const item of map){
+        console.log(item)
+      }
+
+      // 也可以直接对数组进行结构
+      for(const [key,value] of map){
+        console.log(key,value)
+      }
+
+   </script>
+</body>
+</html>

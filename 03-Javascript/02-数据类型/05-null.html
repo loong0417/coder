@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>null类型分析</title>
+</head>
+<body>
+<!-- 
+基本数据类型：
+    null 分析：
+        1. null 只有一个值就是 null。声明变量赋值 null。获取到是 null。
+        2. 通过id获取元素如果获取不到，返回的值默认为null。
+        3. 正则捕获捕获不到内容时，返回值为null。
+        4. null的作用：可以给变量赋值为null，来清空变量，可以用来释放堆内存。
+
+    undefined 和 null 区别：
+        1. undefined 是声明了变量没有赋值。 
+        2. null 是根本就没有获取到某一个对象。    
+    -->
+     <script>
+         window.onload = function(){
+            var n1 = null;
+            var n2 = document.getElementById("box");
+            console.log(n1);     // null
+            console.log(n2);     // null 根本就没有获取到 box 元素。
+         }
+     </script>
+</body>
+</html>

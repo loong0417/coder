@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input{
+      background-color: white;
+    }
+    input:nth-of-type(1){
+      background-color: yellow;
+    }
+    div{
+      display: none;
+    }
+    div:nth-of-type(1){
+      display:block
+    }
+  </style>
+</head>
+<body>
+  <input type="button" value="选项1">
+  <input type="button" value="选项2">
+  <input type="button" value="选项3">
+  
+  <div>内容1</div>
+  <div>内容2</div>
+  <div>内容3</div>
+  <script>
+    'use strict'    
+    let inputs = document.querySelectorAll('input');
+    let divs = document.querySelectorAll('div');
+    
+    // ES5方式
+    // for(var i=0;i<inputs.length;i++){
+    //   inputs[i].index = i;
+    //     inputs[i].onclick = function(){
+    //       for(var j=0;j<inputs.length;j++){
+    //         inputs[j].style.background = 'white';
+    //         divs[j].style.display = 'none';
+    //       }
+    //      this.style.background = 'yellow';
+    //      divs[this.index].style.display = 'block';
+    //     }
+    // }
+    
+    // ES6方式
+    for(let i=0;i<inputs.length;i++){
+      inputs[i].onclick = function(){
+        for(let i=0;i<inputs.length;i++){
+          inputs[i].style.background = 'white';
+          divs[i].style.display = 'none';
+        }
+        inputs[i].style.background='yellow';
+        divs[i].style.display = 'block';
+      }
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组排序</title>
+</head>
+<body>
+  <script>
+    var arr = [8,5,12,74,45,36,77,88];
+    // sort()函数是按照字母表排序的，所以出现下面的情况
+    // console.log(arr.sort());  //  [12, 36, 45, 5, 74, 77, 8, 88]
+
+    // 案例1：升序排列
+    arr.sort(function(a,b){
+      return a-b;
+    });
+    console.log(arr);   // [5, 8, 12, 36, 45, 74, 77, 88]
+    
+    // 案例2：降序排列
+    arr.sort(function(a,b){
+      return b-a;
+    });
+    console.log(arr);   // [88, 77, 74, 45, 36, 12, 8, 5]
+
+
+    // 案例3：读取学生10门成绩，然后输出10门成绩最高分，最低分，总分，平均分。
+    // 提示：10门成绩要保存在一个数组中。
+    
+    // var result = [23, 45, 67, 89, 98, 87, 76, 65, 43, 54];
+    
+    // for(var i=1;i<=10;i++){
+    //   var num = parseFloat(prompt(`请输入学生第${i}门成绩：`));
+    //   result.push(num);
+    // }
+    // console.log(result);
+
+    // result.sort(function(a,b){
+    //   return a-b;
+    // });
+    // console.log(result);
+    // console.log(`最低分：${result[0]}`);
+    // console.log(`最高分：${result[result.length-1]}`);
+
+    // var sum = 0;
+    // var len = result.length;
+    // for(var i=0;i<=len-1;i++){
+    //   sum+=result[i];
+    // }
+    // console.log(`总分：${sum}`);
+    // console.log('平均分：'+sum/len);
+
+  </script>
+</body>
+</html>

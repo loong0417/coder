@@ -1,0 +1,31 @@
+<mxfile host="65bd71144e">
+    <diagram id="NJPq_uiSBtauZQmZ6GhA" name="第 1 页">
+        <mxGraphModel dx="986" dy="1232" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="&lt;div style=&quot;color: rgb(252, 252, 250); font-family: Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 14px; line-height: 19px;&quot;&gt;&lt;div&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil rem veniam eligendi. Dolore consequuntur atque modi similique obcaecati quam error. Nesciunt nihil accusantium cupiditate qui aliquid voluptas rerum autem maxime?&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; Tenetur, numquam a beatae aperiam eos culpa eligendi accusantium perferendis, odit, doloribus possimus porro officiis rem pariatur a&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=default;strokeColor=default;labelBackgroundColor=default;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=bottom;textDirection=ltr;textOpacity=70;labelBorderColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="280" y="-374" width="190" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="shape=crossbar;whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=#FF0000;labelBorderColor=none;strokeColor=default;fillColor=default;rotation=90;fontColor=#FF0000;" vertex="1" parent="1">
+                    <mxGeometry x="101.44" y="-331.44" width="319.13" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="scrollHeight" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF0000;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="-335" width="90" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="" style="shape=crossbar;whiteSpace=wrap;html=1;rounded=1;direction=south;labelBackgroundColor=#FF0000;labelBorderColor=none;strokeColor=default;fontColor=#FF0000;fillColor=default;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="-480" width="20" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="scrollTop" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF0000;" vertex="1" parent="1">
+                    <mxGeometry x="472" y="-442.5" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="" style="shape=crossbar;whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=#FF0000;labelBorderColor=none;strokeColor=default;fontColor=#FF0000;fillColor=default;" vertex="1" parent="1">
+                    <mxGeometry x="280" y="-157" width="190" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="scrollWidth" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontColor=#FF0000;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="-145" width="80" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

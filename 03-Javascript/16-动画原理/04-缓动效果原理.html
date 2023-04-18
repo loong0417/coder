@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      position: absolute;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      background-color: purple;
+    }
+    button{
+      margin-top: 120px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <button class="but300">点我就动300</button>
+  <button class="but500">点我就动500</button>
+  <script>
+  /**
+   * 缓动效果原理：
+   *  1. 缓动动画就是让元素的运动速度有所变化，常见的是让速度慢慢的停下来，由快到慢。
+   *  2. 实现思路：
+   *    - 让盒子每次移动的距离慢慢变小，速度就会慢慢落下来。
+   *    - 核心算法：（目标位置 - 现在位置）/ 10; 作为每次移动的距离步长。
+   *    - 停止条件：让盒子位置等于目标位置就停止定时器。
+   *    - 注意重点： 步长的值需要取整，可以在element元素的行内样式中看到，它是一个小数。
+   * 
+   *  注意事项：
+   *    1. 匀速动画：就是盒子当前的位置 + 固定的值（10）
+   *    2. 缓速效果：就是盒子当前的位置 + 变化的值（步长 = （目标位置值 - 现在位置值）/ 10）
+   */
+    var box = document.querySelector('.box');
+    var but300 = document.querySelector('.but300');
+    var but500 = document.querySelector('.but500');
+    /**
+     * 运动函数封装
+     */
+    function animate(obj,target){
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+        // 步长 =（目标位置 - 现在位置）/ 10
+        // var step = Math.ceil((target - box.offsetLeft) / 10);
+        
+        var step = (target-box.offsetLeft) / 10;
+        // 如果步长是大于0的数值，就不是负数，直接向上取整。
+        // 如果步长是小于0的数值，那就是负值，负值需要向下取整（无论正负都是是取最大值，如果取最小值会出现倒退的现象）。
+        step = step > 0 ? Math.ceil((target-box.offsetLeft) / 10) : Math.floor((target-box.offsetLeft) / 10);
+
+        if(box.offsetLeft == target){
+          clearInterval(obj.timer);
+        }
+        box.style.left = box.offsetLeft + step +'px';
+      },30);
+    }
+    /**
+     * 步长取整问题：
+     *  1.点300，运动到300的位置。
+     *  2.点500，运动到500的位置。
+     *  3.如果到500的位置，再想回到300这个时候其实是一个减去300的过程，那么加300相当于是加-300。
+     *  4.如果刚好走到 - 300.1 或 -300.3这样的位置，那就直接取值-300。
+     */
+    but300.addEventListener('click',function(){
+      animate(box,300);
+    });
+
+    but500.addEventListener('click',function(){
+      animate(box,500);
+    });
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04-优化方案transform</title>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      /* position: relative; */
+
+      /* 将元素作为单独图层 */
+      will-change: transform;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    重排和重绘的优化方案：
+   -->
+  <div class="box"></div>
+  <script>
+    var box = document.querySelector('.box');
+    setTimeout(()=>{
+      /**
+       * 1. 元素位置移动的时候使用 transform代替top和left。
+       *  - 使用let会触发重排和重绘。
+       *  - 而使用transform结合position: relative;只会触发重绘。
+       *  - 只使用transform也会触发重排和重绘。
+       * 
+       *  - 使用 will-change: transform;将元素作为一个单独图层，不仅不会触发重排也不会触发重绘（1秒之后的位置没有重绘和重排）。
+       *    因为它会将这个工作交给GPU去处理所以不会触发重排和重绘。不在主线程中去处理了。
+       */
+      // box.style.left='50px';  
+      box.style.transform = "translateX(100px)";
+    },1000);
+
+   
+
+
+  </script>
+</body> 
+</html>

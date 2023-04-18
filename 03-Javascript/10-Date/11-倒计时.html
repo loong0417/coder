@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 时间格式化 
+     */
+    function formatDay(v){
+      return v<10 ? '0' + v : v;
+    }
+
+    /**
+     * 倒计时函数
+     * time：目标时间  
+     */
+    function currentDown(time){
+      // 获取当前时间时间戳
+      var nowTime = +new Date();                       
+      // 目标时间戳
+      var targetTime = +new Date(time);
+      // 倒计时 = 目标时间戳 - 当前时间戳 / 1000 将时间戳毫秒转换成秒
+      var timer = Math.abs((targetTime - nowTime)) / 1000;
+     
+      var d = parseInt(timer / 60 / 60 / 24);   // 计算天数
+      var h = parseInt(timer / 60 / 60 % 24);   // 计算小时
+      var m = parseInt(timer / 60 % 60);        // 计算分钟
+      var s = parseInt(timer % 60);             // 计算当前秒
+
+      return d +'天'+ formatDay(h) + '时' + formatDay(m) +'分'+ formatDay(s) + '秒';
+    }
+    console.log(currentDown('2023-2-8 00:00:00'));
+  
+  </script>
+</body>
+</html>

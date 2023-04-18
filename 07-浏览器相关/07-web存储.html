@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="user">
+  <script>
+    var user = document.getElementById('user');
+    // window.addEventListener('storage',function(event) 缓存发生改变时会触发，但是在不同的页面之间有效
+    window.addEventListener('storage',function(event){
+      // console.log(event);
+      user.value = event.newValue;
+    });
+  </script>
+</body>
+</html>

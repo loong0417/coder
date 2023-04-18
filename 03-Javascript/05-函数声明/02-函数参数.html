@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数参数</title>
+</head>
+<body>
+  <!-- 
+    函数参数分为2种：
+      1. 实参
+      2. 形参
+
+    函数参数的特殊情况：
+      1. 形参个数比实参个数多，调用函数不会报错。
+      2. 实参个数比形参个数多，调用函数不会报错。
+      3. 形参实参一样多，实参形参一一对应。
+
+   -->
+  <script>
+    /**
+     * 情况一：形参个数比实参个数多，调用函数不会报错。
+     *  a = 1
+     *  b = 2 
+     *  c = undefined 
+     */
+    function test(a,b,c){
+      console.log(a,b,c);
+    }
+    test(1,2);
+
+    /**
+     *  情况二：实参个数比形参个数多，调用函数不会报错。
+     *  a = 4
+     *  b = 5
+     *  
+     *  但是我们可以通过：arguments 拿到实参个数，arguments 是实参列表，是一个数组类型。
+     * 
+     *  1. 实参列表长度：arguments.length是拿到实参列表长度。
+     *  2. 形参列表长度：demo.length 是拿到形参列表长度。
+     */
+    function demo(a,b){
+      console.log("实参列表长度："+arguments.length) 
+      console.log("形参列表长度:"+demo.length)  
+      console.log(a,b);
+    }
+    demo(4,5,6);
+
+
+     /**
+     * 情况三：形参实参一样多，实参形参一一对应。
+     *  a = 1
+     *  b = 2 
+     *  c = 5 
+     */
+    function cases(a,b,c){
+      return a+b*5;
+    }
+    console.log(cases(1,2,5))
+  </script>
+</body>
+</html>

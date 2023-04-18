@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .content{
+      width: 800px;
+      height: 1000px;
+      background-color: aqua;
+      margin: 0 auto;
+    }
+    .box{
+      position: fixed;
+      left: 50%;
+      margin-left: 400px;
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    需求：让一个元素定位在核心板块的旁边，挨着核心板块的固定定位。
+    1. 使用：position:fixed;left: 50%;
+    2. 使用margin-left移动核心盒子的一半。
+
+    注意：这种方式就是非常靠谱的一种方式，无论浏览器可视区大小怎么变化，.box盒子始终是挨着.content的。
+   -->
+  <div class="box"></div>
+  <div class="content"></div>
+ 
+</body>
+</html>

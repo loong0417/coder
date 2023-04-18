@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主区域布局书写靠前</title>
+
+    <style>
+        .box{
+            padding: 30px;
+            border: 1px solid goldenrod;
+
+            position: relative;
+        }
+
+        .main{
+            background: red;
+            color: #fff;
+
+            margin: 0 300px;
+        }
+
+        .left{
+            background: blue;
+            color: #fff;
+            width: 300px;
+
+            position: absolute;
+            left: 30px;
+            top: 30px;
+
+            margin-right: 10px;
+        }
+
+        .right{
+            background: green;
+            color: #fff;
+            width: 300px;
+            position: absolute;
+            right: 30px;
+            top: 30px;
+
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        前言：在之前的三栏布局中，我们是将左右侧边栏定框浮动，中间区域设置成BFC（overflow:hidden）。
+            1. 如果在实际开发中，公司考虑搜索引擎搜索，需要将主区域靠前书写，那我我们应该怎么书写呢？
+            2. 看下面代码。
+        
+        注意：
+            1. 左边侧边栏设置 margin-right 无效。
+            2. 右边侧边栏设置 margin-left 无效。
+            3. 还有就是外边的 .box 无法适应侧边栏的高度（感知不到定位的高度），一般在实际开发中，
+            如果侧边栏比主区域高度小，可以这样使用，否则就使用上一个案例中的伪等高处理。
+    
+     -->
+
+     <div class="box">
+         <div class="main">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus quam repudiandae tenetur nobis quasi, ipsam deleniti minima suscipit! Praesentium voluptas quibusdam totam porro deserunt dolor eum. Accusantium ipsam quo rem et natus ex odit velit doloribus laborum in sequi vero officiis, dolorem impedit nemo, eveniet alias, laudantium provident sint sit. Fugiat labore dolore voluptates repellat beatae, omnis ut! Enim cum vitae nemo, praesentium explicabo earum repudiandae quasi ex tenetur unde magni adipisci nostrum facere non totam incidunt cupiditate consectetur eveniet voluptatum. Autem doloremque tenetur, facere alias ea dolorum aut impedit? Iusto, dolore? Qui fuga, consectetur unde aliquam sequi veritatis enim. Repudiandae tempore optio ipsum necessitatibus laboriosam eaque, beatae totam aspernatur reprehenderit nihil voluptates aliquam enim similique iusto. Reprehenderit ipsa quasi incidunt quam tempore nihil omnis aut, quidem, minima deserunt tempora est optio amet eveniet. Odit hic, eveniet repudiandae dicta quisquam veritatis deleniti eum placeat vero officiis perferendis exercitationem, non, consequuntur eaque eos delectus eligendi tempore in architecto corporis? Nemo doloremque nihil dignissimos animi nulla? Minima vero reiciendis quisquam minus mollitia delectus quibusdam quasi debitis nam? Consequuntur pariatur laborum reprehenderit, ullam nihil sit similique, illo culpa unde, magnam officiis a aut ex aliquam ducimus maiores cum impedit autem vitae totam. Magnam ducimus hic repellendus quod, obcaecati excepturi vero veniam facilis harum porro labore fugiat alias enim a deserunt sed expedita, dolorum facere. Fuga neque beatae ut praesentium illum minus, quae dignissimos aut cum accusantium dolorem, sequi animi modi. A aliquid possimus quibusdam numquam assumenda saepe minima vero, perspiciatis eius velit eos sed cupiditate aut facere earum quas culpa molestiae obcaecati error explicabo voluptas labore dolore quo. Sit, natus voluptate sunt quae id iusto quas laborum, commodi ipsa nobis officiis. Ipsum laborum sunt voluptatibus accusantium alias eaque minus velit itaque labore cumque, esse dicta. Laudantium expedita quos iure cum delectus accusantium sequi dolor ab doloribus repudiandae dignissimos saepe repellat quam maiores magni cupiditate corrupti nobis adipisci, obcaecati totam est libero consectetur excepturi nisi? Exercitationem fugit pariatur nulla soluta dignissimos in optio iure eos laudantium atque. Repellat corporis provident sapiente ducimus vel voluptatem et odio assumenda modi, deserunt nemo molestias totam perspiciatis vitae quo animi aliquid, atque aperiam expedita. Amet eligendi, obcaecati a quidem placeat tempora nesciunt doloremque corrupti eum, numquam et. Laboriosam molestias aspernatur in, nobis consequatur minus nisi officia ut possimus vero rerum quibusdam. Eveniet, modi numquam. Facere maiores quam et minima nihil sed inventore soluta nam excepturi perferendis! Explicabo voluptates adipisci reprehenderit iste quo qui aperiam reiciendis blanditiis soluta inventore eius laboriosam architecto odio, accusamus, dolore, doloremque esse iure fugit laborum aliquid laudantium quaerat sequi! Odio eos sapiente dolorum? Atque at repellendus fugit rerum accusantium, consectetur, maiores, vero nemo earum cupiditate illo? Laudantium debitis amet dicta culpa, pariatur modi similique quaerat quod. Unde suscipit consequatur facere laborum ullam adipisci aperiam vitae earum quasi perferendis, temporibus sequi nostrum qui ipsum totam eos nam. Unde deserunt placeat quo nesciunt asperiores rem distinctio ducimus. Ad error dolor nesciunt laboriosam. Reprehenderit minus enim incidunt vel expedita recusandae consequuntur illo! Ab voluptas veritatis accusamus consectetur!</div>
+         <div class="left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus eum doloribus quisquam suscipit tenetur corrupti et cum enim magnam sunt accusamus, aliquid, rem expedita praesentium neque! Neque aliquid fugiat error ullam repellat ipsam unde cupiditate sapiente accusamus mollitia, distinctio sit dicta eum quaerat aspernatur delectus a nesciunt ut nobis non quis voluptatibus? Vitae minus quo culpa voluptatum quasi? Laudantium, praesentium alias! Praesentium aut itaque esse, sint eveniet exercitationem quis id commodi cum consequuntur necessitatibus ex amet hic doloribus laborum tempora ipsum accusantium veritatis illum? Iusto, necessitatibus sapiente ut quis, voluptate odit veniam labore quam tempora dicta, nostrum totam fugit minima!</div>
+         <div class="right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi aliquid aperiam earum culpa ipsam, necessitatibus, numquam nobis quia corrupti amet alias. Facilis, perspiciatis alias. Consequatur cum asperiores sint maiores quidem obcaecati veritatis dolor harum suscipit! Labore minus fugiat id consequatur consequuntur modi eveniet excepturi quae sint commodi optio esse placeat vero eaque, deleniti nemo quidem? Repellendus cum tenetur quos unde voluptatum distinctio? Recusandae ab eaque perferendis! Modi quibusdam impedit delectus expedita debitis voluptas, laboriosam minima fuga ea nemo error possimus iusto aliquam, nisi maxime mollitia in veniam repellendus! Officiis temporibus ea explicabo nostrum illo hic rem neque vitae sint velit repellendus fugit enim aut illum atque, laboriosam cumque. Nihil nobis suscipit accusamus libero ut nulla, quasi ad magni, molestias impedit odit quaerat voluptatibus facere vitae quam? Voluptates maiores ad itaque. Voluptatum mollitia repudiandae optio modi laborum ipsum, aut corporis doloremque repellendus quisquam dolorum maxime veritatis perspiciatis, enim labore sit aliquam rem placeat, reprehenderit fugit eligendi numquam quis. Dolorum labore ad tenetur iste officiis. Voluptate veniam veritatis rem, in, odio nihil est provident illum a praesentium, accusantium eum? Non minus recusandae fugiat accusantium expedita et omnis dignissimos vel animi ipsa repellat saepe, dolorum ex voluptatibus! Autem deserunt amet facilis voluptas aliquam quidem aliquid consectetur blanditiis, nostrum, nulla cumque officiis ratione ad, officia quo? Quaerat labore fugiat commodi! Sapiente veniam accusamus earum vero dolore reiciendis ipsa. Consequuntur laboriosam praesentium officiis perspiciatis adipisci repellendus distinctio ut minima totam aut, dolor ipsum fugiat nihil atque iusto voluptates neque, corporis sequi? Explicabo ullam repudiandae assumenda!</div>
+     </div>
+</body>
+</html>

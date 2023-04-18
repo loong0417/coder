@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串面试</title>
+</head>
+<body>
+  <script>
+    // 题目1：将一段字符串变成驼峰命名法（例：aa-bb-cc-dd=>AaBbCcDd）面试题。
+    // var str = 'aa-bb-cc-dd';
+    // var newStr = str.split('-');
+    // var myStr = '';
+
+    // for(var i=0;i<newStr.length;i++){
+    //   myStr += newStr[i].charAt(0).toUpperCase() + newStr[i].slice(1);
+    // }
+    // console.log(myStr);
+
+    // 题目2：将字符串'_'后面小写字母变成大写，并且删除'_'（例：aa_bb_cc_dd=>aaBbCcDd）
+    // var str = 'aa_bb_cc_dd';
+    // var newStr = str.split('_');
+    // var myStr = '';
+    // for(var i=0;i<newStr.length;i++){
+    //   if(i==0){
+    //     myStr+=newStr[i];
+    //   }else{
+    //     myStr+=newStr[i].charAt(0).toUpperCase()+newStr[i].slice(1);
+    //   }
+    // }
+    // console.log(myStr);
+
+    // 题目3：判断QQ的格式（第一位数不能时0，长度5~10之间，必须时数字，不能有小数点） 
+    // var num = prompt("请输入你的QQ号码：");
+    // var newNum = '';
+    // if(num.charAt(0) !==0 && num.length>=5 && num.length<=10){
+    //   newNum = num.indexOf('.');
+    //   if(newNum == -1){
+    //     console.log(`你的QQ号码是：${num}`);
+    //   }else{
+    //     console.log("输入QQ号码有误，请重新输入！！！");
+    //   }
+    // }else{
+    //   console.log('QQ号码不能为空！');
+    // }
+
+    // var num = prompt("请输入你的QQ号码：");
+    // if(num.charAt(0)!=0 && num.length>=5 && num.length <= 10){
+    //   var newNum = num.split('');
+    //   var myNum = '';
+    //   for(var i=0;i<newNum.length;i++){
+    //     if(isNaN(newNum[i])){
+    //       console.log('输入有误！！！');
+    //     }
+    //     myNum+=newNum[i];
+    //   }
+    //   console.log(`你的QQ号码是：${myNum}`);
+    // }else{
+    //   console.log('输入有误，请重新输入！！！');
+    // }
+
+    /**
+     * 1. 查找字符串"abcoefoxyozzopp"中所有o出现的位置及次数
+     * 2. 核心算法：先找第一个o出现的位置
+     * 3. 然后只要 indexOf 返回的结果不是 -1 就继续往后查找
+     * 4. 因为 indexOf 只能查找到第一个，所以后面的查找，一定是当前索引+1，从而继续查找 
+     */
+     var str = 'abcoefoxyozzopp';
+    var index = str.indexOf('o');
+    var num = 0;
+    while(index !== -1){
+      console.log(index);
+      num++;
+      index = str.indexOf('o',index+1);
+    }
+    console.log('o出现的次数是：'+ num);   // o出现的次数是：4
+  </script>
+</body>
+</html>

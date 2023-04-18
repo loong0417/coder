@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05-优化方案opacity</title>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      text-align: center;
+
+      /* 将元素作为单独图层 */
+      will-change: transform;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    重排和重绘的优化方案：
+   -->
+  <div class="box">杨小样随笔</div>
+  <script>
+    var box = document.querySelector('.box');
+    setTimeout(()=>{
+      /**
+       * 2. 使用opacity代替visibility
+       *  - 使用visiblity不触发重排，会触发重绘。
+       *  - 使用opacity触发重绘又会触发重排，GPU底层就是这样设计的。
+       *  - opacity配合图层使用（will-change: transform），既不会触发重绘，也不会触发重排。
+       */
+      box.style.opacity='0';
+    },1000);
+  </script>
+</body> 
+</html>

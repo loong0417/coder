@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>form 新增属性</title>
+</head>
+<body>
+  <!-- 
+    新增form属性：
+    1. form
+    2. formaction
+    3. formmethod
+    4. placeholder
+    5. autofocus
+    6. list
+    7. autocomplete
+   -->
+
+   <!-- 1. form 属性 
+           placeholder 提示
+           autofocus 自动获取焦点
+           autocomplete 输入过的内容提示
+   -->
+   <!-- <form id="login" method="GET" action="one.php">
+
+   </form> -->
+  用户： <input type="text" form="login" placeholder="用户名" autofocus autocomplete="off">
+  邮箱： <input type="text" form="login" list="listset">
+
+  <hr>
+
+  <!-- 2. formaction 可以在不同的页面处理业务逻辑 
+       3. formmethod 可以直接设置数据提交的方式
+  -->
+   <form action="" id="active"></form>
+   <input type="submit" formaction="add.php" formmethod="POST" value="添加" form="active">
+   <input type="submit" formaction="delete.php" formmethod="GET" value="删除" form="active">
+
+  <!-- 
+    list 和 datalist 一起使用
+   -->
+  <datalist id="listset">
+    <option>this is one</option>
+    <option>this is two</option> 
+    <option>this is three</option>
+  </datalist>
+
+</body>
+</html>

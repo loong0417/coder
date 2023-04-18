@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      position: absolute;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      background-color: purple;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    /**
+     * 动画原理： 
+     *  1. 获得盒子当前位置。
+     *  2. 让盒子在当前位置上加 5 个移动距离。
+     *  3. 利用定时器不断重复这个操作。
+     *  4. 注意要给定时器加一个条件，否则就会一直加下去。
+     *  5. 注意元素需要添加定位，才能使用element.style.left。
+     */
+    var box = document.querySelector('.box');
+    var timer = setInterval(function(){
+      if(box.offsetLeft >=400){
+        clearInterval(timer);
+      }
+      // 注意：赋值是需要给left赋值，获取值可以使用offsetLeft获取，offsetLeft不能赋值
+      box.style.left = box.offsetLeft + 5 + 'px';
+    },30);
+
+  </script>
+</body>
+</html>

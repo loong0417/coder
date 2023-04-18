@@ -1,0 +1,184 @@
+body{
+    min-width: 1124px;
+    max-width: 1920px;
+}
+.clearfix::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.moive-nav{
+    height: 60px;
+    background-color: #47464a;
+    line-height: 60px;
+    text-align: center;
+}
+
+.moive-nav nav a{
+    color: #999;
+    font-size: 16px;
+
+    padding: 0 40px;
+}
+
+.moive-nav a.selected{
+    color:#ef4238;
+}
+
+.moive-nav nav a:hover{
+    color: #ef4238;
+}
+
+.main{
+    width: 90%;
+    height: 224px;
+    margin: 0 auto;
+}
+
+/* 影片选择部分 */
+.main .selected{
+    margin: 30px 0;
+    border: 1px solid #e5e5e5;
+    padding: 10px 20px;
+}
+
+.main .selected .main-select{
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.main .main-select .main-select-left{
+    float: left; 
+    height: 24px;
+    color: #999;
+    font-size: 14px;   
+    line-height: 24px;
+    /* padding: 0 10px; */
+}
+
+.main .main-select .main-select-right{
+    float: left;
+    width: 1000px; 
+}
+
+.main .main-select .main-select-right .active{
+    background-color: #ef4238;
+    border-radius: 10px;
+    
+}
+
+.main .main-select .main-select-right .active a{
+   color: #fff;   
+}
+
+.main .main-select-right ul li{
+    float: left;
+    height: 24px;
+    line-height: 24px;
+}
+
+
+.main .main-select-right ul li a{
+    color: #333;
+    font-size: 14px;
+    padding: 0 10px;
+}
+
+.main .main-select-right ul li a:hover{
+    color: #ef4238;
+}
+
+
+.main .selected .main-select.border-none{
+    border: none;
+}
+
+
+/* 影片展示 */
+.main .pic .pic-content{
+    float: left;
+    text-align: center;
+    width: 160px;
+    margin-right: 35px;
+}
+
+/* 
+    nth-child(6n) 伪类选择器为 6 的倍数的时候去掉右边的 margin
+*/
+.main .pic div.pic-content:nth-child(6n){
+    margin-right: 0;
+}
+
+.main .pic .pic-content img{
+    width: 160px;
+    height: 220px;
+}
+
+.main .pic-content div.img-name{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px 5px;
+ 
+}
+
+
+.main .pic-content .img-name a{
+    color: #333;
+    font-size: 16px;
+ 
+}
+
+.main .pic .pic-content .score{
+    color: #ffb400;
+    margin:0 0 10px 0;
+    font-style: italic;
+}
+
+/* 
+    设置该选择器的第一个字符，改变第一个字符的大小
+*/
+.main .pic .pic-content .score::first-letter{
+    font-size: 1.5em;
+}
+
+/* 页码部分 */
+.main .page{
+    /* background-color: red; */
+    padding-left: 25%;
+}
+
+.main .page ul{
+    text-align: center;
+}
+
+.main .page ul li {
+    float: left;
+    border: 1px solid #d8d8d8;
+    padding: 5px 8px;
+
+    margin: 5px;
+
+}
+
+.main .page  li:hover{
+    border-color:#ef4238;
+}
+
+.main .page ul li.active{
+    background-color: #ef4238;
+}
+
+.main .page ul li.active a{
+    color: #fff;
+}
+
+.main .page ul li a{
+    color: #333;
+}
+
+
+
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>链式调用</title>
+</head>
+<body>
+  <!-- 
+    链式调用原理：
+      函数调用返回this，就可以实现链式调用。
+   -->
+  <script>
+    var obj = {
+      test1:function(){
+        console.log("起床");
+        // 每次调用函数将 this 返回就可以实现链式调用
+        return this;
+      },
+      test2:function(){
+        console.log("跑步");
+        return this;
+      },
+      test3:function(){
+        console.log("吃早饭");
+        return this;
+      },
+      test4:function(){
+        console.log("上班");
+        return this;
+      },
+      test5:function(){
+        console.log("看邮件");
+        return this;
+      }
+    }
+
+    obj.test1().test2().test3().test4().test5();
+  </script>
+</body>
+</html>

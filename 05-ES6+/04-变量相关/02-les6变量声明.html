@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6变量深入</title>
+</head>
+<body>
+    <!-- 
+        let关键字声明变量：
+            1. var 可以只声明变量，不赋值（默认值undefined），或者先声明变量再赋值。
+               let但必须声明后再使用，不能在声明前使用，因为 let 没有预解析，会直接报错的。
+
+            2. 在相同的作用域let不能重复声明相同变量（不同作用域内除外），var在相同作用域可以重复声明相同变量，后面变量覆盖前面的。
+            3. let声明的变量具有块级作用域。（块级作用域和自执行函数非常像，写一对大括号就是一个作用域，以后可以不用写自执行函数了）
+            4. 声明的变量不再属于 window 的属性。      
+        
+        变量使用总结：
+            1. 声明变量首先选择使用 const。
+            2. 如果需要先声明，后赋值，或者声明完之后还需要改动，就使用 let 关键字。
+
+     -->
+    <script>
+        // 启用严格模式
+        'use strict'    
+
+        let a = 100;
+        a = 200;
+        console.log(a);  // 200
+
+        // console.log(c)  // 1. 报错，let声明的变量，不能在声明前调用，let不会预解析。
+        let c = 1;
+
+        let b = 30;
+        // let b = 'hello';   2. 报错，变量b不能重复声明
+
+
+        // 3. let具有块级作用域
+        if(true){
+            var user = '杨小样随笔1';
+        }
+        console.log(user);  // 杨小样随笔1
+
+        if(true){
+            // 大括号就是块级作用域
+            let name = '杨小样随笔2';
+        }
+        console.log(name); // 什么都没有输出
+
+        // console.log(window.b)  // 4. 声明的变量不再属于 window 的属性。  
+
+        var aaaa = '杨小样随笔';
+        function test(){
+            var yang  = '杨小样';
+            var aaa=10;
+            bbb=20;
+            ccc=30;
+            ddd=40;
+        }
+
+        console.log(window.aaaa);  // var在全局作用域声明的变量会挂载在window下面
+        console.log(window.yang)   // var在函数作用域下声明的变量不会挂载在window上，访问window下面不存在的变量为undefined
+        
+        // 【注意还需要深入分析的位置】不是说没有使用 var声明的变量为全局变量吗？这里我怎么不能访问呢？
+        // console.log(aaa)
+        // console.log(bbb)
+        // console.log(ccc)
+        // console.log(ddd)
+    </script>
+</body>
+</html>

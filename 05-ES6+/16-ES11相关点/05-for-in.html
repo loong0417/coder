@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    for in 和 for of两者的使用：
+      1. for in 中的item返回的是index（key）值，在ES11前，不同的浏览器item返回的结果是不一样的，以至于很多时候都混淆了for of。
+      2. ES11中名且规定item返回的是index（key）值。
+
+      3. for of返回的是value值。
+  -->
+  <script>
+    var numArr = [20,30,40,78,12,21,34,89,12];
+    for(var item in numArr){
+      console.log(item)    // 返回的是index
+    }
+
+    for(var item of numArr){
+      console.log(item)    // 返回的是value
+    }
+  </script>
+</body>
+</html>

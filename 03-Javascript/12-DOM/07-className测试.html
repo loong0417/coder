@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      margin-bottom: 20px;
+    }
+    .wrap{
+      width: 100px;
+      height: 100px;
+      background-color: purple;
+      /* margin-bottom: 20px; */
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <button class="btn">改变box颜色</button>
+  <script>
+    var box = document.querySelector('.box');
+    var btn = document.querySelector('.btn');
+    btn.onclick = function(){
+      // 方式1：直接添加class会覆盖原来的class.也就是会覆盖box。
+      // box.className = 'wrap';
+      // 方式2：同时添加2个class，但是有些繁琐
+      // box.classList = 'box wrap';
+
+      // 方式3：这里时我需要测试的，就是利用字符串拼接的方式，也是可以完成的。
+      // 记忆深刻：但是去年在项目中怎么就无效了？
+      box.classList +=' wrap';
+    }
+  </script>
+</body>
+</html>

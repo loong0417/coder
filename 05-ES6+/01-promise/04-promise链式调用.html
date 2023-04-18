@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise链式调用</title>
+</head>
+<body>
+  <script>
+    /**
+     * 链式调用的方式一
+     */
+    new Promise((resolve,reject)=>{
+      // 1. 第一次异步操作
+      setTimeout(() => {
+        resolve("hello world!")
+      }, 1000);
+    }).then(data=>{
+      // 1. 第一次处理操作结果
+      console.log(data);
+
+      return new Promise((resolve,reject)=>{
+        // 2. 第二次异步操作
+        setTimeout(() => {
+          resolve("eeeeeeeeeeeeeeee");
+        }, 1000);
+      }).then(mess=>{
+        // 2. 第二次处理操作结果
+        console.log(mess);
+        console.log(mess);
+        console.log(mess);
+
+        return new Promise((resolve,reject)=>{
+          // 3. 第三次异步操作
+          setTimeout(() => {
+            resolve("aaaaaaaaaaaaaaaaaa");
+          }, 1000);
+        }).then(log=>{
+          // 3. 第三次处理异步操作结果
+          console.log(log);
+        })
+      })
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>return和window区别</title>
+</head>
+<body>
+  <!-- 
+    window和return使用区别：
+   -->
+  <script>
+    // 案例1：写一个闭包
+    // function test(){
+    //   var a = 1;
+    //   function puls1(){
+    //     a++;
+    //     console.log(a);
+    //   }      
+    //   return puls1;   // 相当于将 puls1 甩到全局，变成了全局函数
+    // }
+    // var plus = test();
+    // plus();
+    // plus();
+    // plus();
+
+
+    // 案例2
+    // function test(){
+    //   window.a = 2;  // 这里相当于定义在全局了，window也是将变量甩到了全局
+    // }
+    // test();
+    // console.log(a) // 2
+
+    // 案例3：用window方式实现案例1的return功能
+    // function test(){
+    //   var a = 1;
+    //   function puls1(){
+    //     a++;
+    //     console.log(a);
+    //   }
+    //   window.puls = puls1;
+    // }
+    // test()  // 必须先执行 test 再执行 puls ，否则辉报错，未定义puls。
+    // puls();
+    // puls();
+    // puls();
+    
+    // 案例4：
+    // var add=(function(){
+    //   var a = 1;
+    //   function add(){
+    //     a++;
+    //     console.log(a);
+    //   }
+    //   return add;
+    // })();
+    // add();
+    // add();
+    // add();
+
+    // 案例5：
+    // (function(){
+    //   var a = 1;
+    //   function add(){
+    //     a++;
+    //     console.log(a);
+    //   }
+
+    //   window.add = add;
+    // })();
+    // add();
+    // add();
+    // add();
+
+    
+    // 最终引出js插件的写法
+    (function(){
+      function Test(){
+
+      }
+      Test.prototype = {
+        name: 'yang',
+        age: 17,
+        job:function(){
+          console.log("codeing......");
+        }
+      }
+
+      window.Test = Test;
+    })();
+
+    var test = new Test();
+    console.log(test.job());
+  </script>
+</body>
+</html>

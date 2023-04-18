@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    var box = document.querySelector('.box');
+    // 1. 手指触摸DOM元素事件（相当于是手机点击了屏幕）
+    box.addEventListener('touchstart',function(){
+      console.log('手指点出了box元素');
+    });
+
+    // 2. 手指在box盒子上移动
+    box.addEventListener('touchmove',function(){
+      console.log('手指在屏幕上移动');
+    });
+
+    // 3. 手指离开了box盒子
+    box.addEventListener('touchend',function(){
+      console.log('手指离开了box盒子');
+    });
+  </script>
+</body>
+</html>

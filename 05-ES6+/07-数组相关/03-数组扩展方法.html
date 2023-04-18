@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    遍历：
+      for in    循环能够直接读取键名
+      for of    循环能够直接读取键值
+
+    注意：它们不仅可以遍历数组，还可以遍历对象，接口的对象也是使用它遍历的
+
+    keys()      存储了数组的所有键名 
+    values()    存储了数组的所有键值
+    entries()   存储数组所有的键值对
+   -->
+   <script>
+      var colors = ['red','green','yellow','blue','pink'];
+      // 1.使用for in遍历数组
+      for(let color in colors){
+        console.log(color)   // 0,1,2,3,4
+      }
+
+      // keys() 存在兼容性
+      for(let color of colors.keys()){
+        console.log(color)
+      }
+
+      // values() 存在兼容性 chrome 不支持
+      for(let color of colors.values()){
+        console.log(color)
+      }
+
+      // 2.使用for of遍历数组
+      for(let color of colors){
+        console.log(color)  // red,green,yellow,blue,pink
+      }
+
+      // 3.字符串也可以使用for of进行遍历（取到的是单个字符）
+      // 字符串用for in进行遍历（取到的是下标）
+      var str = 'yang hello world';
+      for(let s of str){
+        console.log(s)  
+      }
+
+
+      // 4.entries() 
+      for(let color of colors.entries()){
+        // console.log(typeof color)   // object
+        // entries格式：{[0, 'red'],[1, 'green'],[2, 'yellow'],[3, 'blue'],[4, 'pink']} 
+        console.log(color)             
+      } 
+
+      // color是一个一个的数组，在这里可以直接进行数组解构，拿到的就是单个key，value值
+      for(let [key,value] of colors.entries()){
+        console.log(key,value)             
+      } 
+
+
+
+      
+
+
+
+   </script>
+</body>
+</html>

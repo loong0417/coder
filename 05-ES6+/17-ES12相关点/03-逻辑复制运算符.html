@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 
+    逻辑赋值运算符：
+      1. ||=     逻辑或赋值运算符
+      2. &&=     逻辑与赋值运算符
+      3. ??=     逻辑空赋值运算符
+   -->
+</head>
+<body>
+  <script>
+    // 1. 逻辑或赋值运算符
+    let message = 'hello world';
+    // message = message || 'default value'
+    message ||= 'default value';
+    console.log(message);
+
+    // 2. 逻辑与赋值运算符（很少使用，很别扭）
+    var info = {
+      name:'yang'
+    }
+    console.log(info &&=info.name)
+
+    // 3.逻辑空赋值运算符
+    // '',0,false,true 都会返回
+    // undefined,null 不会返回，返回默认值default value
+    var str = true;
+    str ??= 'default value'
+    console.log(str)
+</script>
+</body>
+</html>

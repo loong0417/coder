@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分页---块元素测试</title>
+    <!-- 
+        块元素制作分页具体情况待分析（最佳方案）
+     -->
+    <style type="text/css">
+        boay{
+            margin: 0;
+        }
+
+        clearfix::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        ol, ul, li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        a{
+            text-decoration: none;
+            color: #333;
+        }
+
+        .page{
+            height: 50px;
+            /* background-color: red; */
+            position: fixed;
+            bottom: 20px;
+            /* 也可以将 padding-left:25% 设置成 25% 进行居中 */
+            /* padding-left: 25%; */
+    
+        }
+
+        /* 将 ul display:table 之后才可以居中的 */
+        .page ul{
+            display: table;
+            margin: 0 auto;
+        }
+
+        .page ul li{
+            float: left;
+            border: 1px solid #ddd;
+            padding: 6px 8px;
+            margin: 10px 5px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="page">
+        <ul class="clearfix">
+            <li><a href="#">上一页</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">8</a></li>
+            <li><a href="#">9</a></li>
+            <li><a href="#">10</a></li>
+            <li><a href="#">下一页</a></li>
+        </ul>
+    </div>
+</body>
+</html>

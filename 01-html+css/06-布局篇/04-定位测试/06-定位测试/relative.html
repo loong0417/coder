@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>relative定位测试</title>
+  <!-- 
+    1. 将图一中三个盒子的排列变成图二排列方式
+   -->
+  <style>
+    body{
+      margin: 0;
+    }
+
+    div{
+      width: 100px;
+      height: 100px;
+      color: #fff;
+    }
+
+    .box,.div{
+      float: left;
+      margin-right: 20px;
+    }
+
+    #box1,#div1{
+      background: red;
+    }
+
+    #box2,#div2{
+      background: green;
+    }
+
+    #box3,#div3{
+      background: blue;
+    }
+
+    #div2{
+      position: relative;
+      left: 100px;
+      top: 100px;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div id="box1">box1</div>
+    <div id="box2">box2</div>
+    <div id="box3">box3</div>
+  </div>
+ 
+
+<div class="div">
+  <div id="div1">div1</div>
+  <div id="div2">div2</div>
+  <div id="div3">div3</div>
+</div>
+  
+</body>
+</html>

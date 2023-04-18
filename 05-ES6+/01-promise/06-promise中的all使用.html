@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise中的all使用</title>
+</head>
+<body>
+  <!-- 
+    1. promise的all方法提供了并行执行的异步操作能力，并且所有异步执行完成后才会回调。
+    2. all方法，是谁跑得慢，以谁为准执行回调，all接收一个数组参数，里面的值最终都会返回给promise对象。
+   -->
+  <script>
+    /**
+     * 需求：需要两个请求，一个请求完成不了的事情。
+     * 传入一个数组，返回一个数组
+     * 如果同时发送两个网络请求，并且两个请求结果都要拿到，再做处理的情况下就使用 Promise.all() 方式
+     */
+
+    // 方式一：
+    // Promise.all([
+    //   new Promise((resolve,reject)=>{
+    //     setTimeout(() => {
+    //       resolve({"name":"杨小样"});
+    //     }, 2000);
+    //   }),
+
+    //   new Promise((resolve,reject)=>{
+    //     setTimeout(() => {
+    //       resolve("result2");
+    //     }, 1000);
+    //   })
+    // ]).then(mess=>{
+    //   // 两个都请求成功才会走
+    //   console.log(mess);
+    // }).catch(()=>{
+    //   // 两个都请求失败才会走
+    //   console.log('error');
+    // });
+
+    // 方式二：
+    let pro1 = new Promise((resolve,reject)=>{});
+    let pro2 = new Promise((resolve,reject)=>{});
+    let pro3 = new Promise((resolve,reject)=>{});
+    
+    Promise.all([
+      pro1,
+      pro2,
+      pro3
+    ]).then(()=>{
+      // 三个成功则成功
+    }).catch(()=>{
+      // 三个失败则失败
+    });
+  </script>
+</body>
+</html>

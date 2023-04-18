@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹性布局剩余空间分布</title>
+    <!-- 
+        弹性布局剩余空间分布设置： flex:1
+        
+        需求：左右两边栏固定 200px，中间区域撑满
+     -->
+
+     <style>
+         .box{
+             display: flex;
+         }
+
+         .left{
+             background: #008c8c;
+             width: 200px;
+         }
+
+         .main{
+             background: tomato;
+             flex: 1;
+         }
+
+         .right{
+             width: 200px;
+             background: yellowgreen;
+             width: 200px;
+         }
+
+     </style>
+</head>
+<body>
+    <div class="box">
+        <div class="left">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quae quas ipsam enim earum optio est assumenda non vero. Praesentium.
+        </div>
+    
+        <div class="main">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam repellendus labore tempora consectetur pariatur expedita molestias assumenda optio? Veniam impedit voluptatem iste voluptatum consequuntur praesentium perferendis. Magni facilis repudiandae cumque? Quis deserunt facilis velit dolores optio. Sunt nobis deleniti quibusdam voluptatum modi, laborum quasi laboriosam in! Impedit rem temporibus nulla officia culpa voluptates! Quibusdam nesciunt officiis porro possimus consequuntur, facilis debitis laudantium optio corporis enim assumenda! Ipsum possimus est repellendus corporis debitis laborum iure cum, nihil, architecto voluptatem vel illum accusamus molestias doloremque illo? Impedit ullam at quidem vel adipisci explicabo beatae blanditiis corrupti assumenda, cum earum dicta, culpa quis!
+        </div>
+        
+        <div class="right">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque natus cum corrupti repudiandae quasi dolores reiciendis vel culpa at saepe!
+        </div>
+    </div>
+</body>
+</html>

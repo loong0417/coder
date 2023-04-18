@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数调用方式</title>
+</head>
+<body>
+    <!-- 
+        1. 函数声明：function 函数名(参数1，参数2......){//执行代码块}
+        
+        2. 函数调用的 7 种方式：
+            1）. 直接调用函数（使用函数名方式）。
+            2）. 变量.call(变量，参数)。
+            3）. 变量.apply(变量，[参数])。参数必须是一个数组。
+            4）. new 函数名(参数)。
+            5）. 定时器调用。
+            6）. ES6里面的模板字符串调用方式。
+            7）. 立即执行函数的调用方式。
+
+     -->
+    <script>
+        // 函数声明
+        function test(text){
+            console.log(text);
+        }
+
+        test("直接调用！！");
+        test.call(test,"使用call方式调用");
+        test.apply(test,['使用apply方式调用']);
+        new test("使用new方式调用！");
+
+        setTimeout(test("用定时器调用1"),0);
+        setTimeout(test,0,"用定时器调用2");
+
+        test `用模板字符串调用`;
+
+        (function test(text){
+            console.log(text);
+        })('转成函数表达式调用！！！');
+
+
+        // 函数表达式
+        var fun = (function(text){
+            console.log(text);
+        })("函数表达式调用-----------------------------");
+
+        
+        // 构造函数法 （这样的方式非常不直观，不推荐使用）
+        const fn3 = new Function('x','y','console.log(x+y)');
+        fn3(1,2);
+    </script>
+</body>
+</html>

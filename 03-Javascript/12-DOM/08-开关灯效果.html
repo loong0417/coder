@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    body{
+      background-color: grey;
+    }
+    .switch{
+      padding: 0 10px;
+      margin: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button class="sw">关灯</button>
+  <script>
+    var sw = document.querySelector('.sw');
+    var bd = document.body;
+    var flag = true;
+    sw.onclick = function(){
+      if(flag){
+        sw.innerHTML = '开灯';
+        bd.style.backgroundColor = 'black';
+        flag = false;
+      }else{
+        flag = true;
+        bd.style.backgroundColor = 'grey';
+        sw.innerHTML = '关灯';
+      }
+     
+    }
+  </script>
+</body>
+</html>

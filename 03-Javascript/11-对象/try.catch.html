@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        try{
+            console.log("a");
+            console.log(b);
+            console.log("c");
+        }catch(e){
+            // ReferenceError:b is not defined
+            console.log(e.name + ":" + e.message);  
+        }
+
+        console.log("d");
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>const修饰常量</title>
+</head>
+<body>
+    <!-- 
+        const 修饰常量注意事项：
+            1. const修饰的标识符被赋值后，不能再修改。
+            2. 再使用 const 定义标识符，必须进行赋值。
+            3. 常量的含义是指向的对象不能修改，但可以改变内部属性。
+
+
+         const关键字声明常量：
+            1. 必须先声明后使用，声明的时候必须赋值。
+            2. 声明后不能修改。
+                注意：const 声明的对象中的属性是可以修改的。
+            3. 同一作用域里面不能重复声明（不同作用域里可以），不会被预解析。
+            4. 声明的变量不再属于 window 的属性。
+     -->
+
+     <script>
+        const num = 10;
+        // 1. Uncaught TypeError: Assignment to constant variable.
+        // num = 100;
+        // console.log(num); 
+
+
+        //  2. Uncaught SyntaxError: Missing initializer in const declaration
+        //  const num;
+        //  console.log(num);
+
+
+        // 3. 常量的含义是指向的对象不能修改，但可以改变内部属性。
+        const obj = {
+            name: "光头强",
+            age: 30,
+            sex: 'male',
+        }
+        console.log(obj);  // {name: '光头强', age: 30, sex: 'male'}
+
+        obj.name = "熊二";
+        obj.age = 20;
+        obj.sex = 'male';
+        console.log(obj);  // {name: '熊二', age: 20, sex: 'male'}
+
+     </script>
+</body>
+</html>

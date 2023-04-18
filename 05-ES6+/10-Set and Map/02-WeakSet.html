@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    set的里一个数据结构，称之为WeakSet,也是内部元素不能重复的数据结构。
+
+    那么和Set有什么区别呢？
+      1. WeakSet只能存放对象类型数据，不能存放基本数据类型。
+      2. WeakSet对元素的引用是弱引用，如果没有其它引用对某个对象进行引用，那么GC可以对该对象进行回收。
+
+    WeakSet常见的方法：
+      1. add(value)：   添加某个元素，返回WeakSet对象本身。
+      2. delete(value)：从WeakSet中删除某个元素，value被删除的元素，返回一个boolean值。
+      3. has(value)：判断WeakSet中是否存在某个元素，返回一个boolean值。
+
+    WeakSet的应用：
+      1. WeakSet不能遍历
+      2. WeakSet只是对对象的弱引用，如果我们遍历获取到其中元素，那么有可能造成对象不能正常销毁。
+      2. 所以存储到WeakSet中的对象没办法获取的。
+    
+    那么这个东西有什么用呢？
+
+   -->
+   <script>
+      // 1.WeakSet不能存放基本数据类型
+      let weakSet = new WeakSet();
+      // Invalid value used in weak set。10是一个基本数据类型，所以这是一一个无效的参数。
+      // weakSet.add(10)
+
+      // 2.WeakSet存放的对象是一个弱引用
+      var obj = {
+        name:'yang',
+        age:18
+      }
+    
+      weakSet.add(obj);
+      obj = null;
+      console.log(weakSet)  // WeakSet {{…}}->value: {name: 'yang', age: 18}
+
+
+
+      // 使用set集合存放的对象是强引用 Strong Reference
+      var set = new Set();
+      set.add(obj);
+      console.log(set)      // Set(1) {null}
+
+
+      // 3.WeakSet应用场景
+      const personSet = new WeakSet();
+      class Person{
+        constructor(){
+          personSet.add(this);
+        }
+
+        running(){
+          if(personSet.has(this)){
+            throw new Error('不能通过非构造方法创建出来的对象调用running方法');
+          }
+          console.log('running~',this)
+        }
+      }
+      var p = new Person();
+      p.running();
+
+      //不能通过非构造方法创建出来的对象调用running方法
+      p.running.call({name:'yang'});
+   </script>
+</body>
+</html>

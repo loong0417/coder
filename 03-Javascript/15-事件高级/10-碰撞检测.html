@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>碰撞检测</title>
+  <style>
+    div{
+      width: 150px;
+      height: 150px;
+      position: absolute;
+    }
+    #box1{
+      background: blue;
+      left: 20px;
+      top: 40px;
+    }
+    #box2{
+      background: red;
+      left: 800px;
+      top: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1"></div>
+  <div id="box2"></div>
+
+  <script>
+    window.onload = function(){
+      var box1 = document.getElementById('box1'),
+          box2 = document.getElementById('box2');
+      
+      function drag(obj){
+        obj.onmousedown = function(ev){
+          var disX = ev.clientX - obj.offsetLeft;
+          var disY = ev.clientY - obj.offsetTop;
+
+          document.onmousemove = function(ev){
+            var left = ev.clientX - disX,
+                top = ev.clientY - disY,
+                maxWidth = document.documentElement.clientWidth - obj.offsetWidth,
+                maxHeight = document.documentElement.clientHeight - obj.offsetHeight;
+           
+            if(left<0){
+              left = 0;
+            }else if(left>maxWidth){
+              left = maxWidth;
+            }
+
+            if(top<0){
+              top = 0;
+            }else if(top>maxHeight){
+              top = maxHeight;
+            }
+
+            // 检测碰撞
+            if(getPost(obj).right<getPost(box2).left || getPost(obj).left>getPost(box2).right || getPost(obj).bottom<getPost(box2).top || getPost(obj).top>getPost(box2).bottom){
+              // 条件成立说明，没有碰到
+              box2.style.background = "red";
+            }else{
+              box2.style.background = 'yellow';
+            }
+
+              obj.style.left = left + 'px';
+              obj.style.top = top + 'px';
+          };
+
+          document.onmouseup = function(){
+            document.onmousemove = null;
+          };
+
+          return false;
+        }
+      };
+
+      function getPost(obj){
+        return obj.getBoundingClientRect();
+      }
+
+      drag(box1);
+    }
+  </script>
+</body>
+</html>

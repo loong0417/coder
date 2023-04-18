@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .content{
+      width: 500px;
+      height: 100px;
+      /* border: 1px solid blue; */
+      background-color: blue;
+      position: relative;
+    }
+    .box{
+      width: 0px;
+      height: 0px;
+      /* border-top: 100px solid transparent;
+      border-right: 50px solid greenyellow;
+      border-left: 0px solid yellow;
+      border-bottom: 0px solid green; */
+      position: absolute;
+      right: 0;
+
+      /* 优化写法： */
+      border-color: transparent #fff transparent transparent;
+      border-style: solid;
+      border-width: 100px 50px 0 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    三角形强化：直角三角形
+   -->
+   <div class="content">
+    <div class="box"></div>
+   </div>
+   
+</body>
+</html>

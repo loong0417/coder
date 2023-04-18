@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>变量作用域</title>
+</head>
+<body>
+<!-- 
+
+1. 作用域定义
+
+作用域：变量或函数可以访问的范围称为作用域，以函数来划分的，一个函数块就是一个作用域。
+
+
+2. 作用域分类
+
+  1. 全局作用域：
+    - 全局，指的是整个文档。
+    - 变量或者函数在外面声明，那它就是全局变量和全局函数。
+    - 全局的范围是整个文档，在这个页面任何一个位置都可以访问它们。
+
+
+
+  2. 声明全局作用域的方法：
+
+    1). 所有的变量或函数放在函数外面声明。
+    2). 变量声明不用 var 关键字，直接给变量赋值（无论是在函数内函数外都是全局）。
+
+> 全局变量在任何地方都可以访问，是因为全局变量是 window 下面的属性。window 是一个全局对象，它本身在页面中任何位置都可以使用，所以说全局在任何地方都可以访问。
+
+> 注意：减少使用全局变量，全局变量是 window 属性，自定义的全局变量会覆盖 window 本身的属性（在不熟悉的情况下）。声明变量一定要加 var。
+
+
+
+  3. 局部作用域：
+
+    - 局部，函数范围内部。
+    - 变量或者函数在函数内部声明的，它们的作用仅存在于声明的这个函数里。
+    - 函数（函数声明，不是函数调用）可以嵌套的，嵌套的函数（局部函数）可以访问父函数里面的内容。
+
+
+
+  4.声明局部作用域的方法:
+
+    1.  var 变量 方式声明在函数内部。
+    2.  函数嵌套在函数内部声明。
+
+    注意：局部变量和局部函数只能在声明它的地方使用，在其它地方是用不到的。
+
+   -->
+  <script>
+    // 题目1：
+    // var c = 10;
+    // function fn(){
+    //   console.log(c);    // 10
+    //   c = 20;
+    // }
+    // fn();
+    // console.log(c);     // 20
+
+    // var d = 10;
+    // function fn(d){
+    //   console.log(d);   // undefined
+    //   d = 24;
+    // }
+    // fn();
+    // console.log(d);     // 10
+
+
+    // 题目2：
+    // var a = 13;
+    // function fn(a){
+    //   console.log(a);   // 13
+    //   a = 45;
+
+    //   console.log(a);   // 45
+    // }
+
+    // fn(a);
+    // console.log(a);   //13
+
+
+    // function fun(num1,num2){
+    //   console.log(num1,num2);
+    //   var b = 200;
+    //   console.log(b)
+    // } 
+    // var a = 100;
+    // fun(2,3)
+    // console.log(a)
+
+    // console.log(fun())
+  </script>
+</body>
+</html>

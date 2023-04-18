@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对象解构</title>
+</head>
+<body>
+  <script>
+    // 定义一个对象
+    var obj = {
+      name:'yang',
+      age:18,
+      height:1.88
+    };
+   // 1. 对象解构
+   var {name,age,height} = obj
+   console.log(name,age,height)   // yang 18 1.88
+  
+   // 2. 对象解构
+   var {height,age,name} = obj
+   console.log(name,age,height)  // yang 18 1.88
+
+  //  3. 单个值解构
+  var {name} = obj
+  console.log(name)
+
+  // 4. 在解构的时候改变属性值
+  var {name:newName} = obj
+  console.log(newName)     // yang
+  console.log(name)        // yang
+  
+  // 5. 在对象解构的时候设置一个默认值
+  var {name,address='湖北武汉'} = obj
+  console.log(name,address)
+
+  // 6. 在函数形参里解构
+  // (1). 没有对对象进行解构，我们使用变量就需要使用对象.属性形式
+  // function test(obj){
+  //   console.log(obj.name);
+  //   console.log(obj.age)
+  // }
+  // test(obj);
+  
+  // (2). 我们知道传进来的参数是一个对象，我们就在这里对，形参进行解构
+  function test({name,age}){
+    console.log(name)
+    console.log(age)
+  }
+  test(obj);
+
+</script>
+</body>
+</html>

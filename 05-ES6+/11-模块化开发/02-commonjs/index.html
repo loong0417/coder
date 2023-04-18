@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    CommonJS:
+      1. common.js是一个同步的写法。
+      2. 用来支持服务端的模块化，在服务端直接使用node.js就可以了。
+      3. 客户端使用的话需要编译，借助Browserify工具。
+        - npm install -g browserify (注意大小写，在这个位置今天将browserify首字母写成大写，然后一直报错，不存在的)
+      
+       Browserify：
+        - 官网：http://browserify.org
+        - 安装：npm install -g browserify
+        - 编译：browserify js/scr/app.js -o js/dist/index.js
+        [编译语法分为三个部分：browserify 需要编译的文件 -O 输出编译文件地址及文件名，index.js不是固定名字，可以自定义]
+
+        然后在index.html文件中引入，输出文件目录中的输出文件即可。
+        [我的实际操作是输出到dist中的index.js文件中，然后在当前index.html文件中引入]
+
+
+    暴露模块：
+      1. module.exports = value
+      2. exports.xxx = value
+
+    引入模块：
+      require(文件名)
+      注意事项：
+        1. 如果引入第三方模块，参数为包的名字。
+        2. 如果引入的是本地模块，参数为模块路径文件。
+   -->
+  <script>
+    
+  </script>
+  <!-- app.js:2 Uncaught ReferenceError: require is not defined at app.js -->
+  <!-- <script src="./app.js"></script> -->
+
+  <script src="./dist/index.js"></script>
+</body>
+</html>

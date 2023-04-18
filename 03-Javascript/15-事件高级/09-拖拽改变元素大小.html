@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>拖拽改变元素大小</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 200px;
+            top:200px;
+        }
+    </style>
+  
+ </head>
+ <body>
+    <div id="box"></div>
+
+    <script>
+      window.onload=function(){
+        var oBox=document.getElementById('box');
+
+        oBox.onmousedown=function(e){
+            e=e||event;
+            var
+                pos=fn.call(this),
+                disy= e.clientY,
+                disx= e.clientX,
+                disL=this.offsetLeft,
+                disT=this.offsetTop,
+                w=oBox.offsetWidth,
+                h=oBox.offsetHeight;
+
+
+            document.onmousemove=function(e){
+                e=e||event;
+
+                var x= e.clientX-disx,
+                    y= e.clientY-disy;
+
+                if(inArr(pos,'top')!=-1){
+                    if(h-y>=50){
+                        oBox.style.height=h-y+'px';
+                        oBox.style.top=disT+y+'px';
+                    }
+
+                }
+                if(inArr(pos,'bottom')!=-1){
+                    if(y + h>=50) {
+                        oBox.style.height = y + h + 'px';
+                    }
+                }
+                if(inArr(pos,'left')!=-1){
+                    if(w-x>=50){
+                        oBox.style.width=w-x+'px';
+                        oBox.style.left=disL+x+'px';
+                    }
+
+                }
+
+                if(inArr(pos,'right')!=-1){
+                    if(x+w>=50){
+                        oBox.style.width=x+w+'px';
+                    }
+
+                }
+            }
+            document.onmouseup=function(){
+                document.onmousemove=document.onouseup=null;
+            }
+        }
+
+        oBox.onmousemove=fn;
+        function fn(e){
+            e=e||event;
+
+            var
+                disx= e.clientX,
+                disy= e.clientY,
+                w=this.offsetWidth,
+                h=this.offsetHeight,
+                disL=this.offsetLeft,
+                disT=this.offsetTop,
+                pos=[];
+            this.style.cursor='';
+            if(disx<disL+10){
+                pos.push('left');
+                this.style.cursor = 'w-resize';
+            }
+            if(disx>disL+w-10){
+                pos.push('right');
+                this.style.cursor = 'w-resize';
+            }
+            if(disy<disT+10){
+                pos.push('top');
+                this.style.cursor = 'n-resize';
+            }
+            if(disy>disT+h-10){
+                pos.push('bottom');
+                this.style.cursor = 'n-resize';
+            }
+
+            if(pos.length==2){
+                if((inArr(pos,'top')!=-1&&inArr(pos,'right')!=-1)||(inArr(pos,'left')!=-1&&inArr(pos,'bottom')!=-1)){
+                    this.style.cursor='ne-resize';
+                }else{
+                    this.style.cursor='nw-resize';
+                }
+            }
+            return pos;
+        }
+
+        function inArr(arr,s){
+            for(var i=0;i<arr.length;i++){
+                if(arr[i]==s){
+                    return i;
+                }
+            }
+            return -1;
+        }
+    }
+  </script>
+ </body>
+ </html>

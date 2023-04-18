@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    ES6中promise封装ajax
+    请求地址：http://localhost:3000/personalized?limit=10
+   -->
+  <script>
+    function getData(url){
+      return new Promise((resolve,reject)=>{
+        // 1. 创建ajax实例对象
+        let xhr = new XMLHttpRequest();
+        // 2. 新建一个http请求
+        xhr.open('GET',url,true);
+        // 3. 发送请求，如果是POST请求里面会携带参数，这里是GET请求所以不用
+        xhr.send(null);  
+        // 4. 设置状态监听函数
+        xhr.onreadystatechange = function(){
+          // readyState===4表示请求完成
+          if(xhr.readyState !==4){
+            return;
+          }
+          // 当前请求成功或者失败，需要修改promise实例状态
+          if(xhr.status>=200 && xhr.status<300){
+            resolve(xhr.response);    // 请求结果
+            // resolve(xhr.responseText);
+          }else{
+            reject(new Error(xhr.statusText));
+          }
+        }
+        // 设置错误的监听函数
+        xhr.onerror = function(){
+          reject(new Error(xhr.statusText));
+        }
+
+        // 设置响应数据的类型（上面请求结果为responseText，这里就不需要设置请求类型）
+        xhr.responseText = 'json';
+      });
+    }
+    getData('http://localhost:3000/personalized?limit=10').then((value)=>{
+      // 这个位置一定要设置JSON格式
+      console.log(JSON.parse(value));
+    }).catch((reason)=>{
+      console.log(reason);
+    });
+  </script>
+</body>
+</html>

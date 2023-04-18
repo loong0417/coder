@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    字符串填充：
+      从开始字符串的位置填充：padStart()
+      从字符串结束的位置填充：padEnd()
+   -->
+   <script>
+      var name = 'yang'
+      // padStart(参数1：预计填充后新字符串的长度,参数2：用什么填充[第二个参数不填默认用空格填充])
+      console.log(name.padStart(10,'*'))  // ******yang
+
+      console.log(name.padEnd(10,'*'))    // yang******
+
+      // 案例：
+      let carsNum = '2345678902345678932323'
+      let newNum = carsNum.slice(-4) 
+      let finalNum = newNum.padStart(carsNum.length,'*')
+      console.log(finalNum)   // ******************2323 银行卡号处理
+   </script>
+</body>
+</html>

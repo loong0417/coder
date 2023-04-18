@@ -1,0 +1,15 @@
+.box {
+	width: 100px;
+	height: 100px;
+	border: 1px solid red;
+	padding: 50px;
+
+	/* 自动补全CSS兼容性测试 */
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+}

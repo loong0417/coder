@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      position: relative;
+      width: 170px;
+      margin: 100px auto;
+    }
+    .con{
+      position: absolute;
+      left: 0;
+      top: -28px;
+      width: 170px;
+      height: 21px;
+      border: 1px solid rgba(0, 0, 0, .2);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+      display: none;
+      white-space: nowrap;
+
+      font-size: 16px;
+    }
+    .con::after{
+      display: block;
+      content: '';
+      width: 0;
+      height: 0;
+      border: 8px solid #000;
+      border-style: solid dashed dashed;
+      border-color: #fff transparent transparent;
+
+      position: absolute;  
+      left: 20px;
+      top: 21px;
+    }
+    .num{
+      outline: none;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="con"></div>
+    <input type="" class="num" value="">
+  </div>
+  <script>
+    /**
+     * 1. 快递单号输入内容时，上面的大号字体盒子（con）显示（这里面的字号更大）。
+     * 2. 表单检测用户输入：给表单添加键盘事件。
+     * 3. 同时把快递单号里面的值（value）获取过来赋值给con盒子（innerText）作为内容。
+     * 4. 如果快递单号里面的内容为空，则隐藏大号字体盒子（con）
+     */
+    var con = document.querySelector('.con');
+    var num = document.querySelector('.num');
+    num.addEventListener('keyup',function(){
+      if(num.value !==''){
+        con.style.display = 'block';
+        con.innerHTML = num.value;
+      }else{
+        con.style.display = 'none';
+      }
+    });
+
+    // 文本框失去焦点，隐藏con盒子
+    num.addEventListener('blur',function(){
+      con.style.display = 'none';
+    });
+
+    // 文本框聚焦，且内容不为空，显示con文本框
+    num.addEventListener('focus',function(){
+      if(num.value !==''){
+        con.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

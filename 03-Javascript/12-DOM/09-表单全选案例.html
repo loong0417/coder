@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    table{
+      width: 500px;
+      margin: 20px auto;
+      border-spacing: 0;
+      border-collapse: 0;
+    }
+    th,tr,td{
+      border: 1px solid #333;
+      text-align: center;
+      height: 50px;
+    }
+    th{
+      background-color: green;
+      color: #fff;
+    }
+    td{
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <table>
+      <thead>
+        <tr>
+          <th><input type="checkbox" class="checkAll"></th>
+          <th>商品</th>
+          <th>价格</th>
+        </tr>
+      </thead>
+      <tbody class="checkItems">
+        <tr>
+          <td><input type="checkbox"></td>
+          <td>iPhone8</td>
+          <td>8000</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox"></td>
+          <td>iPad Pro</td>
+          <td>500</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox"></td>
+          <td>iPad Air</td>
+          <td>2000</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox"></td>
+          <td>Apple Watch</td>
+          <td>2000</td>
+        </tr>
+      </tbody>
+  </table>
+  <script>
+    /**
+     * 全选案例：
+     *  1. 点全选，下面所有商品均被选中。再点，全部商品取消。
+     *  2. 点商品，每一个都选中的时候，上面全选选中，有一个没选，则取消全选。
+     */
+    var checkAll = document.querySelector('.checkAll');
+    var checkItems = document.querySelector('.checkItems').querySelectorAll('input');
+
+    // 1.1.全选和反选
+    checkAll.onclick = function(){
+      console.log(this.checked);
+      for(var i=0;i<checkItems.length;i++){
+        checkItems[i].checked = this.checked;
+      }
+    }
+
+    // 2.1.商品选择
+    for(var i=0;i<checkItems.length;i++){
+      checkItems[i].onclick = function(){
+        // flag 控制全选按钮是否选中
+        var flag = true;
+        // 每一次点击下面的的复选框都要训话检查，这4个按钮中是否有没有选中的按钮，有则需要将checkAll更改
+        for(var i=0;i<checkItems.length;i++){
+          if(!checkItems[i].checked){
+            flag = false;
+            break;
+          }
+        }
+        checkAll.checked = flag;
+      }
+    }
+  </script>
+</body>
+</html>

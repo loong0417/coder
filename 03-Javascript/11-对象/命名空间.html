@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>命名空间</title>
+</head> 
+<body>
+     <script type="text/javascript">
+// 命名空间使用方式
+        // var org = {
+        //     department1:{
+        //         yang:{
+        //             name:'杨小样',
+        //             age:undefined
+        //         },
+        //         zhang:{
+        //             name:"皮皮羊",
+        //             age:20,
+        //             job:'攻城狮',
+        //         },
+        //         li:{
+        //         }
+        //     },
+
+        //     department2:{
+        //         yang:{},
+        //         zhang:{},
+        //         li:{}
+        //     }
+        // }
+
+        // // console.log(org.department1.yang.name);
+
+        // var info = org.department1.zhang;
+        // console.log(info.name); 
+        
+// 使用闭包方式实现防止变量污染，不推荐使用上面方式
+        // var init = (function(){
+        //     var name = "abc";
+
+        //     function callName(){
+        //         console.log(name);
+        //     }
+
+        //     function callInfo(){
+        //         console.log("1212121212121212");
+        //     }
+
+        //     return function(){
+        //         callName();
+        //         callInfo();
+        //     }
+        // }());
+        // init();
+
+// 方法连续调用的方式
+            var deng = {
+                smoke:function(){
+                    console.log("smokeing。。。。。。 cool!!!");
+                    // 这里如果没有返回值默认返回 this.undefined，下面连续调用函数就会报错
+                    // 直接返回当前对象，就可以实现函数连续调用
+                    return this;
+                },
+
+                drink:function(){
+                    console.log("drinking...... ye cool!!!");
+                    return this;
+                },
+
+                perm:function(){
+                    console.log("preming......cool!!!");
+                    return this;
+                }
+            }
+
+            deng.smoke().drink().perm();
+            // smokeing。。。。。。 cool!!!
+            // drinking...... ye cool!!!
+            // preming......cool!!!
+
+
+     </script>
+</body>
+</html>

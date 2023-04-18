@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    函数参数默认值：在严格模式下进行测试。
+      'use strict' 严格模式是ES5提出的。
+    
+      1.函数参数如果有默认值，我们通常需要将默认值放在函数参数的最后一个，在一些语言中，如果默认值不是放在最后一个可能会报错的，在javascript中虽然不会报错，但是看上去很难受。
+      2.另外默认值会改变函数length的个数，默认值以及后面的参数都不会计算在length之内的。
+  -->
+  <script>
+    'use strict' 
+    // 1.代码1：没有默认参数
+    function test(name,age){
+      age = age || 18
+      console.log(name,age)
+    }
+
+    test('yang');    // yang 18
+    test('yang',20); // yang 20
+
+    // 注意：这里我希望用我自己传的0作为年龄参数，但是就被判定为false
+    test('yang',0);  // yang 18 
+
+    // 2.代码2：函数默认参数
+    function demo(name='张三',age=0){
+      console.log(`姓名：${name},年龄：${age}`);
+    }
+    demo();           // 姓名：张三,年龄：0
+    demo('yang',18);  // 姓名：yang,年龄：18
+
+    // 3.代码3：对象作为函数的默认参数及进行解构
+    function info({name,age}={name:'yang',age:18}){
+      console.log(name,age)
+    }
+    info()
+
+    // 4.代码4：参数默认值一般都要放在最后
+    function user(age=18,name){
+      console.log(age,name);
+    }
+    // 如果默认值不是放在最后面的，又需要使用默认值，那就需要传undefined，如果默认值在中间呢？
+    user(undefined,'张三');   // 18 '张三'
+
+    // 5.代码5：另外默认值会改变函数length的个数，默认值以及后面的参数都不会计算在length之内的。
+    function paramLength(num1,num2=10,num3,num4){
+      console.log(paramLength.length)   // 1 函数名.length方式查看参数个数
+    }
+    paramLength(1,undefined,2,3);   
+
+    function paramLength2(num1,num3,num4,num2=10){
+      console.log(paramLength2.length)  // 3 函数名.length方式查看参数个数
+    }
+    paramLength2(1,2,3);   
+  </script>
+</body>
+</html>

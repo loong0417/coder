@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>滚动条兼容封装</title>
+</head>
+<body>
+  <input type="text" value="0">
+  <script>
+    /**
+     *  obj：滚动对象
+     *  upFn：向上滚动处理函数
+     *  downFn：向下滚动处理函数
+     */
+    function myScroll(obj,upFn,downFn){
+      obj.onmousewheel = fn;
+      obj.addEventListener('DOMMouseScroll',fn);
+
+      function fn(ev){
+        if(ev.wheelDelta>0 || ev.detail<0){
+          // upFn();
+          upFn.call(obj,ev);
+        }else{
+          // downFn();
+          downFn.call(obj,ev);
+        }
+        ev.preventDefault();
+        return false;
+      };
+    }
+
+    window.onload = function(){
+      var input = document.querySelector('input');
+      var n = 0;
+      myScroll(input,function(){
+        input.value = n++;
+      },function(){
+        input.value = n--;
+      })
+    }
+  </script>
+</body>
+</html>

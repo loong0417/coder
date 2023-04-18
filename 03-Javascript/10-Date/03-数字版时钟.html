@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数字版时钟</title>
+  <style>
+    body{
+      background: #000;
+      color: #fff;
+      margin-top: 50px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <script>
+      window.onload = function(){
+      var dateBox = document.getElementById('dateBox');
+     
+
+      
+      function timer(){
+        var d = new Date();
+        var year = d.getFullYear();
+        var month = (d.getMonth())+1;
+        var date = d.getDate();
+        var week = d.getDay();
+        var hours = d.getHours();
+        var minutes = d.getMinutes();
+        var seconds = d.getSeconds(); 
+        dateBox.innerHTML = year+'/'+format(month)+'/'+format(date)+'/'+'星期'+formatWeek(week)+'<br>'+format(hours)+'点'+format(minutes)+'分'+format(seconds)+'秒';
+      }
+    
+      // 格式化日期
+      function format(value){
+        return value>10 ? value : '0'+value;
+      }
+
+      function formatWeek(value){
+        return ['日','一','二','三','四','五','六'][value];
+      }
+
+      setInterval(timer,1000);
+    
+    }
+  </script>
+
+  <div id="dateBox"></div>
+</body>
+</html>

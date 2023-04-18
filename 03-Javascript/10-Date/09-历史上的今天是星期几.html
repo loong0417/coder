@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>历史上的今天是星期几</title>
+</head>
+<body>
+  <script>
+    window.onload = function(){
+      var year = document.getElementById('year');
+      var month = document.getElementById('month');
+      var day = document.getElementById('day');
+      var week = document.getElementById('week');
+
+      var date = new Date();
+      var oldDate = new Date();
+
+   
+      // 生成年
+      var yearStr = '';
+      for(var i=2030;i>=1970;i--){
+          yearStr+='<option>'+i+'</option>';
+      }
+      year.innerHTML = yearStr;
+      year.value = date.getFullYear();
+      
+
+      // 生成月
+      var monthStr = '';
+      for(var i=1;i<=12;i++){ 
+          monthStr+='<option>'+i+'</option>';
+      }
+      month.innerHTML = monthStr;
+      month.value = date.getMonth()+1;
+      
+      
+      createDay();
+      /**
+       * 生成日 
+       *  
+       */
+      function createDay(){
+        
+        // 1. 现在需要根据用户选择的年份和月份设置日期，
+        console.log(date);
+        date.setFullYear(year.value);
+     
+        // date.setMonth(month.value);
+        date.setDate(0);
+   
+        date.setMonth(month.value,0);
+			  //这里有修改，上面两行代码问题，如果今天的日期是31号的话，再选择一个31号就会出问题，所以改成d.setMonth(month.value,0);
+        //设置月份的时候，一起设置日（但是目前我这边没有出现现在情况连续选择两个31号的月份出现转换问题，所以不需要修改）
+
+        var totalDay = date.getDate();
+        
+        var dayStr='';
+        for(var i=1;i<=totalDay;i++){
+          dayStr+='<option>'+i+'</option>';
+        }
+        day.innerHTML = dayStr;
+        day.value = oldDate.getDate();
+        
+        // 星期的变化放在这里（星期根据这里的日期的变化而变化）
+        date.setDate(day.value);
+        week.innerHTML = formatDay(date.getDay());
+      } 
+      
+      /**
+       * onchange 事件
+       * onchange 事件只有表单中才会有，其它地方不能使用 onchange  事件 
+       */
+      year.onchange = function(){
+        createDay();
+      };
+
+      month.onchange = function(){
+        createDay();
+      };
+
+      /**
+       * 日期这个位置比年月要复杂一点，因为年月日决定了星期 
+       */
+      day.onchange = function(){
+        date.setFullYear(year.value);
+        // 在获取月份的时候加了一个月，在设置的时候需要减去一个月
+        date.setMonth(month.value-1);
+        date.setDate(this.value);
+
+        week.innerHTML = formatDay(date.getDay());
+      };
+
+      /**
+       * 格式化星期 
+       */
+      function formatDay(value){
+        return ['日','一','二','三','四','五','六'][value];
+      }
+      
+    }
+  </script>
+  <select id="year"></select>年
+  <select id="month"></select>月
+  <select id="day"></select>日
+  星期<span id="week"></span>
+</body>
+</html>

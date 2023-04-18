@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件拖拽存在的问题3</title>
+  <style>
+    #box{
+      width: 300px;
+      height: 300px;
+      background: green;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    #img{
+      display: block;
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    拖拽存在的问题：
+      1. 这样写只能拖拽一次。
+        - 解决方式1：isDown = false 声明一个变量，用来判断用户有没有点击方块。
+        - 解决方式2：将 onmousemove 和 onmouseup 放到 onmousedown 中，在实际开发中也是这样解决的。
+                    原因：就是因为 onmousedown(重新按鼠标，所有的函数会再重新赋值)。
+
+      2. 鼠标拖动速度非常快，会脱离方块。
+        - 	原因：是因为onmousemove事件的发生是根据浏览器的频率决定的，
+            如果鼠标移动的非常快，那onmousemove事件有可能没有发生，所以就会断了。
+        - 解决方式：把onmousemove事件加给document。
+      
+      3. 拖动元素，同时存在文本，文本会被选中。（问题不大，用户体验不好）
+        - 解决方案：onmousedown里面添加 return false;
+      
+      4. 拖动图片的时候会复制一张图片（看着像拖拽的一个图片复制版本）。
+        - 解决方案：onmousedown里面添加 return false;
+   -->
+   杨小样文本
+  <div id="box"></div>
+  <img id="img" src="./images/big.jpg" alt="">
+  <script>
+   window.onload = function(){
+      var box = document.querySelector('#box'),
+          disX = 0,           // 鼠标按下起始点离元素边X轴的距离
+          disY = 0;           // 鼠标按下起始点离元素边Y轴的距离
+
+      // 鼠标按下（鼠标在元素上按下）
+      box.onmousedown = function(ev){
+        isDown = true;
+        disX = ev.clientX - box.offsetLeft;
+        disY = ev.clientY - box.offsetTop;
+
+        // 鼠标移动
+        document.onmousemove = function(ev){
+          box.style.left = ev.clientX - disX+'px';
+          box.style.top = ev.clientY - disY+'px';
+        }
+
+        // 鼠标抬起
+        box.onmouseup = function(){
+          document.onmousemove = null;
+        }
+        // 问题3解决方案：阻止默认选中文字
+        return false;
+      }
+
+
+      /**
+       * 图片拖拽存在的问题：
+       * 
+       *  拖动图片的时候会复制一张图片（看着像拖拽的一个图片复制版本）。
+       *    - 解决方案：onmousedown里面添加 return false;
+       *  
+       */
+      function drag(){
+        var img = document.querySelector('#img'),
+            disX = 0,
+            disY = 0;
+
+        img.onmousedown = function(ev){
+          disX = ev.clientX - img.offsetLeft;
+          disY = ev.clientY - img.offsetTop;
+
+          document.onmousemove = function(ev){
+            img.style.left = ev.clientX - disX + 'px';
+            img.style.top = ev.clientY - disY + 'px';
+          }
+
+          img.onmouseup = function(){
+            document.onmousemove = null;
+          }
+          return false;
+        }
+      }
+      drag();
+   };
+  </script>
+</body>
+</html>

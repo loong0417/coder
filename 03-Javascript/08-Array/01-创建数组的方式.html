@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建数组的方式</title>
+</head>
+<body>
+  <script>
+    // 1. 字面量方式创建数组
+    // var arr = [1,2.3,4,5];
+
+    // 2. 对象实例化方式创建数组
+    // var arrs = new Array();
+
+
+    // 3. 两种方式创建数组之间的区别：当数组元素只有一个时候，两者代表的含义是不一样的。
+    // 1）. var arr = [20]; 代表数组只有一个元素，长度为1。
+    // 2）. var arrs = new Array(20); 代表数组有20个empty(空)，长度为20。
+
+    var arr = [20];
+    var arrs = new Array(20);
+
+    console.log(arr,arrs);
+
+    // object，在js中数组是属于对象的
+    console.log(typeof arr);  
+
+    // 3. ES5新增的Array.isArray(数组)
+    console.log(Array.isArray(arr));  // true
+  </script>
+</body>
+</html>

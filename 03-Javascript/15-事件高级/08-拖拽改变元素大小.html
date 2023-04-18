@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拖拽改变元素大小</title>
+  <style>
+    *{
+      margin: 0;
+    }
+    #box{
+      width: 100px;
+      height: 100px;
+      border: 10px solid #f00;
+      background: green;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <script>
+    window.onload = function(){
+      var box = document.getElementById('box'),
+          startL = 0,         // 元素离左边的距离
+          startT = 0,         // 元素离上边的距离
+          boxWidth = 0;       // 一个盒子的宽度
+        
+      box.onmousedown = function(ev){
+        startL = ev.clientX - box.offsetLeft;
+        startT = ev.clientY - box.offsetTop;
+        boxWidth = box.clientWidth;
+       
+        var posX = ev.clientX,   // 鼠标点击的位置离左边的距离
+            posY = ev.clientY;   // 鼠标点击的位置离右边的距离
+            
+        if(getPos(box).right - posX <= 10){
+          box.style.cursor = 'e-resize';
+          document.onmousemove = function(ev){
+            var newWidth = ev.clientX - posX + boxWidth;
+            if(newWidth<boxWidth){
+              newWidth = boxWidth;
+            }
+            box.style.width = newWidth+'px';
+
+            document.onmouseup = ()=>document.onmousemove = null;
+          }
+        }
+
+        // document.onmousemove = function(ev){
+        //   var left = ev.clientX - startL,
+        //       top = ev.clientY - startT,
+        //       right = document.documentElement.clientWidth - box.offsetWidth,
+        //       bottom = document.documentElement.clientHeight - box.offsetHeight;
+          
+        //   if(left<0){
+        //     left = 0;
+        //   }else if(left>right){
+        //     left = right;
+        //   }
+
+        //   if(top<0){
+        //     top = 0;
+        //   }else if(top>bottom){
+        //     top = bottom;
+        //   }
+              
+        //   box.style.left = left + 'px';
+        //   box.style.top = top + 'px';
+        // }
+
+        // document.onmouseup = function(){
+        //   document.onmousemove = null;
+        // }
+      }
+
+      function getPos(obj){
+        return obj.getBoundingClientRect();
+      }
+    }
+  </script>
+</body>
+</html>

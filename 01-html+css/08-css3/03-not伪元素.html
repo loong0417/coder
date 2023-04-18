@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>not伪元素</title>
+    <!-- 
+        E：not(s) 排除掉某个元素
+            E 标签
+            s 需要排除掉标签的 class 或 id
+    -->
+    <style>
+        p:not(#red){
+            font: bold 16px/32px "微软雅黑";
+            color: red;
+        }
+
+        p:not(.box){
+            background: green;
+        }
+        
+    </style>
+</head>
+<body>
+    <p>张三</p>
+    <p id="red">李四</p>
+    <p class="box">王五</p>
+</body>
+</html>

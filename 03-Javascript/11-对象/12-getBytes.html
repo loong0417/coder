@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // ASCII码表一共有两张，表1：0~127，表2：128~255 一个字符占一个字节 byte。
+    // UNICode 涵盖 ASCII码，256之后占两个字节，0~255是占一个字节的。
+
+    // 需求：输入任意字符串，算出字节数。
+    // 方式一：
+    // var getBytes = function(str){
+    //   var bytes = 0;
+    //   for(var i=0;i<str.length;i++){
+    //     var pos = str.charCodeAt(i);
+    //     if(pos<=255){
+    //       bytes++;
+    //     }else{
+    //       bytes+=2;
+    //     }
+    //   } 
+    //   return bytes;
+    // }  
+    // console.log(getBytes("asdfghjkl"));  
+
+    
+    // 方式二：
+    function getbytes(str){
+      var len = str.length;
+      for(var i=0;i<=len;i++){
+        var pos = str.charCodeAt(i);
+        if(pos>255){
+          len++;
+        }
+      }
+      return len;
+    }
+
+    console.log(getbytes("asdfgh哈哈"));
+  </script>
+</body>
+</html>

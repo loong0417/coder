@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>setInterval</title>
+</head>
+<body>
+  <input type="text" name="phone" placeholder="请输入验证码">
+  <button>发送验证码</button>
+  <script>
+    // 1. setInterval(function(){},1000) 测试
+    //  参数1：函数，写成字符串形式，函数名后面必须加执行括号。
+    //  参数1：函数，直接写一个函数名子，不需要加引号，两种写法。
+    // setInterval(test,1000);
+    // function test(){
+    //   console.log(1);
+    // }
+
+    // 2. 函数名的写法，在实际开发中80%定时器报错问题，出现在这个位置。
+    // setInterval("test()",1000);
+    // function test(){
+    //   console.log(1);
+    // }
+
+    // 3. 检测setInterval()是否准确，time1比time2差1秒。
+    // 检测结果是：不准确的。
+    // var time1 = new Date().getTime();
+    // setInterval(function(){
+    //   var time2 = new Date().getTime();
+    //   console.log(time2-time1);
+    //   time1 = time2;
+    // },1000);
+
+
+    // 4. 案例：使用定时器，发送验证码，在等待验证码过程中，按钮不能点击。
+    var input = document.querySelector('input');
+    var btn = document.querySelector('button');
+    var num = 10; // 定义时间
+    btn.addEventListener('click',function(){
+      // 点击按钮之后改变按钮
+      btn.setAttribute('disabled',true);
+
+      var timer = setInterval(function(){
+        if(num===0){
+          alert(`验证码：${input.value}`);
+          btn.removeAttribute('disabled');
+          btn.innerHTML = '发送验证码';
+          clearInterval(timer);
+        }else{
+          num--;
+          btn.innerHTML = `还剩下${num}秒`;
+        }
+      },1000);
+    });
+  </script>
+</body>
+</html>

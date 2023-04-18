@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<!-- 
+    1. document.write是直接将内容写入页面的内容流，但是文档流执行完毕，则它会导致页面全部重绘。
+    2. innerHTML是将内容写入某个DOM结点，不会导致页面全部重绘。
+    3. innerHTML创建多个元素效率更高（不要使用拼接字符串的方式，采取数组形式拼接），解构稍微复杂
+    4. createElement创建多个元素效率稍低一点点，但是解构清晰。
+
+    总结：不同浏览器下，innerHTML效率要比createElement高。
+ -->
+  <script>
+    /**
+     *  1. document.write()
+     */
+    function writes(){
+      var start = +new Date();
+      for(var i=0;i<=1000;i++){
+        document.write('<a href="javascript:;">删除</a>');
+      }
+      var end = +new Date();
+      console.log(end - start);   // 40
+    }
+    writes();
+
+    /**
+     * 2. innerHTML 
+     */
+    function inner(){
+      var start = +new Date();
+      for(var i=0;i<=1000;i++){
+        document.body.innerHTML +='<div style="width:100px;height:2px;border:1px solid red;"></div>';
+      }
+      var end = +new Date();
+      console.log(end - start);   // 804
+    }
+    // inner();
+
+    
+    function innerArray(){
+      var start = +new Date();
+      var arr = [];
+      for(var i=0;i<=1000;i++){
+        arr.push('<div style="width:100px;height:2px;border:1px solid red;"></div>');
+      }
+      document.body.innerHTML = arr.join('');
+      var end = +new Date();
+      console.log(end - start);   // 1~3
+    }
+    // innerArray()             
+
+    /**
+     * 3. document.createElement() 
+     */
+   function create(){
+    var start = +new Date();
+    for(var i=0;i<=1000;i++){
+      var div = document.createElement('div');
+      div.style.width = '100px';
+      div.style.height = '2px';
+      div.style.border = '1px solid blue';
+      document.body.appendChild(div);
+    }
+    var end = +new Date();
+    console.log(end - start)    // 6~8
+   }
+  //  create();
+  </script>
+</body>
+</html>

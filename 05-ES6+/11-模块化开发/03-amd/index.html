@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    AMD规范：专门用于客户端模块化规范，模块化加载是异步形式。
+      1. 不需要编译
+      2. 也不需要借助node.js
+    
+    暴露模块（定义模块）：
+      1. 没有依赖的模块
+        defined(function(){
+          return 模块;
+        });
+
+      2. 有依赖的模块
+        defined(['module1','module2'],function(m1,m2){
+          return 模块;
+        });
+    
+    引入模块：
+        requirejs(['module1','module2'],function(){
+          // ...... 
+        });
+    
+    AMD.js ECMASCRIPT也是不支持的，所以只能借助第三方库
+    Require.js:
+        官网：http://requirejs.org
+
+    requirejs使用步骤：
+      1. 在页面里面通过<script src='./require.js' data-main="js/app.js"></script>      
+        - data-main：为主模块文件路径，这是必须要指定的。
+      2. 主模块文件配置
+        - 基本配置：requirejs.config();
+        - 引入模块：requirejs(['模块名'],function(){
+
+        });
+   -->
+  <script>
+
+  </script>
+  <!-- 
+    src="./js/lib/require.js" 引入框架文件
+    data-main="./js/app.js" 指定主模块文件
+   -->
+  <script src="js/lib/require.js" data-main="js/app.js"></script>
+</body>
+</html>

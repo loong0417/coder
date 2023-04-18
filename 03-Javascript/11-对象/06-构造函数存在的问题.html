@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数存在的问题</title>
+</head>
+<body>
+    <!-- 
+        构造函数：
+            1. 创建并初始化对象的函数，并且需要用 new 关键字来调用，如果不使用 new 调用就和普通函数没有区别。
+            2. 通过构造函数 new 出来的对象叫实例，创造对象的过程叫实例化。
+
+        构造函数内部原理：
+            1. 会创建一个空对象 var obj = new Object;
+            2. 把 this 指向创建的对象 this = obj;
+            3. 函数执行完毕后返回创建的对象 return obj;
+        
+        
+        构造函数存在的问题：
+            性能问题造成的资源浪费。
+     -->
+    <script>
+        function Person(name,age){
+            /**
+             * 1. 创建一个空对象。
+             *  var obj = new Object;
+             * 2. 把this指向创建的对象。
+             *  this = obj;
+             */
+            this.name = name;
+            this.age = age;
+
+            this.say = function(){
+                console.log("我叫"+this.name);
+            }
+
+            // 3. 函数指向完毕后返回创建的对象（隐式的）。
+            // return obj;
+        }
+
+        var p1 = new Person("老王",30);   // 创建一个实例
+        p1.say();
+
+        var p2 = new Person("小王",18);   // 创建一个实例
+        p2.say();
+        
+        /**
+         * 性能问题造成的资源浪费就体现在这个位置。
+         * 1. 就是创建了两个实例对象，然后它们的调用的say()函数不是同一个方法。
+         * 2. 这样就会造成资源的浪费。 
+         */
+        console.log(p1.say==p2.say);     // false
+
+
+        /**
+         * 在系统自带的构造函数中完全不会存在这样的问题，它们调用的是同一个方法。 
+         * push 是为 true。push()如果后面加括号是比较的执行结果。
+         */
+        var arr1 = new Array(1,2,3);
+        var arr2 = new Array(4,5,6);
+
+        console.log(arr1.push == arr2.push);  //true
+    </script>
+</body>
+</html>

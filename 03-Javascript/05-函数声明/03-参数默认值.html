@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 案例1:
+    // function test(a,b){
+    //   console.log(a,b)
+    // }
+    // test(1,2);
+
+     // 1.  a=2,b=3,c=undefined 当实参个数比形参少的时候，未赋值的形参值为undefined。函数调用不会报错。
+    function sum(a,b,c){
+      console.log(a,b,c);
+    }
+    sum(2,3);   
+
+    // 2. 给形参传一个默认值c=undefined，实参的默认值会将形参的默认值覆盖
+    function sum(a,b,c=undefined){
+      console.log(a,b,c);
+    }
+    sum(2,3,4);  // 2,3,4
+
+    // 3. 将形参值设置一个默认的实际值c=5，实参传undefined，这个时候以形参的默认值为主
+    function sum(a,b,c=5){
+      console.log(a,b,c);
+    }
+    sum(2,3,undefined);  // 2,3,5
+
+
+
+    // 4. 给形参设置默认参数，低版本的浏览器不兼容，给形参赋默认值是 ES6 的内容。
+    // 在 ES5 中（低版本浏览器中怎么设置默认参数呢？）
+    function test(a,b){
+      var a = arguments[0] || 1;
+      var b = arguments[1] || 2;
+
+      console.log(a+b)  // 3
+    }
+    test();  
+
+  </script>
+</body>
+</html>

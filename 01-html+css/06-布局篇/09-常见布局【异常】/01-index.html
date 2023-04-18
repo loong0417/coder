@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>margin负值的巧妙应用</title>
+  <style>
+    /* 
+      问题：5个盒子浮动到一排显示，中间没有空隙，可以使用margin-left:-1px;边框合并成1条边，而不是2像素的。 
+      测试结果是：有的边框消除了是1px，有的没有消除，确定-1px是都添加上去了。
+      第三个元素的左边框没有消除，margin-left：-1px无效。google测试1个盒子存在问题，火狐测试2个盒子存在问题。
+      这是兼容性问题吗？
+    */
+    ul li{
+      float: left;
+      list-style: none;
+      width: 150px;
+      height: 200px;
+      border: 1px solid red;
+      margin-left: -1px;
+    }
+
+    ul li:hover{
+      position: relative;
+      z-index: 1;
+      border: 1px solid blue;
+    }
+  </style>
+</head>
+<body>
+  
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量深入</title>
+</head>
+<body>
+    <!-- 
+        变量：变量是在内存中分配一个空间，进行数据的存放。
+        1. 可以将变量看作一个容器，容器里面存储的是数据。
+        2. 容器是内存中分配的一个空间。
+     -->
+    <script>
+        // 1. 变量声明的步骤
+        //     var num;
+        //     num = 10; 
+        var num = 10;
+        console.log(num);  // 10
+        console.log("变量是window下面的属性："+window.num);
+
+        // 2. 变量声明步骤
+        // y = 10   
+        // var x;
+        // x = 10
+        // 注意：其实这个 y 在声明的时候是没有使用关键字 var。
+        // 没有使用var关键字声明的变量无论是在函数里面还是函数外面都是全局变量。
+        var x = y = 10;    
+        console.log(x,y);  // 10 10    
+        
+
+        // 3. 变量声明注意事项
+        // 同名变量在同一作用域下，后声明的变量没有赋值是无效的。如果后面变量赋值后面就会将前面声明的变量覆盖。
+        var num2 = 15;
+        var num2;
+        console.log(num2);   // 15
+
+
+        // 变量是 window 下面的属性
+        var a = 123;
+        b = 456;
+        console.log(window.a);
+        console.log(window.b);
+
+        // 变量和以是$符号和下划线开头
+        var _myName = 'yang';
+        var $age = 18;
+        console.log(_myName,$age);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>重排</title>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    /**
+     * 概念：
+     *  重排： 重排又称回流（reflow），就是计算所有元素在窗口的位置。
+     *  在浏览器渲染页面流程中，layout 就是重排。
+     *  
+     *  1s后改变元素宽度。就会触发重排。
+     *    1. 冲浏览器渲染页面流程看，40.2ms的时候触发第一次重排，40.6ms第一次重绘，在1036.2ms时候触发第二次重排。1036.4ms再次重绘。
+     *    2. 重排一定会触发重绘。
+     *  
+     * 
+     *  性能优化：
+     *    首先重绘不一定触发重排，重排一定触发重绘。
+     *  1. 尽量减少重绘和重排。重排比重绘更消耗性能。
+     *  2. 如果一定要进行重绘和重排的情况下，一定要将重绘和重排定义成单独的图层（将变化元素作为单独图层），因为它是以图层的形式进行渲染的。
+     *  3. 需要注意的是，重绘是以图层为单位的，如果图层中的某个元素需要进行重绘，那么整个图层都需要重绘，为了提高性能，就要将变化的元素（会发生重绘的元素）作为单独图层。
+     */
+    var box = document.querySelector('.box');
+    setTimeout(()=>{
+      box.style.width = '200px';
+    },1000)
+  </script>
+</body>
+</html>

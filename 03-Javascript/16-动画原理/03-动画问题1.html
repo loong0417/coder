@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      position: absolute;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      background-color: purple;
+    }
+    button{
+      margin-top: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <button>点击运动</button>
+
+  <script>
+    /**
+     * 封装运动函数 
+     */
+    function animate(obj,target){
+      // 处理多次不停点击按钮（清除以前的定时器，保留现在的定时器）
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+        if(obj.offsetLeft >= target){
+          clearInterval(obj.timer);
+        } 
+        obj.style.left = obj.offsetLeft + 5 + 'px';
+      },30)
+    }
+
+    var box = document.querySelector('.box');
+    var button = document.querySelector('button');
+    /**
+     * 存在的问题是：
+     *  1. 当点击按钮的时候，让方块运动。
+     *  2. 如果点击一次，那没问题，如果我不停的点击，会开启多个定时器，方块的速度会越来越快。
+     *  3. 解决方式：在函数开始调用的时候就清除定时器。
+     */
+    button.addEventListener('click',function(){
+      animate(box,300);
+    });
+   
+  </script>
+</body>
+</html>

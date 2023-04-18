@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>案例及分析</title>
+</head>
+<body>
+  <script>
+    // 案例1：打印星星
+    // ★★★★★
+    // ★★★★★
+    // ★★★★★
+    // ★★★★★
+    // ★★★★★
+    // 注意1：这里一定要用字符串拼接，否则在浏览器中就是 （5★）每一排都是这样。
+    // var str = '';    
+    // for(var i=1;i<=5;i++){
+    //   for(var j=1;j<=5;j++){  
+    //     str= str + '★';
+    //   }
+    //  注意2：就是换行，之前用console.log('\n')无效。
+    //   str= str + '\n';
+    // }
+    // console.log(str);
+
+    // 案例2：打印直角三角形
+    // *
+    // **
+    // ***
+    // ****
+    // *****
+    // ******
+    // *******
+    // ********
+    // *********
+    // for(var i=1;i<=9;i++){
+    //   for(var j=1;j<=i;j++){
+    //     document.write("*");
+    //   }
+    //   document.write('<br/>');
+    // }
+
+    // ******
+    // *****
+    // ****
+    // ***
+    // **
+    // *
+    // for(var i=1;i<=6;i++){
+    //   for(var j=6;j>=i;j--){
+    //     document.write('*');
+    //   }
+    //   document.write('<br/>');
+    // }
+    
+    // *
+    // ***
+    // *****
+    // *******
+    // *********
+    // ***********
+    // *************
+    // ***************
+    // *****************
+    // for(var i=1;i<=9;i++){
+    //   for(var j=1;j<=i*2-1;j++){
+    //     document.write('*');
+    //   }
+    //   document.write('<br/>');
+    // }
+
+ 
+    // *********
+    // *******
+    // *****
+    // ***
+    // *
+    // for(var i=5;i>=1;i--){
+    //   for(var j=1;j<=i*2-1;j++){
+    //     document.write('*');
+    //   }
+    //   document.write('<br/>');
+    // }
+
+    //     *
+    //    ***
+    //   *****
+    //  *******
+    // *********
+    // for(var i=1;i<=5;i++){
+    //   for(var k=5-1;k>=i;k--){
+    //     console.log(k);
+    //     document.write('&nbsp;');
+    //   }
+    //   for(var j=1;j<=i*2-1;j++){
+    //     document.write('*');
+    //   }
+    //   document.write('<br/>');
+    // }
+    
+    // *********
+    //  *******
+    //   *****
+    //    ***
+    //     *
+    // for(var i=1;i<=5;i++){
+    //   for(var k=0;k<i-1;k++){
+    //     document.write('&nbsp;');
+    //   }
+    //   for(var j=9;j>=i*2-1;j--){
+    //     document.write('*');
+    //   }
+    //   document.write('<br/>');
+    // }
+
+
+    // 案例：九九乘法表
+    // for(var i=1;i<=9;i++){
+    //   for(var j=1;j<=i;j++){
+    //     document.write(`${j}*${i}`+ '='+j*i);
+    //     document.write('&nbsp;&nbsp;');
+    //   }
+    //   document.write('<br/>');
+    // }
+
+</script>
+</body>
+</html>

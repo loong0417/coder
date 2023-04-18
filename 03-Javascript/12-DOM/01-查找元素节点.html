@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dom</title>
+  <style>
+    #box{
+      width: 200px;
+      height: 200px;
+      background: green;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    DOM:Document Object Model 文档对象模型
+
+    1. 查找元素节点
+      1.document.getElementById()
+      2.document.getElementsByClassName()
+      3.document.getElementsByName()
+      4.document.getElementsByTagName()
+
+      html5新增的查找方式，静态获取元素，元素有增加的时候，必须得再次获取。
+      5.document.querySelectorAll()
+      6.document.querySelector()
+
+      7.document.body 属性，获取body。
+      8.document.documentElement 属性，获取html。
+   -->
+  <div id="box" class="wrap">div元素</div>
+  
+  <div class="content">
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>  
+  </div>
+
+  <script>
+      var box = document.getElementById('box');
+      var wrap = document.getElementsByClassName('wrap');
+
+
+      var content = document.getElementsByClassName('content')[0];
+      var spans = document.getElementsByTagName('span');
+      var q_spans = document.querySelectorAll('span');
+
+      console.log(spans);     // HTMLCollection(5) [span, span, span, span, span]
+      console.log(q_spans);   // NodeList(5) [span, span, span, span, span]
+
+      // 创建了一个新的 span 元素，但是使用querySelectorAll获取得元素没办法动态获取。
+      var span = document.createElement('span');
+      content.appendChild(span);
+
+      console.log(spans);     // HTMLCollection(6) [span, span, span, span, span, span]
+      console.log(q_spans);   // NodeList(5) [span, span, span, span, span]
+
+
+      console.log(document);
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象创建</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // 1. 字面量方式创建对象
+        var person = {
+            name: "zhangsan",
+            age: 18,
+            sex: "male",
+            like: function () {
+                console.log("I like book");
+            },
+            action: function () {
+                console.log("活动！");
+            }
+        }
+        console.log(person.name);
+        console.log(person.like());
+
+        console.log(person.sex); // male
+        console.log(delete person.sex); // true
+        console.log(person.sex); // undefined
+
+
+        // 2. 自定义构造函数方式
+        function Person(name, age, sex, job) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.job = job;
+            // console.log("姓名：" + name + "年龄：" + age + "性别：" + sex + "工作：" + job);
+
+            // return {}
+            // return 123;
+        }
+        var teacher = new Person("zhangsan", 26, '男', "教书讲课");
+        var student = new Person("lisi", 18, '女', "学生爱学习！");
+        // console.log(teacher)
+        // console.log(student)
+
+
+        function Car() {
+            this.color = "";
+            this.name = "";
+            this.height = "1400";
+            this.weight = 1000;
+            this.health = 100;
+            this.run = function () {
+                this.health--;
+                console.log(this.health);
+            }
+        }
+        var car = new Car();
+        car.name = "上海大众";
+        car.color = "red";
+
+        var car1 = new Car();
+        car1.name = "一汽大众";
+        car1.color = "black";
+
+        // Car {color: "black", name: "一汽大众", height: "1400", weight: 1000, health: 100, …}
+
+        // Car {color: "red", name: "上海大众", height: "1400", weight: 1000, health: 98, …}
+
+
+        var num = new Number(123);
+        num.name = "张三";
+
+
+        var arr = [1, 2, 3, 4, 5, 6];
+        console.log(arr.length); //6
+
+        arr.length = 2;
+        console.log(arr.length); //2 这里是可以直接做数组截断的
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    WeakRef：
+      1.如果我们默认将一个对象赋值给另一个对象引用，那么这个引用时一个强引用。
+      2.如果我们希望是一个弱引用，可以使用WeakRef。
+    
+    WeakRef.prototype.deref()方法：
+      1.如果原对象没有销毁，可以获取到原对象的属性。
+      2.如果原对象已经销毁，获取到的就是undefined。
+   -->
+  <script>
+    var info = {
+      name:'yang',
+      age:18
+    }
+    // 1. 强引用 strong reference
+    // 1.1. 在这种情况下下面使用 info = null info这个对象还是不会被销毁，因为有一个obj对象也指像这个info的引用地址。
+    // var obj = info           
+
+    // 2.弱引用 Weak reference
+    // 2.1. 我们使用weakRef方式，你就会发现info=null的时候对象立刻销毁。
+    var obj = new WeakRef(info); 
+
+    let fr = new FinalizationRegistry((value)=>{
+      console.log('对象销毁了！',value);
+    })
+
+    fr.register(info,'info');
+    info = null;
+
+    // 在info对象销毁后10秒再获取info对象中的name属性，看是否可以获取
+    // 获取不到：Uncaught TypeError: Cannot read properties of undefined (reading 'name')
+    setTimeout(()=>{
+      // 注意：这里尽量使用可选链运算符，当原对象销毁时候直接返回undefined，否则会报错。
+      console.log(obj.deref()?.name)
+    },10000);
+
+  </script>
+</body>
+</html>

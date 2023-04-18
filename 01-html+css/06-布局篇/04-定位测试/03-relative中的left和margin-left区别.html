@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>relative中的left和margin-left区别</title>
+
+    <!-- 
+        1. 定位 position：relative 不会脱离文档流，它只会相对原来的位置进行偏移。
+        2. 它的宽度在没有设置的情况下是可视窗口宽度，不会因为偏移的改变而发生改变。
+        
+        3. 常规流在没有设置宽度的时候也是可视窗口的宽度。
+        4. 但包含块的填充盒（padding-box）是 = 子元素的 margin + border + padding + content。
+        5. 如果 margin-left 定值，那么 content 的 width 也就会吸收剩余部分，设置 margin 后 width 相对减少。
+        6. 一句话说明白：box3 的总宽度等于包含块的 padding-box。
+     -->
+    <style>
+        .box{
+            height: 100px;
+            border: 1px solid lightgreen;
+            margin-bottom: 10px;
+        }
+
+        /* 
+            1. 将 box1设置成 position: relative，left:50。在 x 轴方向会添加滚动条。
+        */
+        .box:first-child{
+            background: rgb(255,0,0);
+            position: relative;
+            left: 50px;
+        }
+
+        .box:nth-child(2){
+            background: rgb(0, 255, 0);
+        }
+        /* 
+            2. 给 box3 设置一个 margin-left:50px。在 x 轴上不会添加滚动条。
+        */
+        .box:nth-child(3){
+            background: rgb(0, 0, 255);
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">box1</div>
+    <div class="box">box2</div>
+    <div class="box">box3</div>
+</body>
+</html>

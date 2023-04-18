@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    flat和flatMap：
+
+    flat()方法，数组降维：
+      1. flat()方法会按照一个可以指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回。
+      2. 参数，默认为1，需要降的维度，
+    
+    flatMap()方法首先使用映射函数映射每一个元素，然后将结果压缩成一个数组。
+      1. 注意1：flatMap是先进行map操作，再做flat操作。
+      2. 注意2：flatMap中的flat相当于深度为1。
+    
+    flatMap参数:
+      1. 参数1：回调函数
+      2. 参数2：为绑定this，可以省略。
+   -->
+
+   <script>
+    // 1.flat()方法
+    const numArr = [10,20,[5,8],[[2,3],[9,22]],100];
+    // 使用的是flat方法的默认值1，结果如下（当前的numArr是三维数组，降1维就变成2维）。
+    const newNum1 = numArr.flat();
+    // 当前的numArr是三维数组，降2维就变成1维。结果如下。
+    const newNum2 = numArr.flat(2)
+
+    console.log(newNum1)   // (7) [10, 20, 5, 8, Array(2), Array(2), 100]
+    console.log(newNum2)   // (9) [10, 20, 5, 8, 2, 3, 9, 22, 100]
+
+    // 2.flatMap()方法（在二维数组中使用确实降了一维）
+    // const message = ['hello world','你好 李银河','my name is why',['yang','x','yang']];
+    // const newMessage = message.flatMap(item=>{
+    //   console.log(item)  // hello world  你好 李银河 my name is why (3) ['yang', 'x', 'yang']
+    // });
+
+    // 3.flatMap()应用场景：
+    // 需求将字符串按照空格进行分割，分隔后放入数组中形成一个一维数组
+    const message = ['hello world','你好 李银河','my name is why'];
+
+    // 方式1：需要遍历2次
+    var newArr = [];
+    for(const item of message){
+        var  world = item.split(" ");
+        
+        for(let elem of world){
+          newArr.push(elem);
+        }
+    }
+    console.log(newArr)
+  
+
+    // 方式2：这个就只需要遍历一次
+    const newMessage = message.flatMap(item=>{
+      return item.split(' ');
+    })
+    console.log(newMessage)   // (8) ['hello', 'world', '你好', '李银河', 'my', 'name', 'is', 'why']
+   </script>
+</body>
+</html>

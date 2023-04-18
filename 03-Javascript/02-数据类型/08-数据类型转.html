@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据类型转换</title>
+</head>
+<body>
+  <script>
+    /*
+      js支持把任意一种数据类型转换成一下类型：
+
+        数字    Number
+        
+        字符串  String    任何类型转字符串都等于字符串
+
+        
+        布尔值  Boolean   0，'',NaN，null，undefined，false 转 Boolean 等于 false（其余为 true）
+
+          1. Undefined，Null，NaN，0 ，false 转 boolean 结果为 false。
+          2. '' 空字符串转 boolean 值结果为 false，其它（包括空格字符串）都为 true。
+
+
+       ** 对象转成这三种数据是没有意义，因为对象里面可以放任意一种数据类型
+   
+============================================================================================================
+
+      任意类型转数字：
+        Number(要转换的值)     把任意类型都转换为数字
+
+          1. Undefined
+            转换数字的结果为 NaN
+          
+          2. Null
+            转换数字的结果为 0
+          
+          3. Boolean
+            true    转数字结果为 1
+            false   转数字结果为 0
+          
+          4. String
+            空字符串，空格字符串转数字的结果为 0
+            字符串里的内容是不是一个纯数字，如果是个纯数字的话，就转成对应的数字
+            如果说不是一个纯数字，那结果就是 NaN
+
+          
+          5. 数字转数字的结果还为原来的数字（数字其实也没必要转成数字）
+
+          6. Object
+            空数组为 0，空对象为 NaN
+
+============================================================================================================
+    
+      任意类型转字符串：
+            String(要转换的值)
+                1. Undefined 转字符串 'undefined'
+                2. null 转字符串 'null'
+                3. Number 转字符串 '12' （数字外面加引号）
+                4. boolean 转字符串
+                    1). false     'false'
+                    2). true      'true'
+                
+
+                5. String 转字符串就是它本身
+
+                6. Object 转字符串 结果也是给对象加上引号
+
+
+============================================================================================================
+
+      任意类型转布尔  Boolean   0，'',NaN，null，undefined，false 转 Boolean 等于 false（其余为 true）
+
+          1. Undefined，Null，NaN，0 ，false 转 boolean 结果为 false。
+          2. '' 空字符串转 boolean 值结果为 false，其它（包括空格字符串）都为 true。
+
+    */
+
+    var u = undefined;
+    console.log(Number(u));    //NaN
+
+    var nul = null;
+    console.log(Number(nul));  // 0
+
+    var b1 = true;
+    var b2 = false;
+    console.log(Number(b1));   // 1
+    console.log(Number(b2));   // 0 
+
+    var s1 = '';
+    var s2 = ' ';
+    var s3 = "aaaaaa";
+    var s4 = "12";
+    var s5 = "12a";
+    var s6 = "12*12";    // 不是纯数字，所以是 NaN
+
+    console.log(Number(s1));   // 0
+    console.log(Number(s2));   // 0
+    console.log(Number(s3));   // NaN
+    console.log(Number(s4));   // 12
+    console.log(Number(s5));   // NaN
+    console.log(Number(s6));   // NaN
+
+
+    var o1 = [];
+    var o2 = {};
+    console.log(Number(o1));   // 0
+    console.log(Number(o2));   // NaN
+
+
+
+  let num1 = 1_000_000_000;
+  let num2 = 1000000000;
+  console.log(num1 === num2);   //true
+
+  console.log(parseFloat('123a2'))   // 123 
+
+  </script>
+</body>
+</html>

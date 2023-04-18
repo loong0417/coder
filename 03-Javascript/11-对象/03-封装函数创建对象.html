@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>封装函数创建对象</title>
+</head>
+<body>
+    <!-- 
+        工厂方式
+     -->
+    <script>
+        function createPerson(name,sex,age){
+            var obj = new Object;
+            obj.name = name;
+            obj.sex = sex;
+            obj.age = age;
+
+            obj.say = function(){
+                console.log("姓名："+obj.name);
+            }
+
+            return obj;
+        }   
+
+        var p1 = createPerson("熊大",'female',18);
+        console.log(p1);
+        p1.say();
+
+        var p2 = createPerson("光头强",'female',2);
+        console.log(p2);
+        p2.say();
+
+        // console.log(p1.say == p2.say);   // false
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .box{
+      width: 500px;
+      margin: 20px auto;
+      clear: both;
+    }
+    .content{
+      width: 500px;
+      height: 100px;
+      padding: 10px;
+      outline: none;
+      resize: none;
+    }
+    .btn{
+      width: 60px;
+      height: 25px;
+      line-height: 25px;
+      background-color: orangered;
+      color: #fff;
+      border: 1px solid orangered;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px 0 20px 0;
+    }
+    ul{
+      width: 500px;
+      /* border: 1px solid red; */
+    }
+    ul a{
+      float: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div>
+      <textarea class="content"></textarea>
+    </div>
+    <button class="btn">留言</button>
+
+    <ul>
+
+    </ul>
+  </div>
+  <script>
+    var btn = document.querySelector('.btn');
+    var content = document.querySelector('.content');
+    var ul = document.querySelector('ul');
+    btn.onclick = function(){
+      if(content.value){
+        var li = document.createElement('li');
+        li.innerHTML = content.value +'<a href="javascript:;">删除</a>';
+        ul.appendChild(li);
+
+        var as = document.querySelectorAll('a');
+        for(var i=0;i<as.length;i++){
+          as[i].onclick = function(){
+            ul.removeChild(this.parentNode);
+          }
+        }
+
+      }else{
+        alert("请输入留言！！！");
+      }     
+    }
+
+    content.onfocus = function(){
+      content.value = '';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .preview_img{
+      position: relative;
+      width: 400px;
+      height: 400px;
+    }
+    .preview_img>img{
+      width: 400px;
+      height: 400px;
+    }
+
+    .mask{
+      display: none;
+      width: 300px;
+      height: 300px;
+      background-color: #fed44f;
+      opacity: .4;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border: 1px solid #eee;
+      cursor: move;
+    }
+
+    .big{
+      display: none;
+      width: 500px;
+      height: 500px;
+      border: 1px solid #eee;
+      position: absolute;
+      left: 410px;
+      top: 0;
+      overflow: hidden;
+    }
+
+    .big .bigImg{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 800px;
+      height: 800px;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="preview_img">
+    <img src="./img/big.jpg" alt="">
+    <div class="mask"></div>
+    <div class="big">
+      <img src="./img/big.jpg" alt="" class="bigImg">
+    </div>
+  </div>
+  <script>
+    /**
+     * 放大镜效果分析：
+     *  1. 鼠标经过小盒子preview_img，黄色的遮挡层和大图片盒子显示出来，离开隐藏2个盒子的功能。
+     *  2. 黄色的遮挡层会跟着鼠标走。
+     *  3. 移动黄色遮挡层，大图片跟随移动功能。
+     */
+    var preview_img = document.querySelector('.preview_img');
+    var mask = preview_img.querySelector('.mask');
+    var big = preview_img.querySelector('.big');
+    preview_img.addEventListener('mouseover',function(){
+      mask.style.display = 'block';
+      big.style.display = 'block';
+    });
+
+    preview_img.addEventListener('mouseout',function(){
+      mask.style.display = 'none';
+      big.style.display = 'none';
+    });
+
+    preview_img.addEventListener('mousemove',function(ev){
+      // 2.1.先计算出鼠标在盒子内的坐标
+      var x = ev.pageX-preview_img.offsetTop;
+      var y = ev.pageY-preview_img.offsetLeft;
+      // 2.2.将值赋值给这个盒子，让鼠标在盒子中间，宽高除以2，就让鼠标在盒子的中间
+      var maskX = x - (mask.offsetWidth/2);
+      var maskY = y - (mask.offsetHeight/2);
+      var maskMax =  preview_img.offsetWidth - mask.offsetWidth;
+      // 2.3.限制透明层只能在preview_img内移动
+      if(maskX<0){
+        maskX=0;
+      }else if(maskX > maskMax){
+        maskX = maskMax;
+      }
+      if(maskY<0){
+        maskY = 0;
+      }else if(maskY > maskMax){
+        maskY = maskMax;
+      }
+      mask.style.left = maskX + 'px';
+      mask.style.top = maskY + 'px';
+      // 3. 大图片的移动距离 = 遮挡层移动距离 * 大图片最大移动距离 / 遮挡层的最大移动距离
+      // 大图
+      var bigImg = document.querySelector('.bigImg');
+      // 大图片的最大移动距离
+      var bigMax = bigImg.offsetWidth - big.offsetWidth;
+      // 大图片的移动距离
+      var bigX = maskX * bigMax / maskMax;
+      var bigY = maskY * bigMax / maskMax;
+
+      bigImg.style.left = -bigX + 'px';
+      bigImg.style.top = -bigY + 'px';
+
+    });
+
+  </script>
+</body>
+</html>

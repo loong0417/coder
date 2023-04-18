@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>relative 相对定位</title>
+    <!-- 
+        relative：相对定位
+            1. 不会导致元素脱离文档流，只是让元素在原来位置上进行偏移。
+     -->
+    <style>
+        .box{
+            height: 50px;
+            background: red;
+            border: 1px solid black;
+        }
+        /*  2. 就像给.active设置了相对定位，给 left:50px 设置了一个值立刻会出现横向滚动条 */
+        div.active{
+            position: relative;
+            left: 50px;
+        }
+
+        /* 3. margin-left 不会出现滚动条 */
+        div.select{
+            /* position: relative; */
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">1</div>
+    <div class="box active">2</div>
+    <div class="box select">3</div> 
+</body>
+</html>

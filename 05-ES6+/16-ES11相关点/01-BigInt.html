@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    BigInt
+      1. BigInt：ES11（ES2020）新增的数据类型（大数字）。
+      2. ES11前最大int型数字是：Number.MAX_SAFE_INTEGER
+         console.log(Number.MAX_SAFE_INTEGER)  9007199254740991
+   -->
+  <script>
+    // 1. console.log(Number.MAX_SAFE_INTEGER)
+
+    // 2. BigInt和int（number）类型的数字相加是会报错的。
+    // BigInt称为大数字整型，int（number）称为小数字整型。
+    const maxNum = 100;
+    const bigNum = 9007199254740991n;
+
+    // Cannot mix BigInt and other types, use explicit conversions
+    // (1).不能混合使用BigInt和其它类型
+    // console.log(maxNum+bigNum)
+
+    // (2).BigInt和int类型两个数字相加，必须得给小数字类型转换成大数字类型
+    console.log(BigInt(maxNum)+bigNum)
+
+    // (3).还可以加int类型的数字后面加一个n，表示将小数字转换成大数字。
+    console.log(10n+bigNum)
+
+    // (4).也可以将BigInt类型的数字转换成Number类型，这样就会造成溢出，不确定数字。
+    // 因为int类型最大数字是Number.MAX_SAFE_INTEGER，如果在它的基础上再进行假发运算就会造成数字溢出，也就是不确定数字。
+    const newNum =Number(bigNum)
+
+    console.log(maxNum,bigNum)
+
+  </script>
+</body>
+</html>

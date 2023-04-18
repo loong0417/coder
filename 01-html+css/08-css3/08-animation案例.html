@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation动画</title>
+    <style>
+        #div{
+            width: 500px;
+            height: 500px;
+            border: 1px solid #000;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            position: absolute;
+            background: red;
+
+            animation: 3s move linear infinite;
+        }
+
+        .box:hover{
+            animation-play-state: paused;
+        }
+
+        @keyframes move{
+            0%{
+                top: 0;
+                left: 0;
+            }
+
+            25%{
+                top: 0;
+                left: 400px;
+            }
+
+            50%{
+                top: 400px;
+                left: 400px;
+            }
+
+            75%{
+                top: 400px;
+                left: 0;
+            }
+
+            100%{
+                top: 0;
+                left: 0;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div id="div">
+        <div class="box"></div>
+    </div>
+</body>
+</html>

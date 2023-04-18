@@ -1,0 +1,80 @@
+// 1.1.less 定义变量
+// @widthMain:100px;
+// @commonMargin:10px;
+
+// 2.1.混入的基本使用
+.nowrap_ellipsis{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+// 2.2.混入带参数（将边框的宽度和颜色都定义成变量）
+.box-border(@width:5px,@color:red){
+  border: @width solid @color;
+}
+
+// 3.1.混入和映射（Map）结合使用
+.box-size{
+  width:200px;
+  height:200px
+}
+
+.box1{
+  // 映射的使用，类似于对象
+  width: .box-size()[width];
+  background-color: yellow;
+  .nowrap_ellipsis();
+   // 混入带参使用
+  .box-border();
+}
+
+.box2{
+  width: 50px;
+  // 映射的使用，类似于对象
+  height: .box-size()[height];
+  background-color: purple;
+  .nowrap_ellipsis();
+   // 混入带参使用
+  .box-border(20px,blue);
+}
+
+//  4. 映射和混入的结合：混入也可以当作一个自定义函数来使用。
+@htmlFontSize:50px;
+.pxToRem(@px){
+  result:(@px / @htmlFontSize) * 1rem;
+}
+
+.box3{
+  width: .pxToRem(200px)[result];
+  height: 100px;
+  background-color: yellowgreen;
+}
+
+// 5. less继承
+.boxStyle{
+  border: 10px solid red;
+}
+.box4{
+  width: 100px;
+  height: 100px;
+  background-color: orange;
+  &:extend(.boxStyle);
+}
+
+// 6. 作用域 scope
+.box6{
+  width: 100px;
+  height: 100px;
+  background-color: plum;
+  @bc:blue;
+  // box6里面相当于是父级作用域。
+  p{
+    // p里面相当于是自己的作用域。
+    // 注意：还有一个比较重要的，在自己作用域内，即便是将@bc定义在background-color这个属性后面，也无妨。
+    // @bc:red; 
+    width: 50px;
+    height: 50px;
+    background-color: @bc;
+    @bc:red;    
+  }
+}

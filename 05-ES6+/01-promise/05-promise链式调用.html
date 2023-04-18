@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise链式调用的方式二</title>
+</head>
+<body>
+  <script>
+    new Promise((resolve,reject)=>{
+      setTimeout(() => {
+        resolve("hello");
+      }, 1000);
+    }).then((mess=>{
+      // 1. 自己处理 10 行代码
+      console.log(mess,"第一层处理 10 行代码");
+
+      return new Promise((resolve)=>{
+        resolve(mess + "22222");
+      }).then(res=>{
+        console.log(res,"第二层处理 10 行代码");
+
+        return new Promise((resolve)=>{
+          resolve(res + "333333");
+        }).then(res=>{
+          console.log(res,"第三层处理 10 行代码");
+        })
+      })
+    }))
+
+
+    // // 简写形式：new Promise((resolve=>resolve(结果)))  简写
+    // new Promise((resolve,reject)=>{
+    //   setTimeout(() => {
+    //     resolve("hello");
+    //   }, 1000);
+    // }).then(mess=>{
+    //   console.log(mess,"第一层的 10 行处理代码");
+
+    //   return Promise.resolve(mess + "111")
+    // }).then(res=>{
+    //   console.log(res,"第二层的 10 行处理代码");
+
+    //   return Promise.resolve(res + "222")
+    // }).then(res=>{
+    //   console.log(res,"第三层的 10 行处理代码");
+    // })
+
+
+
+
+    // 省略掉 proimse.resolve 方式
+    //  new Promise((resolve,reject)=>{
+    //   setTimeout(() => {
+    //     resolve("hello");
+    //   }, 1000);
+    // }).then(mess=>{
+    //   console.log(mess,"第一层的 10 行处理代码");
+
+    //   return mess + "111";
+    // }).then(res=>{
+    //   console.log(res,"第二层的 10 行处理代码");
+
+    //   return res + "222";
+    // }).then(res=>{
+    //   console.log(res,"第三层的 10 行处理代码");
+    // })
+
+
+    // // 抛出异常方式 throw 方式抛出异常
+    // new Promise((resolve,reject)=>{
+    //   setTimeout(() => {
+    //     resolve("hello");
+    //   }, 1000);
+    // }).then(mess=>{
+    //   console.log(mess,"第一层的 10 行处理代码");
+
+    //   throw "message error!!!!!!!!!";
+    // }).then(res=>{
+    //   console.log(res,"第二层的 10 行处理代码");
+
+    //   return res + "222";
+    // }).then(res=>{
+    //   console.log(res,"第三层的 10 行处理代码");
+    // }).catch(err=>{
+    //   console.log(err);
+    // })
+
+
+      new Promise((resolve,reject)=>{
+        setTimeout(() => {
+          resolve("hello");
+        }, 1000);
+      }).then(mess=>{
+        console.log(mess,"第一层的 10 行处理代码");
+
+        return Promise.reject(" error error !!!!!!!!!");
+      }).then(res=>{
+        console.log(res,"第二层的 10 行处理代码");
+
+        return Promise.resolve(res + "222")
+      }).then(res=>{
+        console.log(res,"第三层的 10 行处理代码");
+      }).catch(err=>{
+        console.log(err);
+      })
+
+  </script>
+</body>
+</html>

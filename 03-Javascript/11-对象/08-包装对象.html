@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>包装对象</title>
+</head>
+<body>
+    <!--
+        包装对象：
+            1.在js内部，当我们去调用字符串、数字、布尔值这些基本数据类型属性和方法的时候，js会在内部先把这些数据类型转换成一个
+              对应的对象类型（包装对象），然后再去包装对象身上调用这些属性或者方法。
+            
+            2. 包装对象有：
+                String
+                Number
+                Boolean
+            
+            3. 注意：
+                1）. null和undefined没有对应的包装对象。
+                2）. 基本数据类型只能使用对应的包装对象身上的属性或者方法，不能添加因为使用后，包装对象就消失了，所以只能用，不能添加。
+    -->
+
+    <script>
+        console.log(new Number());
+        console.log(new String());
+        console.log(new Boolean());
+
+        var str = "yang";
+        console.log(str.charAt(0));      // y
+        console.log(str.length);         // 4
+        console.log(str.substring(1));   // ang
+        
+        // 1. 内部执行过程：
+        // var str = new String("yang");
+        // console.log(str.length);
+
+
+        var num = 12.456;
+        console.log(num.toFixed(2));  // 12.46  把数字转成字符串，并用四舍五入的方法截取小数点后面的位数(截取2位)
+
+        // 2. 内部执行过程：
+        // var num = new Number(12.456);
+        // console.log(num.toFixed(2));
+
+
+        var b=true;
+        console.log(b.toString());		//true		把布尔值转成字符串
+        
+        // 3. 内部执行的过程
+        // var b=new Boolean(true);
+        // console.log(b.toString());
+        
+        
+        // 4. 基本数据类型只能用对应包装对象身上的方法或者属性，不能添加
+        // 这个位置实际上并没有调用属性或方法，如果调用属性或方法是会先创建包装对象，再在包装对象的身上去调用属性或方法，
+        // 调用完成后返回结果，包装对象也就消失了（可以理解成销毁了）
+        var str1='kaivon1';
+        str1.a=12;
+        console.log(str1.a);			//undefined
+
+
+
+        var num = [2,3,4,5,23,56,123]
+        console.log(Math.max(num));     // NaN
+        console.log(Math.max(2,3,4,5,23,56,123));  // 123
+
+    </script>
+</body>
+</html>

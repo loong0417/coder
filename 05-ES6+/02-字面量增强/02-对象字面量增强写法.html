@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>对象字面量增强写法</title>
+</head>
+<body>
+  <!-- 
+    1. 对象有字面量，变量也有字面量。
+   -->
+  <script>
+    // // 1. 属性的简写
+    // let name = "杨小样";
+    // let age = 18;
+    // let job = "攻城狮";
+
+    // // ES6 之前引用外面属性写法
+    // const obj1 = {
+    //   name:name,
+    //   age:age,
+    //   job:job
+    // }
+
+    // // ES6 之后引用外面属性的写法
+    // const obj2 = {
+    //   name,
+    //   age,
+    //   job
+    // } 
+    // console.log(obj2);
+
+    // 2. 函数简写方式
+    const obj3 = {
+      // ES6 之前的书写方式
+      // test: function(){
+      //   console.log('this is test function');
+      // },
+
+      // info: function(){
+      //   console.log('this is info function');
+      // }
+
+      // ES6 之后的书写方式
+      test(){
+        console.log("this is test method ");
+      },
+      info(){
+        console.log("this is info method ");
+      }
+    }
+    // console.log(obj3.test());
+
+    var name='yang';
+    const obj4 = {
+      test(){
+        console.log("this is test method ");
+      },
+
+      // 3. 计算属性名：Computed Property Names
+      // name全局变量会和1进行拼接，拼接成一个新的变量，obj1的属性
+      [name + 1]:'yang_yang'
+      
+    }
+    console.log(obj4)   // {yang1: 'yang_yang', test: ƒ}
+    
+
+  </script>
+</body>
+</html>

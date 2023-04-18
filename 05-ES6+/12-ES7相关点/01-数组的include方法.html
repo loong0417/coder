@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    includes：判断数组是否包含某个元素（注意includes后面是有s的）。
+      1. ES7以前，判断数组中是否包含某个元素，使用的是indexOf()方法，判断是否为-1。
+      2. ES7中，使用includes方法判断数组中是否包含某一个元素，包含返回true，否则返回false。
+      
+    indexOf和includes方法区别：
+      1. indexOf判断数组中是否包含某个元素，数组中如果存在NaN是判断不出来的。
+      2. includes判断数组中是否包含某个元素，数组中如果存在NaN是可以判断出来的。
+   -->
+  <script>
+    var str = ['aaa','ddd','ccc','ddd',NaN,undefined];
+    if(str.indexOf('aaa') !== -1){
+      console.log('包含元素');
+    }
+
+    if(str.indexOf(undefined) !== -1){
+      console.log('包含undefined');
+    }else{
+      console.log('不包含undefined');
+    }
+
+    // indexOf不能判断出NaN元素是否在数组中
+    if(str.indexOf(NaN) !== -1){
+      console.log('包含NaN');
+    }else{
+      console.log('不包含NaN');        // 不包含
+    }
+
+    // includes是能判断出NaN元素是否在数组中的
+    if(str.includes(NaN)){
+      console.log('包含NaN');         // 包含
+    }else{
+      console.log('不包含NaN');
+    }
+  </script>
+</body>
+</html>

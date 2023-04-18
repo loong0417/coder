@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    1. race方法，是以谁跑得快，以谁为准执行回调。
+    2. race的应用场景，比如我们可以用race给某个异步请求设置超时时间，并且在超时后执行相应的操作。
+   -->
+  <script>
+    // let p1 = new Promise((resolve,reject)=>{
+    //   setTimeout(()=>{
+    //     resolve('p1成功');
+    //   },2000);
+    // });
+
+    // let p2 = new Promise((resolve,reject)=>{
+    //   setTimeout(()=>{
+    //     resolve('p2成功');
+    //   },1000);
+    // });
+
+    // Promise.race([p1,p2]).then((value)=>{
+    //   console.log(value);           // p2成功
+    // }).catch(()=>{
+    //   console.log('err');
+    // });
+
+    // 应用场景：
+    function getData(){
+      return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+          resolve('请求数据成功！');
+        },4000);
+      });
+    }
+
+    function network(){
+      return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+          resolve('网络超时！');
+        });
+      },3000);
+    }
+
+    Promise.race([getData(),network()]).then((value)=>{
+      console.log(value);
+    }).catch(()=>{
+      console.log('error');
+    });
+
+
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

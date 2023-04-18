@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    Array.of() 将一组数字转换成数组，真正的数组。
+
+    includes(数组元素,其实位置)    查找元素在数组中是否存在
+    返回值：一个boolean值，如果找到指定元素则返回true，否则返回false。
+   -->
+  <script>
+    // 实例化数组
+    console.log(new Array());         // []
+    console.log(new Array(3));        // (3)[empty × 3]
+    console.log(new Array(1,2,3,4));  // (4)[1, 2, 3, 4]
+
+    // Array.of() 将一组数字转换成数组，真正的数组。
+    // 返回值：数组
+    console.log(Array.of(1))
+    console.log(Array.of(1,2,3))
+
+    // includes(数组元素,其实位置)  
+    var colors = ['red','green','yellow','blue','pink'];
+    console.log(colors.includes('red'))    // true
+
+    // 在colors数组中查找 'red' 元素，从下标为2的位置开始查找，'red'元素在下标0的位置所以返回false。
+    console.log(colors.includes('red',2)); // false
+
+  </script>
+</body>
+</html>

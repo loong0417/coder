@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    Object的fromEntries：
+      1.作用：遍历Entries格式的数据，将Entries格式数据转换成对象。
+    
+    注意：
+      1. Object.Entries将对象转换成Entries格式数据ES8。
+      2. Object.fromEntries将Entries格式转换成对象ES10。
+   -->
+
+   <script>
+     const obj={
+      name:'yang',
+      age:18,
+      job:'攻城狮'
+     }
+    // 1.将对象格式转换成entries格式  
+    var entries = Object.entries(obj);
+    console.log(entries)   // (3) [['name', 'yang'],['age', 18],['job', '攻城狮']]
+
+    // 2. 那么怎么将entries格式转换成对象呢？
+    // 需要遍历 entries 
+    var newObj = {}
+    for(var item of entries){
+      newObj[item[0]] = item[1];
+    }
+    console.log(newObj)      // {name: 'yang', age: 18, job: '攻城狮'}
+
+    // 3. ES10后直接使用Object.fromEntries就可以了
+    var newObj1 = Object.fromEntries(entries);
+    console.log(newObj1)    // {name: 'yang', age: 18, job: '攻城狮'}
+
+
+    // Object.fromEntries应用场景：
+    var strHttps = 'https://wwww.baidu.com?user=yang&pwd=123456';
+    var [newHttps,newQuery] = strHttps.split('?');
+    
+    var queryParam = new URLSearchParams(newQuery);
+    // for(var param of queryParam){
+    //   console.log(param) 
+    // }
+    // 1. queryParam 是一个对象
+    // 2. param 是一个数组 ： {['user', 'yang'],['pwd', '123456']}
+    console.log(Object.fromEntries(queryParam))  // {user: 'yang', pwd: '123456'}
+   </script>
+</body>
+</html>

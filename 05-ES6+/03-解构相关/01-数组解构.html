@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组解构</title>
+</head>
+<body>
+  <script>
+    // 1. 不使用数组解构
+    var music = ['消愁','大鱼','梁祝','卡农'];
+    var num0 = music[0];
+    var num1 = music[1];
+    var num2 = music[2];
+    var num3 = music[3];
+    
+    // 2. 数组解构（其实底层还是采用的上面下标赋值的方式 babeljs.io网站可以检测）
+    // var [num0,num1,num2,num3] = music;
+    // console.log(num0,num1,num2,num3)
+
+    // 3. 解构后面的元素（用逗号空下前面两个元素）
+    // var [,,num2,num3] = music;
+    // console.log(num2,num3)   // 梁祝 卡农
+
+    // 4. 解构出来一个元素，后面的放到数组中
+    var [num1,...newMusic] = music;
+    console.log(num1)      // 消愁
+    console.log(newMusic)  // (3) ['大鱼', '梁祝', '卡农']
+
+    // 5. 解构的默认值（最后一个元素没有对应值，所以为undefined，我们就可以给它设置一个默认值）
+    var [num0,num1,num2,num3,num4='高山流水'] = music;
+    console.log(num0,num1,num2,num3,num4);  
+
+  </script>
+</body>
+</html>

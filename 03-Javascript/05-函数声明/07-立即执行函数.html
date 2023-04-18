@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+        自执行函数：立即调用函数表达式。
+
+        函数声明不能直接调用的原因：
+            1. 小括号里面只能放表达式，不能放语句。
+            2. function 关键字既可以当作语句，也可以当作表达式。但js规定function关键字出现在行首，一律解释成语句。
+
+        解决方法：不要让关键字出现在行首。
+            1. 用括号把function主体括起来，转成表达式。后面加括号运行。
+            2. 借助运算符（new + - ! ~ typeof，|| &&......）因为运算符会把表达式执行，执行后得出结果才能运算。
+  -->
+  <script>
+    /**
+     * 立即执行函数
+     *  1. 自动执行，执行完后立即释放。
+     *  2. 立即执行函数不需要调用。 
+     */
+
+     // 立即执行函数，项目中常见用法
+     (function(){
+       console.log('1');
+     })();
+
+     //立即执行函数 W3C 推荐写法  
+     (function(){
+       console.log('2');
+     }());
+
+
+     // 立即执行函数的函数名是没有意义的
+     var test = function(){
+      console.log("test");   // test
+     }();
+
+     console.log(test)  // undefined 函数执行完后销毁了
+
+
+     function test1(){
+       console.log('test1');   // test1 
+     }
+     test1();
+     console.log(test1)   // function test1(){console.log('test1');}
+
+
+     // 面试题：
+     // (function b(){})将函数声明变成了表达式，函数名 b 在这里是无意义的。
+     // 变量在没有声明的时候直接打印会报错，只有在一种情况下不会报错 typeof(b) 使用 typeof检测的时候。
+     var a = 10;
+     if(function b(){}){
+      a+=typeof(b)
+     }
+     console.log(a);  // 10undefined
+    
+  </script>
+</body>
+</html>

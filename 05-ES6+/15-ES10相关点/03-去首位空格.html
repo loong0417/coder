@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    ES10新增：
+      1. 字符串.trimStart：去除首空格
+      2. 字符串.trimEnd：  去除尾空格
+
+    ES5：
+      字符串.trim() 去除左右两边空格
+    
+    trimLeft和trimRight和ES10新增的达到的效果是一样的，只不过这两个会存在浏览器兼容性问题。
+      字符串.trimLeft()
+      字符串.trimRight()
+
+   -->
+  <script>
+    var name = '      yang        ';
+    console.log(name)
+    console.log(name.trimStart())
+    console.log(name.trimEnd().trimStart()) 
+
+    console.log(name.trim())
+
+    console.log(name.trimLeft().trimRight())
+  </script>
+</body>
+</html>

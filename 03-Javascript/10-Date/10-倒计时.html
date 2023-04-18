@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>倒计时</title>
+
+  <style>
+    body{
+      margin: 0 10px;
+      background: #000;
+    }
+    div{
+      /* width: 300px; */
+      font: 100px/50px "微软雅黑";
+      /* margin-top: 40px; */
+      color: #fff;
+      margin: 100px auto;
+
+      display: inline-block;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    /**
+     * 时间格式化 
+     */
+     function formatDay(v){
+      return v>9 ? v:'0'+v ;
+    }
+
+    /**
+     * target 传入一个目标时间 
+     */
+    function cutDown(target){
+      // 获取当前时间
+      var currentDate = new Date();
+      // 传进来的时间与现在的时间之间差（毫秒差）
+      var v = Math.abs(target - currentDate);
+      // console.log(v);
+      
+      // 天时分秒
+      return {
+        d: parseInt(v/(24*3600000)),
+        h: parseInt(v%(24*3600000)/3600000),
+        m: parseInt(v%(24*3600000)%3600000/60000),
+        s: parseInt(v%(24*3600000)%3600000%60000/1000)
+      }
+    }
+
+  
+    /**
+     * 1s = 1000           1000ms 
+     * 1min = 60*1000      60000ms 
+     * 1h  = 60*60*1000    3600000ms 
+     * 1d = 24*60*60*1000  86400000ms
+     * 
+     * v/1d 除得尽的数是天，肯定还有除不尽的数那就得取余得天数依次类推
+     */
+
+    window.onload = function(){
+      var box1 = document.getElementById('box1');
+      var box2 = document.getElementById('box2');
+
+      // 在传时间的时候采用这样的格式就不会留意一月份是从 0 开始的问题。
+      var target1 = new Date('2023-2-1 00:00:00');
+      var target2 = new Date('2023-5-11 24:00:00');
+
+      setInterval(function(){    
+        box1.innerHTML = cutDown(target1).d+':'+formatDay(cutDown(target1).h)+':'+formatDay(cutDown(target1).m)+':'+formatDay(cutDown(target1).s)+'&nbsp;';
+        box2.innerHTML = cutDown(target2).d+':'+formatDay(cutDown(target2).h)+':'+formatDay(cutDown(target2).m)+':'+formatDay(cutDown(target2).s);
+      },1000);
+    }
+
+
+
+  </script>
+  <div id="box1"></div>
+  <div id="box2"></div>
+</body>
+</html>

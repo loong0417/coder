@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今天是今年的第几周</title>
+</head>
+<body>
+  <script>
+   /**
+     *  今天是今年的第几周？
+     * 
+     *  差一周的问题：如果获取的比实际的差一周，今天的星期比今年第一天的周数小，就会出现一周的情况。
+     *    因为不断减去 7 ，如果最后一周不够七天跳到上一年，循环条件不满足就会结束，一周不够 7 天，最后
+     *    一次的 week 不会加。
+     *   
+     *  解决方案：取到今年的第一天是周几，然后再取到今天是周几，拿两个值进行比较，如果今天的周数小于今年
+     *    第一天的周数，就让 week 再加一(1)。
+     */
+
+     var date = new Date();
+     var week=0;
+
+     var firstDay = new Date(2021,0,1).getDay();  // 获取本年的第一天是周几
+     var todayWeek = date.getDay();   // 获取当前的时间是周几
+
+    // 1. 获取当前年份，如果获取的年份等于当前年份就循环 
+     while(date.getFullYear() ==  2021){
+       week++;  // 用来计数的(统计周数)
+      // 2. 获取当前时间减去 7(一个星期七天) 就是上周的时间，再将上周的时间设置为当前时间，循环
+      // 这里如果只是减去 7 而不设置就会出现先死循环 
+       date.setDate(date.getDate()-7);
+     }
+
+
+     if(todayWeek<firstDay){
+       week++;
+     }
+
+     console.log(week);
+    
+  </script>
+</body>
+</html>

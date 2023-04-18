@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      position: absolute;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      background-color: purple;
+    }
+    button{
+      margin-top: 120px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <button>点我就动</button>
+  <script>
+    /**
+     * 动画函数添加回调函数：
+     *  回调函数原理：函数可以作为一个参数。将这个函数作为参数传到另一个函数里面，当那个函数执行完毕后，
+     *              再执行传进来的回调函数，这个过程就叫回调函数。
+     */
+    function animate(obj,target,callback){
+      clearInterval(obj.timer);
+      obj.timer = setInterval(function(){
+        // 当目标位置等于现在盒子所在的位置时候，清除定时器，表示这个动画已经执行完毕
+        // 动画执行完毕，判断回调函数是否存在，如果存在则调用回调函数。
+        if(target == obj.offsetLeft){
+          clearInterval(obj.timer);
+          if(callback){
+            // 执行回调函数
+            callback();
+          }
+        }
+        var step = (target - obj.offsetLeft) / 10;
+        step = step > 0 ? Math.ceil((target-obj.offsetLeft) / 10) : Math.floor((target-obj.offsetLeft) / 10);
+        obj.style.left = obj.offsetLeft + step + 'px';
+      },30);
+    }
+    var box = document.querySelector('.box');
+    var button = document.querySelector('button');
+    button.addEventListener('click',function(){
+      animate(box,500,function(){
+        box.style.backgroundColor = 'red';
+      });
+    });
+   
+  </script>
+</body>
+</html>

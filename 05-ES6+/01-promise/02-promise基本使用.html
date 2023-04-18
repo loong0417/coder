@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise基本使用</title>
+</head>
+<body>
+  <script>
+    /**
+     * 什么情况使用 promise？
+     * 1. 一般情况下有异步操作时，使用 promise 对这个异步操作进行封装；
+     * 2. new 构造函数（1.保存一些状态信息，2.执行传入函数）；
+     * 3. 在执行传入回调函数时，会传入两个参数，resolve，reject 本身又是函数；
+     * 
+     * resolve() 成功调用，执行 then() 函数
+     * reject() 失败调用，执行 catch() 函数
+     */
+
+    /**
+     * 1. 实例化promise 
+     */
+    let p = new Promise((resolve,reject)=>{
+    });
+    console.log(p);
+
+    // 2. reject() 失败返回
+    new Promise((resolve,reject)=>{
+      setTimeout(() => {
+        reject("error message"); 
+      }, 1000)
+    }).then((data)=>{
+      console.log(data);
+    }).catch((err)=>{
+      console.log(err);     // error message
+    })
+
+    // 3. resolve() 成功返回
+    new Promise((resolve,reject)=>{
+      setTimeout(() => {
+        resolve("hello world!");
+      }, 1000)
+    }).then((data)=>{
+      console.log(data);    // hello world
+    }).catch((err)=>{
+      console.log(err);
+    })
+
+    // 4. 多次请求
+    new Promise((resolve,reject)=>{
+      // 第一次网络请求
+      setTimeout(()=>{
+        resolve();
+      },1000);
+    }).then(()=>{
+      // 第一次网络请求响应
+      console.log('hello');          // hello
+      return new Promise((resolve,reject)=>{
+        // 第二次网络请求
+        setTimeout(()=>{
+          reject();                  // 这里调的是reject说明请求失败
+        },1000);
+      }).then(()=>{
+        // 第二次网络请求响应
+        console.log('你好');
+      }).catch(()=>{
+        console.log('错误');
+      });
+    }).catch(()=>{  
+      console.log('error message');   // 错误
+    });
+
+  </script>
+</body>
+</html>

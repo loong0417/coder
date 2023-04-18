@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    ES6的代码块级作用域
+      let
+      const
+      function
+      class
+   -->
+  <script>
+    // 1. 代码块作用域
+    {
+      let nick = 'yang';
+
+      function demo(){
+        console.log(nick);
+      }
+
+      const num = 100;
+
+      class Person{}
+    }
+
+    // console.log(nick)          // Uncaught ReferenceError: nick is not defined
+    // demo();                    // yang 可以访问
+    // console.log(num)           // Uncaught ReferenceError: num is not defined
+    // var p = new Person();
+    // console.log(p)             //Uncaught ReferenceError: Person is not defined
+
+    // 2. if块作用域
+    if(true){
+      let info = '你好啊';
+    }
+    //console.log(info)     // Uncaught ReferenceError: info is not defined
+
+    
+    // 3. switch块作用域
+    switch('red'){
+      case 'red':
+        let foo = 'foo';
+        let bar = 'bar';
+    }
+    // console.log(foo)      // Uncaught ReferenceError: foo is not defined
+    // console.log(bar)      // Uncaught ReferenceError: bar is not defined
+
+    // 4. for语句的代码也是块级作用域
+    for(var i=0;i<10;i++){
+      console.log(i)
+    }
+    console.log(i);  // 10
+  
+    for(let k=0;k<10;k++){
+      console.log(k)
+    }
+    console.log(k);  // Uncaught ReferenceError: k is not defined
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>undefined类型分析</title>
+</head>
+<body>
+<!-- 
+基本数据类型：
+    undefined：未定义，出现的情况分为2种。
+        1). 声明一个变量，赋值为 undefined。
+        2). 声明变量，未赋值的情况为 undefined。
+
+    undefined出现的场合：
+        1. 声明变量没有赋值，返回undefined。
+        2. 使用typeof检测一个未定义的变量返回 undefined，只不过undefined是字符串类型。console.log(typeof(a))
+        3. 获取对象的某个属性是，如果属性不存在，获取的值是undefined。访问window下面未定义的变量也是返回 undefined。console.log(window.a)
+        4. 如果函数的形参没有对应的实参，那么形参默认存储的值是undefined。
+        5. 如果函数没有return返回值，那么默认的返回值是undefined。
+    -->
+    <script>
+        window.onload = function(){
+            var u1 = undefined;
+            var u2;
+            // 1. 声明变量没有赋值，返回undefined。
+            console.log(u1);                // undefined
+            console.log(u2);                // undefined
+
+            // 2. 使用typeof检测一个未定义的变量返回 undefined，只不过undefined是字符串类型。console.log(typeof(a))
+            console.log(typeof(a));         // undefined 
+            console.log(typeof typeof(a));  // string
+
+            var person = {
+                name:'yangxiaoyang',
+                job:'攻城狮'
+            }
+            // 3. 获取对象的某个属性是，如果属性不存在，获取的值是undefined。访问window下面未定义的变量也是返回 undefined。console.log(window.a)
+            console.log(person.age);        // undefined
+            console.log(window.a);          // undefined
+
+            // 4. 如果函数的形参没有对应的实参，那么形参默认存储的值是undefined。
+            function test(a,b){
+                console.log(a,b);
+            }
+            test(3);                       // 3 undefined
+
+            // 5. 如果函数没有return返回值，那么默认的返回值是undefined。
+            function demo(){
+                console.log(1);
+            }
+            demo();
+
+        }
+    </script>
+</body>
+</html>

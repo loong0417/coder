@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 获取html元素
+    const htmlEl = document.documentElement;
+    function setRemUnit(){
+      // 获取html元素的宽度（也就是视口的宽度），并且计算html的font-size大小
+      const unit = htmlEl.clientWidth / 10;
+      // 设置font-size到html元素上
+      htmlEl.style.fontSize = unit + 'px';
+    }
+    // 保证第一次进来时，可以设置font-size
+    setRemUnit();
+    window.addEventListener('resize',function(){
+      setRemUnit();
+    });
+    window.addEventListener('pageshow',function(){
+      if(e.persisted){
+        setRemUnit();
+      }
+    });
+  </script>
+  <style>
+    .box{
+      width: 2rem;
+      height: 2rem;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <p>我就是来测试一下</p>
+</body>
+</html>

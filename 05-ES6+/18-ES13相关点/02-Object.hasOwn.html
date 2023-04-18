@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    Object.hasOwn(obj,propertyKey)
+      1.对象属性判断
+      2. 判断属性在对象本身是否存在，而不是原型上。
+    
+      3.Object.hasOwn()方法是用于替换hasOwnProperty()的。
+    
+    Object.hasOwn(obj,propertyKey)和hasOwnProperty(propertyKey)两者区别：
+      1. Object.hasOwn()是通过类对象调用的，也就是Object对象调用的。
+      2. hasOwnProperty()是通过对象实例调用的。
+   -->
+  <script>
+    
+    // 1. Object.hasOwn 拿不到原型上的job属性
+    function Info(name,age){
+      this.name = name
+      this.age = age
+
+      console.log(name,age)
+    }
+    Info.prototype.job = '攻城狮';
+
+    var info = new Info('张三',18);
+
+    console.log(Object.hasOwn(info,'name'))  // true
+    console.log(Object.hasOwn(info,'job'))   // false
+
+    // 2. hasOwnProperty(propertyKey)拿不到原型上属性
+    console.log(info.hasOwnProperty('name')) // true
+    console.log(info.hasOwnProperty('job'))  // false
+
+  </script> 
+</body>
+</html>

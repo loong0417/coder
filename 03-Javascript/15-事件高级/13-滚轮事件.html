@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>滚轮事件</title>
+</head>
+<body>
+  <!-- 
+    滚轮事件：
+      1. onmousewheel      存在兼容性问题，只有IE和Chrome支持。
+          滚轮方向：event.wheelDelta
+                   上走：180（整数）
+                   下走：-180（负数）
+         on方式定义的事件使用 return false;  
+
+      2. DOMMouseScroll  DOM标准得滚轮事件，这个事件必须使用addEventListener添加。
+          滚轮方向：event.detail
+                   上走：-3（负数）
+                   下走：3（正数） 
+          
+          阻止默认事件：addEventListener定义的事件使用 ev.preventDefault();
+
+      3. 如何判断鼠标往上滚动和往下滚动？？？通过 event 事件对象里面得属性。
+   -->
+  <div id="box">
+
+  </div>
+
+  <script>
+    document.onmousewheel = function(ev){
+      console.log('滚轮滚动！',ev.wheelDelta);
+    }
+
+    document.addEventListener('DOMMouseScroll',function(ev){
+      console.log('滚轮滚动！',ev.detail);
+
+      
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件绑定</title>
+    <style>
+        li{
+            list-style: none;
+            width: 100px;
+            height: 20px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100px; height: 100px; background-color: red;"></div>
+
+    <ul>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+    </ul>
+    <!-- 
+        事件绑定的方式：
+            1. 传统的方式 onclick
+            2. addEventListener()方式
+     -->
+    <script type="text/javascript">
+        var lis = document.getElementsByTagName('li');
+         // 案例1：这里使用的onclick()绑定事件方式进行测试，输出i的值产生了闭包
+        // for(var i=0;i<lis.length;i++){
+        //     lis[i].onclick = function(){
+        //         for(var j=0;j<lis.length;j++){
+        //             lis[j].style.background = '';
+        //         }
+        //         console.log(i);                // 4
+        //         this.style.background = 'red'; // 颜色是改变了的，i的值是4
+        //     }
+        // }
+        
+        // 案例1：这里使用的addEventListener()绑定事件方式进行测试，输出i的值产生了闭包
+
+        // for(var i=0;i<lis.length;i++){
+        //     lis[i].addEventListener('click',function(){
+        //         console.log(i);      // 4 
+        //     });
+        // }
+
+
+        // 案例2：
+        // var div = document.getElementsByTagName('div')[0];
+        // div.onclick = function(){
+        //     this.style.backgroundColor = 'green';
+        // }
+
+
+        // 可以为一个事件绑定多个处理程序，这样的处理方式要求函数地址不一样，当函数地址一样是会出现覆盖
+        // var div = document.getElementsByTagName('div')[0];
+        // div.addEventListener = ('click',test(),false);
+
+        // var div = document.getElementsByTagName('div')[0];
+        // div.addEventListener = ('click',test1(),false);
+
+        // function test(){
+        //     console.log("aaaaa");
+        // }
+
+        // function test1(){
+        //     console.log("bbbbb");
+        // }
+
+        
+        
+        // Uncaught TypeError: div.attachEvent is not a function at event.html:38
+        // var div = document.getElementsByTagName('div')[0];
+        // div.attachEvent('onclick',test());
+
+        // function test(){
+        //     console.log("aaa");
+        // }
+
+
+        // 使用原生 js ，addEventListener，给每个 li 元素绑定一个 click 事件，按顺序输出；
+        // <ul>
+        //     <li>a</li>
+        //     <li>a</li>
+        //     <li>a</li>
+        //     <li>a</li>
+        // </ul>
+        
+        // var liCol = document.getElementsByTagName('li'),
+        //     len = liCol.length;
+        
+        // for(var i=0; i<len; i++){
+        //     (function(i){
+        //         liCol[i].addEventListener('click',function(){
+        //             console.log(i);
+        //         },false);
+        //     }(i))
+        // }
+
+    </script>
+</body>
+</html>

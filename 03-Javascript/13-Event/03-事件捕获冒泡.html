@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件处理模型</title>
+    
+    <style type="text/css">
+        .wrapper1{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+
+        .content2{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+        }
+
+        .box3{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper1">
+        wrapper1
+        <div class="content2">
+            content2
+            <div class="box3">box3</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // 事件冒泡
+        // var wrapper1 = document.getElementsByClassName('wrapper1')[0];
+        // var content2 = document.getElementsByClassName('content2')[0];
+        // var box3 = document.getElementsByClassName('box3')[0];
+
+        // wrapper1.addEventListener('click',function(){
+        //     console.log('wrapper1');
+        // },false);
+
+        // content2.addEventListener('click',function(){
+        //     console.log('content2');
+        // },false);
+
+        // box3.addEventListener('click',function(){
+        //     console.log('box3');
+        // },false);
+
+
+        // 事件捕获 （只有在谷歌浏览器中触发）
+        // addEventListener(type,function,true) 将第三个参数改为 true
+        var wrapper1 = document.getElementsByClassName('wrapper1')[0];
+        var content2 = document.getElementsByClassName('content2')[0];
+        var box3 = document.getElementsByClassName('box3')[0];
+
+        wrapper1.addEventListener('click',function(){
+            console.log('wrapper1捕获');
+        },true);
+
+        content2.addEventListener('click',function(){
+            console.log('content2捕获');
+        },true);
+
+        box3.addEventListener('click',function(){
+            console.log('box3捕获');
+        },true);
+
+    </script>
+</body>
+</html>

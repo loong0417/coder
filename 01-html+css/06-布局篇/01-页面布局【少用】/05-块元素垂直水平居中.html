@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>块元素水平垂直居中</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        .login{
+            width: 400px;
+            height: 300px;
+            border: 10px solid orange;
+
+            /* 方式一 */
+            /* position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -210px;
+            margin-top: -160px; */
+
+            /* 方式二 */
+            /* position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto; */
+
+            /* 方式三：使用 flex 定位方式 */
+            /* position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto; */
+
+
+            /* 使用 js 方式完成 */
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        window.onload = function(){
+            var box = document.querySelector(".login");
+
+            var l = (document.documentElement.clientWidth - box.offsetWidth)/2;
+            var t = (document.documentElement.clientHeight - box.offsetHeight)/2;
+            
+            box.style.left = l + 'px';
+            box.style.top = t + 'px';
+        }
+    </script>
+    <!-- 
+        需求：实现登录框水平垂直居中
+     -->
+
+     <div class="login">
+         登录框
+     </div>
+</body>
+</html>

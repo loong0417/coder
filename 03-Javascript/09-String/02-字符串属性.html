@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字符串属性</title>
+</head>
+<body>
+  <script>
+    /**
+     * 字符串明白是基础类型，那么它怎么有属性和方法？
+     *  1. 基本包装类型，就是把简单的数据类型，包装成了复杂数据类型。
+     *  2. 实际上的步骤是： 
+     *   2.1 var temp = new String('yang');  // 简单类型包装  
+     *   2.2 str = temp;                     // 把临时变量的值给str
+     *   2.3 temp = null;                    // 销毁临时变量
+     */ 
+    // length 获取字符串长度
+    var str = 'yang';
+    console.log(str.length);   // 4
+   
+  </script>
+</body>
+</html>

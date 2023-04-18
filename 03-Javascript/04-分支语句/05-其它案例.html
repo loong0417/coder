@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 案例1：1000~5000之间有多少整数，其各位数之和等于5，分别是哪些数（例如：整数2003各位数之和为：2+0+0+3=5，等于5）并统计满足条件的整数有多少个？
+    
+    // 方式一：分析例如：2876取每位数
+    // 千位 = 2876 / 1000 = 2.876 取整等于 2
+    // 百位 = 2876 / 100 = 28.76 取整等于 28 - 千位2*10 = 8
+    // 十位 = 2876 / 10 = 287.6 取整等于 287 - 千位2*100 - 百位8*10 = 7
+    // 个位 = 2876 - 千位2*1000 - 百位8*100 - 十位7*10 = 6
+    
+    // 方式二：分析例如：2876取每位数
+    // qian = 2876 / 1000  = 2.876 取整等于 2
+    // bai = 2876 / 100 = 28.76 取整等于 28 % 10 = 8
+    // shi = 2876 / 10 = 287.6 取整等于 287 % 10 = 7
+    // ge = 2876 % 10 = 6
+
+    // var sum = 0;  // 千位+百位+十位+各位和等于5，用sum存起来
+    // var count = 0;  // 统计千位+百位+十位+各位和等于5的数字有几个
+    // var arr = [];
+    // for(var i=1000;i<=5000;i++){
+    //   var qianwei = parseInt(i / 1000);
+    //   var baiwei = parseInt((i / 100))- (qianwei * 10);
+    //   var shiwei = parseInt((i / 10)) - (qianwei * 100) - (baiwei * 10);
+    //   var gewei = i - qianwei * 1000 - baiwei * 100 - shiwei * 10;
+
+    //   sum = qianwei + baiwei + shiwei + gewei;
+    //   if(sum==5){
+    //     ++count;
+    //     arr.push(i);
+    //   }else{
+    //     continue;
+    //   }
+    // }
+    // console.log(arr);
+    // console.log(`千位百位十位个位之和等于5的数字一共有：${count}个。`);
+    
+
+    // 需求分析：
+    // 1. 里面存有100块钱。
+    // 2. 如果输入存钱，就用输入的金额加先存的金额，之后弹出显示余额提示框。
+    // 3. 如果取钱，就减去取钱数，之后弹出显示余额提示框。
+    // 4. 如果显示余额就直接输出余额。
+    // 5. 如果退出，弹出退出信息提示框。
+    // var yue = 100;
+    // do{
+    //   var num = parseInt(prompt("请输入您要操作：\n1.存钱\n2.取钱\n3.显示余额\n4.退出"));
+    //   switch(num){
+    //     case 1:
+    //       var  money = parseFloat(prompt('请输入存入金额：'));
+    //       yue = yue + money;
+    //       alert("您现在的余额是："+yue);
+    //     break;
+
+    //     case 2:
+    //       var  money1 = parseFloat(prompt('请输取出的金额：'));
+    //       if(money1<yue){
+    //         yue = yue - money1;
+    //         alert("您现在的余额是："+yue);
+    //       }else{
+    //         alert("您现在的余额是："+yue+'.'+余额不足);
+    //       }
+    //     break;
+        
+    //     case 3:
+    //       alert("您现在的余额是："+yue);
+    //     break;
+
+    //     case 4:
+    //       alert("正在退出......");
+    //     break;
+    //   }
+    // }while(num===4);
+
+  </script>
+</body>
+</html>
