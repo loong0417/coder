@@ -13,7 +13,7 @@
 
 4. 原型上有then和catch方法。
 
-![](D:\git temp\notes\img\es\promise.png)
+![](..\img\es\promise.png)
 
 ## 2.什么是回调地狱？
 
@@ -1256,7 +1256,7 @@ let a = '杨小样';  // Uncaught SyntaxError: Identifier 'b' has already been d
 
 **那么我们可能会想它的变量保存在哪里了？**
 
-![](D:\NOTES\images\es\variableEnvironment.png)
+![](../img\es\variableEnvironment.png)
 
 
 
