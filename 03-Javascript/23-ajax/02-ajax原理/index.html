@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    ajax的原理是什么？如何实现的？（async javascript and xml）
+      1. 原理：通过XMLHttpRequest对象来向服务端发送异步请求，从服务器获取数据，然后使用js来操作DOM更新页面。
+    
+    实现过程：
+      1. 创建 Ajax的核心对象，XMLHttpRequest对象。
+        - new XMLHttpRequest() 实例化Ajax对象
+
+      2. 通过 XMLHttpRequest 对象的 open() 方法与服务器简历连接。
+        - new XMLHttpRequest().open(method：表示请求方式，url：服务器的地址);
+        
+      3. 构建请求所需的数据内容，并通过XMLHttpRequest对象的 send() 方法发送给服务器。
+        - new XMLHttpRequest().send(body：发送的数据)
+        - post请求才会发送数据。
+        - get请求直接写成 send(null)。
+
+      4. 通过 XMLHttpRequest 对象提供的 onreadystatechange 时间监听服务器端的通信状态。
+        - new XMLHttpRequest().onreadystatechange 主要监听的属性是实例化对象中的readyState状态（5个状态）
+        - 状态0：open() 方法未调用。
+        - 状态1：send() 方法未调用。
+        - 状态2：send() 方法已经调用，响应头和响应状态已经返回。
+        - 状态3：响应体正在下载，responseText(接收服务器响应的结果)，获取到的只是部分数据，还没下载完。
+        - 状态4：整个请求过程已经完毕。
+        注意：只要readyState属性值发生改变，onreadystatechange就被触发。
+
+      5. 接收并处理服务器端向客户端响应的数据结果。
+      6. 将处理的结果更新到html页面中。 
+   -->
+  <script>
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET','http://localhost:3000/personalized?limit=10');
+    xhr.send(null);
+
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState===4){
+        if(xhr.status>=200 && xhr.status<300){
+          // console.log(xhr.responseText)           // 先看看数据在不在
+          let obj = JSON.parse(xhr.responseText);    // 数据存在将数据格式转变
+          
+          obj.result.forEach(item => {
+            var div = document.createElement('div');
+            div.innerHTML = item.name;
+            document.querySelector('body').appendChild(div);
+          });
+
+        }else if(xhr.status>=400){
+          console.log('信息错误：'+xhr.status);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

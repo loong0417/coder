@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    使用原型链实现继承：
+      缺点：
+          1. 原型链方式实现继承是属于传统的继承方式。
+          2. 不足是，过多继承了没用的属性。
+   -->
+  <script>
+
+    // 创建父级构造函数
+    function Parent(){
+      this.say = 'hi~';  
+    }
+    Parent.prototype={
+      name:'张三',
+      test:function(){
+        console.log('Parent');
+      }
+    }
+
+    function Child(){
+      this.say = 'hello~';
+    }
+    // 原理：让子类型的原型对象等于父类型的实例对象，这样子类型就能拿到父类型原型的方法。
+    // 关键点1：实例化父级构造函数，赋值给子级的原型对象，实现原型链继承
+    Child.prototype = new Parent();
+    // 关键点2：让子类型原型的constructor指向子类型
+    Child.prototype.constructor = Child;
+    var child1 = new Child();
+    console.log(child1.name);   // 张三
+    child1.test();              // Parent
+  </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 面试题1：
+    // var name = "window";
+    // var person = {
+    //   name: "person",
+    //   sayName: function () {
+    //     console.log(this.name);
+    //   }
+    // };
+    // function sayName() {
+    //   var sss = person.sayName;
+    //   sss();                    // name:window 独立函数调用
+    //   person.sayName();         // name:person 隐式调用
+    //   (person.sayName)();       // name:person 这个位置和上面是一样的，那个括号加或者不加都是一样的
+    //   (b = person.sayName)();   // name:window 这里特殊在，它有一个赋值表达式，独立函数调用
+    // }
+    // sayName();
+
+    // 面试题2：
+    // var name = 'window'
+    // var person1 = {
+    //   name: 'person1',
+    //   foo1: function () {
+    //     console.log(this.name)
+    //   },
+    //   foo2: () => console.log(this.name),
+    //   foo3: function () {
+    //     return function () {
+    //       console.log(this.name)
+    //     }
+    //   },
+    //   foo4: function () {
+    //     return () => {
+    //       console.log(this.name)
+    //     }
+    //   }
+    // }
+
+    // var person2 = { name: 'person2' }
+
+    // person1.foo1();                // name:person1   隐式绑定
+    // person1.foo1.call(person2);    // name:person2   显示绑定（显示绑定优先级大于隐式绑定）
+    
+    // 分析：定义对象不会产生作用域，它只是一个对象，所以对象中的函数上级作用域是window。
+    // var person = {
+    //   foo:function(){
+    //     // 例如：这里函数的上级作用域是window，而不是person，定义person对象是产生不了作用域的。
+    //   }
+    // }
+
+    // person1.foo2();                // name:person1  正确的是：window
+
+    // 分析：person1.foo2是箭头函数找到的是全局作用域，全局作用域管你call，apply，bind都是指向window。
+    // person1.foo2.call(person2);    // name:person2  正确的是：window
+    
+    // 分析：person1.foo3()调用结果再执行（），这是独立函数调用
+    // person1.foo3()();              // name:window
+
+    // person1.foo3.call(person2)();  // name:window独立函数调用
+
+
+
+    // person1.foo3().call(person2);  // name:person2
+
+    // person1.foo4()();              // name:window   正确的是：person1
+    // person1.foo4.call(person2)();  // name:window   正确的是：person2
+    // person1.foo4().call(person2)   // name:person2  正确的是：person1
+
+    // 面试题3：
+    // var name = 'window'
+    // function Person (name) {
+    //   this.name = name
+    //   this.foo1 = function () {
+    //     console.log(this.name)
+    //   },
+    //   this.foo2 = () => console.log(this.name),
+    //   this.foo3 = function () {
+    //     return function () {
+    //       console.log(this.name)
+    //     }
+    //   },
+    //   this.foo4 = function () {
+    //     return () => {
+    //       console.log(this.name)
+    //     }
+    //   }
+    // }
+    // var person1 = new Person('person1')
+    // var person2 = new Person('person2')
+
+    // person1.foo1()               // name:person1
+    // person1.foo1.call(person2)   // name:person2
+
+    // person1.foo2()               // name:window   name:person1
+    // person1.foo2.call(person2)   // name:window   name:person1
+
+    // person1.foo3()()             // name:window   
+    // person1.foo3.call(person2)() // name:window
+    // person1.foo3().call(person2) // name:window   name:person2
+
+    // person1.foo4()()             // name:person1
+    // person1.foo4.call(person2)() // name:person2
+    // person1.foo4().call(person2) // name:person2  name:person1
+
+    
+    // 面试题4：
+    var name = 'window'
+    function Person (name) {
+      this.name = name
+      this.obj = {
+        name: 'obj',
+        foo1: function () {
+          return function () {
+            console.log(this.name)
+          }
+        },
+        foo2: function () {
+          return () => {
+            console.log(this.name)
+          }
+        }
+      }
+    }
+    var person1 = new Person('person1')
+    var person2 = new Person('person2')
+
+    person1.obj.foo1()()
+    person1.obj.foo1.call(person2)()
+    person1.obj.foo1().call(person2)
+
+    person1.obj.foo2()()
+    person1.obj.foo2.call(person2)()
+    person1.obj.foo2().call(person2)
+
+
+  </script>
+</body>
+</html>

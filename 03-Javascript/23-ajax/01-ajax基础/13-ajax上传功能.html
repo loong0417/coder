@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		<script>
+			/*
+			 * 上传只能用post的方式，并且后台需要处理中文
+			 * ajax.upload.onprogress		上传的进度事件
+			 * 	ev.loaded	已经上传文件的大小
+			 * 	ev.total	总文件的大小
+			 * 
+			 * FormData		用来创建与表单格式相同的数据，它是由XMLHttpRequest 2级定义。获取到的是一个二进制数据
+			 * 	FormData.append(文件名,文件值)
+			 * 
+			 * files		上传选中的所有文件列表，放在type为file的表单控件中
+			 * 	这里包括：最后修改的时间、大小、类型等等
+			 */
+			
+			window.onload=function(){
+				var inputs=document.querySelectorAll("input");
+				var progress=document.querySelector("progress");
+				
+				inputs[1].onclick=function(){
+					var ajax=new XMLHttpRequest();
+					
+					ajax.open('post','php/post_file.php',true);
+					ajax.upload.onprogress=function(ev){
+						progress.value=ev.loaded/ev.total*100;
+					};
+					
+					//console.log(inputs[0].files);
+					
+					var formadata=new FormData();
+					for(var i=0;i<inputs[0].files.length;i++){
+						formadata.append('file',inputs[0].files[i]);
+					}
+					
+					ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+					ajax.send(formadata);
+					ajax.onload=function(){
+						
+					};
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<progress value="0" max="100"><span>0%</span></progress>
+		<!--<input type="file" multiple="multiple" accept="application/pdf" />-->
+		<input type="file" multiple="multiple" />
+		<input type="button" value="提交" />
+	</body>
+</html>

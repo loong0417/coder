@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一些函数的this分析</title>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    // 1. setTimeout
+
+    // 分析：现在我们是将function(){}这个函数传递给setTimeout了。
+    // function aaaSetTimeout(fn,time){
+    //   // fn 在这里我们是可以拿到fn这个函数的，具体里面怎么实现的不知道。
+    //   // fn()  //(1).如果它在内部是这样调用的，就是一个独立的函数调用，指向的是window
+    //   // fn.call('sssss') // (2).如果这样调用就指向的是 String{'aaaa'}
+    // }
+    // aaaSetTimeout(function(){
+    //   console.log(this)   // window
+    // },1000)
+
+    
+    // setTimeout(function(){
+    //   console.log(this)  // window
+    // },1000);
+
+    // setInterval(()=>{
+    //   console.log(this)   // window 这个位置情况不一样，箭头函数是找上级作用域的this。
+    // },1000);
+
+    // 2. 监听点击（指向的是点击对象本身）
+    var box = document.getElementsByClassName('box')[0];
+    // box.onclick = function(){
+    //   console.log(this)    //  <div class="box"></div>
+    // }
+
+    // box.addEventListener('click',function(){
+    //   console.log(this)       //  <div class="box"></div>
+    // });
+  </script>
+</body>
+</html>

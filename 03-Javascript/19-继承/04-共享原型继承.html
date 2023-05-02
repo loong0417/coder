@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    共享原型继承方式：
+      缺点：
+
+   -->
+   <script>
+    Father.prototype.lastName = "li";
+    function Father(){
+    }
+
+    function Son() {
+    }
+
+    function inherit(Target,Origin){
+        // 将 Father 构造函数的原型赋值给 Son
+        Target.prototype = Origin.prototype;
+    }
+    // 必须在实例化前面调用此方法，否则无效（先继承后使用）
+    inherit(Son,Father);  
+    var son = new Son();
+    console.log(son.lastName); // li
+
+    /*
+    1. 如果想要给 Son 构造函数原型添加属性，是可以添加但会影响 Father 构造函数，
+    Father 实例化的构造函数对象也是可以访问 Son 原型新添加的属性的，因为它们指向的是一个位置
+    */
+    Son.prototype.sex = "female";
+    console.log(son.sex);   // female
+
+    var father = new Father();
+    console.log(father.sex); // female
+   </script>
+</body>
+</html>

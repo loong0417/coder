@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>深度克隆</title>
+ </head>
+ <body>
+     <script type="text/javascript">
+    
+    //深度克隆
+
+        // 1. 判断是不是原始值
+        // 2. 判断是数组还是对象 object、instanceof、constructor
+        // 3. 建立相应的数组或对象
+        // 4. 递归
+        
+        var obj = {
+            name : 'abc',
+            age : 123,
+            sex : 'male',
+
+            card:['visa','unionpay'],
+            wifa:{
+                name:"aaa",
+                son:{
+                    name:"bbb"    
+                }
+            }
+        }
+
+        var obj1={}
+
+        function deepClone(origin,target){
+            var target = target || {},
+                toStr = Object.prototype.toString,
+                arrStr = "[Object Array]";
+
+            for(var prop in origin){
+                if(origin.hasOwnProperty(prop)){
+                    if(typeof(origin[prop]) == 'object'){
+                        if(toStr.call(origin[prop]) == arrStr){
+                            target[prop] = [];
+                        }else{
+                            target[prop] = {};
+                        }
+
+                        deepClone(origin[prop],target[prop]);
+
+                    }else{
+                        target[prop] = origin[prop];
+                    }
+                }
+            }
+            return target;
+        }
+        
+
+     </script>
+ </body>
+ </html>

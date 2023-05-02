@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		<!--<script src="js/data.js"></script>-->
+		<script>
+			/*
+			 * 带src属性的<script><img><iframe><link>等标签是不需要遵守同源策略的，但是通过src加载的资源，浏览器限制了javascript的权限，只能读不能写
+			 * 
+			 * jsonp(json+padding)
+			 * 	1、通过script标签引入某些数据，是同步模式的，只有上面的代码加载完成才能继续加载下面的代码一般在用script标签做跨域的时候，不建议将数据提前加载，应该按需加载
+			 * 	2、当需要数据的时候创建一个script标签，将需要的数据放在src中，通过onload去监听是否请求过来，请求完毕就调用传回来的数据（异步加载）
+			 * 	3、jsonp不能用post请求只能用get方式请求
+			 */
+			
+			//alert(a);
+			window.onload=function(){
+				var btn=document.querySelector("button");
+				
+				btn.onclick=function(){
+					var script=document.createElement("script");
+					script.src='js/data.js';
+					
+					/*
+					 * onload要放在加载前面，如果添在前面的话，会有缓存，缓存就有可能触发不了onload事件
+					 */
+					
+					script.onload=function(){
+						alert(a);
+					};
+					
+					document.body.appendChild(script);
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<button>点击</button>
+	</body>
+</html>

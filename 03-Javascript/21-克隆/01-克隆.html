@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>克隆？</title>
+</head>
+<body>
+  <script>
+    // 案例1：
+    // var person1 = {
+    //   name:'yang',
+    //   age:'18',
+    //   sex:'female',
+    //   job:'攻城狮'
+    // }    
+
+    // // 1. 将person1赋值给person2，这里实际上是多了一个变量指向 person1。
+    // var person2 = person1;
+    // console.log(person1);  // {name: 'yang', age: '18', sex: 'female', job: '攻城狮'}
+    // console.log(person2);  // {name: 'yang', age: '18', sex: 'female', job: '攻城狮'}
+
+    // // 2. 可以看到，给 person2 属性值给修改了，person1的属性值也会改，因为它们是指向的同一块内存地址。
+    // person2.name="yangxiaoyang"
+    // console.log(person1) // {name: 'yangxiaoyang', age: '18', sex: 'female', job: '攻城狮'}
+    // console.log(person2) // {name: 'yangxiaoyang', age: '18', sex: 'female', job: '攻城狮'}
+    
+
+    // 案例2：
+    var person1 = {
+      name:'yang',
+      age:'18',
+      sex:'female',
+      job:'攻城狮',
+      car:[
+        '000000',
+        '111111'
+      ]
+    }
+
+    // 3. 别看这里定义了一个空间，但修改 person2的属性，person1一样是会更改的。
+    var person2 = {}
+    person2 = person1;
+    console.log(person1)  // {name: 'yang', age: '18', sex: 'female', job: '攻城狮', car: Array(2)}
+    console.log(person2)  // {name: 'yang', age: '18', sex: 'female', job: '攻城狮', car: Array(2)}
+
+    // person2.name = "张三";
+    // console.log(person1)  // {name: '张三', age: '18', sex: 'female', job: '攻城狮', car: Array(2)}
+    // console.log(person2)  // {name: '张三', age: '18', sex: 'female', job: '攻城狮', car: Array(2)}
+
+  </script>
+</body>
+</html>

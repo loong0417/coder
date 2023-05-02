@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this全局作用域</title>
+</head>
+<body>
+  <script>
+    // 1. this在全局作用域中指向的window
+    // console.log(this)
+
+    // 2. node中 this指向的是一个空对象。使用命令：node test.js文件运行。node环境中是没有window这个概念的。
+    // 例如：test.js文件在node环境下，会将它当成一个模块module，然后加载，编译，放到一个函数中，执行这个函数.apply({})
+    // 调用了apply({})这个方法，里面传了一个空的对象，所以返回的就是一个空对象。
+    // console.log(this)
+
+  </script>
+</body>
+</html>

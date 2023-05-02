@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this在函数中指向</title>
+</head>
+<body>
+  <script>
+    // 温馨提示：其实this在全局作用域中很少使用，基本不咋用。一般this就是在函数中使用的。
+    // this在函数中的指向，this在函数中的指向是动态绑定的，不是编译的时候决定的，而是在执行的时候决定的。
+
+
+    /**
+     * 总结：
+     *  1. 函数在调用时，javascript会默认给this绑定一个值。
+     *  2. this的绑定和函数定义的位置是没有关系的。
+     *  3. this的绑定和调用方式以及调用的位置有关系。
+     *  4. this是在运行时绑定的。
+     *  
+     */
+
+    // 1. this普通函数调用
+    function foo(){
+      console.log(this)
+    }
+    foo();  // this指向window
+
+    // 2. 对象中调用函数，指向的是当前对象 {name: 'yang', foo: ƒ}
+    var obj = {
+      name:'yang',
+      foo:foo
+    }
+    obj.foo();
+
+    // 3. apply方式调用。
+    foo.apply('saaasas'); // String {'saaasas'}
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		<script>
+			/*
+			 * 同步与异步
+			 * 	执行的一种模式
+			 * 	同步
+			 * 		1、当send()方法调用后会等待服务器返回信息，如果服务器一直没有响应，就会阻塞后面的代码，后面的代码就不会执行
+			 * 		2、后面的代码执行受前面代码的影响，前面的代码没跑通，后面的代码就不会执行
+			 * 	异步
+			 * 		1、当send()方法调用后，就会执行后面的代码，不用等待服务器的响应
+			 * 		2、后面的代码执行不受前面代码的影响
+			 */
+			window.onload=function(){
+				var inputs=document.getElementsByTagName("input");
+				
+				inputs[2].onclick=function(){
+					//console.log(decodeURI('%E9%99%88%E5%AD%A6%E8%BE%89'))
+					var val=inputs[0].value;
+					
+					var ajax=null;
+					if(window.XMLHttpRequest){
+						ajax=new XMLHttpRequest;
+					}else{
+						ajax=new ActiveXObject('Microsoft.XMLHTTP');
+					}
+					
+					//第三个参数表示ajax的请求是同步(false)还是异步(true)
+					ajax.open('get','php/get_async.php?user='+val,false);
+					
+					ajax.send();
+					
+					//4、等待服务器响应
+					ajax.onreadystatechange=function(){
+						//5、接收数据
+						var span=document.getElementsByTagName("span")[0];
+						span.innerHTML=ajax.responseText;
+					};
+					
+					alert(1);
+				};
+			};
+		</script>
+	</head>
+	<body>
+		用户名：<input type="text" name="username" /><span></span><br /><br />
+		密码：<input type="password" name="password" />
+		<input type="button" value="提交" />
+	</body>
+</html>

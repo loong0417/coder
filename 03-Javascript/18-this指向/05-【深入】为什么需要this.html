@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>为什么需要this</title>
+</head>
+<body>
+  <!-- 
+    为什么需要this？
+      1. 从某种角度上来说，其实开发中没有this，很多问题我们也是有解决方案的。
+      2. 但是没有this，会让我们编程方式变得不方便。
+   -->
+  <script>
+    var info = {
+      name:'杨小样',
+      running:function(){
+        /**
+         *  1. 这个位置也可以使用对象名去调用属性，info.name也是可以的，
+         *     但是如果info对象名发生改变也就意味着后面的都需要更改。
+         * 
+         */
+        console.log(`${this.name}在运动`)
+      },
+      eating:function(){
+        console.log(`${this.name}在吃饭`)
+      },
+      studying:function(){
+        console.log(`${this.name}在学习`)
+      },
+    }
+
+    info.running();
+    info.eating();
+    info.studying();
+  </script>
+</body>
+</html>

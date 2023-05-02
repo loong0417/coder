@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <script type="text/javascript">
+    // 原型链
+    // Grand.prototype.lastName = "ji";
+    // function Grand() {
+    // }
+    // var grand = new Grand();
+
+    // Father.prototype = grand;
+    // function Father() {
+    //     this.name = "hehehe";
+    // }
+    // var father = new Father();
+
+    // Son.prototype = father;
+    // function Son(){
+    // }
+    // var son = new Son();
+    // console.log(son.name);   // hehehe
+    // console.log(son.lastName);  // ji
+
+    // call / apply
+    // call 和 apply 作用是一样的，改变 this 指向，不同之处在于 apply 传参的时候第二参数必须是一个数组
+    // function Person(name,age,sex) {
+    //     this.name = name;
+    //     this.age = age;
+    //     this.sex = sex;
+    // }
+
+    // function Student(name,age,sex,grade) {
+    //     // Person.call(this,name,age,sex);
+    //     Person.apply(this,[name,age,sex]);
+    //     this.grade = grade;
+    // }
+
+    // var student = new Student('张三',6,'男','一年级');
+    // console.log(student);
+    // Student {name: "张三", age: 6, sex: "男", grade: "一年级"}
+    
+    Father.prototype.lastName = "li";
+    function Father(){
+    }
+
+    function Son() {
+    }
+
+    function inherit(Target,Origin){
+        // 将 Father 构造函数的原型赋值给 Son
+        Target.prototype = Origin.prototype;
+    }
+    // 必须在实例化前面调用此方法，否则无效
+    inherit(Son,Father);  
+    var son = new Son();
+    console.log(son.lastName); // li
+
+    /*
+        1. 如果想要给 Son 构造函数原型添加属性，是可以添加但会影响 Father 构造函数
+        Father 实例化的构造函数对象也是可以访问 Son 原型新添加的属性的，因为它们指向的是一个位置
+    */
+    Son.prototype.sex = "female";
+    console.log(son.sex);   // female
+
+    var father = new Father();
+    console.log(father.sex); // female
+
+
+    </script>
+</body>
+</html>

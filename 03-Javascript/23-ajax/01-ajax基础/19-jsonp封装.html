@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		
+	</head>
+	<body>
+		<input type="text" />
+		<ul></ul>
+		
+		
+		<script src="js/jsonp.js"></script>
+		<script>
+			var input=document.querySelector("input");
+			var ul=document.querySelector("ul");
+			
+			input.onkeyup=function(){
+				var val=this.value;
+				
+				jsonp({
+					url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+					data:{
+						wd:val
+					},
+					callBack:'cb',
+					succ:function(data){
+						console.log(data);
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

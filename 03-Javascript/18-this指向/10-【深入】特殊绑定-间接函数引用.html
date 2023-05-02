@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>间接函数引用</title>
+</head>
+<body>
+  <script>
+    // var obj1 = {
+    //   name:'obj1',
+    //   foo:function(){
+    //     console.log(this)
+    //   }
+    // }
+
+    // var obj2 = {
+    //   name:'obj2'
+    // };
+    // // obj2.bar = obj1.foo;
+    // // obj2.bar();           // {name: 'obj2', bar: ƒ}
+
+    // (obj2.bar = obj1.foo)(); // window obj2对象后面一定要加一个分号，否则在语法解析的时候会将这一句和上面一句连接起来，会报错。
+
+    
+    // 你不知道的javascript
+    function foo(el){
+      console.log(el,this.id)
+    }
+
+    var obj = {
+      id:'awesome',
+    };  // 这个位置一定要加分号，否则解析器就会将它们解析成一块代码
+    [1,2,3].forEach(foo,obj);
+
+
+  </script>
+</body>
+</html>

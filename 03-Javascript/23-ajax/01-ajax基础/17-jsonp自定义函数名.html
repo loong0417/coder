@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+	</head>
+	<body>
+		<button>点击1</button>
+		<button>点击2</button>
+		<ul></ul>
+		<ul></ul>
+		
+		<script>
+			var buttons=document.querySelectorAll("button");
+			var uls=document.querySelectorAll("ul");
+			
+			buttons[0].onclick=function(){
+				var script=document.createElement("script");
+				script.src='http://localhost/ajax/php/jsonp_callBack.php?callback=fn1&num=number';
+				document.getElementsByTagName('head')[0].appendChild(script);
+			};
+			
+			function fn1(data){
+				var str='';
+				for(var i=0;i<data.length;i++){
+					str+='<li>'+data[i]+'</li>';
+				}
+				
+				uls[0].innerHTML=str;
+			}
+			
+			buttons[1].onclick=function(){
+				var script=document.createElement("script");
+				script.src='http://localhost/ajax/php/jsonp_callBack.php?callback=fn2';
+				document.getElementsByTagName('head')[0].appendChild(script);
+			};
+			
+			function fn2(data){
+				var str='';
+				for(var i=0;i<data.length;i++){
+					str+='<li>'+data[i]+'</li>';
+				}
+				uls[1].innerHTML=str;
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绑定规则优先级</title>
+</head>
+<body>
+  <script>
+    // 1. 显示优先级高于隐式优先级
+    // setTimeout(function(){
+    //   console.log(this)   // window
+    // },1000);
+
+    // setTimeout(()=>{
+    //   console.log(this)   // window
+    // });
+
+    // 2. new优先级高于饮食优先级
+    // var obj = {
+    //   name:'obj',
+    //   foo:function(){
+    //     console.log(this)
+    //   }
+    // }
+    // var f = new obj.foo();  // this指向foo{}实例化对象
+    
+    // 3. new优先级高于显示绑定
+    // 结论：new是不能和apply/call一起来使用的。所以只能使用new和bind进行比较。
+    // function foo(){
+    //   console.log(this)        // this指向的是foo{}对象
+    // }
+    // var bar = foo.bind('aaaa');
+    // var obj = new bar();
+
+
+    // 总结：new优先级>显示绑定（bind、apply、call）>隐式绑定>默认绑定
+    // bind优先级高于call。
+  </script>
+</body>
+</html>

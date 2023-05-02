@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+	</head>
+	<body>
+		<!--
+			action			表单提交地址
+			method			提交方法
+				1、get
+					提交的数据通过地址栏发送，数据添加到地址栏的问号后面
+					数据形式：数据名=数据值&数据名=数据值
+				2、post
+					提交的数据通过请求头发送（头部信息，能过控制台可以看到）
+		-->
+		<form action="http://www.baidu.com/" method="post">
+			用户名：<input type="text" name="username" />
+			密码：<input type="password" name="password" />
+			<input type="submit" />
+		</form>
+	</body>
+</html>

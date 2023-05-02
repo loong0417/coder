@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		<script src="js/json2.js"></script><!--JSON对象是不兼容的，引入这个文件就可以兼容了-->
+		<script src="js/ajax.js"></script>
+		<script>
+			window.onload=function(){
+				var inputs=document.getElementsByTagName("input");
+				
+				inputs[3].onclick=function(){
+					var span=document.getElementsByTagName("span")[0];
+					
+					ajax({
+						url:'php/get_json.php',
+						method:'get',
+						dataType:'string',
+						data:{
+							'user':encodeURI(inputs[0].value),
+							'password':inputs[1].value,
+							'email':inputs[2].value
+						},
+						succ:function(data){
+							console.log(data);
+						},
+						fail:function(data){
+							alert(data);
+						}
+					});
+				};
+			};
+		</script>
+	</head>
+	<body>
+		用户名：<input type="text" name="username" /><span></span><br /><br />
+		密码：<input type="password" name="password" /><br /><br />
+		邮箱：<input type="text" /><br /><br />
+		<input type="button" value="提交" />
+	</body>
+</html>

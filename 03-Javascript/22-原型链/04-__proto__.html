@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>__proto__</title>
+</head>
+<body>
+    <!-- 
+        1. __proto__ 是对象身上的属性，每一个对象身上都会有这个属性，它的值就是对应构造函数属性的 prototype 值。
+        2. 对象.__proto__ === 构造函数.prototype。
+        3. 对象之所以可以继承原型身上的属性和方法，是因为每一个对象身上都有一个 __proto__，那个__proto__值指向了构造函数的 prototype。
+     -->
+    <script>
+         function Person(name,age){
+            this.name = name;
+            this.age = age;
+         }
+
+         Person.prototype.sex = 'male';
+         Person.prototype.say = function(){
+             console.log("我叫"+this.name);
+         }
+
+         var p1 = new Person("老王",30);
+
+         // 重写 Person.prototype 是在实例化对象之后，所以name是不会覆盖this.name
+         Person.prototype = {
+             name:'光头强'
+         }
+
+         console.log(p1)
+         console.log(p1.__proto__)
+
+         var p2 = new Person("小王",18);
+         p1.say();
+        //  p2.say();
+         // 1. prototype 是构造函数身上的一个属性，对应值是一个对象Object。  
+         console.log(Person.prototype);
+         // 2. 实例对象身上是没有 prototye 属性的
+         //  console.log(p1.prototype);   // undefined
+
+         // 3. __proto__是实例对象身上的一个属性，它是等于构造函数身上的 prototype 属性的。
+         console.log(Person.prototype == p1.__proto__);  // true
+
+        //  4. 使用原型，在原型将方法和属性放在原型上就可以避免构造函数中性能问题造成的资源浪费。
+        console.log(p1.say == p2.say);  //true
+
+        console.log(Person.prototype.__proto__ == Object.prototype);
+    </script>
+</body>
+</html>

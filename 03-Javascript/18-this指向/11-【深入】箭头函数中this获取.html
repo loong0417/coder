@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this在箭头函数中的this指向</title>
+</head>
+<body>
+  <!-- 
+    箭头函数不使用this的四种标准规则（也就是不绑定this），而是根据外层作用域来决定this。
+     1. foo作用里面没有this，箭头函数就会向上查找。 
+   -->
+  <script>
+    // 1. 箭头函数中的this指向
+    // var name = 'yang';
+    // var foo = () =>{
+    //   console.log(this)
+    // }
+    // foo();                // Window {window: Window......}
+    // var obj = {foo:foo}
+    // obj.foo();            // Window {window: Window......}
+    // foo.call('aaaa');     // Window {window: Window......}
+
+    // 2. 应用场景
+    var obj = {
+      data:['2121'],
+      getData:function(){
+        // 例如：发送网络请求，将结果存放在data属性中
+        // 方式一：在箭头函数之间的解决方案是
+        // var _this = this;
+        setTimeout(function(){
+          var result = ['aaaa','bbbb','cccc'];
+          // console.log(this)  这里的this是指向window的
+          // console.log(obj.data) 这个位置可以用obj对象去调用data，为什么一定需要this呢？
+          // _this.data = result;
+        },2000);
+
+        // 方式二：箭头函数，箭头函数没有this这里就会去上级找，它的上级作用域是obj，getData通过obj隐式调用的，所以它的上级作用域指向的是obj。
+        // setTimeout(()=>{
+        //   var result = ['aaaa','bbbb','cccc'];
+        //   this.data = result
+        // },2000);
+      }
+    }
+    obj.getData();
+  </script>
+</body>
+</html>

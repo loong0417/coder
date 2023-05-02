@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+	</head>
+	<body>
+		<input type="text" />
+		<ul></ul>
+		
+		<script>
+			var input=document.querySelector("input");
+			var ul=document.querySelector("ul");
+			
+			//https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=sds&cb=jQuery110205042832768124685_1479395501613
+			input.onkeyup=function(){
+				var script=document.createElement("script");
+				script.src='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+this.value+'&cb=fn1';
+				
+				document.body.appendChild(script);
+				document.body.removeChild(script);
+			}
+			
+			function fn1(data){
+				//console.log(data);
+				var str='';
+				if(!data.s.length){
+					ul.style.display='none';
+					ul.innerHTML='';
+				}else{
+					ul.style.display='block';
+					
+					for(var i=0;i<data.s.length;i++){
+						str+='<li>'+data.s[i]+'</li>';
+					}
+					
+					ul.innerHTML=str;
+				}
+			};
+		</script>
+	</body>
+</html>

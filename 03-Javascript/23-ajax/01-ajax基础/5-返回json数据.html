@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		<script>
+			/*
+			 * ajax数据交互流程
+			 * 1、创建一个ajax对象			买了一个电话
+			 * 2、填写请求地址				  输入号码
+			 * 3、发送请求				    	拨号
+			 * 4、等待服务器响应			 	等待
+			 * 5、接收数据				    	通话
+			 */
+			window.onload=function(){
+				var inputs=document.querySelectorAll("input");
+				
+				inputs[2].onclick=function(){
+					var val=inputs[0].value;
+					
+					//1、创建一个ajax对象
+					var ajax=new XMLHttpRequest;
+					
+					//2、填写请求地址
+					ajax.open('get','php/get_json.php?user='+val,true);
+					
+					//3、发送请求
+					ajax.send();
+					
+					//4、等待服务器响应
+					ajax.onload=function(){
+						//5、接收数据
+						var span=document.querySelector("span");
+						//ajax请求过来的数据都是字符串，它不能用对象的操作方法 直接操作
+						//console.log(typeof ajax.responseText);			//string
+						
+						var result=JSON.parse(ajax.responseText);
+						//console.log(result)
+						//span.innerHTML=ajax.responseText;
+						
+						if(result.code==0){
+							alert('注册吧，你还真蒙对了');
+						}else{
+							alert('换一个吧');
+						}
+					};
+				};
+			};
+		</script>
+	</head>
+	<body>
+		用户名：<input type="text" name="username" /><span></span><br /><br />
+		密码：<input type="password" name="password" />
+		<input type="button" value="提交" />
+	</body>
+</html>

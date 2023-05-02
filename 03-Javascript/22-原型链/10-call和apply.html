@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    call和apply作用：
+      1. 改变 this 指向
+      2. 引用工厂函数里面的属性和方法（通俗点说就是借用别的函数中的属性和方法）
+   -->
+  <script>
+    // function Car(brand,color){
+    //   this.brand = brand;
+    //   this.color = color;
+
+    //   this.runing = function(){
+    //     console.log(this.brand+"，runing ……………………");
+    //   }
+    // }
+
+    // var newCar = {
+    //   displacement:'3.0'
+    // }
+    // // newCar想要引用Car里面的属性和方法
+    // // Car.call(newCar,'Mazda','red');
+    // Car.apply(newCar,['Mazda','red'])
+    // var car = new Car('Benz','blank');
+    // console.log(car)
+    // car.runing()
+    // console.log(newCar)
+    // newCar.runing()
+
+
+    // 案例1：
+    function Car(brand,color,displacement){
+      this.brand = brand;
+      this.color = color;
+      this.displacement = displacement;
+      this.info = function(){
+        console.log(this.name+':购买了一辆品牌为：'+this.brand+'颜色为：'+this.color+'的车。');
+      }
+    }
+
+    function Person(name){
+      this.name = name;
+      Car.apply(this,['Mazda','red'])
+    }
+    var person = new Person("张三");
+    person.info()
+    
+  </script>
+</body>
+</html>

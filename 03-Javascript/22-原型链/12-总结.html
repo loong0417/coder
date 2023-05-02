@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>    
+    // Object.prototype.__proto__ 原型链的尽头
+    // console.log(Object.prototype.__proto__)                         // null
+    // console.log(Object.prototype)                                   // object:{有内容的}
+    
+    // 使用字面量方式创建对象
+    // var obj = {}  
+    // console.log(obj.__proto__ === Object.prototype)                 // true
+    // console.log(({}).__proto__ === Object.prototype)                // true
+
+    // 使用构造函数方式创建的对象
+    // function Person(){}
+    // var person = new Person()
+    // console.log(person.__proto__ === Person.prototype)                // true
+    // console.log(Person.prototype.__proto__ === Object.prototype)      // true
+    
+    // // 使用字面量方式创建数组
+    // console.log(([]).__proto__ === Array.prototype)                 // true
+    // console.log(Array.prototype.__proto__ === Object.prototype)     // true
+
+    // // 创建函数
+    // console.log((function(){}).__proto__ === Function.prototype)    // true 
+    // console.log(Function.prototype.__proto__ === Object.prototype)  // true
+    
+    // // Date对象检测
+    // console.log(Date.prototype.__proto__ === Object.prototype)      // true
+
+
+    // // Object.prototype 下面有：
+    //   // ({}).__proto__ 
+    //   // ([]).__proto__
+    //   // Function.prototype.__proto__
+    //   // Date.prototype.__proto__ 
+
+    
+    // // 使用构造函数方式创建对象，构造函数继承自 Function.prototype
+    // function Parent(){ }
+    // var p = new Parent();                                           
+    // console.log(p.__proto__ === Parent.prototype)                   // true
+    // console.log(Parent.__proto__ === Function.prototype)            // true
+    // console.log(Function.prototype.__proto__ === Object.prototype)  // true
+
+    // // 创建数组字面量和new关键字没啥区别
+    // var arr = new Array();
+    // console.log(arr.__proto__ === Array.prototype)                  // true
+    // console.log(Array.prototype.__proto__ === Object.prototype)     // true
+
+    // var arrs = [];
+    // console.log(arrs.__proto__ === Array.prototype);                // true
+    // console.log(Array.prototype.__proto__ === Object.prototype)     // true
+    
+
+    // // constructor
+    // // Object的构造器竟然是 Function ，晕乎不晕乎
+    // console.log(Object.constructor)                                       // ƒ Function() { [native code] }
+    // console.log(Object.prototype.constructor)                             // ƒ Object() { [native code] }
+    
+    // function Animals(){}
+    // var cat = new Animals();
+    // console.log(cat.constructor)                                          // ƒ Animals(){}
+    // console.log(Animals.prototype.constructor)                            // ƒ Animals(){}
+    // console.log(cat.constructor === Animals.prototype.constructor);       // true
+    
+    // console.log(Function.prototype.constructor)                           // ƒ Function() { [native code] }
+    // console.log(Animals.constructor === Function.prototype.constructor)   // true
+    // console.log(Function.constructor === Function.prototype.constructor)  // true
+    
+    // // 你就说，颠覆认知不嘛。
+    // // constructor属性也是对象才拥有的，它是从一个对象指向一个函数，含义就是指向该对象的构造函数，
+    // // 每个对象都有构造函数（本身拥有或继承而来，继承而来的要结合__proto__属性查看会更清楚点，如下图所示），
+    // // 从上图中可以看出Function这个对象比较特殊，它的构造函数就是它自己（因为Function可以看成是一个函数，也可以是一个对象），
+    // // 所有函数和对象最终都是由Function构造函数得来，所以constructor属性的终点就是Function这个函数。
+
+    // console.log(Function.constructor === Object.constructor)              // true
+
+
+    // var arr = [];
+    // console.log(arr.constructor)                                          // ƒ Array() { [native code] }
+    // console.log(Array.constructor === Function.prototype.constructor)     // true
+
+
+    // var date = new Date();
+    // console.log(date.constructor)                                         // ƒ Date() { [native code] }
+    // console.log(Date.constructor === Function.prototype.constructor)      // true
+
+    // var obj = {}
+    // console.log(obj.constructor)                                         // ƒ Object() { [native code] }
+    // console.log(obj.constructor === Object.prototype.constructor)        // true
+
+
+    // console.log(Array.prototype.constructor)
+    // console.log(Function.prototype.constructor)
+    // console.log(Object.prototype.constructor)
+
+    // console.log(Object.prototype.constructor === Object)                 // true
+    // console.log(Object.constructor === Function.constructor)             // true
+    // console.log(Function.constructor === Function.prototype.constructor) // true
+
+    // console.log(Array.constructor === Function.constructor)              // true
+
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 案例1：
+    // function Obj(){
+      
+    // }
+    // Obj.prototype.num = 1;
+    // // 两种方式构建对象得结果是一样的，在实际开发中是不能随便更改原型指向的
+    // var obj1 = Object.create(Obj.prototype)
+    // var obj2 = new Obj();  
+    // console.log(obj1) 
+    // console.log(obj2)
+    
+    // 案例2：
+    // var test = {
+    //   num:1
+    // }
+    // var obj2 = Object.create(test)
+    // console.log(obj2)
+
+
+    // 案例3：
+    // 创建obj1空对象
+    // var obj1 = Object.create(null);
+    // console.log(obj1); // {} No properties
+    // obj1.num = 1;
+
+    // var obj2 = Object.create(obj1);
+    // console.log(obj2) // [[Prototype]]: Object num: 1
+    // console.log(obj2.num)  // 1
+
+
+    // 案例4：
+    // var obj = Object.create(null);
+    // obj.num = 1;
+    // //console.log(obj)   // {num: 1} 不存在proto原型
+    // var obj1 = {
+    //   count:2
+    // }
+
+    // // 自定义__proto__属性，但是在打印的时候明显颜色会比实际系统自定义的颜色深。
+    // obj.__proto__ = obj1;   
+    // console.log(obj)
+    // // 无法访问 count 属性，说明这里自定义的__proto__是无效的，__proto__必须得系统定义生成，不能自定义。
+    // // 可以指定原型，但是不能自己制造原型。
+    // console.log(obj.count)   // undefined
+
+    // // 还有一个得注意得地方是，__proto__系统属性变成了[[prototype]]其实它们两个是一个玩意。
+    // var obj2 = {
+    //   count:3
+    // }
+    // // console.log(obj2)
+
+    
+    // 案例5：
+    // var num = 1;
+    // var obj = {};
+    // var obj2 = Object.create(null);
+    // document.write(num);  // 1
+    // document.write(obj);  // [Object Object]
+    // console.log(obj2);  // {}No properties
+
+    // Uncaught TypeError: Cannot convert object to primitive value
+    // document.write()是做了隐式转换的，将需要打印的内容转换成一个 string 类型。
+    // 因为 obj2 是没有原型的，所以它继承不了Object.prototype原型上面的 toString() 方法。
+    // document.write(obj2); 
+    
+
+    // 给对象添加一个自定义的方法toString()，但这样意义不大。
+    // obj2.toString = function(){
+    //   return "你好";
+    // }
+    // console.log(obj2.toString());   // 可以打印
+    // document.write(obj2.toString()); // 可以打印
+
+    
+
+    // Object.create()不兼容IE8以下，也可以自定义create()方法
+    // function create(obj){
+    //   function fun(){}
+    //   fun.prototype = obj;
+
+    //   return new fun();
+    // }
+    // var obj1 = {a:1,b:2}
+    // var obj2 = create(obj1);
+    // console.log(obj2.__proto__);  // {a: 1, b: 2}
+
+    // 删除原型链，使用null
+    var obj = {a:1,b:2}
+    var str = obj.toString();
+    console.log(str);           // [object Object]
+    console.log(obj.__proto__);
+    obj.__proto__ = null;       // 删除原型链
+    console.log(obj.__proto__); // undefined
+
+</script>
+</body>
+</html>

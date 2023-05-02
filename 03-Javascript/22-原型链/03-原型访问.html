@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // 案例1：
+        // Person.prototype   --- 原型,是祖先
+        // Person.prototype = {}
+
+        Person.prototype.name = "aaa";
+        function Person() {
+            this.name = "bbb";
+        }
+
+        // // 每一个构造函数对象都可以拿 prototype 里面的属性，如果自己函数里面有就拿自己的属性
+        var person = new Person();
+        console.log(person.name);   // bbb(person.name如果 bbb 不存在就访问的是原型上的 aaa)
+        console.log(person.__proto__.name); // aaa
+
+        var person1 = new Person();
+        console.log(person1.name);  // bbb
+
+        // 这样删是可以删除的
+        console.log(delete person.__proto__.name);  // true
+        console.log(person.__proto__.name); // undefined
+
+        // 如果将 Person 构造函数中的name注释掉，再删除name，这个时候自己没有name而是找的原型上的，是删除不了的
+        console.log(delete person.name);  // true
+        console.log(person.name); // aaa
+       
+        // 1. 构造函数对象可以访问原型，无法改变原型属性值，当构造函数对象访问自身属性没有时候，就会去原型找，然后返回
+
+        // 2. 构造函数对象可以访问原型属性，但不能进行修改和删除，删除的时候虽然返回 true ，但属性还是存在的，
+        // 返回 true 是因为你删除一个没有的属性，系统说可以，你就删吧。
+
+
+        // 案例2：提取公共属性
+        Car.prototype = {
+            height : 1400,
+            lang : 4900,
+            carName : "BMW"
+        }
+
+        function  Person(params) {
+
+        }
+
+        function  Car(color) {
+            this.color = color;
+        }
+        var car = new Car("red");
+        console.log(car);   // Car {color: "red"}
+        console.log(car.carName);   //BMW
+        // 关键的问题是:car.prototype 
+        console.log(Car.prototype)
+        console.log(car.constructor)
+
+        // 3. 更改 constructor 指向
+        Car.prototype = {
+            // 之前的构造函数数属于 Car 的，现在可以通过强制修改将它修改为 Person
+            // consoructor:Car,
+            constructor:Person,
+        }
+        console.log(Car.prototype)   // constructor: ƒ Person(params) [[Prototype]]: Object
+        console.log(car.constructor) // ƒ Object() { [native code] }
+
+      
+        // __proto__
+        Test.prototype.name = "aaa";
+
+        function Test() {
+            // 在 new 创建构造函数对象的时候就会默认形成第一步，创建一个 this 对象
+            // 对象中的 __proto__ 只想对象原型，这样才可以通过构造函数对象访问原型
+            // var this = {
+            //     __proto__:Test.prototype
+            // }
+        }
+        var obj = {
+            name: 'sunny',
+        }
+        var test = new Test();
+        // __proto__ 是可以更改的
+        Test.__proto__ = obj;
+
+        console.log(test.name); // sunny
+
+        // 分析 
+
+        // var obj = {name:'a'};
+        // var obj1 = obj;
+        // obj = {name:'b'};
+
+        // Test.prototype = {name:'aaa'};
+        // __proto__ = Test.prototype;     // name : aaa
+        // Test.prototype = {name:'bbb'}   // name : bbb
+
+
+        // 其它
+        // Object.prototype.toString
+        // Number.prototype.toString
+        // Array.prototype.toString
+        // Boolean.prototype.toString
+        // String.prototype.toString
+
+        var num = 123;
+        console.log(num.toString()); //这是调用 Number 自己的 toString()是重写的
+
+        // 直接用 123.toString() 这种方式会将 . 点作用运算符去处理，返回语法错误
+    </script>
+</body>
+
+</html>

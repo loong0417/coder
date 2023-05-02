@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		<script>
+			/*
+			 * 跨域
+			 * 	两个不同域名下的数据进行交互。Ajax之所以不能跨域其实是因为XMLHttpRequest受到同源策略的限制，只能让它访问同源下的数据，不能访问不同源下的数据
+			 * 
+			 * 同源策略
+			 * 	每个网站只能读取同一来源的数据，这里的同一来源指的是主机名(域名)、协议(http/https)和端口号的组合。在没明确授权的情况下，不能读写对方的资源，它是浏览器最核心也最基本的安全功能
+			 * 	源：协议、端口、域名
+			 * 	只要不同源就跨域
+			 * 
+			 * 协议
+			 * 	http	超文本协议
+			 *	https	HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议要比http协议安全
+			 *	file	本地协议
+			 * 	ftp		文件共享协议
+			 *
+			 * 端口
+			 * 	相当于酒店里一层的房间
+			 * 
+			 * 域名
+			 * 	http://www.kaivon.cn/
+			 * 	
+			 * 	
+			 * 	http://www.kaivon.cn/c/d.html		成功   
+			 *	http://www.kaivon.cn/d/e/f.html		成功   
+			 *	https://www.kaivon.cn/a/c.html		失败  协议不同
+			 *	http://www.kaivon.cn:81/a/c.html	失败  端口不同
+			 *	http://www.apeclass.com/a/b.html	失败  主机名不同
+			 * 
+			 * 
+			 * 
+			 * 跨域解决办法
+			 * 	1、在标准浏览器下XMLHttpRequest配合后端设置一个请求权限
+			 * 		在php里写上	header('Access-Control-Allow-Origin:*');
+			 * 		这个是XMLHttpRequest 2级支持的，非标准浏览器不支持
+			 * 	2、服务器代理
+			 * 		服务器文件可以访问你想要的资源，而你又能访问服务器文件，所以你就可以访问想要的资源
+			 * 		缺点：如果想访问的资源需求有变，对于后端的开发成本就很大
+			 * 	3、iframe、flash、postMessage、WebSocket
+			 * 		http://www.freebuf.com/articles/web/65468.html
+			 * 	
+			 */
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

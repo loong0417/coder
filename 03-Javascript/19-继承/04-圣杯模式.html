@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+    // 圣杯模式
+    // Father.prototype.lastName = "aaa";
+    // function Father() {    
+    // }
+
+    // function Son(){
+    // }
+
+    // function inherit(Target,Origin){
+    //     // 如果直接使用 Target.prototype = Origin.prototype 方式，
+    //     // 改变 Target.prototype 原型，另一个也会发生变化，所以添加一个中间层 function F(){}
+    //     function F(){}
+    //     F.prototype = Origin.prototype;
+
+    //     Target.prototype = new F();
+    //     // 归为 Target.prototype.constuctor 值，如果不归位 Target 的 constuctor 值是 Origin 
+    //     Target.prototype.constuctor = Target;
+    //     // 让 Target 有需要的时候能找到自己的超类(超级父级)
+    //     Target.prototype.uber = Origin.prototype;
+    // }
+    // inherit(Son,Father);
+
+    // Son.prototype.lastName = "bbb";
+
+    // var son = new Son();
+    // var father = new Father();
+
+    // console.log(son.lastName);    // bbb
+    // console.log(father.lastName); // aaa
+
+    // 圣杯模式二：雅虎 YUI3
+
+    Father.prototype.lastName = "aaa";
+    function Father() {    
+    }
+
+    function Son(){
+    }
+
+    var inherit = (function(){
+        var F = function(){}
+        return function(Target,Origin){
+            F.prototype = Origin.prototype;
+
+            Target.prototype = new F();
+            Target.prototype.constructor = Target; 
+            Target.prototype.uber = Origin.prototype;
+        }
+    });
+
+    inherit(Son,Father);
+
+    Son.prototype.lastName = "bbb";
+
+    var son = new Son();
+    var father = new Father();
+
+    console.log(son.lastName);    // bbb
+    console.log(father.lastName); // aaa
+
+    </script>
+</body>
+</html>

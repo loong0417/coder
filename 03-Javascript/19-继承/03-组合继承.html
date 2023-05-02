@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    组合继承：原型链继承和借用构造函数call组合。
+   -->
+  <script>
+    function Person(uname,age){
+      this.name = uname;
+      this.age = age;
+    }
+
+    Person.prototype.demo=function(){
+      console.log('呵呵呵呵呵！！！');
+    }
+
+    function Student(uname,age,phone){
+      Person.call(this,uname,age);
+      this.phone = phone;
+    }
+
+    Student.prototype = new Person();
+    Student.prototype.constructor = Student;
+    
+    var stu = new Student('张三',25,2345678);
+    console.log(stu);
+    stu.demo();
+
+  </script>
+</body>
+</html>

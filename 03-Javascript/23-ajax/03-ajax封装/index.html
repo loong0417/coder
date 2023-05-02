@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    js中如何封装一个ajax请求
+      参数分析：
+        1. 请求方式      type:get/post
+        2. 请求地址      url
+        3. 请求参数      data
+        4. 请求参数类型  json
+        5. 请求返回结果
+   -->
+  <script>
+    /**
+     * options 是一个对象
+     */
+    function ajax(options){
+      // 1.参数初始化
+      options = options || {};
+      options.type = (options.type || 'GET').toUpperCase();
+      options.dataType = options.dataType || 'json';        // 请求参数类型（返回类型）
+      let param = options.data;                             // 请求携带的参数
+
+      // 2.实例化对象
+      var xhr = new XMLHttpRequest();
+
+      // 3.发送请求
+      if(options.type === 'GET'){
+        // GET请求，options.url+param(url+请求携带参数的拼接)，async：是否异步请求，true：异步请求，false：同步
+        xhr.open('GET',options.url+'?'+getParam(param),true);
+        xhr.send(null);
+      }else if(options.type === 'POST'){
+        xhr.open('POST',options.url);
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        xhr.send(param);
+      }
+
+      // 4.监听响应
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4){
+          if(xhr.status<=200 && xhr.status<300){
+              // 1.responseText 字符串形式响应数据 2.responseXML XML形式响应数据
+              options.success(xhr.responseText,xhr.responseXML); 
+          }else{
+            options.fail('参数错误'+xhr.status);
+          }
+        }
+      }
+    }
+
+    function getParam(data){
+      let arr=[];
+      for(let key in data){
+        arr.push(`${key}=${data[key]}`);
+      }
+      return arr.join('&'); 
+    }
+
+    ajax({
+      type:'get',
+      dataType:'json',
+      data:{
+        limit:10
+      },
+      url:'http://localhost:3000/personalized',
+      success:function(text,xml){
+        // console.log(text);
+        console.log(JSON.parse(text));
+      },
+      fail:function(status){
+        console.log(status);
+      }
+    });
+
+  </script>
+</body>
+</html>

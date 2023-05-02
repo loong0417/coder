@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+ 
+    // toString()之间得区别
+
+    // [object Number]
+    // [object String]
+    // [object Boolean]
+    // [object Array]
+    // [object Object]
+    console.log(Object.prototype.toString.call(1));
+    console.log(Object.prototype.toString.call('a'));
+    console.log(Object.prototype.toString.call(true));
+    console.log(Object.prototype.toString.call([]));
+    console.log(Object.prototype.toString.call({}));
+
+
+    console.log(Number.prototype.toString.call(1));
+    console.log(String.prototype.toString.call('a'));
+    console.log(Boolean.prototype.toString.call(true));
+    // console.log(Function.prototype.toString.call(function(){}))
+    // console.log(Array.prototype.toString.call([]))
+    
+    
+    // 用数字、字符串、布尔、数组、对象类型调用 toString() 方法会调用给自原型里面的，
+    // 相当于 toString() 方法重写
+    // Number.prototype.toString = function(){}
+    // String.prototype.toString = function(){}
+    // Boolean.prototype.toString = function(){}
+    // Array.prototype.toString = function(){}
+    // Object.prototype.toString = function(){}
+
+    // null 和 undefined 调用 toString() 方法会报错，因为 undefined 和 null 是原始值类型
+    
+
+  </script>
+</body>
+</html>

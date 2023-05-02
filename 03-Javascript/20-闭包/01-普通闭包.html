@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+</head>
+<body>
+<!-- 
+闭包：闭包的产生需要两个条件。
+    1. 函数嵌套函数。
+    2. 子函数可以访问父函数的变量，就产生了一个闭包环境。
+    3. 外部函数执行。
+   （函数嵌套函数，子函数访问父函数的变量两个条件缺一不可，外部函数执行，如果外部函数不执行只是产生闭包，并没有什么意义）。
+ 
+问题：
+    1. 如何在 fn1 外面访问 fn2() 和 var n = 10 ，因为它们两个都是局部变量和函数？？？ 
+
+-->
+ <script>
+    /**
+     * 场景1：
+     *  产生闭包：当一个内部函数引用外部函数中的变量或函数就会产生闭包（closure）。 
+     */
+    // function fn1(){
+    //     var n = 10;
+    //     function fn2(){
+    //         n++;
+    //         console.log(n);
+    //     }
+    //     fn2();
+    // }
+    // fn1();   // 11
+    // fn1();   // 11
+
+    /**
+     * 场景2：
+     *  产生闭包：将内部函数作为外部函数的返回值。 
+     */
+    // function fun1(){
+    //     var a = 10;
+    //     function fun2(){
+    //         a++;
+    //         console.log(a);
+    //     }
+    //     return fun2;
+    // }
+    // var f = fun1();
+    // f();      // 11
+    // f();      // 12
+
+    
+    /**
+     * 场景3：
+     *  将函数作为实参传递给另一个函数调用。 
+     */
+
+    // function fun(mes,time){
+    //     setTimeout(function(){
+    //         console.log(mes);
+    //     },time);
+    // }
+    // fun('你好啊！',2000);
+
+    
+    /**
+     * 案例1： 
+     * 1. 因为b变量是fun2的局部变量，并没有添加到闭包里面去。
+     */
+    function fun1(){
+        var a=10;
+        function fun2(){
+            var b=20;
+            a++;
+            b++;
+            console.log(a);
+            console.log(b);
+        }
+        return fun2;
+    }
+    // 2. 这个位置如果不存在引用指向，闭包就会消失，是将fun1()这个函数保存出来了。
+    var f = fun1();
+    f();   // a = 11,b = 21
+    f();   // a = 12,b = 21
+
+    // 题目三：闭包
+    // function a(){
+    //     function b(){
+    //         var bbb = 234;
+    //         document.write(aaa);
+    //     }
+    //     var aaa = 123;
+    //     // 在 a 的 AO 销毁之前，将 b 保存出去
+    //     return b;    
+    // }
+
+    // var glob = 100;
+    // var demo = a();
+    // demo();   //123
+
+    // 题目四：
+    // function a(){
+    //     var num = 100;
+    //     function b(){
+    //         num++;
+    //         console.log(num);
+    //     }
+    //     return b;
+    // }
+    // var demo = a();
+    // demo();   // 101
+    // demo();   // 102 
+    
+</script>
+</body>
+</html>

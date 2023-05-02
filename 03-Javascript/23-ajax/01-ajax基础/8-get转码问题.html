@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		<script>
+			window.onload=function(){
+				var inputs=document.getElementsByTagName("input");
+				
+				inputs[2].onclick=function(){
+					//console.log(decodeURI('%E9%99%88%E5%AD%A6%E8%BE%89'))
+					var val=inputs[0].value;
+					
+					//1、创建一个ajax对象
+					var ajax=null;
+					if(window.XMLHttpRequest){
+						ajax=new XMLHttpRequest;
+					}else{
+						ajax=new ActiveXObject('Microsoft.XMLHTTP');
+					}
+					
+					//2、填写请求地址
+					ajax.open('get','php/get.php?user='+encodeURI(val),true);
+					
+					//3、发送请求
+					ajax.send();
+					
+					//4、等待服务器响应
+					ajax.onreadystatechange=function(){
+						//5、接收数据
+						var span=document.getElementsByTagName("span")[0];
+						span.innerHTML=ajax.responseText;
+					};
+				};
+			};
+		</script>
+	</head>
+	<body>
+		用户名：<input type="text" name="username" /><span></span><br /><br />
+		密码：<input type="password" name="password" />
+		<input type="button" value="提交" />
+	</body>
+</html>

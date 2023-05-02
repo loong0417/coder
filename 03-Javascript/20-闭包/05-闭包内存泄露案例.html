@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>闭包内存泄露案例</title>
+</head>
+<body>
+  <div id="container">
+    <p id="title"></p>
+  </div>
+  <script>
+  
+    // function createFnArray(){
+    //   var arr = new Array(1024*1024).fill(1);
+    //   return function(){
+    //     console.log(arr.length);
+    //   }
+    // }
+
+    // var arrayFns = [];
+    // for(var i=0;i<=100;i++){
+    //   arrayFns.push(createFnArray());
+    // }
+
+    // setTimeout(()=>{
+    //   arrayFns = null;
+    // },2000)
+    
+    // 不合理的闭包
+    // function Person(){}
+    // function fn(){
+    //   let name = 'yang';
+    //   let age = 18;
+    //   let arr = new Array();
+    //   for(let i=0;i<10000;i++){
+    //     arr.push(new Person());
+    //   }
+    //   return function(){
+    //     console.log('hello',arr,name)
+    //   }
+    // }
+    // let hello = fn();
+    // hello();
+  
+  // 隐式全局变量
+  // function Person(){}
+  // function fn(){
+  //   p1 = new Person();
+  //   this.p2 = new Person();
+  // }
+  // fn();
+  // p1 = null;
+  // p2 = null;
+
+  // 分离的DOM
+  // var container = document.getElementById('container');
+  // var title = document.getElementById('title');
+  // console.log(container)    // container
+  // document.body.removeChild(container);
+  // console.log(container)    // container 在Elements结构中看不见，但内存中还是存在这个对象的
+  // container = null;
+  // console.log(container)   // null 
+  // title = null;
+
+  // 定时器
+  // function Person(){}
+  // function fn(){
+  //   var p1 = new Person();
+  //   var id  = setInterval(()=>{
+  //     p1.age = 20;
+  //   },1000);
+  //   clearInterval(id);
+  // }
+  // fn();
+
+  // 事件监听器
+  // var data = new Array(100000);
+  // class App extends React.Component{
+  //   componentDidMount(){
+  //     document.addEventListener('click',this.handleClick);
+  //   }
+  //   handleClick=()=>{
+  //     console.log('click',data);
+  //   }
+  //   componentWillUnmount(){
+  //     document.addEventListener('click',this.handleClick);
+  //   }
+  // }
+
+  // Map和Set对象
+  // function Person(){}
+  // let obj = new Person();
+  // let set = new Set([obj]);
+  // let map = new Set([[obj,'yang']]);
+  // obj = null;
+
+  // function Person(){}
+  // let obj = new Person();
+  // let set = new WeakSet([obj]);
+  // let map = new WeakSet([[obj,'yang']]);
+  // obj = null;
+  
+  // console
+  // function Person(){}
+  // function fn(){
+  //   let name = 'yang';
+  //   let age = 13;
+  //   let arr = new Array();
+  //   for(var i=0;i<=10000;i++){
+  //     arr.push(new Person());
+  //   }
+  //   return function(){
+  //     console.log('hello',arr)
+  //   }
+  // }
+  // let hello = fn();
+  // hello();
+
+  </script>
+</body>
+</html>

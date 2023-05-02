@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型</title>
+</head>
+<body>
+    <!-- 
+        原型 prototype：
+            1. 概念：prototype原型是函数身上的属性，每一个函数身上都有这个属性，它的值是一个对象。
+            2. 用途：它身上可以放属性和方法，如果与构造函数相结合的话，通过构造函数创建的对象就会具有它身上的属性和方法。
+            3. 对象是通过构造函数创建的，那prototype就是这个对象的原型对象。
+            4. 一般开发中公用的属性和方法都放到构造函数的原型身上。
+     -->
+     <script>
+
+         //案例1： 普通函数上面也会有prototype原型对象，但是原型对象在普通函数上没有用。
+        //  function fn(){
+        //      console.log("1");
+        //  }
+        //  console.log(fn.prototype);   // Object
+        
+
+        // 案例2：
+        // 1. 创建构造函数内部：Person.prototype = { }。
+        function Person(){
+        // var this = {
+        //    __proto__:Person.prototype
+        // }
+        }
+        // var p1 = new Person();
+        // console.log(Person.prototype);
+        // console.log(p1.constructor);                                   // f Person(){}
+        // console.log(p1.constructor === Person.prototype.constructor);  // true
+        // console.log(p1.__proto__ === Person.prototype);                // true
+
+
+        // 案例3：
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+         }
+         Person.prototype.sex = 'male';
+         Person.prototype.say = function(){
+             console.log("我叫"+this.name);
+         }
+         var p1 = new Person("老王",30);
+         var p2 = new Person("小王",18);
+         p1.say();
+         p2.say();
+        
+         // 1. prototype 是构造函数身上的一个属性，对应值是一个对象Object。  
+        
+         // 2. Person.prototype 下面包含 constructor 和 __proto__
+         //  console.log(Person.prototype);
+
+         // 4. 实例对象身上是没有 prototye 属性的
+         //  console.log(p1.prototype);   // undefined
+
+         // 4. __proto__是实例对象身上的一个属性，它是等于构造函数身上的 prototype 属性的。
+        //  console.log(Person.prototype === p1.__proto__);  // true
+
+        //  5. 使用原型，在原型将方法和属性放在原型上就可以避免构造函数中性能问题造成的资源浪费。
+        // console.log(p1.say === p2.say);                   //true
+
+     </script>
+</body>
+</html>

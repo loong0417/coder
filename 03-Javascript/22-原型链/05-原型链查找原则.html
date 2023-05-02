@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型链</title>
+</head>
+<body>
+    <!-- 
+        原型链：原型链是指，对象与原型之间的关系（连接）。
+        
+        原型链的查找规则：
+            1. 当我们调用一个对象身上的属性和方法的时候，它就会有一个查找规则。
+            2. 首先会在自己身上去找，如果有就会使用自己的。
+            3. 如果没有的话，它就会在该对象的__proto__下查找，因为__proto__这个属性是指向对应的构造函数身上的prototype，把它查找的时候找的就是构造函数的原型。
+            4. 如果原型身上没有的话，那它会继续往外面找，知道找到顶层的Object身上的prototype。
+     -->
+     <script>
+         function Person(){
+             this.name = "杨小样";
+            //  2. 再给构造函数添加一个 age，构造函数中添加的 age 是属于实例对象的 age（也就是那个 p1 的）。
+            //  this.age = 20;
+         }
+
+         // 1. 先给 Person 原型添加一个 age  
+         //  Person.prototype.age = 18;
+
+         // 3. 最后给 Object 的原型添加一个 age 
+         Object.prototype.age = 22;
+
+         var p1 = new Person();
+         console.log(p1.age);   // 18  20  22
+     </script>
+</body>
+</html>

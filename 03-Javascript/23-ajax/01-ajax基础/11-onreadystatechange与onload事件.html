@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		<script>
+			/*
+			 * ajax.readyState		AJAX运行步骤(第一步捕捉不到)
+			 * 	它的值为4的话说明AJAX已经运行完成
+			 * 		0    初始化			还没有调用open()方法
+			 *		1    载入			已调用send()方法，正在发送请求
+			 *		2    载入完成		send()方法完成，已收到全部响应内容
+			 *		3    解析			正在解析响应内容
+			 *		4    完成			响应内容解析完成，可以在客户端调用了
+			 * 
+			 * 
+			 * ajax.status			服务器对请求的反馈(状态码)
+			 * 		200就是成功的，404就是错误的
+			 * 
+			 * onreadystatechange		
+			 * 		readyState的值发生改变时触发的事件，只要这个值有变化就会触发
+			 * 
+			 * onload
+			 *		所有请求成功完成后触发，此时readystate的值为4
+			 * 		（IE678不支持）
+			 * 	
+			 * （新的XMLHttpRequest不推荐用onreadystatechange，使用onload）
+			 * 
+			 */
+			window.onload=function(){
+				var inputs=document.getElementsByTagName("input");
+				
+				inputs[2].onclick=function(){
+					var val=inputs[0].value;
+					
+					var ajax=null;
+					if(window.XMLHttpRequest){
+						ajax=new XMLHttpRequest;
+					}else{
+						ajax=new ActiveXObject('Microsoft.XMLHTTP');
+					}
+					
+					//第三个参数表示ajax的请求是同步(false)还是异步(true)
+					ajax.open('get','php/get.php?user='+val,true);
+					
+					ajax.send();
+					
+					//4、等待服务器响应
+					ajax.onreadystatechange=function(){
+						if(ajax.readyState==4){
+							if(ajax.status==200){
+								var span=document.getElementsByTagName("span")[0];
+								span.innerHTML=ajax.responseText;
+							}
+						}
+						//console.log(ajax.readyState);
+						console.log(ajax.status);
+					};
+				};
+			};
+		</script>
+	</head>
+	<body>
+		用户名：<input type="text" name="username" /><span></span><br /><br />
+		密码：<input type="password" name="password" />
+		<input type="button" value="提交" />
+	</body>
+</html>

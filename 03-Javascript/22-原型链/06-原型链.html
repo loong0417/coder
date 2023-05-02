@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+     <!-- 
+        原型链：
+            我的理解：沿着 __proto__查找原型上的属性和发方法，形成的继承链，就是原型链。
+        
+        原型链的终点是：Object.prototype
+        Object.prototype 下面保存了一个 toString()方法
+     -->
+    <script type="text/javascript">
+
+    Grand.prototype.oneName = "祖辈";
+    function Grand() {}
+    var grand = new Grand();
+
+    Father.prototype = grand;
+    Father.prototype.twoName = "父辈";
+    function Father() {
+        this.name = "hehehe";
+        this.age = 100;
+        this.fortune = {
+            card1:'visa',
+        }
+    }
+    var father = new Father();
+
+    Son.prototype = father;
+    Son.prototype.thereName="孙辈";
+    function Son(){}
+
+    var son = new Son();
+    console.log(son.name);   // hehehe
+    console.log(son.oneName);  // 祖辈
+
+    
+    // 注意事项1：这相当于是给引用值添加东西，是可以这样添加的，但是不符合常理
+    son.fortune.card2 = "212121"; 
+    // 注意事项2：这里是在改变父元素的 age 属性，这里的属性是一个原始值，父级的age没有发生变化
+    // son 子级元素在子级身上添加了一个 age 属性，值为 101。
+
+    // 原因：子级修改父级的原始值是不能修改的。会在子级身上添加一个属性。（这里的添加属性实际上是将上面的父级age复制下来了，再在它父级的基础上进行加价的）。
+    // console.log(son.age);  // 100
+    // son.age++;
+    // console.log(son.age);  // 101 这里是给子级添加了一个 age 属性。
+    // console.log(Father.prototype)
+    // console.log(son)
+    
+
+    // 案例2:
+    // function Car(){
+    //     this.brand = "benz";
+    // }
+
+    // Car.prototype = {
+    //     brand:'Mazda',
+    //     intro:function(){
+    //         console.log("我是"+this.brand+"车。");
+    //     }
+    // }
+    // // 注意：这里一定得搞清楚this，谁调用this就指向谁。
+    // var car = new Car();
+    // car.intro();  // 我是benz车。
+
+    // Car.prototype.intro();  // 我是Mazda车。
+
+    
+    // 案例3：
+    function Person(){
+        this.smoke = function(){
+            this.weight--;
+            console.log(this.weight)
+        }
+    }
+
+    Person.prototype = {
+        weight:130
+    }
+    /**
+        per1.smoke()
+        129
+        Person.prototype
+        {weight: 130}   
+
+        操作过程理解：
+        function Person(){
+           var  this = {
+               weight:129
+           }
+        }   
+        1. this.weight = this.weight - 1 （先原型上的值，再执行减1，然后个自己添加一个属性，将值赋值给自己那个属性）
+        2. 构造函数里面的 this.weight 是会变化的，但是原型上面那个是没有变化的。
+        3. 注意：这也就是说明了，下级元素不能直接操作原型上面的值（原型上面的属性只能查，不增删改，引用类型值是可以改的，例如对象的属性，但还是不太合乎常理） 
+    */
+    var per1 = new Person();
+    console.log(Person.prototype);  // weight:130
+    console.log(per1.smoke()) // weight:129 
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		<script>
+			/*
+			 * jsonp的回调函数
+			 * 	1、通过jsonp的方式的数据一般都会放在一个回调函数里
+			 * 	2、请求到的结果是这样的getData({"color":["red","green","blue"]})
+			 * 		1、数据放在函数的参数里，可以是任何数据形式(对象、数组)
+			 * 		2、回调函数的名字要么是后端定死的，要么是我们在请求地址跟动态加上的
+			 * 			http://localhost/ajax/php/3.php?callBack=getData
+			 * 
+			 * 	
+			 * 	注意：
+			 * 		1、如果是直接在页面里用script标签引入数据的话，那定义回调函数一定要放在引入数据的前面
+			 * 		2、如果是通过动态创建script标签的话定义回调函数一定要是全局的，或者挂载到window身上
+			 * 
+			 * 	原因：
+			 * 		1、创建的script标签是在全局下，如果函数没在全局下肯定找不到
+			 * 		2、数据中返回的数据一加载到页面里是调用函数，那调用函数前必需要定义函数
+			 */
+			
+			//1、回调函数作为全局函数，在window.onload外面声明就是一个全局函数
+			/*function getData(data){
+				alert(data);
+			}*/
+			
+			window.onload=function(){
+				var btn=document.querySelector("button");
+				
+				btn.onclick=function(){
+					var script=document.createElement("script");
+					script.src='http://localhost/ajax/php/jsonp.php';
+					
+					document.body.appendChild(script);
+					
+					//把回调函数作为window下的一个属性去定义，那它就是一个全局函数
+					window.getData=function(data){
+						alert(data);
+					};
+				};
+			};
+		</script>
+	</head>
+	<body>
+		<button>点击</button>
+		<!--<script>
+			function getData(data){
+				alert(data);
+			}
+		</script>-->
+		<!--如果数据是以script标签的形式引入到页面中的，那切记定义函数一定要放在引入数据的前面，要不然就会出错-->
+		<!--<script src="http://localhost/ajax/php/jsonp.php"></script>
+		<script>
+			function getData(data){
+				alert(data);
+			}
+		</script>-->
+	</body>
+</html>

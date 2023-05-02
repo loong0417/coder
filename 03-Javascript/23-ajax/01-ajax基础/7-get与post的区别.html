@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+	</head>
+	<body>
+		<!--
+			get方式
+				1、通过地址栏信息进行数据传输，传输的大小有限制
+				2、不安全，用户的所有信息都会暴露出来
+				3、拼接数据的时候要用encodeURI转一下码，不然有中文就会乱码
+				4、不用设置请求头
+				5、数据拼接在open方法里
+				6、会有缓存问题
+				
+			post方式
+				1、通过send向服务器传输数据，理论上来说是没有长度或体积限制
+				2、相对来说安全，因为不直接暴露用户信息
+				3、不用转码，已经通过请求头设置了数据格式，不会有乱码
+				4、在send()的前面需要设置一个请求头（不设置要出错）
+					ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				5、数据要拼接在send方法里
+				6、没有缓存问题
+		-->
+	</body>
+</html>

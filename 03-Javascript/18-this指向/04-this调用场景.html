@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="btn">我是个按钮</button>
+    <script>
+        // 场景1：普通函数中的 this 指向 window
+        var uname = '我是谁';
+        function test(hello){
+            var uname = '杨小样';
+            console.log(this.uname);  // 我是谁，这里的this是指向的window
+
+            console.log(hello);
+        }
+        // 函数的调用是 window.test('你好') window省略
+        test('你好');  // window
+        // test() 函数调用是简写，内部实际上是 test.call(window,"你好");
+
+        
+        // 场景2：函数作为对象的方法被调用（谁调用我，我就指向谁，this指向调用该方法的对象）。
+        var name = '李四';
+        var obj = {
+        name:'张三',
+        info:function(age){
+            console.log(this.name+',年龄为：'+ age)  // 张三,年龄为：30
+            console.log(this)                       // {name: '张三', test: ƒ}
+            }
+        }
+        obj.info(30)   // 内部实际上相当于 obj.info.call(obj,30)。
+
+        var fn = obj.info;
+        fn(18);                                     // 李四,年龄为：18
+        
+        // 场景3：onclick点击事件，this 指向的是按钮，谁调用this指向谁
+        var btn = document.querySelector('.btn');
+        btn.onclick = function(){
+            console.log(this)             // btn
+            console.log(this.innerHTML)   // 我是个按钮
+        }
+
+
+        // 场景4：定时器
+        // var num = 40;
+        // var timer = setInterval(fun,1000);
+        // function fun(){
+        //     var num = 50;
+        //     console.log(this.num);  // 40
+        // }
+
+        var num = 40;
+        var timer = setInterval(function(){
+            var num = 50;
+            console.log(this.num);  // 40
+            console.log(this);      // window
+        },1000);
+        clearInterval(timer);
+        
+
+        // 场景5：数组中存放了函数，被数组的索引调用执行，this就指向这个数组
+        // var arr = ['张三',123,fun];
+        // function fun(){
+        //     console.log(this.length); // 3
+        // }
+        // arr[2]();
+
+        var a = 10;
+        function fun1(){
+            console.log(this.a);  
+        }
+        var obj = {
+            a:1,
+            b:2,
+            c:[{
+                a:3,         // 输出3      
+                b:4,
+                c:fun1
+            }]
+        }
+        // 3 数组中存放了函数，被数组的索引调用执行，this就指向这个数组，如果数组中不存在a就，就为undefined。不会找对象obj里面的那个1。
+        obj.c[0].c(); 
+
+
+
+        // 场景5：构造函数中的 this 指向，构造函数中的 this 指向的是实例化对象。
+        function Person(name,age){
+            // 构造函数中的 this 指向实例化对象，如果使用Person构造函数指向的是构造函数，后面覆盖前面。
+            // Person.name = name;
+            // Person.age = age;
+
+            this.name = name;
+            this.age = age;
+
+        }
+        var p1 = new Person('杨小样',18);
+        console.log(p1);
+        var p2 = new Person('张三',20);
+        console.log(p2);
+
+
+
+      
+
+
+        // 场景3：箭头函数
+        // 1. 箭头函数中的this是在定义函数的时候绑定，而不是在函数执行的时候绑定。
+        // 2. 箭头函数中，this指向的固定化，并不是因为箭头函数内部有绑定this的机制，
+        // 实际原因是因为箭头函数根本就没有自己的this，导致内部的this就是外层代码块的this。
+        // 正是因为它没有this，所以也就不能用作构造函数。
+        var x = 11;
+        var obj = {
+            x:22,
+            say:()=>{
+                console.log(this.x)  // 11
+            }
+        }
+        obj.say();  
+        // 3. 所谓的定义时候绑定，就是this是继承自父执行上下文中的this，比如这里的箭头函数中的this.x，箭头函数本身与say平级以key:value形式，
+        // 也就是箭头函数本身所在的对象为obj，而obj的父执行上下文就是window，因此这里的this.x实际上表示的是window.x，因此输出11。
+
+        var obj = {
+            birth: 1990,
+            getAge:function(){
+                var b = this.birth;
+                console.log(b)  // 1990
+                var fn = () => new Date().getFullYear()-this.birth;   // this指向obj对象
+                return fn();
+            }
+        }
+        console.log(obj.getAge());   // 32
+        // 例子中箭头函数本身是在getAge方法中定义的，因此，getAge方法的父执行上下文是obj，因此这里的this指向则为obj对象。
+    </script>   
+</body>
+</html>

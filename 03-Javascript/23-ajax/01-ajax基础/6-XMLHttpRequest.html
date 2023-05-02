@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		<script>
+			/*
+			 * var ajax=new XMLHttpRequest;
+			 * 
+			 */
+			
+			/*var ajax=new XMLHttpRequest;
+			alert(ajax);		//在IE6下会报错*/
+			
+			var ajax=null;
+			if(window.XMLHttpRequest){
+				ajax=new XMLHttpRequest;
+			}else{
+				ajax=new ActiveXObject('Microsoft.XMLHTTP');
+			}
+			
+			alert(ajax);
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

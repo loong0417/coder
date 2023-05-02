@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        this深入：
+        1. 函数定义的时候我们可以看到GO中有 this，这个时候 this 是指向 window。
+        2. 函数执行的时候AO，我们可以看见this这个时候还是指向 window 的。
+        3. 构造函数实例化。
+            - 在函数没有实例化之前 this 都是指向 window 的。
+            - 构造函数实例化后 this 指向的是实例化的对象，不是指的构造函数本身。
+     -->
+	<script>
+		/**
+		 * 定义构造函数
+		 * 	1. 在构造函数没有实例化之前 this 指向的是window; 
+		 */
+		function Car(color,brand){
+			this.color = color;
+			this.brand = brand;
+			// console.log(this === window)  // true
+		}
+	
+	 // 2. 实例化构造函数，这个时候 this 指向的是实例化的这个对象。不是指的构造函数本身。
+	 /**
+		* Car {color: 'red', brand: '红旗'}
+		* Car {color: 'black', brand: 'BMW'}
+		* 如果这个时候的 this 指向的是同一个对象，那么它们的属性都会是一样的。
+		*
+		* 构造函数实例化就相当于函数执行。也会生成AO。
+		*
+		*
+		*/	
+	 var car1 = new Car('red','红旗');
+	 console.log(car1);
+
+	 var car2 = new Car('black','BMW');
+	 console.log(car2)
+	</script>
+
+</body>
+</html>

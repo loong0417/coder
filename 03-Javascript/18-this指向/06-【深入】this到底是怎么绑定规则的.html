@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this到底是怎么绑定规则的</title>
+</head>
+<body>
+  <script> 
+    /**
+     * this到底是怎么绑定规则的？
+     *  1. 默认绑定
+     *  2. 隐式绑定
+     *  3. 显示绑定
+     *  4. new 绑定
+     */
+
+    //  1. 默认绑定规则：独立函数调用规则
+
+      // 案例1：独立函数调用
+      // function foo(){ 
+      //   console.log(this)  // window
+      // }
+      // foo()  
+
+      // 案例2：独立函数调用
+      // function foo1(){
+      //   console.log(this)
+      // }
+
+      // function foo2(){
+      //   console.log(this)
+      //   foo1()   // window
+      // }
+
+      // function foo3(){
+      //   console.log(this)
+      //   foo2()   // window
+      // }
+
+      // foo3()     // window
+
+      // 案例3：独立函数调用
+      // var obj = {
+      //   name:'yang',
+      //   foo:function(){
+      //     console.log(this)
+      //   }
+      // }
+      // var bar = obj.foo;
+      // bar();  // window
+      
+      // 案例4：
+      // function foo(){
+      //   console.log(this)
+      // }
+      // var obj = {
+      //   name:'yang',
+      //   foo:foo
+      // }
+      // var bar = obj.foo;
+      // bar();  // window
+
+      // 案例5：
+      // function foo(){
+      //   function bar(){
+      //     console.log(this)
+      //   }
+      //   return bar
+      // }
+      // var fn = foo();
+      // fn();   // window
+
+      // var obj={
+      //   name:'yang',
+      //   eating:fn
+      // }
+      // obj.eating()   // {name: 'yang', eating: ƒ}
+
+
+      // 2. 隐式绑定规则：通过某个对象发起的函数调用
+      // function foo(){
+      //   console.log(this)
+      // }
+      // 案例1：
+      // var obj = {
+      //   name:'yang',
+      //   foo:foo
+      // }
+      // obj.foo();  // {name: 'yang', foo: ƒ} obj
+
+
+      // 案例2：
+      // var obj = {
+      //   name:'yang',
+      //   user:'杨小样随笔',
+      //   eating:function(){
+      //     console.log(this.name+'在吃饭')
+      //     console.log(this.user)
+      //     console.log(this)  // {name: 'yang', eating: ƒ, runing: ƒ}
+      //   },
+      //   runing:function(){
+      //     console.log(this.name+'在跑步')
+      //     console.log(this)  // {name: 'yang', eating: ƒ, runing: ƒ}
+      //   }
+      // }
+      // obj.eating()
+      // obj.runing()
+
+      // 这样操作就拿不到 name 值了，this指向得是window。
+      // 由于name是window下面的一个属性，是一个空属性，所以这里拿到的就是一个空name，如果哦换成别的属性就会是undefined。
+      // 例如 user 就是undefined。
+      // var fn = obj.eating
+      // fn() 
+      
+      // 案例3：
+      // var obj1 = {
+      //   name:'obj1',
+      //   foo:function(){
+      //     console.log(this)
+      //   }
+      // }
+
+      // var obj2 = {
+      //   name:'obj2',
+      //   bar:obj1.foo
+      // }
+      // obj2.bar();  // {name: 'obj2', bar: ƒ} 指向的是obj2的这个对象
+      
+
+      // 3. 显示绑定规则：使用 call，apply，bind函数
+
+      // 案例1：
+      // function foo(){
+      //   console.log('函数调用了'+this)
+      // }
+      // var obj = {
+      //   name:'obj1',
+      // }
+      // foo.call(obj)         // 函数调用了[object Object]
+      // foo.apply(obj)        // 函数调用了[object Object]
+      // foo.apply('asasasa')  // 函数调用了asasasa
+
+      // 案例2：call和apply区别？
+      // 传参的方式不一样，其它没啥区别
+      // call和apply在执行函数时，是可以明确绑定this，这个绑定规则称之为显示绑定。
+      // function sum(num1,num2,num3){
+      //   console.log(num1+num2+num3,this);
+      // }
+      // sum.call('call',20,30,40);     // 90 String {'call'}
+      // sum.apply('apply',[20,30,40]); // 90 String {'apply'}
+      
+      // 案例3：显示绑定：bind
+      // function foo(){
+      //   console.log(this)
+      // }
+      // var newFoo = foo.bind('aaaa')
+      // 这里函数明白是独立函数执行，为什么会指向 String {'aaaa'}。
+      // 这就又涉及到一个问题：默认绑定和显示绑定冲突，显示绑定的优先级高于默认绑定，因为直接使用了bind()进行绑定。
+      // newFoo()  // String {'aaaa'}
+
+      // 4. new绑定规则：通过一个new关键字调用函数时，这个this是在调用这个构造函数时创建出来的对象。
+      // this指向的是创建出来的对象。
+      // function Person(name,age){
+      //   this.name = name
+      //   this.age = age
+      //   console.log(this)
+      // }
+
+      // var p1 = new Person('张三',18);
+      // console.log(p1)    // Person {name: '张三', age: 18}
+
+      // var p2 = new Person('李四',20);
+      // console.log(p2)    // Person {name: '李四', age: 20}
+
+    
+  </script>
+</body>
+</html>

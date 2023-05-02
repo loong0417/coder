@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    借用构造函数继承：
+      缺点：
+        1. 不能继承借用构造函数的原型。
+        2. 每次构造函数都要多走一个函数。
+   -->
+  <script>
+    Person.prototype.test = function(){
+      console.log('呵呵呵');
+    }
+    function Person(name,age){
+      this.name = name;
+      this.age = age;
+    }
+
+    function Student(name,age,phone){
+      // 原理：在子类型构造函数中通过使用call()调用父类型构造函数的属性进行复制，这样子类型就能拿到父类型属性。
+      // 关键点：就是通过call()将父类型的属性赋值给子类型，那么子类型也会拥有父类型的属性
+      Person.call(this,name,age);
+      this.phone = phone;
+    }
+
+    var student = new Student('张三',18,'123456');
+    console.log(student);   // Student {name: '张三', age: 18, phone: '123456'}
+    student.test();         // Uncaught TypeError: student.test is not a function at （无法访问原型上面的函数）
+ 
+ </script>
+</body>
+</html>

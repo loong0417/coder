@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>1</title>
+		<script>
+			window.onload=function(){
+				var inputs=document.getElementsByTagName("input");
+				
+				inputs[2].onclick=function(){
+					//console.log(decodeURI('%E9%99%88%E5%AD%A6%E8%BE%89'))
+					var val=inputs[0].value;
+					
+					var ajax=null;
+					if(window.XMLHttpRequest){
+						ajax=new XMLHttpRequest;
+					}else{
+						ajax=new ActiveXObject('Microsoft.XMLHTTP');
+					}
+					
+					ajax.open('post','php/post.php',true);
+					
+					//post发送请求的时候一定要在发送前设置一下请求头
+					ajax.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+					ajax.send('user='+val);
+					
+					//4、等待服务器响应
+					ajax.onreadystatechange=function(){
+						//5、接收数据
+						var span=document.getElementsByTagName("span")[0];
+						span.innerHTML=ajax.responseText;
+					};
+				};
+			};
+		</script>
+	</head>
+	<body>
+		用户名：<input type="text" name="username" /><span></span><br /><br />
+		密码：<input type="password" name="password" />
+		<input type="button" value="提交" />
+	</body>
+</html>

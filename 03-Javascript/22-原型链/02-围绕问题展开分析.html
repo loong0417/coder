@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    prototype 原型深入分析（围绕问题展开深入分析）：
+    
+      问题1：prototype 是个啥？
+      prototype是构造函数的属性，属性值是一个对象。
+      prototype这个属性就是原型对象。
+
+      问题2：__proto__ 又是个啥？
+      实例化对象属性。也是一个对象。
+
+      问题3：constructor 这又是个啥？
+      实例化对象的构造器。构造了当前实例。
+
+      问题4：它们之间的关系又是个啥呢？
+      1. prototype 原型对象是构造函数身上的一个属性，这个属性是一个对象类型。
+      2. prototype 中包含constructor（返回的是构造函数）和 proto（返回的是构造函数原型对象）属性。
+
+      3. 构造函数实例化对象身上是否存在 prototype 原型呢？
+       console.log(handphone.prototype)  // undefined   实例化对象身上的原型为 undefined。
+        
+结论：prototype 原型是构造函数身上的一个属性，这个属性是一个对象类型，实例化对象身上不存在。
+
+      4. __proto__ 构造函数身上是否存在 __proto__ 呢？ 
+       console.log(Handphone.__proto__)  // ƒ () { [native code] }  
+
+      5. __proto__ 构造函数实例化对象身上是否存在 __proto__ 属性呢？
+           console.log(handphone.__proto__)  // {constructor: ƒ}
+      
+     而且：构造函数的 prototype 属性是全等于构造函数实例对象的 __proto__ 属性的。
+        
+结论：__proto__ 是对象实例身上的属性，在构造函数身上不存在的。而且实例化对象的__proto__属性是完全等于构造函数的prototype的。
+     console.log(handphone.__proto__ === Handphone.prototype) // true 比较的结果为 true
+  
+      6. 构造函数本身有没有构造函数呢？constructor属性。 
+        console.log(Handphone.constructor)  // 有 ƒ Function() { [native code] 
+
+        console.log(handphone.constructor)  // ƒ Handphone(){}
+
+结论：constructor属性，指的是实例化对象的那个构造函数，构造函数本身也是有构造函数的。 
+
+   -->
+  <script>
+    function Handphone(){}
+    var handphone = new Handphone()
+    var handphone1 = new Handphone()
+
+    console.log(Handphone.prototype)  // Handphone.prototype 是一个对象
+    console.log(Handphone.prototype.constructor === handphone1.constructor)  // Handphone.prototype 是一个对象
+    console.log(handphone.prototype)  // undefined
+
+    console.log(Handphone.__proto__)  // ƒ () { [native code] }
+    console.log(handphone.__proto__)  // {constructor: ƒ}
+    console.log(handphone1.__proto__ ===handphone.__proto__)  // true
+
+    console.log(handphone.constructor)  // ƒ Handphone(){}
+    console.log(Handphone.constructor)  // ƒ Function() { [native code] 
+    console.log(handphone1.constructor === handphone.constructor) // true  它们的爹是同一个
+
+    console.log(handphone.prototype === Handphone.prototype) // false
+    console.log(handphone.__proto__ === Handphone.prototype) // true
+
+
+
+    
+    // 函数身上也是有 prototype 的
+    function test(){}
+    console.log(test.prototype);
+
+    // console.log(test.prototype === Handphone.prototype)  // false
+  </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>浅度克隆</title>
+</head>
+<body>
+  <script>
+    // 3. 浅克隆
+    var person1 = {
+      name:'yang',
+      age:'18',
+      sex:'female',
+      job:'攻城狮',
+      // personSon:{
+      //   sonName:'小明',
+      //   age:18
+      // }
+    }
+
+    var person2 = {}
+    // 1. 遍历对象的方式给对象增加属性
+    for(var key in person1){
+      person2[key] = person1[key]
+    }
+
+    console.log(person1) // {name: 'yang', age: '18', sex: 'female', job: '攻城狮'}
+    console.log(person2) // {name: 'yang', age: '18', sex: 'female', job: '攻城狮'}
+
+    // 2. 在这里你会发现，对象属性的更改并不会影响下一个
+    person2.name = "张三";
+    console.log(person1) // {name: 'yang', age: '18', sex: 'female', job: '攻城狮'}
+    console.log(person2) // {name: '张三', age: '18', sex: 'female', job: '攻城狮'}
+
+
+
+    // 4. 浅度克隆
+    // var obj = {
+    //     name : 'abc',
+    //     age : 123,
+    //     sex : 'male',
+
+    //     card:['visa','unionpay'],
+    // }
+
+    // var obj1={}
+
+    // function clone(origin,target){
+    //     var target = target || {};
+    //     for(var key in origin){
+    //         target[key] = origin[key];
+    //     }
+    //     return target;
+    // }
+
+    // console.log(clone(obj,obj1));
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>忽略显示绑定</title>
+</head>
+<body>
+  <script>
+    function foo(){
+      console.log(this)
+    }
+    foo.call('aaaa')    // String {'aaaa'}
+    foo.call({})        // {}
+
+    // apply，call，bind：当传入null或者undefined时，自动将this绑定成全局对象
+    foo.call(undefined) // window
+    foo.call(null)      // window
+</script>
+</body>
+</html>

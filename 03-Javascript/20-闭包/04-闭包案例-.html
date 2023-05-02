@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包练习题</title>
+</head>
+<body>
+    <script type="text/javascript">
+        
+// 题目一：十对一的闭包，输出十个 10  
+// for 循环执行完后，i 的值等于 10，function 执行的时候拿的是 testAO i 的值
+        function test(){
+            var arr = [];
+            for(var i = 0;i < 10; i++){
+                // ****************存储这个匿名函数是没有执行的*******************
+                arr[i] = function(){
+                    document.write(i+" ");
+                }
+            }
+            return arr;
+        }
+        var myArr = test();
+        for(var j = 0; j < 10; j++){
+            myArr[j]();    //  10 10 10 10 10 10 10 10 10 10
+        }
+
+
+// 题目二：用立即执行函数的方式解决上面问题 
+        function test1(){
+            var arr = [];
+            for(var i = 0;i < 10; i++){
+                (function(j){
+                    arr[j] = function(){
+                    document.write(j+" ");    // 如果这里还是输出 i 那还是十个 10 
+                 }
+                }(i));   // 这里是将 i 是实参，传给 j 
+            }
+            return arr;
+        }
+        var myArr = test1();
+        for(var j = 0; j < 10; j++){
+            myArr[j]();
+        }
+
+
+// 题目三：用全局变量方式将里面函数保存到外面
+// 里面函数的生命周期比外面生命周期长，就会产生闭包
+        var demo;
+        function test2(){
+            var abc = 100;
+            function a(){
+                console.log(abc);
+            }
+            demo = a;
+        }
+        test2();
+        demo();
+
+// 题目四：函数不依赖外部变量实现累加
+        function add(){
+            var num = 0;
+            function a(){
+                console.log(++num);
+            }
+            return a;
+        }
+        var myAdd = add();
+        myAdd();    //1
+        myAdd();    //2
+        myAdd();    //3
+
+      
+
+// 题目5：
+        function myClass(){
+            var students=[];
+
+            var operations = {
+                join:function(name){
+                    students.push(name);
+                    console.log(name+'来到了教室！！！')
+                    console.log(students);
+                },
+                leave:function(name){
+                    // for(var i=0;i<students.length;i++){
+                    //     if(students[i]==name){
+                    //         students.splice(i,1);
+                    //         console.log(name+'离开了教室！！！');
+                    //     }
+                    // }
+                    var index = students.indexOf(name);
+                    if(index !== -1){
+                        students.splice(index,1)
+                    }
+                    console.log(students);
+                },
+                leaveAll:function(){
+                    if(students.length === 0){
+                        console.log("下课了");
+                    }else{
+                        console.log('还没有下课！！！');
+                    }
+                }
+            }
+            return operations;
+        }
+
+        var obj = myClass();
+        obj.join('张三');
+        obj.join('李四');
+        obj.join('王五');
+
+        obj.leave('李四');
+
+        obj.leaveAll();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. 经典的for循环案例
+        // function test(){
+        //     var arr = [];
+        //     for(var i = 0;i < 10; i++){
+        //         // ****************存储这个匿名函数是没有执行的，相当于将这个函数存储了10次*******************
+        //         arr[i] = function(){
+        //             document.write(i+" ");
+        //         }
+        //     }
+        //     return arr;
+        // }
+        // var myArr = test();
+        // for(var j = 0; j < 10; j++){
+        //     myArr[j]();    //  10 10 10 10 10 10 10 10 10 10
+        // }
+
+        // 2. 解决经典for循环案例方式
+        function test(){
+            var arr = [];
+            for(var i=0;i<10;i++){
+                (function(j){
+                    arr[j] = function(){
+                    document.write(j+" ");    // 如果这里还是输出 i 那还是十个 10 
+                 }
+                }(i));  
+            }
+            return arr;
+        }
+        var arr = test();
+        // console.log(arr) // [ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ, ƒ]  10个function
+        for(var j=0;j<10;j++){
+            arr[j]();
+        }
+    </script>
+</body>
+</html>
