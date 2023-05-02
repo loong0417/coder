@@ -1,0 +1,13 @@
+body,h3,h3,p{
+  margin: 0;
+}
+
+ul,ol{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}

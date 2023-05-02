@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>待办事项</title>
+  <script src="./vue.js"></script>
+  <style>
+    #app{
+      background-color: #fff;
+      width: 400px;
+      margin: 30px auto 30px auto;
+      border: 1px solid #e4e4e4;
+      box-shadow: 3px 3px 3px #e4e4e4;
+      padding: 20px 20px;
+      box-sizing: border-box;
+
+      text-align: center;
+    }
+
+    #app .done input{
+      width: 280px;
+      height: 36px;
+      outline: none;
+      border: none;
+      padding-left: 10px;
+      border: 1px solid #e4e4e4;
+      border-radius: 5px;
+    }
+
+    #app .done button{
+      height: 36px;
+      width: 50px;
+      border: none;
+      border: 1px solid #e4e4e4;
+      cursor: pointer;
+   
+    }
+
+    #app .done button:hover{
+      background-color: #e4e4e4;
+    }
+
+    #app ul{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      margin-top: 20px;
+    }
+
+    #app ul li{
+      height: 36px;
+      margin-bottom: 20px ;
+      border-bottom: 1px dashed #e4e4e4;
+    }
+
+    #app ul li input,#app ul li span{
+      float: left;
+    }
+
+    #app ul li input{
+      margin-right: 15px;
+    }
+
+    #app ul li button{
+      float: right;
+      
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      text-align: center;
+      border: none;
+      color: #fff;
+      background-color: #e4e4e4;
+      cursor: pointer;
+    }
+
+    #app .control{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #app .control span:first-child{
+      color: red;
+    }
+
+    #app .control span:nth-of-type(2){
+      color: green;
+    }
+
+    #app .control span:last-child{
+      color: red;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="app" @click="closeInput()">
+    <h2>待办事项</h2>
+    <div class="done">
+      <input type="text" v-model="thing" placeholder="请输入代办事项......">
+      <button @click="add()">添加</button>
+    </div>
+    <ul>
+      <li v-for="(item,index) in arr" :key="item.des">
+        <input type="checkbox" :value="item.des" v-model="checkThing">
+        <span v-show="!item.edit" @click.stop="edit(index)">{{item.des}}</span>
+        <input type="text" v-show="item.edit" v-model="item.des" @click.stop>
+        <button @click="del(index)">X</button>
+      </li>
+    </ul>
+    <div class="control">
+      <span><input type="checkbox" :checked="checkThing.length && checkThing.length===arr.length" @click="selectAll($event)"/>全选</span>
+      <span>共{{arr.length}}项，选中{{checkThing.length}}项</span>
+      <span @click="delAll()" style="cursor: pointer;">批量删除</span>
+    </div>
+  </div>
+  <script>
+   var vm = new Vue({
+      el:'#app',
+      data:{
+        arr:[
+          {des:'吃饭',edit:false},
+          {des:'睡觉',edit:false},
+          {des:'发呆',edit:false}
+        ],
+        thing:'',       // 用户输入框里面的内容
+        checkThing:[],  // 用户选择的事项
+      },
+      methods:{
+        /**
+         * 添加待办事项 
+         */
+        add(){
+          if(!this.thing){
+            alert('请输入内容！');
+            return;
+          }
+          this.arr.push({des:this.thing,edit:false});
+          this.thing = '';
+        },
+        selectAll(ev){
+          const checkAll = [];  // 存放所有选中的数据
+          this.arr.forEach(item => {
+            checkAll.push(item.des);
+          });
+          this.checkThing = ev.target.checked ? checkAll : [];
+        },
+        edit(index){
+          this.arr[index].edit = true;
+        },
+        closeInput(){
+          this.arr.forEach(item=>{
+            item.edit = false;
+          });
+        },
+        del(index){
+          if(this.checkThing.includes(this.arr[index].des)){
+            // 这里一定要注意，先查一下删除的数据是否在选中的数组里面，如果在就删除，不在就删除所有数据的数组里面的数据
+            // 如果一开始就删除所有数据数组里面的数据，再删除选中的数组里面的数据是会有问题的
+            // 问题是：当我在所有数据里面已经将数据删除，我选中的数据里面就没有了，出现的问题是选中项位置数据不更新（是不对的数据）。
+            this.checkThing.splice(index,1);
+          }
+          this.arr.splice(index,1);
+        },
+        delAll(){
+          this.arr = this.arr.filter(item=>{
+            return !this.checkThing.includes(item.des);
+          });
+          this.checkThing = [];
+        }
+      }
+    });
+  </script>
+</body>
+</html>

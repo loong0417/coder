@@ -11,7 +11,10 @@
   <div id="app">
     <div>
       <section-head>
-        <h3 slot="title">标题</h3>
+        <!-- 注意事项：定义的具名插槽也是可以不使用的。
+             <slot name="title"></slot> 定义一个 title 具名插槽，然后我不使用也是可以的。
+        -->
+        <!-- <h3 slot="title">标题</h3> -->
         <template #info>
           <h2>杨小样</h2>
           <h2>年龄：18</h2>

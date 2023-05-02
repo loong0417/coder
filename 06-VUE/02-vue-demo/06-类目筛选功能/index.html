@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>类目筛选功能</title>
+  <script src="./vue.js"></script>
+  <style>
+    body{
+      background-color: #b5abb3;
+    }
+
+    dl,dd,h3,p{
+      margin: 0;
+      font-size: 13px;
+    }
+
+    dl{
+      border-bottom: 1px solid rgb(251, 251, 252);
+      padding: 10px;
+    }
+
+    dl:last-of-type{
+      border: none;
+    }
+
+    dt,dd{
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    dl dt{
+      color: #999;
+    }
+
+    dl dd{
+      margin-left: 10px;
+      user-select: none;
+    }
+
+    ul{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: inline-block;
+    }
+
+    ul li{
+      display: inline-block;
+      padding: 0 0 0 5px;
+      outline: 1px solid red;
+      margin: 0 10px;
+      height: 20px;
+      line-height: 20px;
+    }
+
+    ul li span{
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background: red;
+      color: white;
+      text-align: center;
+      margin-left: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .select{
+      background: rgb(231, 229, 229);
+      padding: 10px;
+    }
+
+    .select h3{
+      font-weight: normal;
+      display: inline-block;
+    }
+
+    .select p{
+      display: inline-block;
+    }
+
+    .select h3, .select p{
+      color: #999;
+    }
+
+    #app{
+      width: 850px;
+      background:rgba(255,255,255,0.8);
+      margin: 0 auto;
+      font-size: 13px;
+    }
+
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <dl v-for="(good,goodIndex) in goodsList" :key="good.id">
+      <dt>{{good.title}} :</dt>
+      <dd v-for="(goodItem,itemIndex) in good.list" :key="goodItem" @click="select(goodItem,itemIndex,good,goodIndex)" :class="{active:itemIndex===good.cn}">{{goodItem}}</dd>
+    </dl>
+    
+    <div class="select">
+      <!-- Object.keys(对象) 拿到的是对象的属性，生成的一个数组，然后再.length就可以判断数组的长度 -->
+      <h3>已选条件：</h3>
+      <p v-if="!Object.keys(selectGoods).length">没有选择的条件</p>
+      <ul>
+        <li v-for="(value,key,index) in selectGoods">{{value}}<span @click="deleteSelect(key)">×</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const app = new Vue({
+      el:'#app',
+      data:{
+        selectGoods:{
+          // 这个对象里面放的就是选中的数据，它是一个对象，目的是为了让每行数据只选中一个
+          // "0":'惠普',
+          // "1":'3000-3999',
+          // "2":'11英寸',
+          // "3":'独立显卡'
+        },
+        goodsList:[
+          {
+            title:'品牌',
+            list:['惠普','联想','戴尔','三星','宏基','苹果','神州','华硕','方正'],
+            id:1
+          },
+          {
+            title:'价格',
+            list:['3000-3999','4000-4999','5000-5999','6000-6999','7000-7999','8000-8999','9000-9999','10000以上'],
+            id:2
+          },
+          {
+            title:'尺寸',
+            list:['8.9英寸以下','11英寸','12英寸','13英寸','14英寸','15英寸','16英寸'],
+            id:3
+          },
+          {
+            title:'显卡',
+            list:['独立显卡','集成显卡','核心显卡'],
+            id:4
+          }
+        ],  
+      },
+      methods:{
+        /**
+         * goodItem 品牌，价格，尺寸，显卡的类别
+         * itemIndex 品牌，价格，尺寸，显卡的类别索引
+         * good 品牌，价格，尺寸，显卡
+         * goodIndex 品牌，价格，尺寸，显卡的索引
+         */
+        select(goodItem,itemIndex,good,goodIndex){
+          /**
+           *  this.$set(this.selectGoods,goodIndex,goodItem) 修改对象的方式使用 $set，修改数组使用数组方法。
+           *  this.selectGoods 参数一：需要修改的数据。
+           *  goodIndex 参数二：需要修改数据的索引值，每一行数据对应一个索引值，这个索引值是保证数据不重复的。
+           *  goodItem 参数三：修改成 goodItem（我要设置成谁，设置的值）。
+           */
+          good.cn = itemIndex;
+          this.$set(this.selectGoods,goodIndex,goodItem);
+        },
+        deleteSelect(key){
+          this.$delete(this.selectGoods,key);
+          this.goodsList[key].cn = "";
+        }
+      }
+    });
+  </script>
+</body>
+</html>

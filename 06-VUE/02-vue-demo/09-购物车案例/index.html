@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>购物车案例</title>
+  <script src="./vue.js"></script>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <div id="cart">
+    <shop-all :all="all" @addlist="changeList"></shop-all>
+    <shop-select :select="select" @del="select.splice($event.index,1)"></shop-select>
+    <div>总价：{{allPrice}}元</div>
+  </div>
+  <template id="ShopAll">
+    <table class="product">
+      <tr v-for="(shop,shopIndex) in all">
+        <td><img :src="shop.img"/></td>
+        <td>
+          <p>{{shop.name}}</p>
+          <div class="color">
+            <span  v-for="(color,colorIndex) in shop.colors" :key="color" @click="chooseColor(shop,shopIndex,color,colorIndex)" :class="{active:shop.cn==colorIndex}">{{color}}</span>
+          </div>
+        </td>
+        <td>{{shop.price}}.00元</td>
+        <td><span @click="changNum(shop,-1)">-</span><strong>{{shop.selectNum}}</strong><span @click="changNum(shop,1)">+</span></td>
+        <td><button @click="addShop(shop)">加入购物车</button></td>
+      </tr>
+    </table>
+  </template>
+
+  <template id="ShopSelect">
+    <table class="selected">
+      <thead>
+        <tr>
+          <th colspan="6">已选中商品</th>
+        </tr>
+      </thead>
+      <tbody v-show="select.length">
+        <tr v-for="(shop,index) in select" :key="shop.id">
+          <td><img :src="shop.img"></td>
+          <td>
+            <p>{{shop.name}}</p>
+          </td>
+          <td>{{shop.selectColor}}</td>
+          <td>{{shop.totalPrice}}.00元</td>
+          <td>x{{shop.selectNum}}</td>
+          <td><button @click="$emit(del,index)">删除</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </template>
+  <script>  
+    const vm = new Vue({
+      el:'#cart',
+      methods:{
+        changeList(selectData){
+          this.select=selectData;
+        }
+      },
+      computed:{
+        allPrice(){
+          let total = 0;
+          this.select.forEach(item => {
+              total+=item.totalPrice;
+          });
+          return total;
+        }
+      },
+      data(){
+        return{
+          all: [
+						{
+							id: 0,
+							name: '打不翻的吸盘碗',
+							price: 21,
+							img: 'img/img_01-1.png',
+							colors: ['粉色', '蓝色', '黄色', '绿色'],
+						},
+						{
+							id: 1,
+							name: '韩式帆布电脑双肩包',
+							price: 227,
+							img: 'img/img_02-1.png',
+							colors: ['黑色', '青色', '蓝色'],
+						},
+						{
+							id: 2,
+							name: 'Carat钻石汤锅24cm',
+							price: 78,
+							img: 'img/img_03-1.png',
+							colors: ['绿色', '黄色', '银色'],
+						},
+						{
+							id: 3,
+							name: '中筒皮毛一体雪地靴',
+							price: 359,
+							img: 'img/img_04-1.png',
+							colors: ['栗色', '蓝色', '紫色', '红色'],
+						},
+					],
+					select: [
+						// {
+						// 	id: 0,
+						// 	name: '打不翻的吸盘碗',
+						// 	price: 21,
+						// 	img: 'img/img_01-1.png',
+						// 	selectNum: 0,
+						// 	selectColor: '粉色',
+						// 	totalPrice: 0,
+						// }
+					],
+        }
+      },
+      components:{
+        ShopAll:{
+          template:'#ShopAll',
+          props:{
+            all:Array
+          },
+          data(){
+            return{
+              select:[],  // 点击加入购物车数据
+            }
+          },
+          methods:{
+            /**
+             * 选择商品颜色 
+             */
+            chooseColor(shop,shopIndex,color,colorIndex){
+              // 给产品下面添加一个cn属性，将colorIndex值赋值给cn。
+              this.$set(shop,'cn',colorIndex);
+              // 更改图片地址
+              shop.img = `img/img_0${shopIndex+1}-${colorIndex+1}.png`;
+              shop.selectColor = color;
+            },
+            /**
+             * 商品加减功能
+             */
+            changNum(shop,num){
+              let selectNum = shop.selectNum+num;
+              if(selectNum<=0){
+                selectNum = 0;
+              }
+              shop.selectNum = selectNum;
+              // 更新当前商品的总价
+              shop.totalPrice = selectNum * shop.price; 
+              
+              // 如果商品数量减到0，需要把数据从已选商品列表删除
+              let n = this.select.findIndex(item=>item.selectNum==0);
+              if(n!=-1){
+                // 条件成立说明数据找到了，就是0
+                this.select.splice(n,1);
+              }
+            },
+            /**
+             * 加入购物车 
+             */
+            addShop(shop){
+              if(!shop.selectNum){
+                alert('选择商品数量不能为空！');
+                return;
+              }
+              let data = this.select.find(item => item.id == shop.id);
+              data ? shop : this.select.push(shop);
+              this.$emit('addlist',this.select);
+            },
+
+          }
+        },
+        ShopSelect:{
+          template:'#ShopSelect',
+          props:{
+            select:Array
+          },
+          methods:{
+            // remove(index){
+            //   this.select.splice(index,1);
+            // }
+          }
+        },
+      }
+    });
+
+    vm.$data.all.map(item => {
+      // 选择的数量
+      vm.$set(item,'selectNum',0);
+      // 选择的颜色
+      vm.$set(item,'selectColor',item.colors[0]);
+      // 总价格
+      vm.$set(item,'totalPrice',0);
+    });
+
+    // console.log(vm.$data);
+  </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动态组件案例</title>
+  <script src="./vue.js"></script>
+  <style>
+    button{
+      width: 100px;
+      height: 50px;
+      margin: 0 10px;
+      outline: none;
+    }
+
+    .content{
+      width: 340px;
+      height: 300px;
+      margin-left: 10px;
+      border: 1px solid #000;
+      font-size: 40px;
+      box-sizing: border-box;
+      padding: 20px;
+    }
+
+    .active{
+      background: green;
+      color: #fff;
+      border: none;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- 
+    动态组件：选项卡案例
+      1. 使用component
+      2. 使用is属性
+  -->
+  <div id="app">
+    <button v-for="tab in tabs" :key="tab.id" @click="currentTab=tab.component"
+    :class="{active: currentTab==tab.component}">{{tab.name}}</button>
+    <div class="content">
+      <component :is="currentTab"></component>
+    </div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el:'#app',
+      data(){
+        return{
+          currentTab:'HTML',
+          tabs:[
+            // 这里的component只是对象中的一个属性而已，也可以是c，这个属性存放的是components子组件
+            {name:'html',component:'HTML',id:0},
+            {name:'css',component:'CSS',id:1},
+            {name:'javascript',component:'JAVASCRIPT',id:2}
+          ]
+        }
+      },
+      components:{
+        'HTML':{
+          template:'<div>html</div>'
+        },
+        'CSS':{
+          template:'<div>css</div>'
+        },
+        'JAVASCRIPT':{
+          template:'<div>javascript</div>',
+          data(){
+            return {
+              currentTab:'Vue',
+              child:[
+                {name:'vue',component:'Vue',id:3},
+                {name:'react',component:'React',id:4},
+              ]
+            }
+          },
+          components:{
+            Vue:{
+              template:`<div>vue</div>`,
+            },
+            React:{
+              template:`<div>react</div>`
+            }
+          },
+          template:`
+            <div>
+              <button v-for="c in child" @click="currentTab=c.name" 
+              :class="{active:currentTab==c.name}"
+              >{{c.name}}</button>
+              <div>
+                <component :is='currentTab'></component>
+              </div>
+            </div>
+          `,
+        },
+      }
+    });
+  </script>
+</body>
+</html>
