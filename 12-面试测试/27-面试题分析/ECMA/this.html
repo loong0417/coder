@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    //题目一： 
+        var name = "222";
+        var a = {
+            name:"111",
+            say:function(){
+                console.log(this.name);
+            }
+        }
+        var fun = a.say;
+        fun();
+        a.say();
+
+        var b = {
+            name:"333",
+            say:function(fun){
+                fun();
+            }
+        }
+        b.say(a.say);
+        b.say = a.say;
+        b.say();
+
+
+
+    //题目二：
+    // var foo = 123;
+    // function print(){
+    //     this.foo = 234;
+    //     console.log(foo);
+    // }
+    // print();   //234
+
+
+    // var foo = 123;
+    // function print(){
+    //     // var this = Object.create(print.prototype)
+    //     this.foo = 234;
+    //     console.log(foo);   // 因为这里打印的是 foo 而不是 this.foo
+    // }
+
+    // new print();  //123
+
+
+
+// 题目三：
+        // var a = 5;
+        // function test(){
+        //     a = 0;
+        //     alert(a);       //0
+        //     alert(this.a);  //5
+
+        //     var a;
+        //     alert(a);   //0
+        // }
+        // test();
+
+        // var a = 5;
+        // function test(){
+        //     a = 0;
+        //     alert(a);       //0
+        //     alert(this.a);  // undefined
+
+        //     var a;
+        //     alert(a);   //0
+        // }
+        // new test();
+
+// 题目四：
+
+            // function print(){
+            //     console.log(foo);   // undefined
+            //     var foo = 2;    
+            //     console.log(foo);  //2
+            //     console.log(hello);   //hello is not defined
+            // }
+
+            // print();
+
+
+
+// 题目五：
+            var bar = {a:"002"};
+            function print(){
+                bar.a = 'a';
+                Object.prototype.b = "b";
+                return function inner(){
+                    console.log(bar.a);   //a
+                    console.log(bar.b);   //b
+                }
+            }
+            print()();   //去掉一个括号不执行
+
+
+    </script>
+</body>
+</html>

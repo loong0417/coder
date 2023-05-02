@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    // 题目一：
+
+    // var str = "abc";
+    // str += 1;
+    // var test = typeof(str);
+    // if(test.length == 6){
+    //     // test 是原始值，赋值需要调用包装类的，换一句话说，赋值和不赋值没啥区别
+    //     // new String(test).sign = "xxxxx" delete
+    //     test.sign = "typeof的返回结果可能为 String ";
+    // }
+    // // new String(test).sign
+    // console.log(test.sign);   //undefined
+
+
+    // 题目二：
+
+    // function employee(name,code){
+    //     // 虽然再下面  new 的时候传参了，但在这里面没有用参数，而是写成固定的了
+    //     this.name = "wangli";
+    //     this.code = "A001";
+    // }
+    // var newemp = new employee("zhangsan",'A002');
+    // document.write("雇员姓名："+ newemp.name); 
+    // document.write("雇员代码："+ newemp.code);  //雇员姓名：wangli雇员代码：A001
+
+    // 题目三:
+    // function Person(name,age,sex){
+    //     var a = 0;
+    //     this.name = name;
+    //     this.age = age;
+    //     this.sex = sex;
+
+    //     function sss(){
+    //         a++;
+    //         console.log(a);
+    //     }
+    //     this.say = sss;   // 将 sss() 函数赋值给 this.say，然后返回去
+    // }
+    // // new 的时候生成一个执行上下文，生成闭包，调用2次函数
+    // var oPerson = new Person();
+    // oPerson.say();  //1
+    // oPerson.say();  //2
+
+    // // 这里 new 会重新生成一个新的执行上下文
+    // var oPerson1 = new Person();
+    // oPerson1.say(); //1
+
+    // 题目四：
+    // 求 x,y,z 的值分别是多少 ？
+    // var x = 1,y = z = 0;
+
+    // function add(n){
+    //     return n = n + 1;
+    // }
+
+    // y = add(x);
+
+    // function add(n){
+    //     return n = n + 3;
+    // }
+    // z = add(x);
+
+    // x = 1 , y = 4 , z = 4 
+    // 这个是为是因为有两个 add() 函数，在预编译的时候后面的会覆盖前面的函数
+
+    // 题目五：
+    // function b(x,y,a){
+    //     arguments[2] = 10;
+    //     console.log(a);  //10
+    // }
+    // b(1,2,3);
+
+    // function b(x,y,a){
+    //     a = 10;
+    //     console.log(arguments[2]);  //10
+    // }
+    // b(1,2,3);
+
+    // 题目六：
+    // var x = 1;
+    // // if 中的函数不属于 false 值（0、NaN、false、undefined、"" 、null）,所以会进入
+    // if(function f(){}){
+    //     // x = x + typeof(f)
+    //     // x = x + undefined(undefined是sting类型)
+    //     x += typeof f;
+    // }
+    // console.log(x);  // 1undefined
+
+    // 题目七：
+    // f(,) f 括号算是一个运算符，(,) f 括号里面的逗号也算是一个运算符，直接返回第二个方法 g()
+    // var f = (
+    //     function f() {
+    //         return "1";  
+    //     },
+
+    //     function g() {
+    //         return 2;
+    //     }
+    // )();
+
+    // console.log(typeof f);   // number
+
+    // 题目八：
+    var str = "sasassasasasaklasjaksjksjaksajksseueywuei张三李四";
+    function bytesLenght(str) {
+        // 方式一：
+        var count = str.length;
+        for(var i = 0; i<str.length; i++){
+            if(str.charCodeAt(i)>255){
+                count++;
+            }
+        }
+        // 方式二：
+        // var count = 0;
+        // for(var i = 0; i<str.length;i++){
+        //     if(str.charCodeAt(i)>255){
+        //         count+=2;
+        //     }else{
+        //         count++;
+        //     }
+        // }
+        return count;
+    }
+
+    console.log(bytesLenght(str));
+
+// apply
+
+    function foo(){
+        bar.apply(null,arguments);
+    }
+
+    function bar(){
+        console.log(arguments);
+    }
+    // 将形参传入到 foo 里面，然后倒腾到 bar.apply(null,arguments) 里面
+    foo(1,2,3,4,5);     // [1，2，3，4，5]
+
+    </script>
+</body>
+</html>

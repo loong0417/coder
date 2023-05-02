@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预编译</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // 题目1：
+        function fn(a){
+            console.log(a);   // function a(){}
+
+            var a = 123;
+            console.log(a);  // 123
+
+            function a(){}
+            console.log(a);  // 123
+
+            var b = function(){}
+
+            console.log(b);  // function b(){}
+
+            function d(){}
+        }
+        // fn(1);
+
+        // 题目2：
+        function test(a,b){
+            document.write(a); //1
+            c = 0;
+            var c;
+            a = 3;
+            b = 2;
+            document.write(b); //2 
+            function b(){}
+            function d(){}
+            document.write(b); //2
+        }
+
+        test(1);
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // 1. 写一个函数，功能是告诉你所选定的小动物叫声
+        // function animals(animal){
+        //     switch(animal){
+        //         case 'dog':
+        //             document.write("汪汪汪！！！");
+        //             return;
+
+        //         case 'cat':
+        //             document.write("喵喵喵！！！");   
+        //             return;
+                    
+        //         case 'tager': 
+        //             document.write("嗷嗷嗷！！！");
+        //             return;
+                    
+        //         default:
+        //             document.write("请输入你选择的动物！！！");    
+        //             break;
+        //     }
+        // }
+        // animals('dog');
+
+        // 2. 写一个函数，实现加法计算器
+        
+        // function sum(){
+        //     var count = 0; //总数
+        //     for(var i=0;i<arguments.length;i++){
+        //       count+=arguments[i];
+        //     }
+
+        //     document.write(count);
+        // }
+
+        // sum(1,2,3,4,5,6,7,8,9);
+
+        // 3. 定义一组函数，输入数字，逆转并输出汉字形式
+        function reverse(){
+            var num = window.prompt("请输入数字：");
+            var str = "";
+            for(var i = num.length-1; i>=0;i--){
+                str+=change(num[i]);
+            }
+           console.log(str);
+        }
+
+        function change(number){
+            switch(number){
+                case '1':
+                    return "一";
+                case '2':
+                    return "二";
+                case '3':
+                    return "三";
+                case '4': 
+                    return "四";
+                case '5':
+                    return "五";
+                case '6':
+                    return "六";
+                case '7':
+                    return "七";
+                case '8': 
+                    return "八";   
+                case '9': 
+                    return "九"; 
+            }
+        }
+
+        // reverse(); 
+
+
+
+        
+
+
+        // 4. 写一个函数实现 n 的乘阶
+        // function sum(n){
+        //     var count=1;
+        //     for(var i=1;i<=n;i++){
+        //         count *=i;
+        //     }
+        //     console.log(count);
+        // }
+        // sum(5);
+
+
+        // 5. 写一个函数实现斐波拉列数列
+        // function result(n){
+            // 实现步骤：
+            // 1. 首先得确定到第 n 位数得时候需要加多少次（当 n=3，那就只需要加1次，n=4就需要加两次）
+            // 2. 已知 first（第一位）和 second（第二位），那么 n 就应该大于2，小于 2 直接输出1（可以加判断）
+            // 3. 第 n 的数子减去2就相当于需要加的次数，也是循环的次数
+            // 4. 每加完一次指针是要向后挪动一位的
+        //     var first = 1;
+        //     var second = 1;
+        //     var third;
+
+        //     for(var i=1;i<=n-2;i++){
+        //         third = first + second;
+        //         first = second;
+        //         second = third;
+        //     }
+        //    console.log(third); 
+        // }
+        // result(8);
+
+
+
+    </script>
+</body>
+</html>

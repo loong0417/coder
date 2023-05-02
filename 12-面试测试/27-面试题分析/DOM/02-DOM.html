@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM相关</title>
+</head>
+<body>
+    <!-- 题目1： -->
+    <!-- <div> -->
+      <!-- 我是注释君 -->
+      <!-- <h1>我是标题标签</h1>
+      <p>我是段落标签</p>
+      <a href="#">我是超链接</a> -->
+    <!-- </div> -->
+
+    <!-- 题目2： -->
+    <!-- <div>
+      <ul>
+        <li>
+          <p><a href=""></a></p>
+        </li>
+      </ul>
+    </div> -->
+
+    <!-- 题目3： -->
+    <!-- <div>
+      <h1></h1>
+      <p></p>
+      <a href=""></a>
+    </div> -->
+
+    <!-- 题目4： -->
+    <!-- <div>
+      <p></p>
+      <h1></h1>
+      <a href=""></a>
+      <strong></strong>
+      <em></em>
+      <h2></h2>
+    </div> -->
+
+    <!-- 题目5：使用原生js方式创建如下DOM结构。 -->
+    <!-- <div id="box">
+      <ul class="list">
+        <li class="item">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+        <li class="item">4</li>
+        <li class="item">5</li>
+      </ul>
+    </div> -->
+
+    <!-- 题目6： -->
+    <!-- <div class="box">
+      <ul>
+        <li>
+          <h1>1111111</h1>
+          <a href="#">2222222222</a>
+          <p>333333333333</p>
+          <div>
+            <ul>
+              <li>4444444444</li>
+              <li>
+                <h2>555555555</h2>
+                <a href="#">666666666666</a>
+                <p>7777777</p>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+
+      <div>
+        <p>
+          <a href="#">8888888888</a>
+        </p>
+        <h1>
+          <strong>9999999999999</strong>
+          <span>00000000000</span>
+        </h1>
+      </div>
+    </div> -->
+
+    <!-- 题目7：标签逆序 -->
+    <!-- <div>
+      <h1>111111</h1>
+      <a href="#">2222222</a>
+      <p>333333</p>
+      <strong>4444444</strong>
+    </div> -->
+
+    <!-- 题目8：获取时钟，在原型上编程 -->
+    <!-- <p></p> -->
+
+    
+  <script>
+    /**
+     * 题目1：在原型上写遍历一个父元素的子元素节点。
+     *  index参数的作用，如果不填，返回所有子元素节点。
+     *  index 下标从0开始，为第一个元素，如果下标不存在返回undefined。
+     */
+    // var Odiv = document.getElementsByTagName('div')[0];
+    // Element.prototype.elementChildren = function(index){
+    //   // console.log(this)  this指向的是div
+    //   var childNodes = this.childNodes,
+    //       len = childNodes.length,
+    //       item;
+
+    //   var temp = {
+    //     'length':0,
+    //     'push':Array.prototype.push,
+    //     'splice':Array.prototype.splice
+    //   }
+
+    //   for(var i=0;i<len;i++){
+    //     item = childNodes[i];
+    //     if(item.nodeType === 1){
+    //       temp.push(item);
+    //     }
+    //   }
+
+    //   if(index !==undefined && typeof(index) !=='number'){
+    //     return undefined;
+    //   }
+
+    //   return index === undefined ? temp : temp[index];
+
+    //   return temp;
+    // }
+    // console.log(Odiv.elementChildren(2));
+
+    /**
+     * 题目2：在原型上写，找出一个元素的第n层父元素。
+     */
+    // var a = document.getElementsByTagName('a')[0];
+    // Element.prototype.elementParent = function(n){
+    //   var type = typeof(n),
+    //       elem = this;
+    //   if(type === undefined || type!=='number'){
+    //     return elem.parentNode;
+    //   }else if(n<0){
+    //     return undefined;
+    //   }
+
+    //   while(n){
+    //     elem = elem.parentNode;
+    //     n--;
+    //   }
+    //   return elem;
+    // }
+    // console.log(a.elementParent(0));
+
+    /**
+     * 题目3：hasChildren 和 hasChildNodes  
+     *  (1). hasChildren 判断是否存在子元素节点，返回true。
+     *  (2). hasChildNodes 判断是否存在子节点，包含文本注释元素，返回true。
+     *  (3). 如果只想要元素子节点，存在元素子节点返回true，不存在返回false。
+     */
+    // var div = document.getElementsByTagName('div')[0];
+    // Element.prototype.hasChildren = function(){
+    //   var children = this.childNodes,
+    //       len = children.length,
+    //       item;
+      
+    //   for(var i=0;i<len;i++){
+    //     item = children[i];
+    //     if(item.nodeType === 1){
+    //       return true;
+    //     }
+    //   }
+    //   return false;
+    // } 
+    // console.log(div.hasChildren())
+
+    /**
+     * 题目4：写找兄弟元素的节点，参数为整数找之后的，参数为负数找之前的，参数为0找自己。 
+     */
+    // var strong = document.getElementsByTagName('strong')[0];
+    // Element.prototype.elemSibling = function(n){
+    //   var elem = this;
+
+    //   while(n){
+    //     if(n>0){
+    //       elem = elem.nextElementSibling;
+    //       n--;
+    //     }else if(n<0){
+    //       elem = elem.previousElementSibling;
+    //       n++;
+    //     }
+    //   }
+    //   return elem;
+    // }
+    // console.log(strong.elemSibling(-5));
+
+    /**
+     * 题目5：在原型上，使用原生创建元素。 
+     */
+    //  function createElements(){
+    //   var div = document.createElement('div'),
+    //       ul = document.createElement('ul'),
+    //       flag = document.createDocumentFragment(),
+    //       body = document.body;
+    //   div.setAttribute('id','box');
+    //   ul.className = 'list';
+
+    //   for(var i=0;i<5;i++){
+    //     var li = document.createElement('li');
+    //     li.className = 'item';
+    //     li.innerHTML = i+1;
+    //     flag.appendChild(li);
+    //   }
+    //   ul.appendChild(flag);
+    //   div.appendChild(ul);
+    //   body.appendChild(div);
+    // }
+    // createElements();
+
+    /**
+     * 题目6：遍历父元素所有子元素节点。 
+     */
+    // var box = document.getElementsByClassName('box')[0];
+    // function getFullChildren(node){
+    //   var children = node.childNodes,
+    //       len = children.length,
+    //       item;
+      
+    //   if(node && node.nodeType===1){
+    //     console.log(node);
+    //   }
+      
+    //   for(var i=0;i<len;i++){
+    //     item = children[i];
+    //     if(item.nodeType === 1){
+    //       getFullChildren(item);
+    //     }
+    //   }
+    // }
+    // console.log(getFullChildren(box));
+
+    /**
+     * 题目7：标签逆序 
+     */
+    // var div = document.getElementsByTagName('div')[0],
+    //     children = div.childNodes,
+    //     len = children.length,
+    //     item;
+      
+    // while(len--){
+    //   if(children[len].nodeType === 1){
+    //     console.log(children[len])
+    //     // div.appendChild(children[len])
+    //   }
+    // }
+    
+    /**
+     * 题目8：获取时钟，在原型上编程
+     */
+    // var p = document.getElementsByTagName('p')[0];
+
+    // Date.prototype.getTime = function(){
+    //   var year = this.getFullYear(),
+    //       month = this.getMonth()+1,
+    //       day = this.getDate(),
+    //       hours = this.getHours(),
+    //       minutes = this.getMinutes(),
+    //       seconds = this.getSeconds();
+      
+    //   function formatDate(data){
+    //     return data<10?'0'+data:data;
+    //   }
+
+    //   return year+'年'+formatDate(month)+'月'+formatDate(day)+'日-'+formatDate(hours)+'时：'+formatDate(minutes)+'分：'+formatDate(seconds)+'秒';
+    // }
+
+    // setInterval(function(){
+    //   p.innerHTML = new Date().getTime();
+    // },1000);
+
+  </script>
+</body>
+</html>

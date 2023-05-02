@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包-必知必会</title>
+</head>
+<body>
+    <script type="text/javascript">
+    // 题目一：
+        function test(){
+            var arr = [];
+            for(var i=0;i<10;i++){
+                arr[i]= function(){
+                    document.write(i+",");   // 10,10,10,10,10,10,10,10,10,10,
+                    // console.log(i + " ");  // 10
+                }
+            }
+            return arr;
+        }
+
+        var myArray = test();
+        // console.log(myArray);  // 0~10
+        // for(var j = 0; j < 10;j++){
+        //     myArray[j]();
+        // }
+
+
+    // 题目二：
+        function test(){
+            var arr=[];
+            for(var i = 0;i < 10; i++){
+                (function(j){
+                        arr[j] = function(){
+                        document.write(j);
+                    }
+                }(i));  
+            }
+            return arr;
+        }
+
+        var myArr = test();
+        for(var j=0;j<10;j++){
+            myArray[j]();
+        }
+    </script>
+</body>
+</html>

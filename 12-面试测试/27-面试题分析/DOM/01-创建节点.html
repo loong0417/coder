@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>乘法口诀表</title>
+</head>
+<body>
+	<script>
+		var tab = document.createElement('table');
+		tab.style.border = '1px solid black';
+		tab.style.borderCollapse = 'collapse';
+		for(var i=1;i<=9;i++){
+			var tr = document.createElement('tr');
+			tab.appendChild(tr);
+			for(var j=1,str='';j<=i;j++){
+				str = j + 'X' + i + '=' + i*j +" ";
+				var td = document.createElement('td');
+				td.style.border = '1px solid black';
+				td.style.height = '20px';
+				td.innerHTML = str;
+				tr.appendChild(td);
+			}
+		}
+		document.body.appendChild(tab);
+	</script>
+</body>
+
+</html>

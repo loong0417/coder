@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 题目1：怎么判断一个变量是数组还是对象？ 
+     * 1. 方式一：isArray()
+     * 2. 方式二：instanceof
+     * 3. 方式三：constructor
+     * 
+     * 问题：为什么判断对象和数组都需要调用原型链顶端的toString()方法，因为对象和数组是可以重写toString()方法的。
+     * 4. 方式四：Object.prototype.toString.call(arr)==="[object Array]"
+     */
+    var arr = [];
+    var obj = {};
+    console.log(Array.isArray(arr));  
+    console.log(arr instanceof Array);
+    console.log(arr.constructor === Array);
+    console.log(Object.prototype.toString.call(arr)==="[object Array]");
+    console.log(Object.prototype.toString.call(obj)==="[object Object]");
+
+    /**
+     * 题目2：判断数组和对象的弊端？
+     * 为什么在实际项目中很少用instanceof和constructor一个变量是否为数组或对象，它们的弊端在哪？ 
+     * 
+     * 原因：就是因为iframe标签。
+     */
+    var iframe = document.createElement('iframe');
+    document.body.appendChild(iframe);
+
+    var xArray = window.frames[window.frames.length-1].Array;
+    
+    var arr = new xArray(1,2,3);
+    console.log(arr instanceof Array);       // false
+    console.log(arr.constructor === Array);  // false
+
+    /**
+     * 题目3：isArray()存在兼容性问题
+     */
+
+  </script>
+</body>
+</html>

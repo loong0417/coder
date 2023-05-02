@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 题目1：
+    // foo() 函数执行可以是这样的 也可以是 foo.call() 它们两表达的意思是一样的。
+    function foo(){
+      // 这里的 this 指向为 null，实际上是 this 指向没有更改
+      // 没有更改 this 指向，那这里的 apply 就相当于没有用的
+      bar.apply(null,arguments)
+      // bar.call(arguments)  其实 bar.call(arguments) 相当于 bar(arguemnts) 就相当于是指向了函数
+    }
+
+    function bar(){
+      console.log(arguments)
+    }
+
+    // foo(1,2,3,4,5) // [Arguments(5) [1, 2, 3, 4, 5, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+
+
+    // 题目2：typeof检测数据类型返回的结果有哪些？
+    // number，string，boolean，undefined，function，object，null(object)
+
+    
+    // 题目3：
+    // var a = '1';
+    // function test(){
+    //   var a = '2';
+    //   this.a = '3';
+    //   console.log(a);
+    //   // console.log(this.a)
+    // }
+    // test();  // 2
+    // new test(); // 2
+    // console.log(a); // 3
+    
+    // 题目4：
+    var a = 5;
+    function test(){
+      a = 0;
+      console.log(a);
+      // 这里的 this.a 并没有赋值， this.a 实在实例化 test 产生的，并没有赋值。
+      console.log(this.a);  
+      var a;
+      console.log(a);
+    }
+    test();   // 0,5,0
+    new test();   // 0,undefined,0
+
+
+
+  </script>
+</body>
+</html>
