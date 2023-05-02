@@ -1,0 +1,17 @@
+<svg style="background:green;"  width="1000" height="500" xmlns="http://www.w3.org/2000/svg">
+<!-- 
+    rect 新建一个矩形:
+        1. width    宽度
+        2. height   高度
+        3. fill     填充色
+        4. stroke   描边
+        5. stroke-width 描边的宽度
+        6. x 离svg的左边
+        7. y 离svg的上边
+
+-->
+    <rect width="100" height="100" fill="blue" stroke="cyan" stroke-width="5" x="100" y="100"/>
+
+<!-- circle 圆形 -->
+    <circle/>
+</svg>

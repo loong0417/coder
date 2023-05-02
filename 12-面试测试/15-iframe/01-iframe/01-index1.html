@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <iframe src="./02-index2.html" id="myIframe" frameborder="0"></iframe>
+  <script>
+    // 疑问1：这个位置获取的myIframe到底是当前文件中的myIframe还是引入文件中的那个id属性呢？
+    var myIframe = document.getElementById('myIframe');
+
+    window.name = 'mainWindow';
+    myIframe.onload = function(){
+      // name属性是index2.html中的，window.name="iframeWindow";
+      console.log(myIframe.contentWindow.name);
+    }
+  </script>
+</body>
+</html>

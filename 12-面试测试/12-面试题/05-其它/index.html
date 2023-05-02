@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>position</title>
+  <style>
+    .div{
+      width: 300px;
+      height: 300px;
+      border: 1px solid green;
+      padding: 10px;
+      position: relative;
+
+      /* 
+        css3中的 resize 必须配合 overflow 一起使用
+       */
+      resize: both;
+      overflow: auto;
+    }
+
+    .div a{
+      width: 100px;
+      height: 100px;
+      color:#fff;
+      background: green;
+      position: absolute;
+      font-size: 20px;
+      text-decoration: none;
+      line-height: 100px;
+      text-align: center;
+    }
+
+    .a1{
+      left: 10px;
+      top: 10px;
+    }
+
+    .a2{
+      right: 10px;
+      top: 10px;
+    }
+
+    .a3{
+      top: 50%;
+      left: 50%;
+      margin-top: -50px;
+      margin-left: -50px;
+    }
+
+    .a4{
+      bottom: 10px;
+      left: 10px;
+    }
+
+    .a5{
+      bottom: 10px;
+      right: 10px;
+    }
+
+  </style>
+</head>
+<body>
+  
+  <div class="div">
+    <a href="#" class="a1">a1</a>
+    <a href="#" class="a2">a2</a>
+    <a href="#" class="a3">a3</a>
+    <a href="#" class="a4">a4</a>
+    <a href="#" class="a5">a5</a>
+  </div>
+
+</body>
+</html>

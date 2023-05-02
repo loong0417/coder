@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定位-实现水平垂直居中</title>
+  <style type="text/css">
+    html,
+    body{
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .box{
+      width: 200px;
+      height: 300px;
+      line-height: 300px;
+      border: 1px solid red;
+      text-align: center;
+      position: absolute;
+      /* 不需要考虑宽高，去掉宽高用内容撑盒子宽高（兼容性不是很好） */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    实现水平垂直居中
+  </div>
+</body>
+</html>

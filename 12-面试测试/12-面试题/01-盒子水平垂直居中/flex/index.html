@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>弹性盒子——实现水平垂直居中</title>
+
+  <style type="text/css">
+    html,
+    body{
+      height: 100%;
+      overflow: hidden;
+
+      /* 使用弹性盒子方式实现水平垂直居中（兼容性不好，一般用于移动端） */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box{
+      width: 300px;
+      height: 200px;
+      line-height: 200px;
+      border: 1px solid red;
+      text-align: center;
+
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    弹性盒子
+  </div>
+</body>
+</html>
