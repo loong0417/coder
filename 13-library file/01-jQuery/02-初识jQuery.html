@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./jQuery3.6.3/jQuery3.6.3mini.js"></script>
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <script>
+    // 1. $(function(){}) 相当于DOM中的load事件，等页面元素加载完毕后，执行函数中的操作。
+    $(function(){
+      $('.box').hide();
+    });
+  </script>
+</body>
+</html>
