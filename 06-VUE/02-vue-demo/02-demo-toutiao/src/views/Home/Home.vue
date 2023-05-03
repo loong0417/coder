@@ -13,6 +13,9 @@
 <script>
 import ArticleInfo from '@/components/Article/ArticleInfo.vue'
 import { getArticleListAPI } from '@/api/articleAPI.js'
+// lodash 提供很多好用的函数，节流，防抖，数组一些列函数，操作对象的函数（深拷贝，浅拷贝）
+import _ from 'lodash'
+let fn = null
 export default {
   name: 'Home',
   data() {
@@ -30,6 +33,7 @@ export default {
       finished: false,
       // 是否正在下拉刷新
       isLoading: false
+
     }
   },
   components: {
@@ -37,6 +41,13 @@ export default {
   },
   created() {
     this.initArticleList()
+  },
+  activated() {
+    fn = this.recordTopHeadler()
+    window.addEventListener('scroll', fn)
+  },
+  deactivated() {
+    window.removeEventListener('scroll', fn)
   },
   methods: {
     // 封装获取文章列表数据的方法
@@ -73,6 +84,11 @@ export default {
       // 下拉刷新主要做两件事情（1. 让页码加1，2. 重新请求接口加载数据）
       this.page++
       this.initArticleList(true)
+    },
+    recordTopHeadler() {
+      return _.debounce(() => {
+        this.$route.meta.to = window.scrollY
+      }, 50, { trailing: true })
     }
   }
 }

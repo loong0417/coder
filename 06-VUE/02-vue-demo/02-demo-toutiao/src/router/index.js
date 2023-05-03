@@ -8,7 +8,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: Home
+    component: Home,
+    meta: { isRecord: true, top: 0 }
   },
   {
     path: '/user',
@@ -19,7 +20,15 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: to.meta.top || 0 }
+    }
+  }
 })
 
 export default router
